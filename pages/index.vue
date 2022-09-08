@@ -1,7 +1,7 @@
 <template>
 	<main class="h-[10000px]">
 		<section
-			style="background-image: url('./assets/img/offer/offer-bg.png')"
+			style="background-image: url('./img/offer/offer-bg.png')"
 			class="offer px-[80px] pb-[80px] min-h-[850px] h-screen text-white bg-dark-300 bg-center bg-no-repeat bg-cover rounded-t-[44px]"
 		>
 			<div class="offer-content flex items-end h-full justify-between">
@@ -204,7 +204,7 @@ export default {
 			bikesCards: [
 				{
 					title: "yamaha nmax 2022",
-					img: "/assets/img/offer/bike.png",
+					img: "/img/offer/bike.png",
 					desc: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.",
 					fuel: "15л / 100км",
 					priceDay: "5$",
@@ -212,7 +212,7 @@ export default {
 				{
 					title: "yamaha nmax 2022",
 					subinfo: "С креплением для сёрфа",
-					img: "/assets/img/offer/bike.png",
+					img: "/img/offer/bike.png",
 					desc: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.",
 					fuel: "15л / 100км",
 					priceDay: "5$",
@@ -220,7 +220,7 @@ export default {
 				{
 					title: "yamaha nmax 2022",
 					subinfo: "С креплением для сёрфа и сёрфбордом",
-					img: "/assets/img/offer/bike.png",
+					img: "/img/offer/bike.png",
 					desc: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.",
 					fuel: "15л / 100км",
 					priceDay: "5$",
