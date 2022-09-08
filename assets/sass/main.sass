@@ -1,0 +1,24 @@
+
+@import 'fonts'
+@import 'mixins'
+@import './_vars'
+html, body
+  min-height: 100vh
+  height: 100%
+  +helvr
+body
+  color: $light
+  +helvr
+  font-size: 18px
+.container
+  max-width: 1400px
+  padding: 0 30px
+  margin: 0 auto
+.section
+  &-title
+    +eu
+    text-transform: uppercase
+    font-size: 58px
+    line-height: 1
+  &-desc
+    font-size: 18px

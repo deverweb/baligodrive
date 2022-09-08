@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "@nuxtjs"
+  ],
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 240
+      }
+    ]
+  }
+}
