@@ -10,7 +10,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				Euroblack: "Eurostile Extended-Black",
+				Euroblack: "Eurostile-Extended-Black",
 				Helvbold: "helveticaneuecyr-bold",
 				Helvreg: "helveticaneuecyr-roman",
 				Helvmed: "helveticaneuecyr-medium",
