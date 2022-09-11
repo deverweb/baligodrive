@@ -87,24 +87,22 @@ export default {
 		const root = ref(null);
 		let changeVisible = () => {
 			canSee.value = !canSee.value;
+			if (canSee.value) window.addEventListener("click", closeCSonWindowClick);
 		};
 		let selectOption = (option) => {
 			selectedOption.value = option.model;
 			canSee.value = false;
+			window.removeEventListener("click", closeCSonWindowClick);
 		};
 		const closeCSonWindowClick = (event) => {
-			console.log("выполняю");
 			if (
 				canSee.value === true &&
 				!root.value.isEqualNode(event.target.closest(".cs"))
 			) {
 				canSee.value = false;
+				window.removeEventListener("click", closeCSonWindowClick);
 			}
 		};
-
-		onMounted(() => {
-			window.addEventListener("click", closeCSonWindowClick);
-		});
 
 		onUnmounted(() => {
 			window.removeEventListener("click", closeCSonWindowClick);
