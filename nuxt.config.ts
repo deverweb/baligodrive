@@ -13,6 +13,7 @@ export default defineNuxtConfig({
 			},
 		},
 	},
+	plugins: [{ src: "~/plugins/v-calendar", ssr: false, mode: "client" }],
 	modules: ["@nuxtjs/tailwindcss"],
 	build: {
 		postcss: {
