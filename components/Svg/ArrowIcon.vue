@@ -8,7 +8,7 @@
 	>
 		<path
 			d="M1 1.5L4 4.5L7 1.5"
-			stroke="#111111"
+			:stroke="stroke"
 			stroke-width="1.3"
 			stroke-linecap="round"
 			stroke-linejoin="round"
@@ -17,7 +17,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+	props: {
+		stroke: {
+			required: false,
+			default: "#111111",
+		},
+	},
+};
 </script>
 
 <style lang="sass"></style>

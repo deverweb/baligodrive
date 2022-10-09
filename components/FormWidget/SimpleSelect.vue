@@ -1,5 +1,5 @@
 <template>
-	<section>contacts</section>
+	<div>simeple</div>
 </template>
 
 <script>

@@ -1,8 +1,8 @@
 <template>
-  <div class="relative min-h-screen">
-    <TheHeader />
-    <slot />
-    <TheFooter />
-  </div>
+	<div class="relative min-h-screen">
+		<TheHeader />
+		<slot />
+		<FormWidget></FormWidget>
+		<!-- <TheFooter /> -->
+	</div>
 </template>
-

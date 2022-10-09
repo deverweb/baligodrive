@@ -1,24 +1,80 @@
 
-@import 'fonts'
-@import 'mixins'
+// @import 'fonts'
 @import './_vars'
+
+@mixin r($screenWidth)
+	@media only screen and (max-width: $screenWidth + 'px')
+		@content
+
+
+@mixin rmin($screenWidth)
+	@media only screen and (min-width: $screenWidth + 'px')
+		@content
+
+
+button
+	outline: none
 html, body
-  min-height: 100vh
-  height: 100%
-  +helvr
+	min-height: 100vh
+	height: 100%
+	+helvr
 body
-  color: $light
-  +helvr
-  font-size: 18px
+	color: $light
+	+helvr
+	font-size: 18px
+	-ms-overflow-style: none
+	scrollbar-width: none
+	overflow-x: hidden
+	&::-webkit-scrollbar
+		display: none
+	&.active-menu
+		+r(600)
+			overflow: hidden
 .container
-  max-width: 1400px
-  padding: 0 30px
-  margin: 0 auto
+	max-width: 1400px
+	padding: 0 16px
+	margin: 0 auto
+	+r(768)
+		padding: 0 25px
+.ls-text
+	&-small
+		letter-spacing: -0.6px
+		+r(991)
+			letter-spacing: 1px
+
 .section
-  &-title
-    +eu
-    text-transform: uppercase
-    font-size: 58px
-    line-height: 1
-  &-desc
-    font-size: 18px
+	&-title
+		+eu
+		text-transform: uppercase
+		font-size: 58px
+		letter-spacing: -2px
+		line-height: 0.96
+		+r(991)
+			font-size: 46px
+			line-height: 44px
+			letter-spacing: -1.5px
+		+r(768)
+			font-size: 32px
+			line-height: 31px
+			letter-spacing: -1px
+	&-desc
+		font-size: 18px
+		line-height: 23px
+		+r(768)
+			font-size: 16px
+			line-height: 20px
+.invest
+	.section-title
+		+r(400)
+			font-size: 22px
+			line-height: 1.2
+.service
+	.section-title
+		+r(480)
+			font-size: 22px
+			line-height: 1.2
+.order
+	.section-title
+		+r(480)
+			font-size: 22px
+			line-height: 1.2

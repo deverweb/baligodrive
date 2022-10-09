@@ -1,0 +1,92 @@
+<template>
+	<div class="gamb">
+		<button
+			:class="{ active: activeMenu }"
+			class="bg-green gamb-btn rounded-full w-[58px] h-[60px] xsm:w-[50px] xsm:h-[50px]"
+			@click="activeMenu = !activeMenu"
+		>
+			<span></span><span></span>
+		</button>
+	</div>
+</template>
+
+<script setup>
+const route = useRoute();
+let activeMenu = ref(false);
+
+watch(
+	() => {
+		return activeMenu.value;
+	},
+	() => {
+		if (activeMenu.value) {
+			document.body.classList.add("active-menu");
+		} else {
+			document.body.classList.remove("active-menu");
+		}
+	}
+);
+
+watch(
+	() => {
+		return route.fullPath;
+	},
+	() => {
+		activeMenu.value = false;
+	}
+);
+</script>
+
+<style lang="sass" scoped>
+@mixin r($screenWidth)
+	@media only screen and (max-width: $screenWidth + 'px')
+		@content
+
+
+@mixin rmin($screenWidth)
+	@media only screen and (min-width: $screenWidth + 'px')
+		@content
+.gamb
+	.router-link-active
+		color: $green
+	&-btn
+		transition: 0.2s all ease
+		position: relative
+		&:active
+			transform: scale(0.9)
+		span
+			border: none
+			width: 21px
+			height: 2px
+			background-color: white
+			position: absolute
+			transition: 0.2s ease all
+			left: 50%
+			transform: translate(-50%, 0)
+			+r(600)
+				width: 18px
+				height: 2px
+			&:first-child
+				top: 25px
+				+r(600)
+					top: 20px
+
+			&:last-child
+				top: 34px
+				+r(600)
+					top: 28px
+		&.active
+			background: white
+			span
+				background: $green
+				&:first-child
+					transform: translate(-50%, 0%) rotate(45deg)
+					top: 30px
+					+r(600)
+						top: 24px
+				&:last-child
+					transform: translate(-50%, 0%) rotate(-45deg)
+					top: 30px
+					+r(600)
+						top: 24px
+</style>

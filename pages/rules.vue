@@ -1,19 +1,9 @@
 <template>
-  <h1>rules</h1>
+	<section>rules</section>
 </template>
 
-
 <script>
-
-
-export default {
-
-
-}
+export default {};
 </script>
 
-
-<style lang='sass'>
-
-
-</style>
+<style lang="sass"></style>

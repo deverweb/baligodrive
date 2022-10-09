@@ -1,6 +1,6 @@
 <template>
 	<button
-		class="button-primary rounded-[12px] gap-[9px] bg-green py-[30px] px-[68px] flex items-center justify-center text-center"
+		class="button-primary z-[1] rounded-[12px] flex items-center justify-center text-center"
 	>
 		<slot></slot>
 	</button>
@@ -10,4 +10,39 @@
 export default {};
 </script>
 
-<style lang="sass"></style>
+<style lang="sass" scoped>
+.button-primary
+	border-width: 1px
+	border-style: solid
+	border-color: rgba(255,255,255, 0)
+	position: relative
+	transition: all 0.2s linear
+	background-color: $green
+	&.blured
+		background: none
+		&:hover
+
+			border-color: rgba(white, 1)
+			border: 1px solid white
+			&::before
+				backdrop-filter: blur(4px)
+			&::after
+				opacity: 0
+		&::after, &::before
+			content: ""
+			width: 100%
+			height: 100%
+			position: absolute
+			top: 0
+			left: 0
+			z-index: -1
+		&::after
+			background-color: $green
+			opacity: 1
+			transition: all 0.2s ease
+			border-radius: 12px
+		&::before
+			transition: all 0.2 ease
+			border-radius: 12px
+			backdrop-filter: blur(0px)
+</style>

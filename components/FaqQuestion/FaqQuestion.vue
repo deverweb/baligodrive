@@ -1,21 +1,32 @@
 <template>
 	<div
 		@click="isAnswerVisible = !isAnswerVisible"
-		class="faq-question select-none bg-light relative rounded-[12px] px-[37px] cursor-pointer"
+		class="faq-question select-none bg-light relative rounded-[12px] pl-[37px] xsm:pl-[19px] xsm:pr-[24px] md:pl-[35px] md:pr-[22px] pr-[30px] cursor-pointer"
 	>
-		<div class="faq-question-title flex items-center py-[26px] justify-between">
-			<h4 class="font-Helvmed text-[24px] text-dark-200">
+		<div
+			class="faq-question-title flex items-center pb-[22px] pt-[19px] xsm:pt-[23px] xsm:items-baseline justify-between"
+		>
+			<h4
+				class="font-Helvmed text-[24px] xsm:max-w-[70%] xsm:text-[20px] xsm:leading-[22px] tracking-[-0.7px] text-dark-200"
+			>
 				{{ question.title }}
 			</h4>
-			<ArrowIcon class="w-[26px] h-[12px]"></ArrowIcon>
+			<ArrowIcon
+				:class="isAnswerVisible ? 'rotate-180' : ''"
+				class="w-[26px] transition-transform h-[12px]"
+			></ArrowIcon>
 		</div>
 		<Transition @enter="enter" @leave="leave">
 			<div
 				v-show="isAnswerVisible"
 				class="faq-question-container bg-light left-0 rounded-b-[12px] max-h-0 top-[-10px] overflow-hidden w-full"
 			>
-				<div class="faq-question-answer pr-[37px] pb-[30px] pt-[10px]">
-					<p class="max-w-[82%] text-dark">
+				<div
+					class="faq-question-answer pr-[70px] xsm:pr-[10px] sm:pr-[40px] md:pr-[60px] pb-[32px]"
+				>
+					<p
+						class="text-dark text-[16px] leading-[1.25] xsm:text-[14px] xsm:leading-[18px]"
+					>
 						{{ question.text }}
 					</p>
 				</div>

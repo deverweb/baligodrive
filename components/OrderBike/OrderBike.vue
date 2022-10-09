@@ -1,20 +1,24 @@
 <template>
-	<div class="orderbike relative">
-		<img class="object-contain max-w-none" :src="bikeImageSrc" alt="" />
+	<div class="orderbike">
+		<img
+			class="object-contain max-w-none lg:max-w-full"
+			:src="bikeImageSrc"
+			alt=""
+		/>
 		<OrderBikeTooltip
-			class="left-[9.4%] top-[29.5%]"
+			class="left-[9.4%] top-[29.5%] sm:left-[13.6%] sm:top-[12.1%]"
 			:tooltip="tooltips.first"
 		></OrderBikeTooltip>
 		<OrderBikeTooltip
-			class="left-[48.3%] top-[33.4%]"
+			class="left-[48.3%] top-[33.4%] sm:left-[73.6%] sm:top-[18.6%]"
 			:tooltip="tooltips.second"
 		></OrderBikeTooltip>
 		<OrderBikeTooltip
-			class="left-[-0.7%] top-[61.5%]"
+			class="left-[-0.7%] top-[61.5%] sm:top-[49.4%] sm:left-[35%]"
 			:tooltip="tooltips.third"
 		></OrderBikeTooltip>
 		<OrderBikeTooltip
-			class="left-[41.2%] top-[59.6%]"
+			class="left-[41.2%] top-[59.6%] sm:left-[66.6%] sm:top-[60.2%]"
 			:tooltip="tooltips.fourth"
 		></OrderBikeTooltip>
 	</div>
@@ -22,7 +26,7 @@
 
 <script setup>
 const bikeImageSrc = "/img/offer/order-bike.png";
-const tooltips = reactive({
+const tooltips = {
 	first: {
 		info: "Все байки оборудованы держателем для телефона или камеры",
 		svg: "/svg/camera.svg",
@@ -39,7 +43,7 @@ const tooltips = reactive({
 		info: "Все байки оборудованы держателем для телефона или камеры",
 		svg: "/svg/helmet.svg",
 	},
-});
+};
 </script>
 
 <style lang="sass"></style>

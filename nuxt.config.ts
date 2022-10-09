@@ -1,9 +1,7 @@
 import { defineNuxtConfig } from "nuxt";
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-	// css: ["@/assets/css/main.css", "@/assets/sass/main.sass"],
-	css: ["@/assets/sass/main.sass"],
+	css: ["@/assets/sass/main.sass", "@/assets/sass/_fonts.sass"],
 	vite: {
 		css: {
 			preprocessorOptions: {
@@ -14,8 +12,59 @@ export default defineNuxtConfig({
 		},
 	},
 	plugins: [{ src: "~/plugins/v-calendar", ssr: false, mode: "client" }],
-	modules: ["@nuxtjs/tailwindcss"],
+	modules: [
+		"@nuxtjs/tailwindcss",
+		"@nuxtjs/i18n",
+		"@nuxtjs/strapi",
+		"@pinia/nuxt",
+	],
+	strapi: {
+		url: process.env.STRAPI_URL || "http://localhost:1337",
+		prefix: "/api",
+		version: "v4",
+		cookie: {},
+		cookieName: "strapi_jwt",
+	},
+	i18n: {
+		strategy: "no_prefix",
+		locales: [
+			{
+				code: "en",
+				name: "English",
+			},
+			{
+				code: "ru",
+				name: "Русский",
+			},
+			{
+				code: "ua",
+				name: "Український",
+			},
+		],
+		detectBrowserLanguage: {
+			useCookie: true,
+			cookieKey: "i18n_redirected",
+			redirectOn: "root",
+		},
+		vueI18n: {
+			legacy: false,
+
+			locale: "ru",
+			messages: {
+				ru: {
+					welcome: "Привет",
+				},
+				en: {
+					welcome: "Welcome",
+				},
+				ua: {
+					welcome: "Прiвет",
+				},
+			},
+		},
+	},
 	build: {
+		// transpile: ["swiper"],
 		postcss: {
 			postcssOptions: {
 				plugins: {
