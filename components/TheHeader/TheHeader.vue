@@ -50,12 +50,12 @@ const navLinks = [
 		label: "Правила аренды",
 	},
 	{
-		link: "/partner",
-		label: "Стать партнёром",
-	},
-	{
 		link: "/contacts",
 		label: "Контакты",
+	},
+	{
+		link: "/partner",
+		label: "Стать партнёром",
 	},
 ];
 const setActiveMenu = () => {

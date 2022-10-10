@@ -1,20 +1,34 @@
 <template>
-	<div class="wg-phone cursor-pointer" @click="clickMe">
-		<div class="wg-phone-label pt-[33px] pb-[22px] flex items-center">
-			<SvgPhoneIcon class="mr-[16px]"></SvgPhoneIcon>
-			<div class="wg-phone-label-text">
-				<span @click="setActive" v-show="!isActive">{{ phone_label }}</span>
+	<div class="wg-phone pb-[5px] cursor-pointer" @click="clickMe">
+		<div
+			class="wg-phone-label relative pr-[6px] pt-[31px] pb-[20px] flex items-center"
+		>
+			<SvgPhoneIcon
+				class="mr-[16px]"
+				@click="isActive = !isActive"
+			></SvgPhoneIcon>
+			<div class="wg-phone-label-text absolute" :class="{ active: isActive }">
+				<span
+					class="z-[1] absolute w-[230px] text-ellipsis overflow-hidden"
+					@click="isActive = !isActive"
+					>{{ phone_label }}</span
+				>
 
-				<input
+				<Field
 					type="text"
 					v-model="phone"
 					ref="inputField"
 					name="phone"
-					class="absolute"
+					class="absolute w-[230px] z-[0]"
+					:class="{ 'z-[1]': isActive }"
 					@blur="handleBlur"
+					@keyup.enter="handleBlur"
 				/>
 			</div>
-			<SvgArrowIcon class="ml-auto"></SvgArrowIcon>
+			<SvgArrowIcon
+				@click="isActive = !isActive"
+				class="ml-auto w-[10px] h-[18px] relative top-[2px]"
+			></SvgArrowIcon>
 		</div>
 		<ul class="wg-phone-list">
 			<li></li>
@@ -35,13 +49,41 @@ const handleBlur = () => {
 		console.log("в ифе");
 		phone_label.value = phone.value;
 	}
+	if (phone.value == phone_label.value) {
+	}
+	isActive.value = false;
 };
 
-const setActive = () => {
-	isActive.value = true;
-	console.log(inputField.value);
-	inputField.value.focus();
-};
+watch(
+	() => isActive.value,
+	() => {
+		if (isActive.value) {
+			inputField.value.focus();
+		} else {
+		}
+		// console.log("active now");
+	}
+);
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+.wg
+	&-phone
+		&-label
+			&-text
+				width: calc(100% - 38px)
+				left: 62px
+				top: 50%
+				input
+					opacity: 0
+					// visibility: hidden
+				&.active
+					span
+						opacity: 0
+						position: absolute
+						// visibility: hidden
+					input
+						opacity: 1
+						visibility: visible
+						position: absolute
+</style>

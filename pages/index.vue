@@ -374,7 +374,7 @@ const faqQuestions = [
 							><SvgSurfIcon></SvgSurfIcon>
 						</CustomSelect>
 
-						<DatePicker class="mb-[15px]"></DatePicker>
+						<OrderDatePicker class="mb-[15px]"></OrderDatePicker>
 						<TheButton
 							type="submit"
 							class="w-[360px] sm:w-full sm:max-w-full h-[70px] gap-[9px]"

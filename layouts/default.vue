@@ -2,7 +2,7 @@
 	<div class="relative min-h-screen">
 		<TheHeader />
 		<slot />
-		<FormWidget></FormWidget>
+		<!-- <FormWidget></FormWidget> -->
 		<!-- <TheFooter /> -->
 	</div>
 </template>
