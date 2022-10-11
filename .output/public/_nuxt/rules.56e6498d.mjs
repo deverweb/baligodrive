@@ -1,0 +1,1 @@
+import{a as e,o,b as s}from"./entry.776af509.mjs";const t={},r={class:"offer rounded-t-[44px] pl-[80px] min-h-[950px] h-screen bg-dark-700"};function c(n,a,p,_,d,f){return o(),s("section",r)}const l=e(t,[["render",c]]);export{l as default};

@@ -2,6 +2,17 @@ import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
 	css: ["@/assets/sass/main.sass", "@/assets/sass/_fonts.sass"],
+	head: {
+		meta: [
+			{ charset: "utf-8" },
+			{ name: "viewport", content: "width=device-width, initial-scale=1" },
+			// {
+			// hid: "description",
+			// name: "description",
+			// content: "Official Nuxt.js starter for CodeSandBox"
+			// }
+		],
+	},
 	vite: {
 		css: {
 			preprocessorOptions: {

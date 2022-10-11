@@ -1,0 +1,177 @@
+{
+  "assets/fonts/helveticaneuecyr-medium.woff2": {
+    "file": "_nuxt/helveticaneuecyr-medium.8bf481cd.woff2",
+    "src": "assets/fonts/helveticaneuecyr-medium.woff2"
+  },
+  "assets/fonts/helveticaneuecyr-bold.woff2": {
+    "file": "_nuxt/helveticaneuecyr-bold.0520dad4.woff2",
+    "src": "assets/fonts/helveticaneuecyr-bold.woff2"
+  },
+  "assets/fonts/Eurostile-Extended-Black.woff2": {
+    "file": "_nuxt/Eurostile-Extended-Black.51ad889f.woff2",
+    "src": "assets/fonts/Eurostile-Extended-Black.woff2"
+  },
+  "assets/fonts/helveticaneuecyr-roman.woff2": {
+    "file": "_nuxt/helveticaneuecyr-roman.63d9f12c.woff2",
+    "src": "assets/fonts/helveticaneuecyr-roman.woff2"
+  },
+  "assets/fonts/helveticaneuecyr-medium.woff": {
+    "file": "_nuxt/helveticaneuecyr-medium.6d300602.woff",
+    "src": "assets/fonts/helveticaneuecyr-medium.woff"
+  },
+  "assets/fonts/helveticaneuecyr-bold.woff": {
+    "file": "_nuxt/helveticaneuecyr-bold.b51e10af.woff",
+    "src": "assets/fonts/helveticaneuecyr-bold.woff"
+  },
+  "assets/fonts/Eurostile-Extended-Black.woff": {
+    "file": "_nuxt/Eurostile-Extended-Black.22deb378.woff",
+    "src": "assets/fonts/Eurostile-Extended-Black.woff"
+  },
+  "assets/fonts/helveticaneuecyr-roman.woff": {
+    "file": "_nuxt/helveticaneuecyr-roman.815eeadc.woff",
+    "src": "assets/fonts/helveticaneuecyr-roman.woff"
+  },
+  "node_modules/nuxt/dist/app/entry.mjs": {
+    "file": "_nuxt/entry.776af509.mjs",
+    "src": "node_modules/nuxt/dist/app/entry.mjs",
+    "isEntry": true,
+    "dynamicImports": [
+      "pages/about.vue",
+      "pages/contacts.vue",
+      "pages/index.vue",
+      "pages/partner.vue",
+      "pages/rules.vue",
+      "virtual:nuxt:D:/OSPanel/domains/balidrive/.nuxt/error-component.mjs",
+      "layouts/default.vue"
+    ],
+    "css": [
+      "_nuxt/entry.59cd9547.css"
+    ],
+    "assets": [
+      "_nuxt/Eurostile-Extended-Black.51ad889f.woff2",
+      "_nuxt/Eurostile-Extended-Black.22deb378.woff",
+      "_nuxt/helveticaneuecyr-bold.0520dad4.woff2",
+      "_nuxt/helveticaneuecyr-bold.b51e10af.woff",
+      "_nuxt/helveticaneuecyr-medium.8bf481cd.woff2",
+      "_nuxt/helveticaneuecyr-medium.6d300602.woff",
+      "_nuxt/helveticaneuecyr-roman.63d9f12c.woff2",
+      "_nuxt/helveticaneuecyr-roman.815eeadc.woff"
+    ]
+  },
+  "virtual:nuxt:D:/OSPanel/domains/balidrive/.nuxt/error-component.mjs": {
+    "file": "_nuxt/error-component.2789517f.mjs",
+    "src": "virtual:nuxt:D:/OSPanel/domains/balidrive/.nuxt/error-component.mjs",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ],
+    "dynamicImports": [
+      "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
+      "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue"
+    ]
+  },
+  "pages/about.vue": {
+    "file": "_nuxt/about.4171a613.mjs",
+    "src": "pages/about.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/contacts.vue": {
+    "file": "_nuxt/contacts.491d28ae.mjs",
+    "src": "pages/contacts.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/index.vue": {
+    "file": "_nuxt/index.5d327662.mjs",
+    "src": "pages/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs",
+      "_ArrowIcon.fe3927a0.mjs"
+    ],
+    "css": [
+      "_nuxt/index.e56a2b37.css"
+    ]
+  },
+  "_ArrowIcon.fe3927a0.mjs": {
+    "file": "_nuxt/ArrowIcon.fe3927a0.mjs",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/partner.vue": {
+    "file": "_nuxt/partner.b118449d.mjs",
+    "src": "pages/partner.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/rules.vue": {
+    "file": "_nuxt/rules.56e6498d.mjs",
+    "src": "pages/rules.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "layouts/default.vue": {
+    "file": "_nuxt/default.07cb889c.mjs",
+    "src": "layouts/default.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs",
+      "_ArrowIcon.fe3927a0.mjs"
+    ],
+    "css": [
+      "_nuxt/default.d29eb844.css"
+    ]
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue": {
+    "file": "_nuxt/error-404.0606b97f.mjs",
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ],
+    "css": [
+      "_nuxt/error-404.7729cee9.css"
+    ]
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue": {
+    "file": "_nuxt/error-500.c5b61767.mjs",
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ],
+    "css": [
+      "_nuxt/error-500.08851880.css"
+    ]
+  },
+  "layouts/default.css": {
+    "file": "_nuxt/default.d29eb844.css",
+    "src": "layouts/default.css"
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-500.css": {
+    "file": "_nuxt/error-500.08851880.css",
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.css"
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-404.css": {
+    "file": "_nuxt/error-404.7729cee9.css",
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.css"
+  },
+  "pages/index.css": {
+    "file": "_nuxt/index.e56a2b37.css",
+    "src": "pages/index.css"
+  },
+  "node_modules/nuxt/dist/app/entry.css": {
+    "file": "_nuxt/entry.59cd9547.css",
+    "src": "node_modules/nuxt/dist/app/entry.css"
+  }
+}
