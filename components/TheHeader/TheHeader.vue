@@ -1,19 +1,5 @@
 <template>
-	<header class="z-[10] header absolute md:relative w-full">
-		<div
-			class="header-first-screen xsm:pt-[15px] xsm:pb-[14px] md:py-[20px] header-child absolute md:relative md:top-0 mt-[32px] md:mt-0 xl:px-[50px] md:px-[50px] px-[80px] inset-x-0"
-		>
-			<Logo class="flex-1"></Logo>
-			<TheNav class="header-nav md:hidden" :links="navLinks"></TheNav>
-			<Lang class="flex-1 md:flex-initial md:mr-[38px] xsm:hidden"></Lang>
-			<GambBtn
-				@click="activeFirstMenu = !activeFirstMenu"
-				class="md:flex hidden"
-			></GambBtn>
-			<Transition>
-				<MobileMenu :links="navLinks" :active="activeFirstMenu"></MobileMenu>
-			</Transition>
-		</div>
+	<header class="z-[10] header fixed md:relative w-full">
 		<div class="header-fixed header-child md:items-center">
 			<Logo class="flex-1 xl:flex-initial md:mr-auto"></Logo>
 			<TheNav class="header-nav md:hidden" :links="navLinks"></TheNav>
@@ -28,14 +14,17 @@
 				<MobileMenu :links="navLinks" :active="activeFixedMenu"></MobileMenu>
 			</Transition>
 		</div>
+		<!-- <div class="vidget fixed top-[20%] left-[30%] text-[64px] text-white">
+			{{ windowWidth }}
+		</div> -->
 	</header>
 </template>
 
 <script setup>
-let activeFirstMenu = ref(false);
 let activeFixedMenu = ref(false);
 let route = useRoute();
-
+let lastScrollTop = ref(0);
+let windowWidth = ref(0);
 const navLinks = [
 	{
 		link: "/",
@@ -63,38 +52,28 @@ const setActiveMenu = () => {
 	document.body.classList.toggle("active-menu");
 };
 onMounted(() => {
-	let lastScrollTop = ref(window.pageYOffset);
-	let firstSection = document.querySelector("section");
-	let firstSectionHeight = firstSection.getBoundingClientRect().height;
+	if (window.pageYOffset <= 100) {
+		document.querySelector(".header-fixed").classList.remove("notfirstscreen");
+	} else {
+		document.querySelector(".header-fixed").classList.add("notfirstscreen");
+	}
+	windowWidth.value = window.innerWidth;
 	window.addEventListener("resize", () => {
-		firstSectionHeight = firstSection.getBoundingClientRect().height;
-		if (firstSectionHeight > window.pageYOffset) {
-			document.querySelector(".header-fixed").classList.add("firstscreen");
-		} else {
-			document.querySelector(".header-fixed").classList.remove("firstscreen");
-		}
-		if (window.pageYOffset > lastScrollTop.value) {
-			if (firstSectionHeight < window.pageYOffset) {
-				document.querySelector(".header-fixed").classList.remove("visible");
-			}
-		} else {
-			document.querySelector(".header-fixed").classList.add("visible");
-		}
+		windowWidth.value = window.innerWidth;
 	});
 	window.addEventListener("scroll", () => {
-		if (firstSectionHeight > window.pageYOffset) {
-			document.querySelector(".header-fixed").classList.add("firstscreen");
+		if (window.pageYOffset <= 100) {
+			document
+				.querySelector(".header-fixed")
+				.classList.remove("notfirstscreen");
 		} else {
-			document.querySelector(".header-fixed").classList.remove("firstscreen");
+			document.querySelector(".header-fixed").classList.add("notfirstscreen");
 		}
-		if (window.pageYOffset > lastScrollTop.value) {
-			if (firstSectionHeight < window.pageYOffset) {
-				document.querySelector(".header-fixed").classList.remove("visible");
-			}
+		if (lastScrollTop.value > window.pageYOffset || window.pageYOffset <= 100) {
+			document.querySelector(".header-fixed").classList.remove("hide");
 		} else {
-			document.querySelector(".header-fixed").classList.add("visible");
+			document.querySelector(".header-fixed").classList.add("hide");
 		}
-
 		lastScrollTop.value = window.pageYOffset <= 0 ? 0 : window.pageYOffset;
 	});
 });
@@ -104,7 +83,6 @@ watch(
 		return route.fullPath;
 	},
 	() => {
-		activeFirstMenu.value = false;
 		activeFixedMenu.value = false;
 	}
 );
@@ -138,33 +116,16 @@ watch(
 		+r(991)
 			align-items: center
 			justify-content: space-between
-	&-first-screen
-		+r(991)
-			&::before
-				content: ""
-				top: 0
-				left: 0
-				right: 0
-				bottom: 0
-				position: absolute
-				background: $dark
-		+r(600)
-			padding: 15px 25px 16px
-		.mobile-menu
-			+r(991)
-				background: $dark
-				border-top: 1px solid $dark500
-			+r(768)
-				max-height: 600px
+
 	&-fixed
-		opacity: 0
-		transform: translateY(-400px)
-		transition: 0.3s all ease
+		opacity: 1
+		transform: translateY(0px)
+		transition: 0.2s all ease
 		position: fixed
-		top: 30px
+		top: 20px
 		padding: 34px 50px 32px
-		left: 100px
-		width: calc(100% - 185px)
+		left: 20px
+		width: calc(100% - 40px)
 		+r(1440)
 			padding: 34px 20px 32px
 			justify-content: space-between
@@ -172,11 +133,10 @@ watch(
 			width: calc(100% - 40px)
 			left: 20px
 		+r(991)
-			padding: 15px 68px
+			padding: 21px 71px
 			top: 0
 			left: 0
 			right: 0
-			border-radius: 0px
 			width: 100%
 			justify-content: start
 		+r(768)
@@ -185,20 +145,22 @@ watch(
 			content: ""
 			top: 0
 			left: 0
-			border-radius: 20px
 			right: 0
 			bottom: 0
 			position: absolute
-			background: $dark200
+			background: rgba($dark200, 0)
+			border-radius: 0px
+			transition: 0.3s ease all
 			+r(991)
 				border-radius: 0px
-
-		&.visible
-			transform: translateY(0px)
+				background: rgba($dark, 1)
+		&.notfirstscreen
 			opacity: 1
-			transition: 0.3s all ease
-		&.firstscreen
+			top: 0px
+			&::before
+				background: $dark200
+		&.hide
+			transform: translateY(-200%)
 			opacity: 0
-			transform: translateY(-400px)
-			transition: 0.3s all ease
+			transition-delay: 0
 </style>

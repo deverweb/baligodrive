@@ -1,6 +1,7 @@
 <template>
 	<div
-		class="mobile-menu hidden md:block rounded-b-[44px] xsm:rounded-none xsm:pl-[26px] xsm:pr-[5px] xsm:pt-[58px] overflow-hidden absolute top-full bg-dark-600 w-full left-0 md:h-[355px] md:pr-[68px] md:pl-[70px] md:pt-[50px] md:pb-[60px]"
+		:class="{ 'overflow-y-scroll': active }"
+		class="mobile-menu hidden md:block rounded-b-[44px] xsm:rounded-none xsm:pl-[26px] xsm:pr-[5px] xsm:pt-[58px] overflow-hidden absolute top-full w-full left-0 md:h-[355px] md:pr-[68px] md:pl-[70px] md:pt-[50px] md:pb-[60px]"
 		v-show="active"
 	>
 		<div class="mobile-menu-inner flex flex-col justify-between h-full">
@@ -47,7 +48,7 @@ const { t, locale, locales, setLocale } = useI18n();
 .mobile
 	&-menu
 		+r(600)
-			min-height: calc(100vh - 81px)
+			min-height: calc(100vh - 80px)
 
 		.router-link-active
 			color: $green
@@ -59,4 +60,12 @@ const { t, locale, locales, setLocale } = useI18n();
 
 				&:last-child
 					margin-bottom: 0
+.header-fixed
+	.mobile-menu
+		background-color: $dark
+		border-top: 1px solid $dark500
+	&.notfirstscreen
+		.mobile-menu
+			background-color: $dark600
+			border-top: none
 </style>

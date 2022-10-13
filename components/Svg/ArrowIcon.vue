@@ -9,7 +9,7 @@
 		<path
 			d="M1 1.5L4 4.5L7 1.5"
 			:stroke="stroke"
-			stroke-width="1.3"
+			:stroke-width="strokeWidth"
 			stroke-linecap="round"
 			stroke-linejoin="round"
 		/>
@@ -22,6 +22,10 @@ export default {
 		stroke: {
 			required: false,
 			default: "#111111",
+		},
+		strokeWidth: {
+			required: false,
+			default: "1.3",
 		},
 	},
 };

@@ -7,32 +7,34 @@
 	>
 		<img
 			:src="tooltip.svg"
-			class="relative left-[-4.3%] bottom-[-3%] lg:w-[20px]"
+			class="relative left-[-4.3%] bottom-[-3%] md:w-[20px]"
 			alt=""
 		/>
 		<PlusIcon
-			class="absolute top-[14px] right-[12px] lg:w-[5px] lg:right-[8px] lg:top-[7px]"
+			class="absolute top-[14px] right-[12px] md:w-[5px] md:right-[8px] md:top-[7px]"
 		></PlusIcon>
-		<div
-			v-show="upHere"
-			class="tooltip-popup top-0 md:top-auto md:bottom-[110%] absolute w-[240px] md:w-[150px] md:text-[12px] md:leading-[1.3] md:px-[5px] md:py-[16px] rounded-[13px] bg-dark-200 py-[28px] pl-[24px] pr-[16px] text-[16px] text-light leading-[21px]"
-		>
-			<svg
-				width="31"
-				height="20"
-				viewBox="0 0 31 20"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-				class="absolute top-0 max-w-full xsm:hidden"
+		<Transition>
+			<div
+				v-show="upHere"
+				class="tooltip-popup top-0 md:top-auto md:bottom-[110%] absolute w-[240px] md:w-[150px] md:text-[12px] md:leading-[1.3] md:px-[5px] md:py-[16px] rounded-[13px] bg-dark-200 py-[28px] pl-[24px] pr-[16px] text-[16px] text-light leading-[21px]"
 			>
-				<path
-					d="M31 20L-8.74228e-07 1.90735e-06L31 5.52296e-07L31 20Z"
-					fill="#1E1E1E"
-				/>
-			</svg>
+				<svg
+					width="31"
+					height="20"
+					viewBox="0 0 31 20"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					class="absolute top-0 max-w-full xsm:hidden"
+				>
+					<path
+						d="M31 20L-8.74228e-07 1.90735e-06L31 5.52296e-07L31 20Z"
+						fill="#1E1E1E"
+					/>
+				</svg>
 
-			{{ tooltip.info }}
-		</div>
+				{{ tooltip.info }}
+			</div>
+		</Transition>
 	</div>
 </template>
 
@@ -63,7 +65,18 @@ export default {
 @mixin rmin($screenWidth)
 	@media only screen and (min-width: $screenWidth + 'px')
 		@content
+.v-enter-active,
+.v-leave-active
+	transition: transform 0.2s ease, opacity 0.2s ease
 
+
+.v-enter-from,
+.v-leave-to
+	opacity: 0
+	transform: translateX(-5px)
+	z-index: 4
+	+r(1200)
+		transform: translateY(10px)
 .tooltip
 	&-popup
 		left: calc(100% + 18px)

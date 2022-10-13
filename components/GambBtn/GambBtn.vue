@@ -2,7 +2,7 @@
 	<div class="gamb">
 		<button
 			:class="{ active: activeMenu }"
-			class="bg-green gamb-btn rounded-full w-[58px] h-[60px] xsm:w-[50px] xsm:h-[50px]"
+			class="bg-green gamb-btn rounded-full w-[58px] h-[60px] sm:w-[50px] sm:h-[50px]"
 			@click="activeMenu = !activeMenu"
 		>
 			<span></span><span></span>
@@ -63,17 +63,17 @@ watch(
 			transition: 0.2s ease all
 			left: 50%
 			transform: translate(-50%, 0)
-			+r(600)
+			+r(768)
 				width: 18px
 				height: 2px
 			&:first-child
 				top: 25px
-				+r(600)
+				+r(768)
 					top: 20px
 
 			&:last-child
 				top: 34px
-				+r(600)
+				+r(768)
 					top: 28px
 		&.active
 			background: white
@@ -82,11 +82,11 @@ watch(
 				&:first-child
 					transform: translate(-50%, 0%) rotate(45deg)
 					top: 30px
-					+r(600)
+					+r(768)
 						top: 24px
 				&:last-child
 					transform: translate(-50%, 0%) rotate(-45deg)
 					top: 30px
-					+r(600)
+					+r(768)
 						top: 24px
 </style>

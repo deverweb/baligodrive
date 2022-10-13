@@ -154,10 +154,10 @@ const faqQuestions = [
 <template>
 	<div>
 		<section
-			class="offer md:bg-center sm:h-auto sm:min-h-0 sm:pb-[65px] xl:px-[50px] px-[80px] md:px-[48px] sm:px-[24px] lg:px-[30px] pb-[80px] md:min-h-[1095px] min-h-[948px] h-screen text-white bg-dark-300 bg-no-repeat bg-cover rounded-t-[44px]"
+			class="offer md:bg-center sm:items-end sm:h-auto sm:pb-[65px] md:min-h-0 xl:px-[50px] px-[80px] md:px-[48px] sm:px-[24px] lg:px-[30px] pb-[80px] min-h-[600px] h-screen text-white bg-dark-300 bg-no-repeat bg-cover rounded-t-[44px]"
 		>
 			<div
-				class="offer-content flex md:flex-col md:items-start md:pt-[218px] sm:pt-[82px] md:justify-start items-end h-full justify-between"
+				class="offer-content flex md:flex-col md:items-start md:justify-end items-end h-full justify-between"
 			>
 				<h1
 					class="offer-title md:mb-[76px] lil:text-[32px] lil:leading-[34px] sm:mb-[19px] md:text-[72px] font-Euroblack uppercase text-[74px] 2xl:text-[64px] xl:text-[48px] sm:text-[40px]"
@@ -354,13 +354,8 @@ const faqQuestions = [
 						Мы доставим ваш байк прямо к вилле или вы можете забрать его сами в
 						нашем офисе
 					</p>
-					<Form class="max-w-[360px] lg:mx-auto">
-						<CustomSelect
-							:isVisible="false"
-							class="mb-[10px]"
-							:options="bikeSelectOptions"
-							><SvgBikeIcon></SvgBikeIcon>
-						</CustomSelect>
+					<Form class="max-w-[360px] lg:mx-auto lg:text-left">
+						<CustomInput> </CustomInput>
 						<CustomSelect
 							:isVisible="false"
 							class="mb-[10px]"
@@ -377,7 +372,7 @@ const faqQuestions = [
 						<OrderDatePicker class="mb-[15px]"></OrderDatePicker>
 						<TheButton
 							type="submit"
-							class="w-[360px] sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+							class="w-[360px] gradient sm:w-full sm:max-w-full h-[70px] gap-[9px]"
 						>
 							<CalendarIcon></CalendarIcon>
 							<span>Забронировать</span>
@@ -428,7 +423,7 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="faq rounded-b-[44px] relative top-[-70px] pt-[124px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] z-[2] bg-dark text-light"
+			class="faq z-[5] rounded-b-[44px] relative top-[-70px] pt-[124px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] bg-dark text-light"
 		>
 			<div class="container mb-[63px]">
 				<h2
@@ -513,12 +508,17 @@ const faqQuestions = [
 		@content
 
 .offer
-
 	background: linear-gradient(216.14deg, rgba(0, 0, 0, 0) 50.79%, #000000 107.31%), url('/img/offer/offer-bg.png')
 	background-size: cover
 	+r(991)
 		background: linear-gradient(217.85deg, rgba(0, 0, 0, 0) 48.32%, #000000 84.52%), url('/img/offer/offer-bg.png') center / cover
-
+		min-height: calc(100vh - 102px)
+		height: auto
+	+r(769)
+		min-height: calc(100vh - 80px)
+		height: calc(100vh - 80px)
+		display: flex
+		align-items: flex-end
 	&-title
 		letter-spacing: -2.4px
 		line-height: 0.96
@@ -603,8 +603,12 @@ const faqQuestions = [
 
 		&:hover
 			transform: translate(-10px, -10px)
+			+r(600)
+				transform: translate(0px, -10px)
 			&::before
 				transform: translate(-10px, -10px)
+				+r(600)
+					transform: translate(0px, -10px)
 				opacity: 1
 .partner
 	&-button
