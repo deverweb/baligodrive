@@ -36,7 +36,7 @@
 		</div>
 		<div class="bike-bottom flex items-center justify-between">
 			<TheButton
-				class="h-[70px] xsm:text-[12px] lil:mr-[8px] lil:text-[10px] lil:gap-[6px] xsm:h-[54px] xsm:w-full xsm:mr-[25px] gap-[11px] w-[250px] px-0 py-0 text-[16px] font-Helvmed text-light"
+				class="h-[70px] gradient xsm:text-[12px] lil:mr-[8px] lil:text-[10px] lil:gap-[6px] xsm:h-[54px] xsm:w-full xsm:mr-[25px] gap-[11px] w-[250px] px-0 py-0 text-[16px] font-Helvmed text-light"
 			>
 				<CalendarIcon class="flex-shrink-0 w-[19px]"></CalendarIcon>
 				<span>Забронировать</span>

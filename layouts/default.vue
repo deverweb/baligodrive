@@ -3,6 +3,6 @@
 		<TheHeader />
 		<slot />
 		<!-- <FormWidget></FormWidget> -->
-		<!-- <TheFooter /> -->
+		<TheFooter />
 	</div>
 </template>

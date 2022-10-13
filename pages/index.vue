@@ -355,7 +355,9 @@ const faqQuestions = [
 						нашем офисе
 					</p>
 					<Form class="max-w-[360px] lg:mx-auto lg:text-left">
-						<CustomInput> </CustomInput>
+						<CustomInput class="mb-[10px]"
+							><SvgPhoneIcon></SvgPhoneIcon
+						></CustomInput>
 						<CustomSelect
 							:isVisible="false"
 							class="mb-[10px]"
@@ -423,7 +425,7 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="faq z-[5] rounded-b-[44px] relative top-[-70px] pt-[124px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] bg-dark text-light"
+			class="faq z-[5] rounded-b-[44px] relative top-[-70px] pt-[124px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] bg-dark-300 text-light"
 		>
 			<div class="container mb-[63px]">
 				<h2
@@ -479,7 +481,7 @@ const faqQuestions = [
 						скутеров на острове Бали.
 					</p>
 					<TheButton
-						class="w-[328px] h-[70px] md:w-[339px] gap-[9px] xsm:max-w-[340px] xsm:w-full text-light"
+						class="w-[328px] gradient h-[70px] md:w-[339px] gap-[9px] xsm:max-w-[340px] xsm:w-full text-light"
 					>
 						<SvgMoneyIcon></SvgMoneyIcon>
 						<span class="text-[16px] tracking-[0.3px]"
