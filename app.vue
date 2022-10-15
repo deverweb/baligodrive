@@ -4,7 +4,7 @@
 	>
 		<NuxtLayout>
 			<main>
-				<NuxtPage class="bg-dark-300" />
+				<NuxtPage class="" />
 			</main>
 		</NuxtLayout>
 	</div>

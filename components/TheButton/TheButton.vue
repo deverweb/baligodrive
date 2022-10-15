@@ -23,7 +23,9 @@ export default {};
 		border: none
 		background-size: 200% 100%
 		background-position: 50% 0
-		background-image: linear-gradient(92.17deg, #3AD720 0%, #239810 97.4%, #229610 100%)
+		// background-image: linear-gradient(92.17deg, #3AD720 0%, #239810 97.4%, #229610 100%)
+		background-image: linear-gradient(92.17deg, #3AD720 1%, #239810 52.4%, #229610 100%)
+
 		background-repeat: no-repeat
 		&:hover
 			background-position: 0% 0

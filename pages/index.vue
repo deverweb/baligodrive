@@ -154,7 +154,7 @@ const faqQuestions = [
 <template>
 	<div>
 		<section
-			class="offer md:bg-center sm:items-end sm:h-auto sm:pb-[65px] md:min-h-0 xl:px-[50px] px-[80px] md:px-[48px] sm:px-[24px] lg:px-[30px] pb-[80px] min-h-[600px] h-screen text-white bg-dark-300 bg-no-repeat bg-cover rounded-t-[44px]"
+			class="offer md:bg-center sm:items-end md:flex md:items-end sm:h-auto md:min-h-[650px] sm:pb-[65px] xl:px-[50px] px-[80px] md:px-[48px] sm:px-[24px] lg:px-[30px] pb-[80px] min-h-[600px] h-screen text-white bg-dark-300 bg-no-repeat bg-cover rounded-t-[70px]"
 		>
 			<div
 				class="offer-content flex md:flex-col md:items-start md:justify-end items-end h-full justify-between"
@@ -337,7 +337,7 @@ const faqQuestions = [
 		</section>
 
 		<section
-			class="order relative z-[4] rounded-b-[44px] bg-dark-300 py-[151px] lg:pb-[71px] lg:pt-[94px] sm:pt-[50px] text-light"
+			class="order relative z-[7] rounded-b-[70px] bg-dark-300 py-[151px] lg:pb-[71px] lg:pt-[94px] sm:pt-[50px] text-light"
 		>
 			<div class="container flex lg:flex-col lg:items-center lg:text-center">
 				<div
@@ -387,7 +387,7 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="service rounded-b-[44px] md:pb-[46px] relative top-[-70px] pt-[190px] md:pt-[163px] pb-[100px] z-[3] bg-light text-dark"
+			class="service z-[6] rounded-b-[70px] md:pb-[46px] relative top-[-70px] pt-[190px] md:pt-[163px] pb-[100px] bg-light text-dark"
 		>
 			<div
 				class="service-container mx-auto max-w-[1433px] px-[7px] md:px-[40px] xsm:px-[20px]"
@@ -425,7 +425,7 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="faq z-[5] rounded-b-[44px] relative top-[-70px] pt-[124px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] bg-dark-300 text-light"
+			class="faq z-[5] rounded-b-[70px] relative top-[-70px] pt-[124px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] bg-dark-300 text-light"
 		>
 			<div class="container mb-[63px]">
 				<h2
@@ -464,7 +464,7 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="invest rounded-[44px] rounded-b-none relative md:pt-[93px] xsm:pt-[73px] md:pb-[237px] bg-light z-[4] pb-[100px] pt-[122px] text-dark-300"
+			class="invest z-[5] rounded-[70px] rounded-b-none relative md:pt-[93px] xsm:pt-[73px] md:pb-[237px] bg-light pb-[100px] pt-[122px] text-dark-300"
 		>
 			<div class="container">
 				<div
@@ -490,7 +490,7 @@ const faqQuestions = [
 					</TheButton>
 				</div>
 				<div
-					class="invest-img absolute bottom-0 left-[49.2%] md:w-[87%] xsm:w-full xsm:left-[6.5%] xsm:bottom-[-65px] md:left-[20.5%] md:bottom-[-39px]"
+					class="invest-img absolute bottom-0 left-[50.4%] md:w-[87%] xsm:w-full xsm:left-[6.5%] xsm:bottom-[-65px] md:left-[20.5%] md:bottom-[-39px]"
 				>
 					<img :src="'/img/invest-arrow.png'" alt="" />
 				</div>
@@ -514,7 +514,6 @@ const faqQuestions = [
 	background-size: cover
 	+r(991)
 		background: linear-gradient(217.85deg, rgba(0, 0, 0, 0) 48.32%, #000000 84.52%), url('/img/offer/offer-bg.png') center / cover
-		min-height: calc(100vh - 102px)
 		height: auto
 	+r(769)
 		min-height: calc(100vh - 80px)
@@ -577,7 +576,7 @@ const faqQuestions = [
 		top: -121px
 		background-color: $light
 		z-index: -1
-		border-radius: 44px
+		border-radius: 70px
 		+r(1201)
 			height: calc(100% - 100px)
 		+r(991)
@@ -632,4 +631,15 @@ const faqQuestions = [
 			opacity: 0.15
 			width: 133%
 			height: 251%
+.faq
+	position: relativeq
+	&::before
+		content: ""
+		left: 0
+		right: 0
+		top: -150px
+		bottom: -200px
+		position: absolute
+		z-index: -1
+		background-color: $dark300
 </style>

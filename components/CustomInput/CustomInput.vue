@@ -8,7 +8,7 @@
 			</div>
 			<Field
 				placeholder="Телефон"
-				class="whitespace-nowrap overflow-hidden flex-grow text-ellipsis"
+				class="whitespace-nowrap bg-light overflow-hidden flex-grow text-ellipsis"
 				type="text"
 				name="phone"
 			></Field>

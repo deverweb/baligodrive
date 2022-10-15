@@ -1,18 +1,22 @@
 <template>
 	<div
-		@mouseover="upHere = true"
-		@mouseleave="upHere = false"
 		:class="upHere ? 'z-[5]' : 'z-[4]'"
 		class="tooltip absolute flex items-center justify-center rounded-full bg-light w-[52px] h-[52px] md:w-[39px] md:h-[39px]"
 	>
-		<img
-			:src="tooltip.svg"
-			class="relative left-[-4.3%] bottom-[-3%] md:w-[20px]"
-			alt=""
-		/>
-		<PlusIcon
-			class="absolute top-[14px] right-[12px] md:w-[5px] md:right-[8px] md:top-[7px]"
-		></PlusIcon>
+		<div
+			class="tooltip-icon flex items-center justify-center w-full h-full"
+			@mouseover="upHere = true"
+			@mouseleave="upHere = false"
+		>
+			<img
+				:src="tooltip.svg"
+				class="relative left-[-4.3%] bottom-[-3%] md:w-[20px]"
+				alt=""
+			/>
+			<PlusIcon
+				class="absolute top-[13px] right-[11px] md:w-[5px] md:right-[8px] md:top-[7px]"
+			></PlusIcon>
+		</div>
 		<Transition>
 			<div
 				v-show="upHere"
