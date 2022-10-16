@@ -1,13 +1,13 @@
 <template>
 	<div
 		@click="isAnswerVisible = !isAnswerVisible"
-		class="faq-question select-none bg-light relative rounded-[12px] pl-[37px] xsm:pl-[19px] xsm:pr-[24px] md:pl-[35px] md:pr-[22px] pr-[30px] cursor-pointer"
+		class="faq-question select-none bg-light relative rounded-[12px] pl-[37px] xsm:pl-[21px] xsm:pr-[24px] md:pl-[35px] md:pr-[22px] pr-[30px] cursor-pointer"
 	>
 		<div
-			class="faq-question-title flex items-center pt-[23px] pb-[24px] xsm:pb-[19px] xsm:pt-[23px] xsm:items-baseline justify-between"
+			class="faq-question-title flex items-center pt-[20px] pb-[21px] xsm:pb-[19px] xsm:pt-[23px] xsm:items-baseline justify-between"
 		>
 			<h4
-				class="font-Helvmed text-[20px] xsm:max-w-[70%] xsm:text-[20px] xsm:leading-[22px] tracking-[-0.6px] text-dark-200"
+				class="font-Helvmed text-[24px] xsm:max-w-[70%] xsm:text-[20px] xsm:leading-[22px] tracking-[-0.7px] text-dark-200"
 			>
 				{{ question.title }}
 			</h4>

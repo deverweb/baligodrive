@@ -1,5 +1,5 @@
 <template>
-	<div class="relative min-h-screen md:pt-[102px] sm:pt-[80px]">
+	<div class="relative min-h-screen md:pt-[90px] sm:pt-[80px]">
 		<TheHeader />
 		<slot />
 		<!-- <FormWidget></FormWidget> -->

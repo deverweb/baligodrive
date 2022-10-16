@@ -1,11 +1,13 @@
 <template>
-	<div class="lang relative justify-end flex">
+	<div class="lang relative top-[-2px] xl:top-0 justify-end flex">
 		<button
 			@click="showPopup"
 			class="lang-current flex items-center cursor-pointer"
 		>
-			<WorldIcon class="opacity-[0.3] mr-[7px]"></WorldIcon>
-			<span class="uppercase lang-label mr-[7px]">{{ locale }}</span>
+			<WorldIcon class="opacity-[0.3] mr-[7px] md:mr-[9px]"></WorldIcon>
+			<span class="uppercase lang-label mr-[7px] md:mr-[10px] w-[25px]">{{
+				locale
+			}}</span>
 			<ArrowIcon
 				:class="popupActive ? 'rotate-180' : 'rotate-0'"
 				stroke="#FBFBFD"

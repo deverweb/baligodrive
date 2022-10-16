@@ -1,6 +1,6 @@
 <template>
-	<nav class="navbar flex lg:scale-[0.85]">
-		<ul class="flex font-Helvreg items-center gap-[48px] xl:gap-[30px]">
+	<nav class="navbar flex lg:scale-[0.85] relative top-[-2px] xl:top-0">
+		<ul class="flex font-Helvreg items-center gap-[50px] xl:gap-[30px]">
 			<li v-for="(link, i) in links" :key="i" class="whitespace-nowrap">
 				<nuxt-link :to="link.link">{{ link.label }}</nuxt-link>
 			</li>

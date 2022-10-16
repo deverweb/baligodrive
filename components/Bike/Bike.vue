@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="bike bg-light xsm:px-[56px] pb-[40px] pt-[33px] px-[41px] rounded-[26px] flex flex-col lg:max-w-[440px] lg:mx-auto"
+		class="bike bg-light xsm:px-[56px] pb-[39px] pt-[33px] px-[40px] rounded-[26px] flex flex-col lg:max-w-[440px] lg:mx-auto"
 	>
 		<div
 			class="bike-title xsm:tracking-[-0.2px] lil:text-[18px] xsm:mb-[46px] font-Helvbold uppercase text-[28px] mb-[64px] xsm:text-[22px]"
@@ -17,7 +17,7 @@
 		</div>
 		<div class="bike-desc">
 			<div
-				class="bike-desc__text text-[16px] xsm:tracking-[0.2px] text-dark xsm:text-[12px] xsm:leading-[16px] leading-[20px] xsm:mb-[18px] mb-[26px]"
+				class="bike-desc__text text-[16px] xsm:tracking-[0.2px] text-dark xsm:text-[12px] xsm:leading-[16px] leading-[20px] xsm:mb-[20px] mb-[26px]"
 			>
 				{{ bike.desc }}
 			</div>
@@ -26,7 +26,7 @@
 			class="bike-price flex items-end font-Helvbold justify-between mb-[26px] xsm:mb-[21px]"
 		>
 			<div class="bike-price__fuel text-[18px] xsm:text-[14px] lil:text-[10px]">
-				Расход: {{ bike.fuel }}
+				Стоимость аренды:
 			</div>
 			<div
 				class="bike-price__value text-[18px] xsm:text-[14px] lil:text-[10px]"
@@ -42,7 +42,7 @@
 				<span>Забронировать</span>
 			</TheButton>
 			<button
-				class="bike-detailed tracking-[-1.1px] font-Helvmed text-center text-[16px] xsm:text-[13px]"
+				class="bike-detailed font-Helvmed text-center text-[14px] xsm:text-[10px] xsm:tracking-[0.6px]"
 			>
 				Подробнее
 			</button>
@@ -59,6 +59,15 @@ export default {
 </script>
 
 <style lang="sass">
+@mixin r($screenWidth)
+	@media only screen and (max-width: $screenWidth + 'px')
+		@content
+
+
+@mixin rmin($screenWidth)
+	@media only screen and (min-width: $screenWidth + 'px')
+		@content
+
 .bike
 	box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.07)
 	&-detailed
@@ -72,4 +81,6 @@ export default {
 			right: 0
 			height: 1px
 			background-color: #AAAAAA
+			+r(600)
+				bottom: -7px
 </style>

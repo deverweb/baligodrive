@@ -39,7 +39,7 @@ const bikesCards = [
 		title: "yamaha nmax 2022",
 		img: "/img/offer/bike.png",
 		desc: "В 2022 году Yamaha выпустила этот мотоцикл на рынок, сделав его желанным для многих.",
-		fuel: "15л / 100км",
+
 		priceDay: "5$",
 	},
 	{
@@ -47,7 +47,7 @@ const bikesCards = [
 		subinfo: "С креплением для сёрфа",
 		img: "/img/offer/bike.png",
 		desc: "В 2022 году Yamaha выпустила этот мотоцикл на рынок, сделав его желанным для многих.",
-		fuel: "15л / 100км",
+
 		priceDay: "5$",
 	},
 	{
@@ -55,7 +55,7 @@ const bikesCards = [
 		subinfo: "С креплением для сёрфа и сёрфбордом",
 		img: "/img/offer/bike.png",
 		desc: "В 2022 году Yamaha выпустила этот мотоцикл на рынок, сделав его желанным для многих.",
-		fuel: "15л / 100км",
+
 		priceDay: "5$",
 	},
 ];
@@ -154,7 +154,7 @@ const faqQuestions = [
 <template>
 	<div>
 		<section
-			class="offer md:bg-center sm:items-end md:flex md:items-end sm:h-auto md:min-h-[650px] sm:pb-[65px] xl:px-[50px] px-[80px] md:px-[48px] sm:px-[24px] lg:px-[30px] pb-[80px] min-h-[600px] h-screen text-white bg-dark-300 bg-no-repeat bg-cover rounded-t-[70px]"
+			class="offer md:bg-center sm:items-end md:flex md:items-end sm:h-auto md:min-h-[750px] sm:pb-[65px] xl:px-[50px] px-[80px] md:px-[48px] sm:px-[24px] lg:px-[30px] pb-[80px] min-h-[600px] h-screen text-white bg-dark-300 bg-no-repeat bg-cover rounded-t-[70px]"
 		>
 			<div
 				class="offer-content flex md:flex-col md:items-start md:justify-end items-end h-full justify-between"
@@ -182,11 +182,11 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="how bg-dark-300 pt-[123px] pb-[245px] md:pb-[195px] xsm:pb-[155px] md:pt-[93px] sm:pt-[75px]"
+			class="how bg-dark-300 pt-[123px] pb-[245px] md:pb-[195px] xsm:pb-[155px] md:pt-[93px] sm:pt-[76px]"
 		>
 			<div class="container">
 				<h2
-					class="section-title text-light text-center mb-[32px] md:mb-[26px] sm:mb-[24px]"
+					class="section-title text-light text-center mb-[32px] md:mb-[26px] sm:mb-[31px]"
 				>
 					Как это<br />работает?
 				</h2>
@@ -235,7 +235,7 @@ const faqQuestions = [
 			<div class="container">
 				<div class="catalog-wrapper mb-[49px] xsm:mb-0">
 					<h2
-						class="catalog-title section-title text-center mb-[30px] md:mb-[26px]"
+						class="catalog-title section-title text-center mb-[30px] md:mb-[32px]"
 					>
 						Каталог<br />байков
 					</h2>
@@ -253,7 +253,7 @@ const faqQuestions = [
 			</div>
 
 			<div
-				class="catalog-arrows xsm:mt-[34px] xsm:order-[1] relative flex justify-between px-[5.3%] xsm:justify-center xsm:gap-[30px] xsm:px-0 2xl:px-[50px] sm:top-0 top-[64px] select-none z-[2]"
+				class="catalog-arrows xsm:mt-0 xsm:order-[1] relative flex justify-between px-[5.3%] xsm:justify-center xsm:gap-[30px] xsm:px-0 2xl:px-[50px] sm:top-0 top-[-20px] select-none z-[2]"
 			>
 				<div class="catalog-arrows-prev cursor-pointer">
 					<svg
@@ -292,39 +292,15 @@ const faqQuestions = [
 						nextEl: '.catalog-arrows-next',
 						prevEl: '.catalog-arrows-prev',
 					}"
-					:effect="'coverflow'"
 					:loop="true"
 					:centeredSlides="true"
 					:slides-per-view="'auto'"
 					:grab-cursor="true"
-					:space-between="30"
+					:space-between="24"
 					:breakpoints="{
 						0: {},
-						769: {
-							coverflowEffect: {
-								stretch: 120,
-								depth: 100,
-								modifier: 1.5,
-							},
-						},
-						1600: {
-							coverflowEffect: {
-								rotate: 0,
-								stretch: 25,
-								depth: 20,
-								modifier: 1.2,
-								slideShadows: false,
-								scale: 0.9,
-							},
-						},
-					}"
-					:coverflow-effect="{
-						rotate: 0,
-						stretch: 25,
-						depth: 20,
-						scale: 0.9,
-						modifier: 1.2,
-						slideShadows: false,
+						769: {},
+						1600: {},
 					}"
 				>
 					<SwiperSlide
@@ -344,12 +320,12 @@ const faqQuestions = [
 					class="order-content sm:mb-[78px] max-w-[52%] lg:mb-[46px] lg:max-w-full"
 				>
 					<h2
-						class="section-title xsm:text-[26px] order-title mb-[31px] sm:mb-[14px] lg:mb-[26px] lg:max-w-[70%] lg:mx-auto md:max-w-max"
+						class="section-title xsm:text-[26px] order-title mb-[29px] sm:mb-[22px] lg:mb-[26px] lg:max-w-[70%] lg:mx-auto md:max-w-max"
 					>
 						Забронируйте байк И СЁРФ
 					</h2>
 					<p
-						class="section-desc mb-[48px] sm:max-w-full lg:mb-[51px] sm:mb-[41px] max-w-[380px] lg:mx-auto"
+						class="section-desc mb-[49px] sm:max-w-full lg:mb-[51px] sm:mb-[41px] max-w-[380px] lg:mx-auto"
 					>
 						Мы доставим ваш байк прямо к вилле или вы можете забрать его сами в
 						нашем офисе
@@ -387,7 +363,7 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="service z-[6] rounded-b-[70px] md:pb-[46px] relative top-[-70px] pt-[190px] md:pt-[163px] pb-[100px] bg-light text-dark"
+			class="service z-[6] rounded-b-[70px] md:pb-[46px] relative top-[-70px] pt-[190px] md:pt-[145px] pb-[100px] bg-light text-dark"
 		>
 			<div
 				class="service-container mx-auto max-w-[1433px] px-[7px] md:px-[40px] xsm:px-[20px]"
@@ -396,7 +372,7 @@ const faqQuestions = [
 					КОМПЛЕКСНАЯ<br />УСЛУГА АРЕНДЫ
 				</h2>
 				<div
-					class="service-items grid grid-cols-4 xsm:grid-cols-1 md:grid-cols-2 md:gap-x-[11px] items-stretch gap-x-[50px] md:gap-y-[17px] gap-y-[39px]"
+					class="service-items grid grid-cols-4 xsm:grid-cols-1 md:grid-cols-2 md:gap-x-[11px] items-stretch gap-x-[50px] md:gap-y-[5px] gap-y-[39px]"
 				>
 					<div
 						class="service-item md:flex md:px-[20px] md:flex-col md:items-center md:text-center py-[30px] md:pt-[26px] pl-[25px] rounded-[10px]"
@@ -404,7 +380,7 @@ const faqQuestions = [
 						:key="i"
 					>
 						<div
-							class="service-item-img xsm:mb-[30px] md:mb-[38px] mb-[34px] flex gap-[22px]"
+							class="service-item-img xsm:mb-[30px] md:mb-[38px] mb-[36px] flex gap-[22px]"
 						>
 							<img
 								:src="img"
@@ -416,7 +392,7 @@ const faqQuestions = [
 						</div>
 
 						<p
-							class="service-item-text md:text-[20px] xsm:text-[16px] xsm:leading-[1.2] xsm:tracking-[-0.8px] xsm:max-w-[230px] md:tracking-[-0.6px] text-[18px] md:max-w-full xl:max-w-[90%] lg:max-w-full max-w-[67%] leading-[1.3] tracking-[-0.9px] font-Helvmed text-black"
+							class="service-item-text md:text-[20px] xsm:text-[16px] xsm:leading-[1.2] xsm:tracking-[-0.8px] xsm:max-w-[250px] md:tracking-[-0.6px] text-[18px] md:max-w-full xl:max-w-[90%] lg:max-w-full max-w-[67%] leading-[1.3] tracking-[-0.9px] font-Helvmed text-black"
 						>
 							{{ service.text }}
 						</p>
@@ -425,11 +401,11 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="faq z-[5] rounded-b-[70px] relative top-[-70px] pt-[124px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] bg-dark-300 text-light"
+			class="faq z-[5] rounded-b-[70px] relative top-[-70px] pt-[120px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] bg-dark-300 text-light"
 		>
 			<div class="container mb-[63px]">
 				<h2
-					class="section-title text-center mb-[30px] md:mb-[26px] xsm:mb-[25px]"
+					class="section-title text-center mb-[30px] md:mb-[26px] xsm:mb-[30px]"
 				>
 					Частые<br />вопросы
 				</h2>
@@ -464,13 +440,13 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="invest z-[5] rounded-[70px] rounded-b-none relative md:pt-[93px] xsm:pt-[73px] md:pb-[237px] bg-light pb-[100px] pt-[122px] text-dark-300"
+			class="invest z-[5] md:overflow-hidden rounded-[70px] md:pl-[33px] xsm:pl-[0px] rounded-b-none relative md:pt-[93px] xsm:pt-[76px] sm:pb-[303px] md:pb-[240px] bg-light pb-[110px] pt-[112px] text-dark-300"
 		>
 			<div class="container">
 				<div
-					class="invest-content max-w-[50%] md:max-w-[80%] px-[33px] xsm:px-0 xsm:max-w-full xsm:text-center"
+					class="invest-content max-w-[50%] md:max-w-[80%] xsm:max-w-full xsm:text-center"
 				>
-					<h2 class="section-title invest-title mb-[28px] xsm:mb-[22px]">
+					<h2 class="section-title invest-title mb-[28px] xsm:mb-[27px]">
 						ИНВЕСТИРУЙТЕ БЕЗ РИСКОВ
 					</h2>
 					<p
@@ -490,7 +466,7 @@ const faqQuestions = [
 					</TheButton>
 				</div>
 				<div
-					class="invest-img absolute bottom-0 left-[50.4%] md:w-[87%] xsm:w-full xsm:left-[6.5%] xsm:bottom-[-65px] md:left-[20.5%] md:bottom-[-39px]"
+					class="invest-img absolute bottom-0 left-[51.6%] sm:w-[96%] sm:bottom-0 md:w-[82%] xsm:left-[6.5%] md:left-[20.5%] md:bottom-[-39px]"
 				>
 					<img :src="'/img/invest-arrow.png'" alt="" />
 				</div>
@@ -516,7 +492,7 @@ const faqQuestions = [
 		background: linear-gradient(217.85deg, rgba(0, 0, 0, 0) 48.32%, #000000 84.52%), url('/img/offer/offer-bg.png') center / cover
 		height: auto
 	+r(769)
-		min-height: calc(100vh - 80px)
+		min-height: 552px
 		height: calc(100vh - 80px)
 		display: flex
 		align-items: flex-end
@@ -565,7 +541,9 @@ const faqQuestions = [
 
 .catalog
 	position: relative
-
+	.swiper-wrapper
+		+r(600)
+			padding-bottom: 40px
 	&::before
 		content: ""
 		width: 100%

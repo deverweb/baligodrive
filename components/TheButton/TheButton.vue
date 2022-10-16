@@ -24,11 +24,24 @@ export default {};
 		background-size: 200% 100%
 		background-position: 50% 0
 		// background-image: linear-gradient(92.17deg, #3AD720 0%, #239810 97.4%, #229610 100%)
-		background-image: linear-gradient(92.17deg, #3AD720 1%, #239810 52.4%, #229610 100%)
 
 		background-repeat: no-repeat
+		&::before
+			transition: 0.3s ease all
+			content: ""
+			border-radius: 12px
+			position: absolute
+			left: 0px
+			right: 0px
+			z-index: -1
+			top: 0px
+			bottom: 0px
+			background-image: linear-gradient(92.17deg, #3AD720 1%, #239810 52.4%, #229610 100%)
+			opacity: 0
 		&:hover
-			background-position: 0% 0
+			// background-position: 0% 0
+			&::before
+				opacity: 1
 	&.blured
 		background: none
 		&:hover
