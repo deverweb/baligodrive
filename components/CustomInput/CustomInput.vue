@@ -20,4 +20,9 @@
 import { Field } from "vee-validate";
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+.ci
+	input
+		&::placeholder
+			color: $dark
+</style>

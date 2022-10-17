@@ -102,7 +102,7 @@ watch(
 	left: 20px
 	width: calc(100% - 40px)
 	transition-property: all
-	transition-duration: .2s
+	transition-duration: .4s
 	transition-timing-function: cubic-bezier(.4,0,.2,1)
 	justify-content: space-between
 	opacity: 1
@@ -138,7 +138,7 @@ watch(
 		position: absolute
 		background: rgba($dark200, 0)
 		border-radius: 0px
-		transition: 0.3s ease all
+		transition: 0.4s ease all
 		+r(991)
 			border-radius: 0px
 			background: rgba($dark, 1)
@@ -148,7 +148,7 @@ watch(
 		&::before
 			background: $dark200
 	&.hide
-		transform: translateY(-200%)
-		opacity: 0
+		transform: translateY(-100%)
+		// opacity: 0
 		transition-delay: 0
 </style>

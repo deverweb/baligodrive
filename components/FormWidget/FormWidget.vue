@@ -15,9 +15,12 @@
 				</h3>
 				<form
 					@submit.prevent="handleSubmit"
-					class="text-dark bg-white text-[16px] pl-[32px] pr-[32px] rounded-b-[12px] pb-[30px]"
+					class="text-dark bg-white text-[16px] pl-[32px] pr-[32px] rounded-b-[12px] pb-[30px] wg-form"
 				>
-					<PhoneSelect class="wg-form-label"></PhoneSelect>
+					<div class="wg-form-phone flex items-center">
+						<SvgPhoneIcon class=""></SvgPhoneIcon>
+						<Field name="phone" placeholder="Телефон"></Field>
+					</div>
 					<SimpleSelect label="Модель байка">
 						<SvgBikeIcon></SvgBikeIcon>
 					</SimpleSelect>
@@ -25,6 +28,11 @@
 						<SvgSurfIcon></SvgSurfIcon>
 					</SimpleSelect>
 					<DateSelect></DateSelect>
+					<TheButton
+						class="w-[292px] h-[70px] rounded-[12px] gradient text-light"
+					>
+						<span>Оформление заказа</span>
+					</TheButton>
 				</form>
 			</div>
 		</Transition>
@@ -32,9 +40,8 @@
 </template>
 
 <script setup>
-import PhoneSelect from "./PhoneSelect.vue";
 import SimpleSelect from "./SimpleSelect.vue";
-import { Form } from "vee-validate";
+import { Form, Field } from "vee-validate";
 
 let isOpened = ref(true);
 
@@ -63,6 +70,8 @@ function closeOnClick(event) {
 	filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.1))
 	&-form
 		bottom: calc(100% + 30px)
+		svg
+			margin-right: 8px
 		&-label
 			border-bottom: 1px solid #F3F3F3
 			border-bottom: 1px solid black

@@ -17,9 +17,9 @@
 				v-show="canSee"
 			>
 				<ul class="cs-list pt-[80px] pb-[10px]">
+					<li v-if="requiredSelect" @click="selectOption()"></li>
 					<li
 						v-for="(element, i) in options.elements"
-						:key="i"
 						@click="selectOption(element)"
 						class="cs-list-item pr-[21px] bg-light hover:bg-dark py-[20px] pl-[50px] cursor-pointer"
 					>
@@ -39,6 +39,10 @@ export default {
 			required: true,
 		},
 		isVisible: {
+			type: Boolean,
+			required: true,
+		},
+		requiredSelect: {
 			type: Boolean,
 			required: true,
 		},

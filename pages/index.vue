@@ -230,10 +230,10 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="catalog z-[1] md:pb-[97px] pb-[9px] xsm:flex xsm:flex-col bg-dark-300 text-dark"
+			class="catalog z-[1] md:pb-[67px] sm:flex sm:flex-col pb-[9px] xsm:flex xsm:flex-col bg-dark-300 text-dark"
 		>
 			<div class="container">
-				<div class="catalog-wrapper mb-[49px] xsm:mb-0">
+				<div class="catalog-wrapper mb-[64px] xsm:mb-0">
 					<h2
 						class="catalog-title section-title text-center mb-[30px] md:mb-[32px]"
 					>
@@ -253,7 +253,7 @@ const faqQuestions = [
 			</div>
 
 			<div
-				class="catalog-arrows xsm:mt-0 xsm:order-[1] relative flex justify-between px-[5.3%] xsm:justify-center xsm:gap-[30px] xsm:px-0 2xl:px-[50px] sm:top-0 top-[-20px] select-none z-[2]"
+				class="catalog-arrows w-[550px] sm:w-[90px] sm:self-center translate-x-[-50%] left-[50%] gap-[0px] sm:static sm:transform-none absolute top-[146px] md:top-[124px] justify-between xsm:mt-0 sm:order-[1] flex xsm:justify-center xsm:gap-[30px] xsm:px-0 sm:top-0 select-none z-[2]"
 			>
 				<div class="catalog-arrows-prev cursor-pointer">
 					<svg
@@ -287,6 +287,7 @@ const faqQuestions = [
 			<div class="catalog-bikes bikes lg:gap-[36px] lg:grid-cols-1">
 				<!-- <Bike v-for="(bike, i) in bikesCards" :key="i" :bike="bike"></Bike> -->
 				<Swiper
+					class="md:pb-[30px]"
 					:modules="modules"
 					:navigation="{
 						nextEl: '.catalog-arrows-next',
@@ -338,12 +339,14 @@ const faqQuestions = [
 							:isVisible="false"
 							class="mb-[10px]"
 							:options="bikeSelectOptions"
+							:requiredSelect="true"
 							><SvgBikeIcon></SvgBikeIcon>
 						</CustomSelect>
 						<CustomSelect
 							:isVisible="false"
 							class="mb-[10px]"
 							:options="surfSelectOptions"
+							:requiredSelect="false"
 							><SvgSurfIcon></SvgSurfIcon>
 						</CustomSelect>
 
@@ -541,9 +544,9 @@ const faqQuestions = [
 
 .catalog
 	position: relative
-	.swiper-wrapper
-		+r(600)
-			padding-bottom: 40px
+	.swiper
+		+r(768)
+			padding-bottom: 30px
 	&::before
 		content: ""
 		width: 100%
