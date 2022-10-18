@@ -161,7 +161,7 @@ const faqQuestions = [
 <template>
 	<div>
 		<section
-			class="offer md:bg-center sm:items-end md:flex md:items-end sm:h-auto md:min-h-[750px] sm:pb-[65px] xl:px-[50px] px-[80px] md:px-[48px] sm:px-[24px] lg:px-[30px] pb-[80px] min-h-[600px] h-screen text-white bg-dark-300 bg-no-repeat bg-cover rounded-t-[70px]"
+			class="offer md:bg-center sm:items-end md:flex md:items-end sm:h-auto md:min-h-[750px] sm:pb-[10px] xl:px-[50px] px-[80px] md:px-[48px] sm:px-[24px] lg:px-[30px] pb-[80px] min-h-[600px] h-screen text-white bg-dark-300 bg-no-repeat bg-cover rounded-t-[70px]"
 		>
 			<div
 				class="offer-content flex md:flex-col md:items-start md:justify-center items-end h-full justify-between"
