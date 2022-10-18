@@ -1,13 +1,13 @@
 <template>
-	<div class="wg z-10 fixed right-[100px] bottom-[80px]">
+	<div v-if="isOrderPage" class="wg z-10 fixed right-[100px] bottom-[80px]">
 		<div
-			@click="toggleIsOpened"
+			@click="toggleVisibility"
 			class="wg-fixed-button transition-transform w-[60px] h-[60px] bg-green rounded-full cursor-pointer"
 		>
 			<SvgCalendarIcon fill="white" class="absolute wg-svg"></SvgCalendarIcon>
 		</div>
 		<Transition>
-			<div v-show="isOpened" class="wg-form w-[352px] absolute right-[50%]">
+			<div v-show="visible" class="wg-form w-[352px] absolute right-[50%]">
 				<h3
 					class="wg-form-title tracking-[-0.5px] rounded-[12px] rounded-b-none px-[39px] py-[24px] whitespace-nowrap bg-dark-500 font-Euroblack text-[16px] uppercase text-center"
 				>
@@ -27,10 +27,8 @@
 					<SimpleSelect label="Сёрфборд">
 						<SvgSurfIcon></SvgSurfIcon>
 					</SimpleSelect>
-					<DateSelect></DateSelect>
-					<TheButton
-						class="w-[292px] h-[70px] rounded-[12px] gradient text-light"
-					>
+					<!-- <DateSelect></DateSelect> -->
+					<TheButton class="w-[292px] h-[70px] rounded-[12px] white text-light">
 						<span>Оформление заказа</span>
 					</TheButton>
 				</form>
@@ -42,15 +40,37 @@
 <script setup>
 import SimpleSelect from "./SimpleSelect.vue";
 import { Form, Field } from "vee-validate";
+import { useWidgetStore } from "@/store/widget";
+import { storeToRefs } from "pinia";
 
-let isOpened = ref(true);
+const store = useWidgetStore();
 
-const toggleIsOpened = () => {
-	isOpened.value = !isOpened.value;
-};
+const { push } = useRouter();
+const route = useRoute();
+const { visible } = storeToRefs(store);
+const { toggleVisibility } = store;
+let isOrderPage = ref(true);
+if (route.path == "/order") {
+	isOrderPage.value = false;
+} else {
+	isOrderPage.value = true;
+}
+watch(
+	() => {
+		return route.path;
+	},
+	() => {
+		if (route.path == "/order") {
+			isOrderPage.value = false;
+		} else {
+			isOrderPage.value = true;
+		}
+	}
+);
 
 const handleSubmit = () => {
-	console.log("hello world");
+	toggleVisibility();
+	push("/order");
 };
 
 onMounted(() => {
@@ -58,8 +78,8 @@ onMounted(() => {
 });
 
 function closeOnClick(event) {
-	if (isOpened.value === true && !event.target.closest(".wg")) {
-		isOpened.value = false;
+	if (visible.value && !event.target.closest(".wg")) {
+		toggleVisibility();
 		window.removeEventListener("click", closeOnClick);
 	}
 }

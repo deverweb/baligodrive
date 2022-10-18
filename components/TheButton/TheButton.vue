@@ -10,7 +10,16 @@
 export default {};
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
+@mixin r($screenWidth)
+	@media only screen and (max-width: $screenWidth + 'px')
+		@content
+
+
+@mixin rmin($screenWidth)
+	@media only screen and (min-width: $screenWidth + 'px')
+		@content
+
 .button-primary
 	border-width: 1px
 	border-style: solid
@@ -18,6 +27,31 @@ export default {};
 	position: relative
 	transition: all 0.2s linear
 	background-color: $green
+	span
+		line-height: 1
+	svg, path
+		transition: 0.2s ease all
+	&.white
+		border: 1px solid rgba($dark300, 0)
+		background-color: rgba($green, 1)
+
+		&:hover
+			color: $dark300
+			background-color: rgba($green, 0)
+			border: 1px solid rgba($dark300, 1)
+			svg
+				stroke: $dark300
+				fill: $dark300
+				path
+					stroke: $dark300
+					fill: $dark300
+	&.black
+		border: 1px solid rgba($light, 0)
+		background-color: rgba($green, 1)
+		&:hover
+			border: 1px solid rgba($light, 1)
+			background-color: transparent
+
 	&.gradient
 		transition: all 0.3s ease
 		border: none

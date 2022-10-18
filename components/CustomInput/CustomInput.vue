@@ -23,6 +23,8 @@ import { Field } from "vee-validate";
 <style lang="sass">
 .ci
 	input
+		&:focus::placeholder
+			color: transparent
 		&::placeholder
 			color: $dark
 </style>

@@ -1,37 +1,52 @@
 <template>
-	<div v-show="isVisible" class="datepicker-panel absolute">
+	<div class="datepicker-panel absolute">
 		<client-only>
 			<DatePicker
 				:min-date="new Date()"
 				is-range
-				@input="console.log('input')"
-				@dayclick="listenClick"
 				v-model="range"
+				color="green"
+				@update:modelValue="listen"
 			></DatePicker>
 		</client-only>
 	</div>
 </template>
 
 <script setup>
-let label = ref("От какого — До какого");
-let isVisible = ref(false);
+import { DatePicker } from "v-calendar";
+let props = defineProps({
+	isVisible: {
+		required: true,
+		type: Boolean,
+	},
+});
 let range = ref({
 	start: new Date(),
 	end: null,
 });
+let count = ref(0);
+let emit = defineEmits(["daypick"]);
+const listen = (date) => {
+	let str = "";
+	str = `с ${formatDate(range.value.start)} — до ${formatDate(
+		range.value.end
+	)}`;
 
-const setVisible = () => {
-	isVisible.value = !isVisible.value;
-	if (isVisible.value) window.addEventListener("click", closeCSonWindowClick);
+	emit("daypick", str);
 };
-const listenClick = (day) => {
-	if (!range.value.end) {
+const dayClick = (day) => {
+	let str = "";
+	if (count.value == 0) {
 		range.value.start = day.date;
+		str = `с ${formatDate(range.value.start)} — до`;
+		count.value++;
+	} else {
+		str = `с ${formatDate(range.value.start)} — до ${formatDate(
+			range.value.end
+		)}`;
+		count.value--;
 	}
-
-	label.value = `с ${formatDate(range.value.start)} — до ${
-		range.value.end ? formatDate(range.value.end) : ""
-	}`;
+	emit("daypick", str);
 };
 
 const formatDate = (date) => {
@@ -43,20 +58,23 @@ const formatDate = (date) => {
 	if (mm < 10) mm = "0" + mm;
 	return `${dd}.${mm}.${yyyy}`;
 };
-let selectDate = () => {
-	isVisible.value = false;
-	window.removeEventListener("click", closeCSonWindowClick);
-};
-const closeCSonWindowClick = (event) => {
-	if (isVisible.value === true && !event.target.closest(".datepicker")) {
-		isVisible.value = false;
-		window.removeEventListener("click", closeCSonWindowClick);
-	}
-};
-
-onUnmounted(() => {
-	window.removeEventListener("click", closeCSonWindowClick);
-});
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+:root
+  --green-600: $green
+
+.datepicker-panel
+  .vc-container
+    +helvr
+    --green-600: #{$green}
+  .vc-day-content
+    width: 40px
+    height: 40px
+    transition: 0.2s ease all
+
+  .vc-header
+    margin-bottom: 20px
+  .vc-weeks
+    padding: 20px
+</style>

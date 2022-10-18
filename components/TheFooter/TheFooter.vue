@@ -1,6 +1,6 @@
 <template>
 	<footer
-		class="footer px-[80px] lg:pt-[58px] sm:pt-[68px] lg:px-[48px] sm:px-[25px] 2xl:px-[40px] bg-dark-300 pt-[70px] sm:pb-[41px] pb-[37px]"
+		class="footer px-[80px] lg:pt-[58px] sm:pt-[68px] lg:px-[48px] sm:px-[25px] 2xl:px-[40px] bg-dark-300 pt-[70px] sm:pb-[41px] pb-[46px]"
 	>
 		<div class="footer-desktop grid grid-cols-4 lg:hidden">
 			<div class="footer-col pt-[4px]">
@@ -10,7 +10,10 @@
 				</div>
 			</div>
 			<div class="footer-col pl-[23px] pt-[11px]">
-				<div class="footer-action cursor-pointer mb-[24px] text-light">
+				<div
+					@click="toggleVisibility"
+					class="footer-action cursor-pointer mb-[24px] text-light"
+				>
 					<SvgBikeIcon
 						fill="#30B21B"
 						class="w-[19px] h-[19px] relative top-[-1px] mr-[10px]"
@@ -172,11 +175,17 @@
 </template>
 
 <script setup>
+import { useWidgetStore } from "~~/store/widget";
+
 const payments = [
 	"/svg/footer/visa.svg",
 	"/svg/footer/master.svg",
 	"/svg/footer/mir.svg",
 ];
+
+const store = useWidgetStore();
+
+const { toggleVisibility } = store;
 </script>
 
 <style lang="sass">

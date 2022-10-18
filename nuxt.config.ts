@@ -32,7 +32,7 @@ export default defineNuxtConfig({
 		"@nuxtjs/tailwindcss",
 		"@nuxtjs/i18n",
 		"@nuxtjs/strapi",
-		"@pinia/nuxt",
+		["@pinia/nuxt", { autoImports: ["defineStore", "acceptHMRUpdate"] }],
 	],
 	strapi: {
 		url: process.env.STRAPI_URL || "http://localhost:1337",

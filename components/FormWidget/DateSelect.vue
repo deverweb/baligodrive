@@ -11,7 +11,7 @@
 		</div>
 		<Transition name="popin">
 			<div v-show="isVisible" class="wg-datepicker absolute">
-				<DatePickerPanel></DatePickerPanel>
+				<DatePickerPanel :isVisible="false" :range="range"></DatePickerPanel>
 			</div>
 		</Transition>
 	</div>
@@ -23,10 +23,6 @@ let range = ref({
 	start: new Date(),
 	end: null,
 });
-
-const listenClick = () => {
-	console.log("listenClick");
-};
 </script>
 
 <style lang="sass"></style>

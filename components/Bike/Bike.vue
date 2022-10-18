@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="bike bg-light xsm:px-[56px] pb-[39px] pt-[33px] px-[40px] rounded-[26px] flex flex-col lg:max-w-[440px] lg:mx-auto"
+		class="bike bg-light xsm:px-[31px] xsm:pr-[30px] xsm:pb-[31px] pb-[39px] pt-[33px] xsm:pt-[25px] px-[40px] rounded-[26px] xsm:rounded-[20px] flex flex-col lg:max-w-[440px] lg:mx-auto"
 	>
 		<div
 			class="bike-title xsm:tracking-[-0.2px] lil:text-[18px] xsm:mb-[46px] font-Helvbold uppercase text-[28px] mb-[64px] xsm:text-[22px]"
@@ -17,7 +17,7 @@
 		</div>
 		<div class="bike-desc">
 			<div
-				class="bike-desc__text text-[16px] xsm:tracking-[0.2px] text-dark xsm:text-[12px] xsm:leading-[16px] leading-[20px] xsm:mb-[20px] mb-[26px]"
+				class="bike-desc__text text-[16px] xsm:tracking-[0.2px] text-dark xsm:text-[12px] xsm:leading-[16px] leading-[20px] xsm:mb-[18px] mb-[26px]"
 			>
 				{{ bike.desc }}
 			</div>
@@ -36,10 +36,14 @@
 		</div>
 		<div class="bike-bottom flex items-center justify-between">
 			<TheButton
-				class="h-[70px] gradient xsm:text-[12px] lil:mr-[8px] lil:text-[10px] lil:gap-[6px] xsm:h-[54px] xsm:w-full xsm:mr-[25px] gap-[11px] w-[250px] px-0 py-0 text-[16px] font-Helvmed text-light"
+				class="h-[70px] white xsm:text-[12px] lil:mr-[8px] lil:text-[10px] lil:gap-[6px] xsm:h-[54px] xsm:w-full xsm:mr-[25px] gap-[11px] w-[250px] px-0 py-0 text-[16px] font-Helvmed text-light"
 			>
-				<CalendarIcon class="flex-shrink-0 w-[19px]"></CalendarIcon>
-				<span>Забронировать</span>
+				<CalendarIcon
+					class="flex-shrink-0 w-[19px] xsm:w-[13px]"
+				></CalendarIcon>
+				<span class="xsm:tracking-[-0.2px] xsm:top-0 relative top-[2px]"
+					>Забронировать</span
+				>
 			</TheButton>
 			<button
 				class="bike-detailed font-Helvmed text-center text-[14px] xsm:text-[10px] xsm:tracking-[0.6px]"
@@ -70,6 +74,9 @@ export default {
 
 .bike
 	box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.07)
+	+r(600)
+		box-shadow: 0px 3.86364px 30.9091px rgba(0, 0, 0, 0.07)
+
 	&-detailed
 		position: relative
 		color: #AAAAAA

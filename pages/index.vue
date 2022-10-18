@@ -1,16 +1,23 @@
 <script setup>
 import { Form, Field, ErrorMessage } from "vee-validate";
-import { EffectCoverflow, Navigation } from "swiper";
+import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import CustomSelect from "../components/CustomSelect/CustomSelect.vue";
 import CalendarIcon from "~~/components/Svg/CalendarIcon.vue";
 
+const formEl = ref(null);
+
 useHead({
 	title: "Baligodrive",
 });
-const modules = [EffectCoverflow, Navigation];
+
+const modules = [Navigation];
 const { t, locale } = useI18n();
+
+const scrollToForm = () => {
+	formEl.value.scrollIntoView({ behavior: "smooth" });
+};
 const howActions = [
 	{
 		title: "Выбираете байк",
@@ -168,10 +175,11 @@ const faqQuestions = [
 					class="offer-service sm:max-w-full hidden md:flex relative items-center sm:flex-col sm:items-start"
 				>
 					<TheButton
+						@click="scrollToForm"
 						class="offer-service-button blured gap-[9px] w-[300px] sm:w-[100%] sm:max-w-[340px] sm:h-[70px] h-[82px] mr-[29px] sm:mr-0 sm:order-2"
 					>
 						<SvgCalendarIcon></SvgCalendarIcon>
-						<span>Забронировать</span>
+						<span class="relative top-[2px]">Забронировать</span>
 					</TheButton>
 					<p
 						class="offer-service-text w-[300px] sm:w-[100%] sm:max-w-[340px] sm:tracking-[0.3px] text-[20px] leading-[1.3] tracking-[0.4px] sm:mb-[47px] sm:text-[16px]"
@@ -230,12 +238,12 @@ const faqQuestions = [
 			</div>
 		</section>
 		<section
-			class="catalog z-[1] md:pb-[67px] sm:flex sm:flex-col pb-[9px] xsm:flex xsm:flex-col bg-dark-300 text-dark"
+			class="catalog z-[1] md:pb-[50px] xsm:pb-[97px] sm:flex sm:flex-col pb-[9px] xsm:flex xsm:flex-col bg-dark-300 text-dark"
 		>
 			<div class="container">
-				<div class="catalog-wrapper mb-[64px] xsm:mb-0">
+				<div class="catalog-wrapper mb-[24px] xsm:mb-0 xsm:relative">
 					<h2
-						class="catalog-title section-title text-center mb-[30px] md:mb-[32px]"
+						class="catalog-title section-title text-center mb-[30px] md:mb-[26px] xsm:mb-[31px]"
 					>
 						Каталог<br />байков
 					</h2>
@@ -245,7 +253,7 @@ const faqQuestions = [
 						Выберите и забронируйте байк из каталога
 					</p>
 					<div
-						class="catalog-drag xsm:flex hidden justify-end xsm:max-h-[35px]"
+						class="catalog-drag xsm:flex hidden justify-end xsm:max-h-[35px] xsm:absolute xsm:right-0 xsm:bottom-[-38px]"
 					>
 						<SvgDragAnim class="max-h-full"></SvgDragAnim>
 					</div>
@@ -253,7 +261,7 @@ const faqQuestions = [
 			</div>
 
 			<div
-				class="catalog-arrows w-[550px] sm:w-[90px] sm:self-center translate-x-[-50%] left-[50%] gap-[0px] sm:static sm:transform-none absolute top-[146px] md:top-[124px] justify-between xsm:mt-0 sm:order-[1] flex xsm:justify-center xsm:gap-[30px] xsm:px-0 sm:top-0 select-none z-[2]"
+				class="catalog-arrows w-[550px] sm:w-[90px] sm:self-center translate-x-[-50%] left-[50%] gap-[0px] sm:static sm:transform-none absolute top-[146px] md:top-[118px] justify-between xsm:mt-0 sm:order-[1] flex xsm:justify-center xsm:gap-[30px] xsm:px-0 sm:top-0 select-none z-[2]"
 			>
 				<div class="catalog-arrows-prev cursor-pointer">
 					<svg
@@ -287,7 +295,7 @@ const faqQuestions = [
 			<div class="catalog-bikes bikes lg:gap-[36px] lg:grid-cols-1">
 				<!-- <Bike v-for="(bike, i) in bikesCards" :key="i" :bike="bike"></Bike> -->
 				<Swiper
-					class="md:pb-[30px]"
+					class=""
 					:modules="modules"
 					:navigation="{
 						nextEl: '.catalog-arrows-next',
@@ -305,7 +313,7 @@ const faqQuestions = [
 					}"
 				>
 					<SwiperSlide
-						class="max-w-[440px] xsm:max-w-full xsm:w-[340px]"
+						class="max-w-[440px] xsm:max-w-[340px] xsm:w-[100%]"
 						v-for="(bike, i) in bikesCards"
 						><Bike :bike="bike"></Bike
 					></SwiperSlide>
@@ -321,6 +329,7 @@ const faqQuestions = [
 					class="order-content sm:mb-[78px] max-w-[52%] lg:mb-[46px] lg:max-w-full"
 				>
 					<h2
+						ref="formEl"
 						class="section-title xsm:text-[26px] order-title mb-[29px] sm:mb-[22px] lg:mb-[26px] lg:max-w-[70%] lg:mx-auto md:max-w-max"
 					>
 						Забронируйте байк И СЁРФ
@@ -331,34 +340,36 @@ const faqQuestions = [
 						Мы доставим ваш байк прямо к вилле или вы можете забрать его сами в
 						нашем офисе
 					</p>
-					<Form class="max-w-[360px] lg:mx-auto lg:text-left">
-						<CustomInput class="mb-[10px]"
-							><SvgPhoneIcon></SvgPhoneIcon
-						></CustomInput>
-						<CustomSelect
-							:isVisible="false"
-							class="mb-[10px]"
-							:options="bikeSelectOptions"
-							:requiredSelect="true"
-							><SvgBikeIcon></SvgBikeIcon>
-						</CustomSelect>
-						<CustomSelect
-							:isVisible="false"
-							class="mb-[10px]"
-							:options="surfSelectOptions"
-							:requiredSelect="false"
-							><SvgSurfIcon></SvgSurfIcon>
-						</CustomSelect>
+					<div class="form">
+						<Form class="max-w-[360px] lg:mx-auto lg:text-left">
+							<CustomInput class="mb-[10px]"
+								><SvgPhoneIcon></SvgPhoneIcon
+							></CustomInput>
+							<CustomSelect
+								:isVisible="false"
+								class="mb-[10px]"
+								:options="bikeSelectOptions"
+								:requiredSelect="true"
+								><SvgBikeIcon></SvgBikeIcon>
+							</CustomSelect>
+							<CustomSelect
+								:isVisible="false"
+								class="mb-[10px]"
+								:options="surfSelectOptions"
+								:requiredSelect="false"
+								><SvgSurfIcon></SvgSurfIcon>
+							</CustomSelect>
 
-						<OrderDatePicker class="mb-[15px]"></OrderDatePicker>
-						<TheButton
-							type="submit"
-							class="w-[360px] gradient sm:w-full sm:max-w-full h-[70px] gap-[9px]"
-						>
-							<CalendarIcon></CalendarIcon>
-							<span>Забронировать</span>
-						</TheButton>
-					</Form>
+							<OrderDatePicker class="mb-[15px]"></OrderDatePicker>
+							<TheButton
+								type="submit"
+								class="w-[360px] black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+							>
+								<CalendarIcon></CalendarIcon>
+								<span class="relative top-[2px]">Забронировать</span>
+							</TheButton>
+						</Form>
+					</div>
 				</div>
 				<OrderBike
 					class="absolute lg:max-w-[80%] 2xl:z-[0] 2xl:bottom-[5%] 2xl:left-[40%] 2xl:scale-[0.85] lg:scale-100 sm:max-w-full left-[50%] lg:bottom-auto lg:relative lg:left-0"
@@ -460,10 +471,10 @@ const faqQuestions = [
 						скутеров на острове Бали.
 					</p>
 					<TheButton
-						class="w-[328px] gradient h-[70px] md:w-[339px] gap-[9px] xsm:max-w-[340px] xsm:w-full text-light"
+						class="w-[328px] white h-[70px] md:w-[339px] gap-[9px] xsm:max-w-[340px] xsm:w-full text-light"
 					>
 						<SvgMoneyIcon></SvgMoneyIcon>
-						<span class="text-[16px] tracking-[0.3px]"
+						<span class="text-[16px] tracking-[0.3px] relative top-[2px]"
 							>Подробнее об инвестициях</span
 						>
 					</TheButton>
@@ -478,7 +489,7 @@ const faqQuestions = [
 	</div>
 </template>
 
-<style lang="sass" scoped>
+<style lang="sass">
 @mixin r($screenWidth)
 	@media only screen and (max-width: $screenWidth + 'px')
 		@content
@@ -541,12 +552,15 @@ const faqQuestions = [
 			z-index: -1
 			+r(991)
 				display: none
-
 .catalog
 	position: relative
-	.swiper
-		+r(768)
-			padding-bottom: 30px
+	.swiper-wrapper
+		+r(990)
+			padding-bottom: 50px
+			padding-top: 40px
+		+r(600)
+			padding-top: 44px
+			padding-bottom: 43px
 	&::before
 		content: ""
 		width: 100%
