@@ -505,11 +505,12 @@ const faqQuestions = [
 	+r(991)
 		background: linear-gradient(217.85deg, rgba(0, 0, 0, 0) 48.32%, #000000 84.52%), url('/img/offer/offer-bg.png') center / cover
 		height: auto
-	+r(769)
+	+r(768)
 		min-height: 552px
 		height: calc(100vh - 80px)
 		display: flex
 		align-items: flex-end
+		background: linear-gradient(216.14deg, rgba(0, 0, 0, 0) 16.88%, #000000 81.14%), url('/img/offer/offer-bg.png') left bottom / cover
 	&-title
 		letter-spacing: -2.4px
 		line-height: 0.96

@@ -23,6 +23,7 @@
 let activeFixedMenu = ref(false);
 let route = useRoute();
 let lastScrollTop = ref(0);
+const scrollHeight = 70;
 const navLinks = [
 	{
 		link: "/",
@@ -47,19 +48,22 @@ const navLinks = [
 ];
 
 onMounted(() => {
-	if (window.pageYOffset <= 100) {
+	if (window.pageYOffset <= scrollHeight) {
 		document.querySelector(".header").classList.remove("notfirstscreen");
 	} else {
 		document.querySelector(".header").classList.add("notfirstscreen");
 	}
 
 	window.addEventListener("scroll", () => {
-		if (window.pageYOffset <= 100) {
+		if (window.pageYOffset <= scrollHeight) {
 			document.querySelector(".header").classList.remove("notfirstscreen");
 		} else {
 			document.querySelector(".header").classList.add("notfirstscreen");
 		}
-		if (lastScrollTop.value > window.pageYOffset || window.pageYOffset <= 100) {
+		if (
+			lastScrollTop.value > window.pageYOffset ||
+			window.pageYOffset <= scrollHeight
+		) {
 			document.querySelector(".header").classList.remove("hide");
 		} else {
 			document.querySelector(".header").classList.add("hide");

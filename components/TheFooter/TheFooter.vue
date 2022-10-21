@@ -23,7 +23,7 @@
 				<div
 					class="footer-policy inline-flex text-[16px] items-baseline flex-col"
 				>
-					<NuxtLink class="inline-block mb-[12px] font-Helvreg" to="/policy"
+					<NuxtLink class="inline-block mb-[12px] font-Helvreg" to="/oferta"
 						>Договор оферты</NuxtLink
 					>
 					<NuxtLink class="inline-block" to="/policy"
@@ -76,7 +76,7 @@
 					<div
 						class="footer-policy mb-[16px] inline-flex text-[16px] items-baseline flex-col"
 					>
-						<NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/policy"
+						<NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/oferta"
 							>Договор оферты</NuxtLink
 						>
 						<NuxtLink class="inline-block" to="/policy"
@@ -153,7 +153,7 @@
 			<div
 				class="footer-policy mb-[16px] inline-flex text-[16px] items-baseline flex-col"
 			>
-				<NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/policy"
+				<NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/oferta"
 					>Договор оферты</NuxtLink
 				>
 				<NuxtLink class="inline-block" to="/policy"
