@@ -2,6 +2,11 @@ import { defineNuxtConfig } from "nuxt";
 
 export default defineNuxtConfig({
 	css: ["@/assets/sass/main.sass", "@/assets/sass/_fonts.sass"],
+	router: {
+		scrollBehavior: () => {
+			return { top: 0 };
+		},
+	},
 	head: {
 		meta: [
 			{ charset: "utf-8" },
