@@ -57,7 +57,7 @@
 <script setup>
 // import QuestionOne from "./QuestionOne.vue";
 
-let currentSlide = ref(6);
+let currentSlide = ref(1);
 let quizList = ref([
 	{
 		quizQuestionNumber: 1,
