@@ -1,9 +1,9 @@
 <template>
 	<div
-		class="quiz mt-[162px] w-full mx-auto text-light max-w-[1368px] h-[700px] flex"
+		class="quiz mt-[160px] w-full mx-auto text-light max-w-[1368px] h-[700px] flex"
 	>
 		<div
-			class="quiz-content flex flex-col justify-between pt-[65px] grow px-[78px] bg-[#2B2B2B] rounded-tl-[12px] rounded-bl-[12px]"
+			class="quiz-content pb-[60px] flex flex-col pt-[67px] grow px-[78px] bg-[#2B2B2B] rounded-tl-[12px] rounded-bl-[12px]"
 		>
 			<div class="quiz-content-title quiz-inner-title pb-[38px]">
 				<h2 class="font-Euroblack text-[32px] tracking-[-1.1px] uppercase">
@@ -11,37 +11,21 @@
 				</h2>
 			</div>
 			<div class="quiz-content-question pt-[50px]">
-				<TransitionGroup>
-					<div
-						class="quiz-question absolute"
-						:key="question.quizQuestionNumber"
-						v-for="(question, i) in quizList"
-						v-show="currentSlide == i"
-					>
-						<div
-							class="quiz-question-title pl-[2px] flex items-center text-light"
-						>
-							<div
-								class="quiz-question-title-number mr-[30px] relative font-Helvbold text-[14px] bg-green rounded-full w-[32px] h-[32px]"
-							>
-								<span
-									class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
-									>{{ question.quizQuestionNumber }}</span
-								>
-							</div>
-							<div class="quiz-question-title-label text-[18px] font-Helvmed">
-								{{ question.quizMainQuestion }}
-							</div>
-						</div>
-					</div>
-				</TransitionGroup>
+				<!-- <TransitionGroup> -->
+				<QuizQuestionOne v-show="currentSlide == 1"></QuizQuestionOne>
+				<QuizQuestionTwo v-show="currentSlide == 2"></QuizQuestionTwo>
+				<QuizQuestionThree v-show="currentSlide == 3"></QuizQuestionThree>
+				<QuizQuestionFour v-show="currentSlide == 4"></QuizQuestionFour>
+				<QuizQuestionFive v-show="currentSlide == 5"></QuizQuestionFive>
+				<QuizQuestionSix v-show="currentSlide == 6"></QuizQuestionSix>
+				<!-- </TransitionGroup> -->
 			</div>
-			<div class="quiz-progress">
-				<div class="quiz-progress-line">
-					<div class="quiz-progress-line-label"></div>
-					<div class="quiz-progress-line-span"></div>
-				</div>
-				<div class="quiz-buttons flex items-center gap-[15px]">
+			<div class="quiz-bottom mt-auto flex gap-[68px] items-center w-full">
+				<QuizProgress
+					class="shrink grow"
+					:progress="calculatedProgress"
+				></QuizProgress>
+				<div class="quiz-buttons flex items-center gap-[15px] shrink-0 grow-0">
 					<button
 						:disabled="currentSlide == 0"
 						@click="currentSlide--"
@@ -61,26 +45,19 @@
 						</svg>
 					</button>
 					<TheButton @click="currentSlide++" c class="w-[180px] h-[67px] black"
-						><span>Далее </span></TheButton
+						><span>{{ nextButtonLabel }} </span></TheButton
 					>
 				</div>
 			</div>
 		</div>
-		<div
-			class="quiz-cart pt-[68px] flex flex-col items-center text-center rounded-tr-[12px] rounded-br-[12px] bg-dark-800 w-[378px] shrink-0"
-		>
-			<div class="quiz-cart-title px-[40px] w-full quiz-inner-title pb-[47px]">
-				<h2 class="font-Euroblack text-[24px] uppercase tracking-[-0.8px]">
-					Ваш заказ
-				</h2>
-			</div>
-			<div class="quiz-cart-inner"></div>
-		</div>
+		<QuizCart></QuizCart>
 	</div>
 </template>
 
 <script setup>
-let currentSlide = ref(0);
+// import QuestionOne from "./QuestionOne.vue";
+
+let currentSlide = ref(6);
 let quizList = ref([
 	{
 		quizQuestionNumber: 1,
@@ -193,18 +170,28 @@ let quizList = ref([
 	},
 ]);
 
-let progress = currentSlide.value;
+let slidesProgress = [20, 20, 20, 20, 10, 9];
+
+let calculatedProgress = computed(() => {
+	return slidesProgress.slice(0, currentSlide.value).reduce((prev, curr) => {
+		return prev + curr;
+	}, 0);
+});
+
+let nextButtonLabel = computed(() => {
+	if (currentSlide.value == 6) {
+		return "Забронировать";
+	}
+	if (currentSlide.value == 7) {
+		return "Оплатить";
+	}
+
+	return "Далее";
+});
 </script>
 
 <style lang="sass">
-.v-enter-active,
-.v-leave-active
-  transition: opacity 1s ease
 
-
-.v-enter-from,
-.v-leave-to
-  opacity: 0
 .quiz-inner-title
   +eu
   text-transform: uppercase

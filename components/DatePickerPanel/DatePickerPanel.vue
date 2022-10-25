@@ -14,12 +14,7 @@
 
 <script setup>
 import { DatePicker } from "v-calendar";
-let props = defineProps({
-	isVisible: {
-		required: true,
-		type: Boolean,
-	},
-});
+
 let range = ref({
 	start: new Date(),
 	end: null,
