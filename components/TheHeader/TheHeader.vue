@@ -1,5 +1,5 @@
 <template>
-  <header class="z-[10] header fixed w-full h-[100px] sm:h-[80px]">
+  <header class="z-[10] header fixed w-full">
     <div class="header-container xl:justify-between md:items-center flex">
       <Logo
         class="flex-1 xl:flex-initial md:mr-auto md:text-[20px] tracking-[-0.6px]"
