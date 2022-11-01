@@ -1,13 +1,12 @@
-// export const useWidgetStore = defineStore("widget", {
-// 	state: () => ({
-// 		visible: true,
-// 	}),
-// });
 export const useWidgetStore = defineStore("widget", () => {
 	let visible = ref(true);
 
-	function closeOnClick() {
-		if (visible.value && !event.target.closest(".wg")) {
+	function closeOnClick(event) {
+		if (
+			visible.value &&
+			!event.target.closest(".wg") &&
+			!event.target.closest(".wg-toggle")
+		) {
 			toggleVisibility();
 			window.removeEventListener("click", closeOnClick);
 		}

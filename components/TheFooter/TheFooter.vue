@@ -12,7 +12,7 @@
 			<div class="footer-col pl-[23px] pt-[11px]">
 				<div
 					@click="toggleVisibility"
-					class="footer-action cursor-pointer mb-[24px] text-light"
+					class="footer-action wg-toggle cursor-pointer mb-[24px] text-light"
 				>
 					<SvgBikeIcon
 						fill="#30B21B"
@@ -59,7 +59,10 @@
 			</div>
 			<div class="footer-col items-end">
 				<div class="footer-payments flex gap-[10px] mb-[37px]">
-					<div v-for="pay in payments" class="footer-pay shrink-0">
+					<div
+						v-for="pay in payments"
+						class="footer-pay shrink-0 w-[121px] h-[58px] flex items-center justify-center rounded-[9px] border-solid border-[1px] border-[#3c3c3c]"
+					>
 						<img :src="pay" class="" alt="" />
 					</div>
 				</div>
@@ -118,8 +121,11 @@
 					<span>Индонезия, Бали, Чангу</span>
 				</div>
 				<div class="footer-payments flex gap-[8px] mt-[53px]">
-					<div v-for="pay in payments" class="footer-pay shrink-0">
-						<img :src="pay" class="max-w-[95px]" alt="" />
+					<div
+						v-for="pay in payments"
+						class="footer-pay shrink-0 w-[94px] h-[45px] flex items-center justify-center rounded-[7px] border-solid border-[1px] border-[#3c3c3c]"
+					>
+						<img :src="pay" class="max-w-[70%] max-h-[70%]" alt="" />
 					</div>
 				</div>
 			</div>
@@ -166,8 +172,11 @@
 			</div>
 			<div class="footer-rights">Bali.GoDrive © 2022, All rights reserved.</div>
 			<div class="footer-payments flex gap-[8px] mt-[37px]">
-				<div v-for="pay in payments" class="footer-pay">
-					<img :src="pay" class="max-w-[100%]" alt="" />
+				<div
+					v-for="pay in payments"
+					class="footer-pay w-[107px] h-[51px] lil:w-[25%] lil:flex-shrink-0 lil:flex-grow flex items-center justify-center rounded-[7px] border-solid border-[1px] border-[#3c3c3c]"
+				>
+					<img :src="pay" class="max-w-[70%] max-h-[70%]" alt="" />
 				</div>
 			</div>
 		</div>
@@ -180,7 +189,7 @@ import { useWidgetStore } from "~~/store/widget";
 const payments = [
 	"/svg/footer/visa.svg",
 	"/svg/footer/master.svg",
-	"/svg/footer/mir.svg",
+	"/svg/footer/inter.svg",
 ];
 
 const store = useWidgetStore();

@@ -1,39 +1,28 @@
 <template>
-	<div class="quiz-question">
-		<div
-			class="quiz-question-title mb-[38px] pl-[2px] flex items-center text-light"
-		>
-			<div
-				class="quiz-question-title-number mr-[30px] relative font-Helvbold text-[14px] bg-green rounded-full w-[32px] h-[32px]"
-			>
-				<span
-					class="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]"
-					>5</span
-				>
-			</div>
-			<div class="quiz-question-title-label text-[18px] font-Helvmed">
-				Выберите способ оплаты
-			</div>
-		</div>
-		<div class="quiz-question-inner">
-			<div class="quiz-radio">
-				<input name="payment" type="radio" id="callback" />
-				<label for="callback">Оплата после консультации менеджара </label>
-			</div>
-			<div class="quiz-radio">
-				<input name="payment" type="radio" id="rucard" />
-				<label for="rucard">Оплата картой на сайте (Россия)</label>
-			</div>
-			<div class="quiz-radio">
-				<input name="payment" type="radio" id="globalcard" />
-				<label for="globalcard">Оплата картой на сайте (для всего мира)</label>
-			</div>
-			<div class="quiz-radio">
-				<input name="payment" type="radio" id="binance" />
-				<label for="binance">Оплата криптовалютой через Binance Pay</label>
-			</div>
-		</div>
-	</div>
+  <div class="quiz-question">
+    <QuizQuestionTitle
+      :num="5"
+      :text="'Выберите способ оплаты'"
+    ></QuizQuestionTitle>
+    <div class="quiz-question-inner">
+      <div class="quiz-radio">
+        <input name="payment" type="radio" id="callback" />
+        <label for="callback">Оплата после консультации менеджара </label>
+      </div>
+      <div class="quiz-radio">
+        <input name="payment" type="radio" id="rucard" />
+        <label for="rucard">Оплата картой на сайте (Россия)</label>
+      </div>
+      <div class="quiz-radio">
+        <input name="payment" type="radio" id="globalcard" />
+        <label for="globalcard">Оплата картой на сайте (для всего мира)</label>
+      </div>
+      <div class="quiz-radio">
+        <input name="payment" type="radio" id="binance" />
+        <label for="binance">Оплата криптовалютой через Binance Pay</label>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>

@@ -5,13 +5,13 @@
 		<div
 			class="bike-title xsm:tracking-[-0.2px] lil:text-[18px] xsm:mb-[46px] font-Helvbold uppercase text-[28px] mb-[64px] xsm:text-[22px]"
 		>
-			{{ bike.title }}
+			{{ bike.name }}
 		</div>
 
 		<div class="bike-img mb-[82px] xsm:mb-[63px] mt-auto">
 			<img
 				class="object-contain mx-auto max-w-full ml-[-5px]"
-				:src="bike.img"
+				:src="bike.imgSrc"
 				alt=""
 			/>
 		</div>
@@ -19,7 +19,7 @@
 			<div
 				class="bike-desc__text text-[16px] xsm:tracking-[0.2px] text-dark xsm:text-[12px] xsm:leading-[16px] leading-[20px] xsm:mb-[18px] mb-[26px]"
 			>
-				{{ bike.desc }}
+				{{ bike.description }}
 			</div>
 		</div>
 		<div
@@ -31,7 +31,7 @@
 			<div
 				class="bike-price__value text-[18px] xsm:text-[14px] lil:text-[10px]"
 			>
-				от {{ bike.priceDay }} / день
+				от {{ bike.hourPriceUsd }}$ / день
 			</div>
 		</div>
 		<div class="bike-bottom flex items-center justify-between">
@@ -41,7 +41,7 @@
 				<CalendarIcon
 					class="flex-shrink-0 w-[19px] xsm:w-[13px]"
 				></CalendarIcon>
-				<span class="xsm:tracking-[-0.2px] xsm:top-0 relative top-[2px]"
+				<span class="xsm:tracking-[-0.2px] xsm:top-0 relative top-[1px]"
 					>Забронировать</span
 				>
 			</TheButton>

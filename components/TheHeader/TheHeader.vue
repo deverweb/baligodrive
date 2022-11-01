@@ -1,22 +1,22 @@
 <template>
-	<header class="z-[10] header fixed w-full">
-		<div class="header-container xl:justify-between md:items-center flex">
-			<Logo
-				class="flex-1 xl:flex-initial md:mr-auto md:text-[20px] tracking-[-0.6px]"
-			></Logo>
-			<TheNav class="header-nav md:hidden" :links="navLinks"></TheNav>
-			<Lang
-				class="flex-1 xl:flex-initial md:flex-initial md:mr-[38px] xsm:hidden"
-			></Lang>
-			<GambBtn
-				@click="activeFixedMenu = !activeFixedMenu"
-				class="md:flex hidden"
-			></GambBtn>
-		</div>
-		<Transition>
-			<MobileMenu :links="navLinks" :active="activeFixedMenu"></MobileMenu>
-		</Transition>
-	</header>
+  <header class="z-[10] header fixed w-full h-[100px] sm:h-[80px]">
+    <div class="header-container xl:justify-between md:items-center flex">
+      <Logo
+        class="flex-1 xl:flex-initial md:mr-auto md:text-[20px] tracking-[-0.6px]"
+      ></Logo>
+      <TheNav class="header-nav md:hidden" :links="navLinks"></TheNav>
+      <Lang
+        class="flex-1 header-lang xl:flex-initial md:flex-initial md:mr-[38px] xsm:hidden"
+      ></Lang>
+      <GambBtn
+        @click="activeFixedMenu = !activeFixedMenu"
+        class="md:flex hidden"
+      ></GambBtn>
+    </div>
+    <Transition>
+      <MobileMenu :links="navLinks" :active="activeFixedMenu"></MobileMenu>
+    </Transition>
+  </header>
 </template>
 
 <script setup>
@@ -25,60 +25,60 @@ let route = useRoute();
 let lastScrollTop = ref(0);
 const scrollHeight = 70;
 const navLinks = [
-	{
-		link: "/",
-		label: "Главная",
-	},
-	{
-		link: "/about",
-		label: "О компании",
-	},
-	{
-		link: "/rules",
-		label: "Правила аренды",
-	},
-	{
-		link: "/partner",
-		label: "Стать партнёром",
-	},
-	{
-		link: "/contacts",
-		label: "Контакты",
-	},
+  {
+    link: "/",
+    label: "Главная",
+  },
+  {
+    link: "/about",
+    label: "О компании",
+  },
+  {
+    link: "/rules",
+    label: "Правила аренды",
+  },
+  {
+    link: "/partner",
+    label: "Стать партнёром",
+  },
+  {
+    link: "/contacts",
+    label: "Контакты",
+  },
 ];
 
 onMounted(() => {
-	if (window.pageYOffset <= scrollHeight) {
-		document.querySelector(".header").classList.remove("notfirstscreen");
-	} else {
-		document.querySelector(".header").classList.add("notfirstscreen");
-	}
+  if (window.pageYOffset <= scrollHeight) {
+    document.querySelector(".header").classList.remove("notfirstscreen");
+  } else {
+    document.querySelector(".header").classList.add("notfirstscreen");
+  }
 
-	window.addEventListener("scroll", () => {
-		if (window.pageYOffset <= scrollHeight) {
-			document.querySelector(".header").classList.remove("notfirstscreen");
-		} else {
-			document.querySelector(".header").classList.add("notfirstscreen");
-		}
-		if (
-			lastScrollTop.value > window.pageYOffset ||
-			window.pageYOffset <= scrollHeight
-		) {
-			document.querySelector(".header").classList.remove("hide");
-		} else {
-			document.querySelector(".header").classList.add("hide");
-		}
-		lastScrollTop.value = window.pageYOffset <= 0 ? 0 : window.pageYOffset;
-	});
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset <= scrollHeight) {
+      document.querySelector(".header").classList.remove("notfirstscreen");
+    } else {
+      document.querySelector(".header").classList.add("notfirstscreen");
+    }
+    if (
+      lastScrollTop.value > window.pageYOffset ||
+      window.pageYOffset <= scrollHeight
+    ) {
+      document.querySelector(".header").classList.remove("hide");
+    } else {
+      document.querySelector(".header").classList.add("hide");
+    }
+    lastScrollTop.value = window.pageYOffset <= 0 ? 0 : window.pageYOffset;
+  });
 });
 
 watch(
-	() => {
-		return route.fullPath;
-	},
-	() => {
-		activeFixedMenu.value = false;
-	}
+  () => {
+    return route.fullPath;
+  },
+  () => {
+    activeFixedMenu.value = false;
+  }
 );
 </script>
 
@@ -112,6 +112,10 @@ watch(
 	opacity: 1
 	transform: translateY(0px)
 	padding: 34px 80px 32px
+	&.hide
+		.header-lang
+			opacity: 0
+			visibility: hidden
 	+r(1440)
 		justify-content: center
 		padding: 34px 50px 32px

@@ -1,6 +1,6 @@
 <template>
 	<div class="quiz-progress">
-		<div class="quiz-progress-label mb-[11px]">
+		<div class="quiz-progress-label leading-[1] mb-[13px]">
 			<span class="text-light text-[14px] mr-[5px]">Готово:</span>
 			<span class="text-green font-Helvbold text-[16px]"
 				>{{ props.progress }}%</span

@@ -6,32 +6,66 @@
 		>
 			<SvgCalendarIcon fill="white" class="absolute wg-svg"></SvgCalendarIcon>
 		</div>
-		<Transition>
+		<Transition name="enterIn">
 			<div v-show="visible" class="wg-form w-[352px] absolute right-[50%]">
 				<h3
-					class="wg-form-title tracking-[-0.5px] rounded-[12px] rounded-b-none px-[39px] py-[24px] whitespace-nowrap bg-dark-500 font-Euroblack text-[16px] uppercase text-center"
+					class="wg-form-title tracking-[-0.5px] rounded-[12px] rounded-b-none text-center py-[24px] whitespace-nowrap bg-dark-500 font-Euroblack text-[16px] uppercase"
 				>
 					Забронировать байк
 				</h3>
-				<form
-					@submit.prevent="handleSubmit"
-					class="text-dark bg-white text-[16px] pl-[32px] pr-[32px] rounded-b-[12px] pb-[30px] wg-form"
+				<Form
+					@submit="handleSubmit"
+					class="text-dark bg-white text-[16px] px-[32px] rounded-b-[12px] pb-[30px] wg-form-form relative"
 				>
-					<div class="wg-form-phone flex items-center">
-						<SvgPhoneIcon class=""></SvgPhoneIcon>
-						<Field name="phone" placeholder="Телефон"></Field>
+					<div
+						class="wg-form-phone pt-[6px] wg-field h-[74px] flex items-center"
+					>
+						<SvgPhoneIcon class="h-[14px] mr-[16px] w-[14px]"></SvgPhoneIcon>
+						<Field
+							name="phone"
+							class="leading-[1] w-[80%] h-full"
+							placeholder="Номер телефона"
+							:rules="validateTextField"
+							v-model="textField"
+						></Field>
 					</div>
-					<SimpleSelect label="Модель байка">
-						<SvgBikeIcon></SvgBikeIcon>
+					<ErrorMessage
+						name="phone"
+						class="text-[12px] absolute text-red-600 font-bold"
+					></ErrorMessage>
+					<SimpleSelect
+						:answers="commercialData.bikes"
+						name="bike"
+						:maxHeight="260"
+						class="select-none z-[7] wg-field h-[77px]"
+						label="Модель байка"
+						:requiredChoice="true"
+					>
+						<SvgBikeIcon
+							class="w-[18px] h-[18px] mr-[12px] relative"
+						></SvgBikeIcon>
 					</SimpleSelect>
-					<SimpleSelect label="Сёрфборд">
-						<SvgSurfIcon></SvgSurfIcon>
+					<SimpleSelect
+						:answers="commercialData.surfBoards"
+						name="surf"
+						:maxHeight="187"
+						class="select-none z-[6] wg-field h-[77px]"
+						label="Сёрфборд"
+						:requiredChoice="false"
+					>
+						<SvgSurfIcon class="relative mr-[12px]"></SvgSurfIcon>
 					</SimpleSelect>
-					<!-- <DateSelect></DateSelect> -->
-					<TheButton class="w-[292px] h-[70px] rounded-[12px] white text-light">
-						<span>Оформление заказа</span>
-					</TheButton>
-				</form>
+					<FormWidgetDateSelect
+						class="select-none h-[77px] cursor-pointer wg-field"
+					></FormWidgetDateSelect>
+					<div class="wg-form-bottom pt-[30px]">
+						<TheButton
+							class="w-[292px] max-w-[100%] h-[70px] rounded-[12px] white text-light"
+						>
+							<span>Оформление заказа</span>
+						</TheButton>
+					</div>
+				</Form>
 			</div>
 		</Transition>
 	</div>
@@ -39,43 +73,55 @@
 
 <script setup>
 import SimpleSelect from "./SimpleSelect.vue";
-import { Form, Field } from "vee-validate";
+import { Form, Field, ErrorMessage } from "vee-validate";
 import { useWidgetStore } from "@/store/widget";
 import { storeToRefs } from "pinia";
+import { useCommercialStore } from "~~/store/commercial";
+import { useCartStore } from "~~/store/cart";
 
-const store = useWidgetStore();
+const cartStore = useCartStore();
+
+const { cart, fillTheCart } = cartStore;
+
+const widgetStore = useWidgetStore();
+const commercialStore = useCommercialStore();
+const { commercialData } = commercialStore;
 
 const { push } = useRouter();
 const route = useRoute();
-const { visible } = storeToRefs(store);
-const { toggleVisibility } = store;
-let isOrderPage = ref(true);
-if (route.path == "/order") {
-	isOrderPage.value = false;
-} else {
-	isOrderPage.value = true;
-}
-watch(
-	() => {
-		return route.path;
-	},
-	() => {
-		if (route.path == "/order") {
-			isOrderPage.value = false;
-		} else {
-			isOrderPage.value = true;
-		}
-	}
-);
+const { visible } = storeToRefs(widgetStore);
+const { toggleVisibility } = widgetStore;
+let textField = ref("");
 
-const handleSubmit = () => {
+let isOrderPage = computed(() => {
+	return route.path !== "/order";
+});
+
+const handleSubmit = (values) => {
+	console.log(values);
 	toggleVisibility();
+	// fillTheCart({
+	// 	bike: values.bike,
+	// 	phone: values.phone,
+	// 	surf: values.surf,
+	// 	date: values.date,
+	// });
+	fillTheCart(values);
+	console.log(cart);
 	push("/order");
 };
 
 onMounted(() => {
 	window.addEventListener("click", closeOnClick);
 });
+
+const validateTextField = (value) => {
+	if (textField.value == "") return "Не может быть пустым";
+	if (!/^\d+$/.test(textField.value)) {
+		return "Только цифры";
+	}
+	return true;
+};
 
 function closeOnClick(event) {
 	if (visible.value && !event.target.closest(".wg")) {
@@ -86,15 +132,29 @@ function closeOnClick(event) {
 </script>
 
 <style lang="sass" scoped>
+.enterIn-enter-active, .enterIn-leave-active
+	transition: all 200ms ease-in
+
+.enterIn-enter-from, .enterIn-leave-to
+	transform: translateY(20px)
+	opacity: 0
 .wg
 	filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.1))
+	&-field
+		border-bottom: 1px solid #f3f3f3
+		border-bottom: 1px solid black
 	&-form
 		bottom: calc(100% + 30px)
-		svg
-			margin-right: 8px
+		input
+			&:focus::placeholder
+				color: transparent
+			&::placeholder
+				color: $dark
+
+
 		&-label
 			border-bottom: 1px solid #F3F3F3
-			border-bottom: 1px solid black
+			// border-bottom: 1px solid black
 	&-fixed
 		&-button
 			box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25)

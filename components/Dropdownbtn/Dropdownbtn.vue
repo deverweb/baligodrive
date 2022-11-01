@@ -8,7 +8,12 @@
 		<div class="whitespace-nowrap overflow-hidden text-ellipsis">
 			{{ label }}
 		</div>
-		<div><SvgArrowIcon></SvgArrowIcon></div>
+		<div>
+			<SvgArrowIcon
+				class="transition"
+				:class="{ 'rotate-180': active }"
+			></SvgArrowIcon>
+		</div>
 	</div>
 </template>
 
@@ -18,6 +23,10 @@ export default {
 		label: {
 			required: true,
 			type: String,
+		},
+		active: {
+			required: false,
+			type: Boolean,
 		},
 	},
 };

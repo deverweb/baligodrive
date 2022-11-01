@@ -40,10 +40,10 @@ export default {};
 			background-color: rgba($green, 0)
 			border: 1px solid rgba($dark300, 1)
 			svg
-				stroke: $dark300
+				// stroke: $dark300
 				fill: $dark300
 				path
-					stroke: $dark300
+					// stroke: $dark300
 					fill: $dark300
 	&.black
 		border: 1px solid rgba($light, 0)

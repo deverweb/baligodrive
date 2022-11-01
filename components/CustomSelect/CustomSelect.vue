@@ -1,103 +1,131 @@
 <template>
 	<div
 		ref="root"
-		:class="canSee ? 'z-[5]' : 'z-[4]'"
+		:class="isVisible ? 'z-[5]' : 'z-[4]'"
 		class="cs select-none relative text-dark text-[16px]"
 	>
 		<Dropdownbtn
 			@click="changeVisible"
-			:class="{ shadow: canSee }"
-			:label="selectedOption"
+			:class="{ shadow: isVisible }"
+			:label="selectedOptionLabel"
+			:active="isVisible"
 			class="cs-current"
 			><slot></slot
 		></Dropdownbtn>
 		<Transition @enter="enter" @leave="leave">
 			<div
 				class="cs-list-container max-h-0 top-0 opacity-0 absolute rounded-[12px] bg-light w-full"
-				v-show="canSee"
+				v-show="isVisible"
 			>
 				<ul class="cs-list pt-[80px] pb-[10px]">
-					<li v-if="requiredSelect" @click="selectOption()"></li>
+					<!-- <li
+						class="cs-list-item pr-[21px] bg-light hover:bg-dark py-[20px] pl-[50px] cursor-pointer"
+						@click="selectOption(props.emptyLabel)"
+						v-if="props.emptyLabel"
+					>
+						{{ props.emptyLabel }}
+					</li> -->
 					<li
-						v-for="(element, i) in options.elements"
-						@click="selectOption(element)"
+						v-for="(option, i) in options"
+						@click="selectOption(option)"
 						class="cs-list-item pr-[21px] bg-light hover:bg-dark py-[20px] pl-[50px] cursor-pointer"
 					>
-						{{ element.model }}
+						{{ option.name }}
 					</li>
 				</ul>
+			</div>
+		</Transition>
+		<Transition name="fadeIn">
+			<div
+				class="cs-error-container h-[25px] overflow-hidden"
+				v-show="!isValid && dirty"
+			>
+				<div class="cs-error">
+					<span class="text-red-600 text-[14px] pt-[4px] pl-[2px]">{{
+						errorMessage
+					}}</span>
+				</div>
 			</div>
 		</Transition>
 	</div>
 </template>
 
-<script>
-export default {
-	props: {
-		options: {
-			type: Object,
-			required: true,
-		},
-		isVisible: {
-			type: Boolean,
-			required: true,
-		},
-		requiredSelect: {
-			type: Boolean,
-			required: true,
-		},
+<script setup>
+const props = defineProps({
+	options: {
+		type: Array,
+		required: true,
 	},
-	methods: {
-		enter(element, done) {
-			element.style.maxHeight =
-				element.querySelector(".cs-list").scrollHeight + "px";
-			element.style.opacity = "1";
-			done();
-		},
-		afterEnter(element) {
-			element.style.transition = null;
-		},
-		leave(element) {
-			element.style.maxHeight = "0px";
-			element.style.opacity = "0";
-		},
+	defaultLabel: {
+		type: String,
+		required: true,
 	},
-	emits: ["selectOption"],
-	setup({ options, isVisible }) {
-		let selectedOption = ref(options.defaultValue);
-		let canSee = ref(isVisible);
-		const root = ref(null);
-		let changeVisible = () => {
-			canSee.value = !canSee.value;
-			if (canSee.value) window.addEventListener("click", closeCSonWindowClick);
-		};
-		let selectOption = (option) => {
-			selectedOption.value = option.model;
-			canSee.value = false;
-			window.removeEventListener("click", closeCSonWindowClick);
-		};
-		const closeCSonWindowClick = (event) => {
-			if (
-				canSee.value === true &&
-				!root.value.isEqualNode(event.target.closest(".cs"))
-			) {
-				canSee.value = false;
-				window.removeEventListener("click", closeCSonWindowClick);
-			}
-		};
+	requiredSelect: {
+		type: Boolean,
+		required: false,
+		default: false,
+	},
+	emptyLabel: {
+		type: String,
+		required: false,
+	},
+});
+const emits = defineEmits(["selectOption"]);
+let isVisible = ref(false);
+let selectedOption = ref(null);
+let isValid = ref(false);
+let dirty = ref(false);
+let errorMessage = computed(() => {
+	return "ERrormesage";
+});
+function enter(element) {
+	element.style.maxHeight =
+		element.querySelector(".cs-list").scrollHeight + "px";
+	element.style.opacity = "1";
+}
+function leave(element) {
+	element.style.maxHeight = "0px";
+	element.style.opacity = "0";
+}
 
-		onUnmounted(() => {
-			window.removeEventListener("click", closeCSonWindowClick);
-		});
-		return {
-			selectedOption,
-			selectOption,
-			canSee,
-			root,
-			changeVisible,
-		};
-	},
+let selectedOptionLabel = computed(() => {
+	if (selectedOption.value == null) {
+		return props.defaultLabel;
+	} else {
+		return selectedOption.value;
+	}
+});
+const root = ref(null);
+
+let changeVisible = () => {
+	dirty.value = true;
+	isVisible.value = !isVisible.value;
+	if (isVisible.value) window.addEventListener("click", closeCSonWindowClick);
 };
+let selectOption = (option) => {
+	if (typeof option === "object") {
+		selectedOption.value = option.name;
+	}
+	if (typeof option === "string") {
+		selectedOption.value = option;
+	}
+	isValid.value = true;
+	isVisible.value = false;
+	window.removeEventListener("click", closeCSonWindowClick);
+};
+const closeCSonWindowClick = (event) => {
+	if (
+		isVisible.value === true &&
+		!root.value.isEqualNode(event.target.closest(".cs"))
+	) {
+		isVisible.value = false;
+		window.removeEventListener("click", closeCSonWindowClick);
+	}
+};
+
+onUnmounted(() => {
+	window.removeEventListener("click", closeCSonWindowClick);
+});
 </script>
 
 <style lang="sass" scoped>
