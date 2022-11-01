@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="datepicker-panel sm:px-[25px] absolute sm:flex sm:flex-col sm:bg-[#181818]"
-    :class="{ 'z-[50]': props.active }"
-  >
+  <div class="datepicker-panel absolute" :class="{ 'z-[50]': props.active }">
     <div
-      class="datepicker-head shrink-0 justify-between hidden sm:flex h-[66px] items-baseline w-full border-[#333333] border-b-[1px] border-solid"
+      class="datepicker-head shrink-0 justify-between hidden h-[66px] items-baseline w-full border-[#333333] border-b-[1px] border-solid"
     >
       <Logo class="text-[20px]"></Logo>
       <div class="datepicker-head-close">
@@ -12,7 +9,7 @@
         <span></span>
       </div>
     </div>
-    <div class="datepicker-body hidden sm:flex sm:flex-col text-center">
+    <div class="datepicker-body hidden text-center">
       <div class="datepicker-body-title font-Euroblack text-[32px]">
         ВЫБЕРИТЕ ДАТЫ БРОНИ
       </div>
@@ -111,19 +108,19 @@ const formatDate = (date) => {
 					transform: rotate(-45deg)
 .datepicker-panel
 	+r(768)
-		position: fixed
-		top: 0
-		left: 0
-		right: 0
-		bottom: 0
+		// position: fixed
+		// top: 0
+		// left: 0
+		// right: 0
+		// bottom: 0
 
 	.vc-container
 		+helvr
 		--green-600: #{$green}
 		+r(768)
-			width: 100%
-			height: 100%
-			border: none
+			// width: 100%
+			// height: 100%
+			// border: none
 	.vc-day-content
 		width: 40px
 		height: 40px
