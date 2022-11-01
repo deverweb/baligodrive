@@ -8,14 +8,16 @@
       <div
         class="quiz-question-label text-light opacity-50 text-[14px] mb-[10px] font-Helvmed"
       >
-        Выберите период аренды
+        Подтвердите вашу личность
       </div>
       <label
         for="passport"
         class="quiz-question-file w-full pl-[26px] pr-[30px] flex items-center cursor-pointer rounded-[12px] border-[#69696A] border-[1px] border-solid h-[67px]"
       >
         <SvgFileIcon class="mr-[10px]"></SvgFileIcon>
-        <span class="text-[16px] text-light">{{ useCurrentLabel }}</span>
+        <span class="text-[16px] sm:text-[14px] text-light">{{
+          useCurrentLabel
+        }}</span>
         <input
           type="file"
           @change="handleFiles"

@@ -7,19 +7,27 @@
     <div class="quiz-question-inner">
       <div class="quiz-radio">
         <input name="payment" type="radio" id="callback" />
-        <label for="callback">Оплата после консультации менеджара </label>
+        <label class="sm:text-[15px]" for="callback"
+          >Оплата после консультации менеджара
+        </label>
       </div>
       <div class="quiz-radio">
         <input name="payment" type="radio" id="rucard" />
-        <label for="rucard">Оплата картой на сайте (Россия)</label>
+        <label class="sm:text-[15px]" for="rucard"
+          >Оплата картой на сайте (Россия)</label
+        >
       </div>
       <div class="quiz-radio">
         <input name="payment" type="radio" id="globalcard" />
-        <label for="globalcard">Оплата картой на сайте (для всего мира)</label>
+        <label class="sm:text-[15px]" for="globalcard"
+          >Оплата картой на сайте (для всего мира)</label
+        >
       </div>
       <div class="quiz-radio">
         <input name="payment" type="radio" id="binance" />
-        <label for="binance">Оплата криптовалютой через Binance Pay</label>
+        <label class="sm:text-[15px]" for="binance"
+          >Оплата криптовалютой через Binance Pay</label
+        >
       </div>
     </div>
   </div>

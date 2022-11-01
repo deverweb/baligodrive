@@ -4,7 +4,9 @@
       :num="4"
       :text="'Введите ваши контактные данные'"
     ></QuizQuestionTitle>
-    <div class="quiz-question-inner grid gap-x-[30px] gap-y-[32px] grid-cols-2">
+    <div
+      class="quiz-question-inner sm:grid-cols-1 grid gap-x-[30px] gap-y-[32px] grid-cols-2"
+    >
       <QuizTextField label="Ваши ФИО" placeholder="Введите ваши ФИО"
         ><SvgPersonIcon class="mr-[10px]"></SvgPersonIcon
       ></QuizTextField>

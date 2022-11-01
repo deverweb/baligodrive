@@ -1,26 +1,26 @@
 <template>
-	<div class="quiz-progress">
-		<div class="quiz-progress-label leading-[1] mb-[13px]">
-			<span class="text-light text-[14px] mr-[5px]">Готово:</span>
-			<span class="text-green font-Helvbold text-[16px]"
-				>{{ props.progress }}%</span
-			>
-		</div>
-		<div class="quiz-progress-line rounded-[10px] bg-[#343434] h-[6px]">
-			<div
-				class="quiz-progress-line-inner transition-[width] duration-300 h-full bg-green rounded-[10px]"
-				:style="`width: ${props.progress}%`"
-			></div>
-		</div>
-	</div>
+  <div class="quiz-progress md:w-full">
+    <div class="quiz-progress-label leading-[1] mb-[13px]">
+      <span class="text-light text-[14px] mr-[5px]">Готово:</span>
+      <span class="text-green font-Helvbold text-[16px]"
+        >{{ props.progress }}%</span
+      >
+    </div>
+    <div class="quiz-progress-line rounded-[10px] bg-[#343434] h-[6px]">
+      <div
+        class="quiz-progress-line-inner transition-[width] duration-300 h-full bg-green rounded-[10px]"
+        :style="`width: ${props.progress}%`"
+      ></div>
+    </div>
+  </div>
 </template>
 
 <script setup>
 let props = defineProps({
-	progress: {
-		type: Number,
-		required: true,
-	},
+  progress: {
+    type: Number,
+    required: true,
+  },
 });
 </script>
 

@@ -1,30 +1,30 @@
 <template>
   <div
-    class="quiz-cart md:px-[49px] md:w-full md:bg-[#313131] lg:pt-[52px] pt-[69px] pr-[40px] pl-[30px] flex flex-col items-center rounded-tr-[12px] rounded-br-[12px] md:bg-transparent bg-dark-800 w-[378px] lg:px-[10px] lg:w-[275px] shrink-0"
+    class="quiz-cart md:px-[49px] md:w-full md:bg-[#313131] md:pt-[52px] pt-[69px] pr-[40px] pl-[30px] flex flex-col items-center rounded-tr-[12px] rounded-br-[12px] md:bg-transparent bg-dark-800 w-[378px] lg:px-[10px] lg:w-[275px] shrink-0"
   >
     <div
-      class="quiz-cart-title w-full relative text-center lg:text-left quiz-inner-title pb-[47px]"
+      class="quiz-cart-title md:pb-[13px] w-full relative text-center md:text-left quiz-inner-title pb-[47px]"
     >
       <h2 class="font-Euroblack text-[24px] uppercase tracking-[-0.8px]">
         Ваш заказ
       </h2>
     </div>
-    <div class="quiz-cart-inner w-full flex flex-col lg:flex-row">
+    <div class="quiz-cart-inner w-full flex flex-col">
       <div
-        class="quiz-cart-top lg:border-[#404040] lg:border-solid lg:border-b-[2px] flex flex-col lg:flex-row"
+        class="quiz-cart-top lg:border-[#404040] lg:border-solid lg:border-b-[2px] flex flex-col md:flex-row"
       >
         <QuizCartItem
-          class="pl-[10px] lg:pl-[15px]"
+          class="pl-[10px] lg:pl-[15px] md:pl-0 md:mr-[90px]"
           :obj="cart.bike"
         ></QuizCartItem>
         <QuizCartItem
-          class="pl-[10px] lg:pl-[15px]"
+          class="pl-[10px] lg:pl-[15px] md:pl-0"
           :obj="cart.surf"
         ></QuizCartItem>
       </div>
-      <div class="quiz-cart-bottom flex flex-col lg:flex-row">
+      <div class="quiz-cart-bottom flex flex-col md:flex-row">
         <div
-          class="quiz-cart-date border-[#404040] border-solid border-b-[2px] text-light pt-[43px] pb-[45px] text-center flex flex-col"
+          class="quiz-cart-date md:text-left md:mr-[65px] md:border-none border-[#404040] border-solid border-b-[2px] text-light pt-[43px] pb-[45px] text-center flex flex-col"
         >
           <div class="quiz-cart-date-top text-[16px] mb-[2px]">
             {{ formatedDate }}
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div
-          class="quiz-cart-price border-[#404040] border-solid border-b-[2px] text-light py-[49px] text-center flex flex-col"
+          class="quiz-cart-price md:border-none border-[#404040] border-solid border-b-[2px] text-light py-[49px] text-center flex flex-col"
         >
           <div
             class="quiz-cart-date-top text-[16px] font-Euroblack text-light uppercase"
@@ -88,4 +88,10 @@ const formatDate = (date) => {
 // console.log(cart);
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+.quiz
+  &-cart
+    &-title
+      &::before
+        display: none
+</style>

@@ -4,7 +4,9 @@
       :num="3"
       :text="'Выберите локации доставки и возврата'"
     ></QuizQuestionTitle>
-    <div class="quiz-question-inner grid grid-cols-2 gap-x-[30px] gap-y-[32px]">
+    <div
+      class="quiz-question-inner sm:grid-cols-1 grid grid-cols-2 gap-x-[30px] gap-y-[32px]"
+    >
       <QuizSelect
         :label="`Локация доставки`"
         defaultAnswer="Выбрать отель / виллу / координаты"
