@@ -9,7 +9,7 @@
         Ваш заказ
       </h2>
     </div>
-    <div class="quiz-cart-inner w-full flex lg:flex-col">
+    <div class="quiz-cart-inner w-full flex flex-col lg:flex-row">
       <div
         class="quiz-cart-top lg:border-[#404040] lg:border-solid lg:border-b-[2px] flex flex-col lg:flex-row"
       >
