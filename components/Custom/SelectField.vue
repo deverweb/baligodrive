@@ -48,8 +48,6 @@ const props = defineProps({
 })
 let localSelectedOption = ref(null)
 let isSelectActive = ref(false)
-let isFieldValid = useIsFieldValid(props.name)
-let touched = ref(false)
 let root = ref(null)
 
 const handleOutsideClicks = (e) => {

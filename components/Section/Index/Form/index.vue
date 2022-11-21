@@ -33,6 +33,7 @@ import { useForm } from "vee-validate"
 import { useCommercialStore } from "~~/store/commercial"
 
 const { handleSubmit } = useForm()
+const router = useRouter()
 
 const commercialStore = useCommercialStore()
 
@@ -55,6 +56,7 @@ const formData = ref({
 
 const onSubmit = handleSubmit((values) => {
   console.log(values)
+  router.push({ path: "/order" })
 })
 
 const handleTextField = (value) => {

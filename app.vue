@@ -14,7 +14,9 @@ const store = useGlobalStore()
 
 nuxtApp.hook("page:finish", () => {
   store.activeMobileMenu = false
-  window.scrollTo(0, 0)
+  window.setTimeout(() => {
+    window.scrollTo(0, 0)
+  }, 200)
 })
 </script>
 

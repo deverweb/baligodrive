@@ -1,5 +1,5 @@
 <template>
-  <div class="dp select-none relative" :class="{ 'z-[5]': isActivePicker }">
+  <div ref="root" class="dp select-none relative" :class="{ 'z-[5]': isActivePicker }">
     <CustomFieldBtn @click="isActivePicker = !isActivePicker" :style-type="'index-form'" :label="computedLabel" :active="isActivePicker">
       <SvgCalendarIcon :fill="'#111111'"></SvgCalendarIcon>
     </CustomFieldBtn>
@@ -18,6 +18,7 @@
 
 <script setup>
 import { useField } from "vee-validate"
+let root = ref(null)
 
 const props = defineProps({
   name: String,
@@ -32,10 +33,20 @@ let computedLabel = computed(() => {
     return choosedDate.value
   }
 })
+const handleOutsideClicks = (e) => {
+  if (!root.value.isEqualNode(e.target.closest(".dp"))) isActivePicker.value = false
+}
+onMounted(() => {
+  document.addEventListener("click", handleOutsideClicks)
+})
+onUnmounted(() => {
+  document.removeEventListener("click", handleOutsideClicks)
+})
 
 const onDatePick = (payload) => {
   isActivePicker.value = false
   choosedDate.value = payload.str
+  value.value = payload.date
 }
 
 const isRequired = (value) => {
