@@ -337,13 +337,6 @@
 <script setup>
 import { useForm, Field } from "vee-validate"
 const { handleSubmit } = useForm()
-useHead({
-  script: [
-    {
-      src: "https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js",
-    },
-  ],
-})
 let form = ref(null)
 let modal = ref(null)
 
@@ -378,6 +371,7 @@ onMounted(() => {
         scene.duration(getDurationHeight())
         scene.setPin(".order-sticky")
         scene.trigger(".order-form")
+        scene.refresh()
       }, 100)
     }
   })

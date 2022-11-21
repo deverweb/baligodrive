@@ -14,16 +14,14 @@ const store = useGlobalStore()
 
 nuxtApp.hook("page:finish", () => {
   store.activeMobileMenu = false
-  window.setTimeout(() => {
-    window.scrollTo(0, 0)
-  }, 200)
+  window.scrollTo(0, 0)
 })
 </script>
 
 <style lang="sass">
 .page-enter-active,
 .page-leave-active
-  transition: all 0.4s
+  transition: all 0.2s
 
 .page-enter-from,
 .page-leave-to

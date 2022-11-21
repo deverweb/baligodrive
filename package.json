@@ -23,6 +23,7 @@
     "swiper": "^8.4.4",
     "v-calendar": "^3.0.0-alpha.8",
     "vee-validate": "^4.7.2",
-    "vue-awesome-swiper": "^5.0.1"
+    "vue-awesome-swiper": "^5.0.1",
+    "vue-scrollmagic": "^1.2.0"
   }
 }
