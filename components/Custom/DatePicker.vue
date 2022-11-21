@@ -23,7 +23,7 @@ let root = ref(null)
 const props = defineProps({
   name: String,
 })
-let isActivePicker = ref(true)
+let isActivePicker = ref(false)
 
 let choosedDate = ref("")
 let computedLabel = computed(() => {
