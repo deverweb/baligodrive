@@ -335,46 +335,38 @@
 </template>
 
 <script setup>
-import { useForm, Field } from "vee-validate"
+import { useForm } from "vee-validate"
+// import ScrollMagic from "scrollmagic"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 const { handleSubmit } = useForm()
 let form = ref(null)
 let modal = ref(null)
 
-onMounted(() => {
-  let getDurationHeight = () => {
-    let computedStyle = getComputedStyle(form.value)
-    let elementHeight = form.value.clientHeight
-    elementHeight -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom)
-    return elementHeight - modal.value.offsetHeight + 50
-  }
-  let controller = new ScrollMagic.Controller()
-  let scene = new ScrollMagic.Scene()
-  if (window.innerWidth < 991) {
-    // scene.enabled(false)
-  } else {
-    scene.trigger(".order-form")
-    scene.offset(40)
-    scene.duration(getDurationHeight())
-    scene.setPin(".order-sticky")
-    scene.addTo(controller)
-  }
+let getDurationHeight = () => {
+  let computedStyle = getComputedStyle(form.value)
+  let elementHeight = form.value.clientHeight
+  elementHeight -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom)
+  return elementHeight - modal.value.offsetHeight + 50
+}
+definePageMeta({
+  pageTransition: { mode: "default" },
+})
 
-  let timeout
-  window.addEventListener("resize", function () {
-    if (window.innerWidth < 991) {
-      // scene.enabled(false)
-    } else {
-      this.window.clearTimeout(timeout)
-      timeout = this.setTimeout(() => {
-        scene.enabled()
-        scene.offset(40)
-        scene.duration(getDurationHeight())
-        scene.setPin(".order-sticky")
-        scene.trigger(".order-form")
-        scene.refresh()
-      }, 100)
-    }
+onMounted(() => {
+  ScrollTrigger.create({
+    id: "index",
+    trigger: ".order-body",
+    start: "top 180px",
+    end: () => `+=${getDurationHeight()}`,
+    pin: ".order-sticky",
   })
+  ScrollTrigger.getById("index").enable()
+})
+
+onBeforeUnmount(() => {
+  ScrollTrigger.getById("index").kill()
 })
 
 const onSubmit = handleSubmit((values) => {
