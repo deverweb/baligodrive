@@ -1,3 +1,4 @@
+
 $light: #FBFBFD
 $dark: #111111
 $dark700: #202020
@@ -17,3 +18,13 @@ $green: #30B21B
 =helvm
   font-family: 'helveticaneuecyr-medium'
 
+@mixin r($screenWidth)
+  @media only screen and (max-width: $screenWidth + 'px')
+    @content
+
+
+@mixin rmin($screenWidth)
+  @media only screen and (min-width: $screenWidth + 'px')
+    @content
+
+	

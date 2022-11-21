@@ -1,19 +1,30 @@
 <template>
-  <div
-    class="page-container bg-dark p-[20px] md:pt-[0px] sm:px-0 pb-[20px] sm:pb-[0px] overflow-x-hidden overflow-y-hidden"
-  >
-    <NuxtLayout>
-      <main class="flex-grow">
-        <NuxtPage class="" />
-      </main>
-    </NuxtLayout>
-  </div>
+  <NuxtLayout>
+    <NuxtLoadingIndicator />
+
+    <NuxtPage></NuxtPage>
+  </NuxtLayout>
 </template>
 
 <script setup>
-const nuxtApp = useNuxtApp();
+import { useGlobalStore } from "./store/global"
+
+const nuxtApp = useNuxtApp()
+const store = useGlobalStore()
 
 nuxtApp.hook("page:finish", () => {
-  window.scrollTo(0, 0);
-});
+  store.activeMobileMenu = false
+  window.scrollTo(0, 0)
+})
 </script>
+
+<style lang="sass">
+.page-enter-active,
+.page-leave-active
+  transition: all 0.4s
+
+.page-enter-from,
+.page-leave-to
+  opacity: 0
+  filter: blur(0.4rem)
+</style>

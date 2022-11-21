@@ -1,8 +1,7 @@
 <template>
-  <div class="relative flex flex-col min-h-screen md:pt-[90px] sm:pt-[80px]">
-    <TheHeader />
-    <slot />
-    <!-- <FormWidget></FormWidget> -->
-    <TheFooter />
+  <div class="layout p-[20px] sm:pb-0 xsm:pt-[80px] md:pt-[100px] relative sm:px-0 bg-dark flex flex-col min-h-screen text-light text-[18px] font-Helvreg">
+    <TheHeader></TheHeader>
+    <slot></slot>
+    <TheFooter></TheFooter>
   </div>
 </template>
