@@ -8,7 +8,7 @@
       <input v-model="value" :placeholder="props.placeholder" class="ci-input" type="text" />
     </div>
     <Transition name="text-error">
-      <div class="ci-error-container" v-show="errorMessage">
+      <div class="ci-error-container" v-if="errorMessage">
         <div class="ci-error">
           <span>{{ errorMessage }}</span>
         </div>
@@ -115,6 +115,7 @@ const emit = defineEmits(["fieldValue"])
 
 	// &.ci__widget-form
 	// 	.ci-container
+
 	&.ci__payment-form
 		input
 			&:focus::placeholder
@@ -157,4 +158,17 @@ const emit = defineEmits(["fieldValue"])
 		.ci-error-container
 			height: 32px
 			position: absolute
+	&.ci__contacts-form
+		.ci-subtitle
+			margin-bottom: 6px
+			+r(600)
+				margin-bottom: 9px
+		.ci-error-container
+			position: absolute
+			+r(600)
+				position: static
+		.ci-container
+			height: 70px
+			+r(600)
+				height: 60px
 </style>

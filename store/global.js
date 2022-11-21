@@ -17,19 +17,19 @@ export const useGlobalStore = defineStore("global", () => {
     },
     {
       label: "О компании",
-      to: "/b",
+      to: "/about",
     },
     {
       label: "Правила аренды",
-      to: "/b",
+      to: "/rules",
     },
     {
       label: "Стать партнёром",
-      to: "/b",
+      to: "/partner",
     },
     {
       label: "Контакты",
-      to: "/b",
+      to: "/contacts",
     },
   ]
 

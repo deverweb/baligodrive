@@ -33,23 +33,23 @@ const computedClass = computed(() => {
 <style lang="sass">
 .field-btn
 	user-select: none
+	font-size: 16px
+	display: flex
+	align-items: center
+	cursor: pointer
+	justify-content: space-between
+	position: relative
+	border-radius: 12px
+	+r(768)
+		padding-top: 17px
+		padding-bottom: 19px
 	&.order-form
 		z-index: 3
 		color: $light
-		font-size: 16px
-		display: flex
-		align-items: center
-		cursor: pointer
-		justify-content: space-between
-		position: relative
 		background-color: #202020
 		padding: 0px 29px 0px 57px
 		height: 67px
 		border: 1px solid rgba(#fbfbfd, 0.3)
-		border-radius: 12px
-		+r(768)
-			padding-top: 17px
-			padding-bottom: 19px
 		.field-btn-icon
 			position: absolute
 			left: 22px
@@ -65,18 +65,8 @@ const computedClass = computed(() => {
 	&.index-form
 		z-index: 2
 		color: $dark
-		font-size: 16px
-		display: flex
-		align-items: center
-		cursor: pointer
-		justify-content: space-between
-		position: relative
 		background-color: $light
 		padding: 23px 21px 20px 50px
-		border-radius: 12px
-		+r(768)
-			padding-top: 17px
-			padding-bottom: 19px
 		.field-btn-icon
 			position: absolute
 			left: 18px

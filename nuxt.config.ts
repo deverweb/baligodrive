@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/sass/main.sass"],
+  plugins: [{ src: "~/plugins/v-calendar", ssr: false, mode: "client" }],
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n", ["@pinia/nuxt", { autoImports: ["defineStore", "acceptHMRUpdate"] }]],
 
   i18n: {

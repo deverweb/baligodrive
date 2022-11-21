@@ -15,9 +15,7 @@
             <CustomSelectField :styleType="'index-form'" class="mb-[10px] cs__index-form" :active="formData.surfField.active" :name="formData.surfField.name" :defaultLabel="formData.surfField.defaultLabel" :options="commercialStore.surfBoards">
               <SvgSurfIcon></SvgSurfIcon>
             </CustomSelectField>
-            <CustomDatePicker>
-              <SvgCalendarIcon></SvgCalendarIcon>
-            </CustomDatePicker>
+            <CustomDatePicker name="date" class="mb-[15px] dp__index-form"> </CustomDatePicker>
             <TheButton type="submit" class="w-[360px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]">
               <SvgCalendarIcon></SvgCalendarIcon>
               <span class="relative top-[1px]">Забронировать</span>

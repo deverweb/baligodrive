@@ -15,7 +15,7 @@
       </div>
     </Transition>
     <Transition name="text-error">
-      <div class="cs-error-container z-[1] absolute h-[25px]" v-show="error">
+      <div class="cs-error-container z-[1] h-[25px]" v-show="error">
         <div class="cs-error">
           <ErrorMessage :name="props.name" class="text-red-600 text-[14px] pt-[4px] pl-[2px]"></ErrorMessage>
         </div>
@@ -103,6 +103,8 @@ let isRequired = (value) => {
 		font-size: 16px
 		scrollbar-color: #6969dd #e0e0e0
 		scrollbar-width: thing
+		.cs-error-container
+			position: absolute
 		.cs-list-container
 			left: 0
 			top: 40px
@@ -158,6 +160,8 @@ let isRequired = (value) => {
 		position: relative
 		color: $dark
 		font-size: 16px
+		.cs-error-container
+			position: static
 		.cs-list-container
 			left: 0
 			top: 40px
@@ -178,6 +182,7 @@ let isRequired = (value) => {
 					background-color: darken($light, 10)
 		.cs-current
 			position: relative
+			z-index: 3
 			&.shadow
 				&::before
 					opacity: 1
