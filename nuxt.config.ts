@@ -45,10 +45,10 @@ export default defineNuxtConfig({
         code: "ru",
         name: "Русский",
       },
-      {
-        code: "ua",
-        name: "Український",
-      },
+      // {
+      //   code: "ua",
+      //   name: "Український",
+      // },
     ],
     detectBrowserLanguage: {
       useCookie: true,

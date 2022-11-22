@@ -6,7 +6,7 @@
         <p class="section-desc mb-[49px] sm:max-w-full lg:mb-[51px] sm:mb-[41px] max-w-[380px] lg:mx-auto">Мы доставим ваш байк прямо к вилле или вы можете забрать его сами в нашем офисе</p>
         <form @submit="onSubmit" class="form">
           <div class="max-w-[360px] lg:mx-auto lg:text-left">
-            <CustomTextField type="number" @fieldValue="handleTextField" class="ci__index-form mb-[10px]" placeholder="Телефон" name="phone" v-model="formData.phone">
+            <CustomTextField type="number" @fieldValue="handleTextField" class="ci__index-form mb-[10px]" placeholder="Номер мессенджера" name="phone" v-model="formData.phone">
               <SvgPhoneIcon></SvgPhoneIcon>
             </CustomTextField>
             <CustomSelectField :styleType="'index-form'" class="mb-[10px] cs__index-form" :active="formData.bikeField.active" :name="formData.bikeField.name" :defaultLabel="formData.bikeField.defaultLabel" :options="commercialStore.bikes">

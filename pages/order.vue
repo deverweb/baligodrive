@@ -99,7 +99,7 @@
           <div class="order-client sm:mb-[22px] mb-[37px] sm:grid-cols-1 sm:gap-y-[23px] grid grid-cols-2 gap-x-[25px] gap-y-[38px]">
             <CustomTextField :type="'string'" class="ci__payment-form" name="clientName" placeholder="Введите ваши ФИО" :subTitle="'ФИО'"> <SvgPersonIcon></SvgPersonIcon></CustomTextField>
             <CustomTextField :type="'string'" class="ci__payment-form" name="clientEmail" placeholder="Введите ваш E-mail" :subTitle="'E-mail'"> <SvgMailIcon class="w-[15px] h-[11px]" fill="#616162"></SvgMailIcon></CustomTextField>
-            <CustomTextField :type="'number'" class="ci__payment-form" name="clientPhone" placeholder="Номер телефон" :subTitle="'Номер мессенджера для связи'"> <SvgPhoneIcon fill="#616162"></SvgPhoneIcon></CustomTextField>
+            <CustomTextField :type="'number'" class="ci__payment-form" name="clientPhone" placeholder="Номер мессенджера" :subTitle="'Номер мессенджера для связи'"> <SvgPhoneIcon fill="#616162"></SvgPhoneIcon></CustomTextField>
             <CustomSelectField
               :styleType="'order-form'"
               class="cs__order-form"
@@ -153,7 +153,7 @@
           </div>
           <div class="order-view-images md:mb-[90px] md:max-h-[360px] md:flex xl:hidden md:ml-0 flex ml-auto flex-shrink-0">
             <img class="flex-shrink-0 mr-[25px]" src="/img/order/modal-bike.png" alt="" />
-            <img class="flex-shrink-0" src="/img/order/modal-surf.png" alt="" />
+            <img v-if="false" class="flex-shrink-0" src="/img/order/modal-surf.png" alt="" />
           </div>
           <div class="order-view-list hidden md:self-start md:gap-x-[54px] md:pl-[8px] md:flex md:items-start">
             <div class="order-view-item md:mb-0 mb-[38px] xl:mb-[32px] flex items-start">
@@ -179,7 +179,7 @@
             </div>
           </div>
         </div>
-        <div class="order-paid p-[40px] md:pt-[47px] md:px-[50px] xl:px-[42px] pb-[36px] md:pb-[54px] xl:pb-[48px] xl:pt-[31px] pt-[33px] md:bg-[#282828] xl:bg-dark-300 bg-[#282828]">
+        <div v-if="false" class="order-paid p-[40px] md:pt-[47px] md:px-[50px] xl:px-[42px] pb-[36px] md:pb-[54px] xl:pb-[48px] xl:pt-[31px] pt-[33px] md:bg-[#282828] xl:bg-dark-300 bg-[#282828]">
           <div class="order-paid-title tracking-[-0.6px] md:mb-[44px] xl:mb-[39px] font-Euroblack uppercase xl:leading-[1] mb-[30px]">Платная комплектация:</div>
           <div class="order-paid-list md:grid md:grid-cols-3 md:gap-x-[50px] md:gap-y-[0] xl:flex-col pl-[10px] xl:pl-0 flex gap-x-[54px] xl:gap-x-0 xl:gap-y-[34px] flex-wrap">
             <div class="order-view-item flex items-start">
@@ -246,9 +246,9 @@
               </div>
             </div>
           </div>
-          <div class="order-view-images md:mb-[90px] sm:mb-[52px] md:max-h-[360px] md:flex xl:hidden md:ml-0 flex ml-auto flex-shrink-0">
-            <img class="flex-shrink-0 sm:w-[72%] sm:mr-[25px] sm:object-contain mr-[25px]" src="/img/order/modal-bike.png" alt="" />
-            <img class="flex-shrink-0 sm:w-[20%] sm:object-contain" src="/img/order/modal-surf.png" alt="" />
+          <div class="order-view-images md:justify-center md:mb-[90px] sm:mb-[52px] md:max-h-[360px] md:flex xl:hidden md:ml-0 flex ml-auto flex-shrink-0">
+            <img class="flex-shrink-0 sm:w-[85%] sm:mr-[25px] sm:object-contain mr-[25px] md:mr-0" src="/img/order/modal-bike.png" alt="" />
+            <img v-if="false" class="flex-shrink-0 sm:w-[20%] sm:object-contain" src="/img/order/modal-surf.png" alt="" />
           </div>
           <div class="order-view-list sm:w-full sm:flex-col sm:pl-0 hidden md:self-start md:gap-x-[54px] md:pl-[8px] md:flex md:items-start">
             <div class="order-view-item sm:w-full sm:mb-[39px] md:mb-0 mb-[38px] xl:mb-[32px] flex items-start sm:items-center">
@@ -278,7 +278,7 @@
             </div>
           </div>
         </div>
-        <div class="order-paid sm:px-[25px] p-[40px] sm:pt-[36px] md:pt-[47px] md:px-[50px] xl:px-[42px] pb-[36px] sm:pb-[56px] md:pb-[54px] xl:pb-[48px] xl:pt-[31px] pt-[33px] md:bg-[#282828] xl:bg-dark-300 bg-[#282828]">
+        <div v-if="false" class="order-paid sm:px-[25px] p-[40px] sm:pt-[36px] md:pt-[47px] md:px-[50px] xl:px-[42px] pb-[36px] sm:pb-[56px] md:pb-[54px] xl:pb-[48px] xl:pt-[31px] pt-[33px] md:bg-[#282828] xl:bg-dark-300 bg-[#282828]">
           <div class="order-paid-title tracking-[-0.6px] sm:mb-[40px] sm:text-center sm:text-[22px] md:mb-[44px] xl:mb-[39px] font-Euroblack uppercase xl:leading-[1] mb-[30px]">Платная комплектация:</div>
           <div class="order-paid-list sm:grid-cols-1 md:grid md:grid-cols-3 md:gap-x-[50px] md:gap-y-[0] xl:flex-col pl-[10px] xl:pl-0 flex gap-x-[54px] xl:gap-x-0 xl:gap-y-[34px] flex-wrap">
             <div class="order-view-item sm:w-full sm:mb-[45px] flex items-start sm:items-center">
@@ -357,7 +357,6 @@ let getDurationHeight = () => {
 // })
 
 onMounted(() => {
-  console.log("mounted")
   // ScrollTrigger.create({
   //   id: "index",
   //   trigger: ".order-body",
