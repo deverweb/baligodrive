@@ -1,6 +1,6 @@
 <template>
-  <div ref="form" class="order px-[80px] xl:pt-[134px] md:pt-[131px] sm:pt-[66px] md:px-[0px] xl:px-[55px] sm:pb-[70px] md:pb-[150px] pb-[130px] 2xl:pt-[173px] pt-[179px] relative rounded-t-[70px] sm:rounded-t-[44px] bg-dark-700">
-    <div class="order-body sm:px-[25px] md:px-[50px] max-w-[46.6%] xl:max-w-[68.8%] md:max-w-full">
+  <div ref="order" class="order px-[80px] xl:pt-[134px] md:pt-[131px] sm:pt-[66px] md:px-[0px] xl:px-[55px] sm:pb-[70px] md:pb-[150px] pb-[130px] 2xl:pt-[173px] pt-[179px] relative rounded-t-[70px] sm:rounded-t-[44px] bg-dark-700">
+    <div ref="orderBody" class="order-body sm:px-[25px] md:px-[50px] max-w-[46.6%] xl:max-w-[68.8%] md:max-w-full">
       <h1 class="order-title sm:text-[28px] tracking-[-1.5px] md:leading-[0.98] xl:tracking-[-1.2px] md:text-center xl:text-[36px] font-Euroblack md:text-[48px] text-[48px] uppercase border-bottom xl:pb-[41px] sm:pb-[34px] md:pb-[42px] pb-[30px]">
         ОФОРМЛЕНИЕ ЗАКАЗА
       </h1>
@@ -122,7 +122,7 @@
       </form>
     </div>
     <!-- <div class="modal-container max-w-[50%] absolute right-[80px] top-[130px]"> -->
-    <div ref="modal" class="order-sticky md:hidden md:max-w-full md:pt-[50px] absolute right-[80px] xl:right-[55px] xl:max-w-[230px] xl:top-[77px] top-[130px]">
+    <div ref="orderSticky" class="order-sticky md:hidden md:max-w-full md:pt-[50px] absolute right-[80px] xl:right-[55px] xl:max-w-[230px] xl:top-[77px] top-[130px]">
       <div class="order-sticky-container">
         <div class="order-view px-[40px] md:pb-[36px] md:items-center md:flex-col xl:pl-[42px] pb-[27px] xl:pb-[10px] flex md:rounded-t-[44px] rounded-t-[17px] bg-dark-300 md:pt-[68px] pt-[42px]">
           <div class="order-view-text md:text-center">
@@ -339,30 +339,50 @@ import { useForm } from "vee-validate"
 // import ScrollMagic from "scrollmagic"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+const nuxtApp = useNuxtApp()
 gsap.registerPlugin(ScrollTrigger)
 const { handleSubmit } = useForm()
-let form = ref(null)
-let modal = ref(null)
+let order = ref(null)
+let orderSticky = ref(null)
+let orderBody = ref(null)
 
 let getDurationHeight = () => {
-  let computedStyle = getComputedStyle(form.value)
-  let elementHeight = form.value.clientHeight
+  let computedStyle = getComputedStyle(order.value)
+  let elementHeight = order.value.clientHeight
   elementHeight -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom)
-  return elementHeight - modal.value.offsetHeight + 50
+  return elementHeight - orderSticky.value.offsetHeight + 50
 }
-definePageMeta({
-  pageTransition: { mode: "default" },
-})
+// definePageMeta({
+//   pageTransition: false,
+// })
 
 onMounted(() => {
-  ScrollTrigger.create({
-    id: "index",
-    trigger: ".order-body",
-    start: "top 180px",
-    end: () => `+=${getDurationHeight()}`,
-    pin: ".order-sticky",
-  })
-  ScrollTrigger.getById("index").enable()
+  console.log("mounted")
+  // ScrollTrigger.create({
+  //   id: "index",
+  //   trigger: ".order-body",
+  //   start: "top 180px",
+  //   end: () => `+=${getDurationHeight()}`,
+  //   pin: ".order-sticky",
+  // })
+  // ScrollTrigger.create({
+  //   id: "index",
+  //   trigger: orderBody.value,
+  //   start: "top 180px",
+  //   end: () => `+=${getDurationHeight()}`,
+  //   pin: orderSticky.value,
+  // })
+
+  setTimeout(() => {
+    ScrollTrigger.create({
+      id: "index",
+      trigger: orderBody.value,
+      start: "top 180px",
+      end: () => `+=${getDurationHeight()}`,
+      pin: orderSticky.value,
+    })
+  }, 500)
+  // ScrollTrigger.getById("index").enable()
 })
 
 onBeforeUnmount(() => {

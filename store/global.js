@@ -31,6 +31,10 @@ export const useGlobalStore = defineStore("global", () => {
       label: "Контакты",
       to: "/contacts",
     },
+    {
+      label: "Order",
+      to: "/order",
+    },
   ]
 
   return { activeLangSwitcher, switchLang, activeMobileMenu, navigationLinks }

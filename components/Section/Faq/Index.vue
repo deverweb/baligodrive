@@ -1,5 +1,5 @@
 <template>
-  <section class="faq z-[5] rounded-b-[70px] sm:rounded-b-[44px] relative top-[-70px] pt-[120px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] bg-dark-300 text-light">
+  <section class="faq z-[5] rounded-b-[70px] sm:rounded-b-[44px] relative top-[-70px] pt-[120px] md:pt-[93px] xsm:pt-[79px] md:pb-[30px] xsm:pb-[10px] pb-[60px] text-light">
     <div class="container mb-[63px]">
       <h2 class="section-title text-center mb-[30px] md:mb-[26px] xsm:mb-[30px]">{{ props.title }}</h2>
       <p class="section-desc text-center mb-[61px] xsm:mb-[50px]">{{ props.subTitle }}</p>
