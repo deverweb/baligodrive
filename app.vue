@@ -21,7 +21,7 @@ nuxtApp.hook("page:finish", () => {
 <style lang="sass">
 .page-enter-active,
 .page-leave-active
-  transition: all 2.2s
+  transition: all .3s
 
 .page-enter-from,
 .page-leave-to
