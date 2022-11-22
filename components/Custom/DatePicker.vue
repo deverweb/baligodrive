@@ -105,7 +105,7 @@ const { value, errorMessage } = useField(props.name, isRequired)
 	&-panel
 		position: absolute
 		left: calc(100% + 25px)
-		bottom: -40px
+		top: 0
 	.vc-container
 		+helvr
 		--green-600: #{$green}

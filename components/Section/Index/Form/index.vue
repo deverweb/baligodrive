@@ -6,16 +6,16 @@
         <p class="section-desc mb-[49px] sm:max-w-full lg:mb-[51px] sm:mb-[41px] max-w-[380px] lg:mx-auto">Мы доставим ваш байк прямо к вилле или вы можете забрать его сами в нашем офисе</p>
         <form @submit="onSubmit" class="form">
           <div class="max-w-[360px] lg:mx-auto lg:text-left">
-            <CustomTextField type="number" @fieldValue="handleTextField" class="ci__index-form mb-[10px]" placeholder="Номер мессенджера" name="phone" v-model="formData.phone">
-              <SvgPhoneIcon></SvgPhoneIcon>
-            </CustomTextField>
+            <CustomDatePicker name="date" class="mb-[10px] dp__index-form"> </CustomDatePicker>
             <CustomSelectField :styleType="'index-form'" class="mb-[10px] cs__index-form" :active="formData.bikeField.active" :name="formData.bikeField.name" :defaultLabel="formData.bikeField.defaultLabel" :options="commercialStore.bikes">
               <SvgBikeIcon></SvgBikeIcon>
             </CustomSelectField>
-            <CustomSelectField :styleType="'index-form'" class="mb-[10px] cs__index-form" :active="formData.surfField.active" :name="formData.surfField.name" :defaultLabel="formData.surfField.defaultLabel" :options="commercialStore.surfBoards">
+            <CustomTextField type="number" @fieldValue="handleTextField" class="ci__index-form mb-[10px]" placeholder="Телефон" name="phone" v-model="formData.phone">
+              <SvgPhoneIcon></SvgPhoneIcon>
+            </CustomTextField>
+            <!-- <CustomSelectField :styleType="'index-form'" class="mb-[10px] cs__index-form" :active="formData.surfField.active" :name="formData.surfField.name" :defaultLabel="formData.surfField.defaultLabel" :options="commercialStore.surfBoards">
               <SvgSurfIcon></SvgSurfIcon>
-            </CustomSelectField>
-            <CustomDatePicker name="date" class="mb-[15px] dp__index-form"> </CustomDatePicker>
+            </CustomSelectField> -->
             <TheButton type="submit" class="w-[360px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]">
               <SvgCalendarIcon></SvgCalendarIcon>
               <span class="relative top-[1px]">Забронировать</span>
