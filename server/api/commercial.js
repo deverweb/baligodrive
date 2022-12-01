@@ -1,8 +1,8 @@
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const formdata = new FormData();
-  formdata.append("client_id", config.CLIENT_ID);
-  formdata.append("client_secret", config.SECRET_ID);
+  formdata.append("client_id", "LddzJIH9lXPAvLfTyPWJiMH7ajZaNX55");
+  formdata.append("client_secret", "OADD-6gCM5Mu6mTojFuf3nh2yXM-fqXH");
   formdata.append("grant_type", "client_credentials");
   const tokenRequestOptions = {
     method: "POST",
