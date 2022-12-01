@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     },
 
     // layoutTransition: true,
-    pageTransition: { name: "page", mode: "out-in" },
+    // pageTransition: { name: "page", mode: "out-in" },
   },
   vite: {
     css: {
@@ -31,8 +31,15 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/sass/main.sass"],
+  router: {
+    options: {},
+  },
   plugins: [{ src: "~/plugins/v-calendar", ssr: false, mode: "client" }],
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n", ["@pinia/nuxt", { autoImports: ["defineStore", "acceptHMRUpdate"] }]],
+  runtimeConfig: {
+    CLIENT_ID: process.env.CLIENT_ID,
+    SECRET_ID: process.env.SECRET_ID,
+  },
 
   i18n: {
     strategy: "no_prefix",

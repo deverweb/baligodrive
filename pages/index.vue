@@ -1,5 +1,11 @@
 <template>
   <main class="flex-grow">
+    <!-- <TheButton
+      v-if="true"
+      class="z-[250] fixed w-[350px] h-[70px]"
+      @click="handle"
+      >123123</TheButton
+    > -->
     <SectionIndexOffer></SectionIndexOffer>
     <SectionSimpleSixBlocks
       class="pt-[123px] pb-[245px] md:pb-[195px] xsm:pb-[155px] md:pt-[93px] sm:pt-[76px]"
@@ -10,21 +16,28 @@
     <SectionIndexBikesSlider></SectionIndexBikesSlider>
     <SectionIndexForm></SectionIndexForm>
     <SectionIndexCards></SectionIndexCards>
-    <SectionFaq :questions="questions" :title="'Частые вопросы'" :subTitle="'Все что вам нужно знать о нашем сервисе!'"></SectionFaq>
+    <SectionFaq
+      :questions="questions"
+      :title="'Частые вопросы'"
+      :subTitle="'Все что вам нужно знать о нашем сервисе!'"
+    ></SectionFaq>
     <SectionIndexInvest></SectionIndexInvest>
   </main>
 </template>
 
 <script setup>
-import { useCommercialStore } from "~~/store/commercial"
+import { useCommercialStore } from "~~/store/commercial";
 
 useHead({
   title: "BaliGo Bike",
-})
+});
+const store = useCommercialStore();
+const handle = () => {
+  console.log("store.token", store.token.access_token);
+  store.smallFormOrder(store.token.access_token);
 
-const store = useCommercialStore()
-
-store.fillData()
+  // store.orderBike("bike", store.token.access_token);
+};
 
 const indexSixBlocks = [
   {
@@ -48,7 +61,7 @@ const indexSixBlocks = [
     title: "Привозите байк нам ",
     text: "И мы доставляем вам байк прямо к вилле",
   },
-]
+];
 const questions = ref([
   {
     title: "Как долго вы доставляете байк?",
@@ -75,7 +88,7 @@ const questions = ref([
     title: "Как долго вы доставляете байк?",
     text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации.",
   },
-])
+]);
 </script>
 
 <style lang="sass"></style>

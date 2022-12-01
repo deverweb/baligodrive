@@ -1,14 +1,39 @@
 <template>
   <div class="order-radio">
-    <div class="flex flex-wrap sm:gap-x-[20px] sm:gap-y-[17px] items-center md:gap-[28px] gap-[21px]">
-      <div :data-id="option.id" ref="root" class="order-option flex flex-col cursor-pointer" v-for="(option, i) in props.options">
-        <Field class="hidden" v-model="checked" :id="props.name + option.id" type="radio" :name="props.name" :value="option"></Field>
+    <div
+      class="flex flex-wrap sm:gap-x-[20px] sm:gap-y-[17px] items-center md:gap-[28px] gap-[21px]"
+    >
+      <div
+        :data-id="option.id"
+        ref="root"
+        class="order-option flex flex-col cursor-pointer"
+        v-for="(option, i) in props.options"
+      >
+        <Field
+          class="hidden"
+          v-model="checked"
+          :id="props.name + option.id"
+          type="radio"
+          :name="props.name"
+          :value="option"
+          @change="handleChange(option)"
+        ></Field>
         <label :for="props.name + option.id" class="order-option-container">
-          <div :class="{ 'bg-[#1B1B1B]  hover:bg-[#262626]': props.bg }" class="order-option-card sm:mb-[13px] mb-[16px] rounded-[13px] sm:w-[100px] sm:h-[100px] w-[104px] h-[104px]">
-            <img :src="option.img" alt="" />
+          <div
+            :class="{ 'bg-[#1B1B1B]  hover:bg-[#262626]': props.bg }"
+            class="order-option-card justify-center overflow-hidden flex sm:mb-[13px] mb-[16px] rounded-[13px] sm:w-[100px] sm:h-[100px] w-[104px] h-[104px]"
+          >
+            <img class="h-full" :src="option.img" alt="" />
           </div>
-          <div class="order-option-name font-Helvmed text-[14px] text-center">{{ option.name }}</div>
-          <div v-if="props.showPrice" class="order-option-price opacity-50 font-Helvmed text-[14px] mt-[2px] text-center">{{ option.price }}$ / день</div>
+          <div class="order-option-name font-Helvmed text-[14px] text-center">
+            {{ option.name }}
+          </div>
+          <div
+            v-if="props.showPrice"
+            class="order-option-price opacity-50 font-Helvmed text-[14px] mt-[2px] text-center"
+          >
+            {{ option.price }}$ / день
+          </div>
         </label>
       </div>
     </div>
@@ -16,7 +41,7 @@
 </template>
 
 <script setup>
-import { Field } from "vee-validate"
+import { Field } from "vee-validate";
 
 const props = defineProps({
   options: {
@@ -36,9 +61,19 @@ const props = defineProps({
     required: true,
     type: Boolean,
   },
-})
+});
 
-let checked = ref(props.options[0])
+const emit = defineEmits(["bikeImgChanged"]);
+
+const handleChange = (value) => {
+  if (value.bike) {
+    console.log("changed bike");
+    emit("bikeImgChanged", value);
+  }
+  console.log("changed", value);
+};
+
+let checked = ref(props.options[0]);
 </script>
 
 <style lang="sass">

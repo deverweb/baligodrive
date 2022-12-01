@@ -1,11 +1,21 @@
 <template>
   <div class="ci">
-    <div class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">{{ props.subTitle }}</div>
+    <div
+      class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50"
+      v-if="props.subTitle"
+    >
+      {{ props.subTitle }}
+    </div>
     <div class="ci-container">
       <div class="ci-icon-container">
         <slot></slot>
       </div>
-      <input v-model="value" :placeholder="props.placeholder" class="ci-input" type="text" />
+      <input
+        v-model="value"
+        :placeholder="props.placeholder"
+        class="ci-input"
+        type="text"
+      />
     </div>
     <Transition name="text-error">
       <div class="ci-error-container" v-if="errorMessage">
@@ -18,7 +28,7 @@
 </template>
 
 <script setup>
-import { useField } from "vee-validate"
+import { useField } from "vee-validate";
 
 const props = defineProps({
   name: {
@@ -31,32 +41,32 @@ const props = defineProps({
   },
   type: String,
   subTitle: String,
-})
+});
 
 let isRequired = (value) => {
   if (props.type == "number") {
     if (!value) {
-      return "Обязательное поле"
+      return "Обязательное поле";
     }
 
     if (!/^\d+$/.test(value)) {
-      return "Только цифры"
+      return "Только цифры";
     }
-    return true
+    return true;
   }
   if (props.type == "string") {
     if (!value) {
-      return "Обязательное поле"
+      return "Обязательное поле";
     }
-    return true
+    return true;
   }
-}
+};
 
-let nameRef = toRef(props, "name")
+let nameRef = toRef(props, "name");
 
-const { errorMessage, value } = useField(nameRef, isRequired)
+const { errorMessage, value } = useField(nameRef, isRequired);
 
-const emit = defineEmits(["fieldValue"])
+const emit = defineEmits(["fieldValue"]);
 </script>
 
 <style lang="sass">
@@ -72,6 +82,47 @@ const emit = defineEmits(["fieldValue"])
 	opacity: 0
 	transform: translateY(-25px)
 .ci
+	&.ci__widget-form
+		position: relative
+		border-bottom: 1px solid #f3f3f3
+		input
+			&:focus::placeholder
+				color: transparent
+			&::placeholder
+				color: $dark
+
+		.ci-container
+			color: $dark
+			font-size: 16px
+			display: flex
+			height: 76px
+			align-items: center
+			justify-content: flex-start
+			position: relative
+			padding-right: 21px
+			padding-left: 0
+			border-radius: 0
+			background-color: $light
+		.ci-input
+			white-space: nowrap
+			height: 100%
+			background-color: $light
+			overflow: hidden
+			flex-grow: 1
+			text-overflow: ellipsis
+		.ci-icon-container
+			height: 100%
+			display: flex
+			align-items: center
+			left: 0
+			margin-right: 20px
+		.ci-error
+			color: red
+			font-size: 12px
+		.ci-error-container
+			// height: 10px
+			bottom: 0
+			position: absolute
 	&.ci__index-form
 
 		input

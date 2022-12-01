@@ -7,7 +7,11 @@
       {{ props.label }}
     </div>
     <SvgInputFile v-if="props.fileInput"></SvgInputFile>
-    <SvgArrowIcon class="transition field-btn-arrow" :class="{ 'rotate-180': props.active }" v-else></SvgArrowIcon>
+    <SvgArrowIcon
+      class="transition field-btn-arrow"
+      :class="{ 'rotate-180': props.active }"
+      v-else
+    ></SvgArrowIcon>
   </div>
 </template>
 
@@ -20,14 +24,15 @@ const props = defineProps({
   active: Boolean,
   fileInput: Boolean,
   styleType: String,
-})
+});
 
 const computedClass = computed(() => {
   return {
     "index-form": props.styleType == "index-form",
     "order-form": props.styleType == "order-form",
-  }
-})
+    "widget-form": props.styleType == "widget-form",
+  };
+});
 </script>
 
 <style lang="sass">
@@ -74,4 +79,21 @@ const computedClass = computed(() => {
 			white-space: nowrap
 			overflow: hidden
 			text-overflow: ellipsis
+	&.widget-form
+		z-index: 3
+		color: $dark
+		background-color: $light
+		padding: 29px 10px 21px 32px
+		border-bottom: 1px solid #f3f3f3
+		border-radius: 0px
+		.field-btn-icon
+			position: absolute
+			left: 0
+		.field-btn-text
+			white-space: nowrap
+			overflow: hidden
+			text-overflow: ellipsis
+		.field-btn-arrow
+			position: relative
+			top: 3px
 </style>

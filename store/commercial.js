@@ -1,12 +1,76 @@
 export const useCommercialStore = defineStore("commercial", () => {
-  let bikes = ref(null)
-  let surfBoards = ref(null)
-
+  let bikes = ref(null);
+  let companyInfo = ref(null);
+  let surfBoards = ref(null);
+  let data1 = ref(null);
+  let bikeModels = ref(null);
+  let token = useCookie("token", {
+    sameSite: "strict",
+    // expires:
+  });
   const fillData = async () => {
-    let { data } = await useFetch("/api/commercial")
-    bikes.value = data.value.bikes
-    surfBoards.value = data.value.surfBoards
-  }
+    let { data } = await useFetch("/api/commercial");
 
-  return { bikes, surfBoards, fillData }
-})
+    token.value = data.value.token.access_token;
+    surfBoards.value = data.value;
+    bikes.value = data.value.bikes.map((val, i) => {
+      let desc = val.custom_fields.find((field) => field.title == "Описание");
+      let hourPriceUsd = val.price.slice(0, -3);
+      return {
+        id: val.id,
+        hourPriceUsd,
+        img: val.thumbnail,
+        allImages: val.thumbnails,
+        description: desc,
+        brand: val.brand,
+        group: val.group,
+        mark: val.mark,
+        name: val.brand + " " + val.mark,
+        drawing: val.group.split("+")[1].trim(),
+      };
+    });
+    bikeModels.value = data.value.bikes.map((val, i) => {
+      return {
+        name: val.brand + " " + val.mark,
+        drawings: val,
+      };
+    });
+    // console.log(bikeModels.value);
+    // console.log(data.value.bikes);
+    // console.log(bikes.value);
+    token.value = data.value.token;
+    companyInfo.value = data.value.info;
+    data1.value = data.value;
+    // console.log("data value:", data1.value)
+  };
+  const orderBike = async (bodyData, token) => {
+    let { data } = await useFetch("/api/order", {
+      method: "POST",
+      body: {
+        token,
+        data: bodyData,
+      },
+    });
+  };
+  const smallFormOrder = async (token) => {
+    let { data } = await useFetch("/api/contactform", {
+      method: "POST",
+      body: {
+        token,
+      },
+    });
+    console.log("smallorderfform datavalue", data.value);
+  };
+  // return { bikes, surfBoards, fillData }
+  return {
+    bikes,
+    token,
+    companyInfo,
+    surfBoards,
+    data1,
+    bikeModels,
+    fillData,
+    orderBike,
+    smallFormOrder,
+  };
+});

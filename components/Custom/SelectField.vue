@@ -1,15 +1,38 @@
 <template>
   <div ref="root" class="cs" :class="{ 'z-[4]': isSelectActive }">
-    <div class="cs-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">{{ props.subTitle }}</div>
-    <CustomFieldBtn :styleType="props.styleType" :class="{ shadow: isSelectActive }" :active="isSelectActive" class="cs-current z-[3]" @click="isSelectActive = !isSelectActive" :label="computedLabel"><slot></slot></CustomFieldBtn>
+    <div
+      class="cs-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50"
+      v-if="props.subTitle"
+    >
+      {{ props.subTitle }}
+    </div>
+    <CustomFieldBtn
+      :styleType="props.styleType"
+      :class="{ shadow: isSelectActive }"
+      :active="isSelectActive"
+      class="cs-current z-[3]"
+      @click="isSelectActive = !isSelectActive"
+      :label="computedLabel"
+      ><slot></slot
+    ></CustomFieldBtn>
 
-    <Field class="hidden" v-model="localSelectedOption" :rules="isRequired" :name="props.name" as="select"></Field>
-    <Transition name="select-down">
+    <Field
+      class="hidden"
+      v-model="localSelectedOption"
+      :rules="isRequired"
+      :name="props.name"
+      as="select"
+    ></Field>
+    <Transition :name="'select-down'">
       <div v-show="isSelectActive" class="cs-list-container z-[2]">
         <ul class="cs-list">
-          <li @click.stop="selectOption(option)" v-for="(option, i) in props.options" class="cs-list-item">
+          <li
+            @click.stop="selectOption(option)"
+            v-for="(option, i) in props.options"
+            class="cs-list-item"
+          >
             <span v-if="option.name">{{ option.name }}</span>
-            <span v-else="option.name">{{ option }}</span>
+            <span v-else>{{ option }}</span>
           </li>
         </ul>
       </div>
@@ -17,7 +40,7 @@
     <Transition name="text-error">
       <div class="cs-error-container z-[1] h-[25px]" v-show="error">
         <div class="cs-error">
-          <ErrorMessage :name="props.name" class="text-red-600 text-[14px] pt-[4px] pl-[2px]"></ErrorMessage>
+          <ErrorMessage :name="props.name" class="text-red-600"></ErrorMessage>
         </div>
       </div>
     </Transition>
@@ -25,9 +48,14 @@
 </template>
 
 <script setup>
-import { Field, ErrorMessage, useIsFieldValid, useFieldError } from "vee-validate"
+import {
+  Field,
+  ErrorMessage,
+  useIsFieldValid,
+  useFieldError,
+} from "vee-validate";
 
-let error = useFieldError(props.name)
+let error = useFieldError(props.name);
 
 const props = defineProps({
   options: {
@@ -45,42 +73,43 @@ const props = defineProps({
     type: String,
     required: true,
   },
-})
-let localSelectedOption = ref(null)
-let isSelectActive = ref(false)
-let root = ref(null)
+});
+let localSelectedOption = ref(null);
+let isSelectActive = ref(false);
+let root = ref(null);
 
 const handleOutsideClicks = (e) => {
-  if (!root.value.isEqualNode(e.target.closest(".cs"))) isSelectActive.value = false
-}
+  if (!root.value.isEqualNode(e.target.closest(".cs")))
+    isSelectActive.value = false;
+};
 onMounted(() => {
-  document.addEventListener("click", handleOutsideClicks)
-})
+  document.addEventListener("click", handleOutsideClicks);
+});
 onUnmounted(() => {
-  document.removeEventListener("click", handleOutsideClicks)
-})
+  document.removeEventListener("click", handleOutsideClicks);
+});
 
 let computedLabel = computed(() => {
   if (localSelectedOption.value) {
     if (localSelectedOption.value.name) {
-      return localSelectedOption.value.name
-    } else return localSelectedOption.value
+      return localSelectedOption.value.name;
+    } else return localSelectedOption.value;
   } else {
-    return props.defaultLabel
+    return props.defaultLabel;
   }
-})
+});
 
-let emit = defineEmits(["toggleActive"])
+let emit = defineEmits(["toggleActive"]);
 
 const selectOption = (option) => {
-  isSelectActive.value = false
-  localSelectedOption.value = option
-}
+  isSelectActive.value = false;
+  localSelectedOption.value = option;
+};
 
 let isRequired = (value) => {
-  if (!value) return "Необходимо выбрать"
-  return true
-}
+  if (!value) return "Необходимо выбрать";
+  return true;
+};
 </script>
 
 <style lang="sass">
@@ -95,6 +124,39 @@ let isRequired = (value) => {
 	opacity: 0
 	transform: translateY(-20px)
 .cs
+	&.cs__widget-form
+		position: relative
+		color: $dark
+		background-color: #f5f5f5
+		font-size: 15px
+
+		.cs-error-container
+			position: absolute
+			bottom: 0
+			z-index: 4
+			height: auto
+		.cs-error
+			font-size: 12px
+
+		.cs-list-container
+			max-height: 255px
+			overflow-y: auto
+			position: absolute
+			background-color: #f5f5f5
+			width: 100%
+			top: calc(100% - 1px)
+			z-index: 10
+			li
+				padding-left: 31px
+				font-size: 16px
+				height: 61px
+				display: flex
+				align-items: center
+				background-color: transparent
+				transition: 0.2s ease-in-out all
+				cursor: pointer
+				&:hover
+					background-color: darken($light, 25%)
 	&.cs__order-form
 		position: relative
 		color: $light
@@ -113,6 +175,10 @@ let isRequired = (value) => {
 			padding-bottom: 20px
 			padding-top: 70px
 			padding-right: 28px
+		.cs-error
+			font-size: 14px
+			padding-top: 4px
+			padding-left: 2px
 		.cs-list
 			max-height: 310px
 			overflow: auto
@@ -158,6 +224,10 @@ let isRequired = (value) => {
 		position: relative
 		color: $dark
 		font-size: 16px
+		.cs-error
+			font-size: 14px
+			padding-top: 4px
+			padding-left: 2px
 		.cs-error-container
 			position: static
 		.cs-list-container
@@ -170,6 +240,9 @@ let isRequired = (value) => {
 		.cs-list
 			padding-top: 40px
 			padding-bottom: 10px
+			border-bottom-left-radius: 12px
+			border-bottom-right-radius: 12px
+			box-shadow: 0px 4px 22px rgba(0, 0, 0, 0.12)
 			li
 				padding: 20px 21px 20px 51px
 				cursor: pointer
