@@ -1,26 +1,26 @@
 <template>
   <NuxtLayout>
     <NuxtLoadingIndicator />
-
-    <NuxtPage></NuxtPage>
+    test
+    <!-- <NuxtPage></NuxtPage> -->
   </NuxtLayout>
 </template>
 
 <script setup>
-import { useGlobalStore } from "./store/global"
-import { useCommercialStore } from "~~/store/commercial"
+import { useGlobalStore } from "./store/global";
+import { useCommercialStore } from "~~/store/commercial";
 
-const nuxtApp = useNuxtApp()
+const nuxtApp = useNuxtApp();
 
-const store = useGlobalStore()
-const commersialStore = useCommercialStore()
+const store = useGlobalStore();
+const commersialStore = useCommercialStore();
 
-commersialStore.fillData()
+// commersialStore.fillData()
 
 nuxtApp.hook("page:finish", () => {
-  store.activeMobileMenu = false
-  window.scrollTo(0, 0)
-})
+  store.activeMobileMenu = false;
+  window.scrollTo(0, 0);
+});
 </script>
 
 <style lang="sass">
