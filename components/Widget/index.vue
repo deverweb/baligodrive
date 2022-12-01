@@ -35,7 +35,7 @@
           </CustomDatePicker>
           <CustomSelectField
             name="bike"
-            :options="commercialStore.bikes"
+            :options="bikes"
             class="cs__widget-form"
             :styleType="'widget-form'"
             defaultLabel="Модель байка"
@@ -84,13 +84,33 @@ let route = useRoute();
 const { handleSubmit } = useForm();
 
 const onSubmit = handleSubmit((values) => {
-  console.log(values);
+  // console.log(values);
   formStore.fillForm(values);
   commercialStore.smallFormOrder(commercialStore.token.access_token, values);
   router.push({ path: "/order" });
 });
 
-let isActiveWidget = ref(false);
+let bikes = Object.values(
+  commercialStore.bikes.reduce((unique, o) => {
+    if (!unique[o.name] || +o.date > +unique[o.name].date) unique[o.name] = o;
+
+    return unique;
+  }, {})
+);
+
+let isActiveWidget = ref(true);
+let handleWidgetActive = (evt) => {
+  isActiveWidget.value = false;
+  window.removeEventListener("scroll", handleWidgetActive);
+};
+onMounted(() => {
+  window.addEventListener("scroll", handleWidgetActive);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleWidgetActive);
+});
+
 watch(
   () => isActiveWidget.value,
   () => {
@@ -141,6 +161,7 @@ let isOrder = computed(() => {
 		right: 50%
 		width: 353px
 		max-height: 507px
+		box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.07)
 		+r(768)
 			right: 0
 			top: 0
@@ -148,6 +169,7 @@ let isOrder = computed(() => {
 			left: 0
 			max-height: initial
 			position: fixed
+			box-shadow: none
 			height: 100%
 	&-head
 		height: 72px

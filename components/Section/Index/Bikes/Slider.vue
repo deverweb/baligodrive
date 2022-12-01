@@ -55,7 +55,10 @@
       </div>
     </div>
 
-    <div class="catalog-bikes bikes lg:gap-[36px] lg:grid-cols-1" v-if="bikes">
+    <div
+      class="catalog-bikes bikes lg:gap-[36px] lg:grid-cols-1"
+      v-if="store.bikes"
+    >
       <Swiper
         class=""
         :modules="modules"
@@ -99,18 +102,14 @@ import { storeToRefs } from "pinia";
 const modules = [Navigation];
 
 let store = useCommercialStore();
-// console.log("in slider componentt, store bikes", store.bikes);
-// console.log(store.bikes[0]);
-// console.log(store.bikes[1]);
-// console.log(store.bikes[2]);
-let { bikes } = storeToRefs(store);
-bikes.value = Object.values(
-  store.bikes.reduce((unique, o) => {
-    if (!unique[o.name] || +o.date > +unique[o.name].date) unique[o.name] = o;
+// let { bikes } = storeToRefs(store);
+// bikes.value = Object.values(
+//   store.bikes.reduce((unique, o) => {
+//     if (!unique[o.name] || +o.date > +unique[o.name].date) unique[o.name] = o;
 
-    return unique;
-  }, {})
-);
+//     return unique;
+//   }, {})
+// );
 // console.log("kek", bikes.value);
 </script>
 

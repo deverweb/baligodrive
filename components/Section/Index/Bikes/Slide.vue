@@ -9,7 +9,7 @@
     </div>
 
     <div
-      class="bike-img mt-auto mb-[82px] h-[300px] md:h-[280px] xsm:h-[260px] xsm:mb-[63px]"
+      class="bike-img flex items-center mt-auto mb-[82px] h-[300px] md:h-[280px] xsm:h-[260px] xsm:mb-[63px]"
     >
       <img
         class="object-contain mx-auto max-w-full ml-[-5px]"

@@ -130,6 +130,9 @@ let isRequired = (value) => {
 		background-color: #f5f5f5
 		font-size: 15px
 
+		.cs-current
+			position: relative
+			box-shadow: none
 		.cs-error-container
 			position: absolute
 			bottom: 0
@@ -156,7 +159,7 @@ let isRequired = (value) => {
 				transition: 0.2s ease-in-out all
 				cursor: pointer
 				&:hover
-					background-color: darken($light, 25%)
+					background-color: $light
 	&.cs__order-form
 		position: relative
 		color: $light

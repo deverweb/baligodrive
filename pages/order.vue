@@ -328,7 +328,7 @@
     >
       <div class="order-sticky-container">
         <div
-          class="order-view px-[40px] md:pb-[36px] md:items-center md:flex-col xl:pl-[42px] pb-[27px] xl:pb-[30px] flex md:rounded-t-[44px] rounded-t-[17px] bg-dark-300 md:pt-[68px] pt-[42px]"
+          class="order-view px-[40px] md:pb-[36px] md:items-center md:flex-col xl:pl-[22px] pb-[27px] xl:pb-[30px] flex md:rounded-t-[44px] rounded-t-[17px] bg-dark-300 md:pt-[68px] pt-[42px]"
         >
           <div class="order-view-text shrink-0 md:text-center">
             <div
@@ -385,8 +385,8 @@
                   <div
                     class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
                   >
-                    {{ formStore.bike.hourPriceUsd }} x
-                    {{ formStore.computedDate }} дней
+                    {{ formStore.bike.hourPriceUsd }}$ x
+                    {{ formStore.computedDate }} суток
                   </div>
                 </div>
               </div>
@@ -450,7 +450,7 @@
                   class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
                 >
                   {{ formStore.bike.hourPriceUsd }} x
-                  {{ formStore.computedDate }} дней
+                  {{ formStore.computedDate }}$ суток
                 </div>
               </div>
             </div>
@@ -829,7 +829,31 @@ const nuxtApp = useNuxtApp();
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
 
-// formStore.fillForm();
+// formStore.fillForm({
+//   date: {
+//     start: "2022-12-07T15:00:43.433Z",
+//     end: "2022-12-31T15:00:43.433Z",
+//   },
+//   bike: {
+//     id: "9269",
+//     hourPriceUsd: "10",
+//     img: "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
+//     allImages: [
+//       "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
+//     ],
+//     description: {
+//       title: "Описание",
+//       value: "",
+//     },
+//     brand: "HONDA",
+//     group: "Honda PCX 160 cc + Test",
+//     mark: "PCX 160 CC",
+//     name: "HONDA PCX 160 CC",
+//     drawing: "Test",
+//   },
+//   client_name: "123",
+//   client_phone: "123123",
+// });
 let drawings = commercialStore.bikes.filter((val, i) => {
   return val.name == formStore.bike.name;
 });
@@ -911,7 +935,7 @@ const onSubmit = handleSubmit((values) => {
 <style lang="sass">
 .order-sticky-container
 	+r(1660)
-		zoom: 0.85
+		zoom: 0.95
 	+r(991)
 		zoom: 1
 .order-body

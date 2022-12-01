@@ -9,9 +9,7 @@ export const useCommercialStore = defineStore("commercial", () => {
     // expires:
   });
   const fillData = async () => {
-    console.log("fill data");
     let { data } = await useFetch("/api/commercial");
-    console.log(data.value);
     token.value = data.value.token.access_token;
     surfBoards.value = data.value;
     bikes.value = data.value.bikes.map((val, i) => {
@@ -48,6 +46,7 @@ export const useCommercialStore = defineStore("commercial", () => {
         data: bodyData,
       },
     });
+    // console.log("orderBike store data: ", data.value);
   };
   const smallFormOrder = async (token, values) => {
     let { data } = await useFetch("/api/contactform", {

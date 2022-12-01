@@ -29,6 +29,6 @@ export default defineEventHandler(async (event) => {
       Authorization: `Bearer ${body.token.access_token}`,
     },
   });
-  let result = await response.text();
+  let result = await response.json();
   return result;
 });

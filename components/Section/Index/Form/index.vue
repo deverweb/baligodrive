@@ -37,6 +37,14 @@
               <SvgBikeIcon></SvgBikeIcon>
             </CustomSelectField>
             <CustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              placeholder="Имя Фамилия"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
+            </CustomTextField>
+            <CustomTextField
               type="number"
               @fieldValue="handleTextField"
               class="ci__index-form mb-[10px]"
@@ -45,14 +53,6 @@
               v-model="formData.phone"
             >
               <SvgPhoneIcon></SvgPhoneIcon>
-            </CustomTextField>
-            <CustomTextField
-              type="string"
-              class="ci__index-form mb-[10px]"
-              :name="'client_name'"
-              placeholder="Имя Фамилия"
-            >
-              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
             </CustomTextField>
             <CustomSelectField
               v-if="false"
