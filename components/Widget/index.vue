@@ -86,7 +86,7 @@ const { handleSubmit } = useForm();
 const onSubmit = handleSubmit((values) => {
   console.log(values);
   formStore.fillForm(values);
-  // commercialStore.smallFormOrder(commercialStore.token.access_token);
+  commercialStore.smallFormOrder(commercialStore.token.access_token, values);
   router.push({ path: "/order" });
 });
 

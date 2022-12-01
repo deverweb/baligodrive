@@ -29,19 +29,16 @@ export const useCommercialStore = defineStore("commercial", () => {
         drawing: val.group.split("+")[1].trim(),
       };
     });
+    console.log("store bikes", bikes.value);
     bikeModels.value = data.value.bikes.map((val, i) => {
       return {
         name: val.brand + " " + val.mark,
         drawings: val,
       };
     });
-    // console.log(bikeModels.value);
-    // console.log(data.value.bikes);
-    // console.log(bikes.value);
     token.value = data.value.token;
     companyInfo.value = data.value.info;
     data1.value = data.value;
-    // console.log("data value:", data1.value)
   };
   const orderBike = async (bodyData, token) => {
     let { data } = await useFetch("/api/order", {
@@ -52,11 +49,12 @@ export const useCommercialStore = defineStore("commercial", () => {
       },
     });
   };
-  const smallFormOrder = async (token) => {
+  const smallFormOrder = async (token, values) => {
     let { data } = await useFetch("/api/contactform", {
       method: "POST",
       body: {
         token,
+        data: values,
       },
     });
     console.log("smallorderfform datavalue", data.value);

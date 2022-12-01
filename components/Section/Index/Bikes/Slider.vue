@@ -75,9 +75,10 @@
       >
         <SwiperSlide
           class="max-w-[440px] xsm:max-w-[340px] xsm:w-[100%]"
-          v-for="(bike, i) in bikes"
+          v-for="(bike, i) in store.bikes"
         >
           <SectionIndexBikesSlide
+            :data-index="('slide= ', i)"
             :bikeName="bike.name"
             :imgSrc="bike.img"
             :price="bike.hourPriceUsd"
@@ -98,8 +99,10 @@ import { storeToRefs } from "pinia";
 const modules = [Navigation];
 
 let store = useCommercialStore();
-// console.log("store.data1", store.data1);
-// console.log(store.bikes)
+console.log("in slider componentt, store bikes", store.bikes);
+console.log(store.bikes[0]);
+console.log(store.bikes[1]);
+console.log(store.bikes[2]);
 let { bikes } = storeToRefs(store);
 bikes.value = Object.values(
   store.bikes.reduce((unique, o) => {

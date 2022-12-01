@@ -1,6 +1,4 @@
 export default defineEventHandler(async (event) => {
-  // let body = await readBody(event)
-  // return { bod
   function formatDate(date) {
     var d = new Date(date),
       month = "" + (d.getMonth() + 1),
@@ -13,14 +11,11 @@ export default defineEventHandler(async (event) => {
     return [year, month, day].join("-");
   }
   const body = await readBody(event);
-  console.log(body);
   let firstDateStr = `${formatDate(body.data.date.start)} ${
     body.data.deliveryTime
   }`;
   let endDateStr = `${formatDate(body.data.date.end)} ${body.data.returnTime}`;
   let dateStr = `${firstDateStr} - ${endDateStr}`;
-  console.log("datestr", dateStr);
-  console.log("body.data.location.id", body.data.location.id);
   var formdata = new FormData();
   formdata.append("vehicle_id", body.data.bike.id);
   formdata.append("dates", dateStr);

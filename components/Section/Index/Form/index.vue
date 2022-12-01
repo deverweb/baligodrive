@@ -41,10 +41,18 @@
               @fieldValue="handleTextField"
               class="ci__index-form mb-[10px]"
               placeholder="Телефон"
-              name="phone"
+              name="client_phone"
               v-model="formData.phone"
             >
               <SvgPhoneIcon></SvgPhoneIcon>
+            </CustomTextField>
+            <CustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              placeholder="Имя Фамилия"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
             </CustomTextField>
             <CustomSelectField
               v-if="false"
@@ -77,11 +85,13 @@
 <script setup>
 import { useForm } from "vee-validate";
 import { useCommercialStore } from "~~/store/commercial";
+import { useFormStore } from "~~/store/form";
 
 const { handleSubmit } = useForm();
 const router = useRouter();
 const bikes = ref([]);
 const commercialStore = useCommercialStore();
+const formStore = useFormStore();
 
 bikes.value = Object.values(
   commercialStore.bikes.reduce((unique, o) => {
@@ -109,9 +119,8 @@ const formData = ref({
 });
 
 const onSubmit = handleSubmit((values) => {
-  // console.log(values);
-  // console.log(commercialStore.token.acces_token);
-  // commercialStore.smallFormOrder(commercialStore.token.access_token);
+  formStore.fillForm(values);
+  // commercialStore.smallFormOrder(commercialStore.token.access_token, values);
   router.push({ path: "/order" });
 });
 
