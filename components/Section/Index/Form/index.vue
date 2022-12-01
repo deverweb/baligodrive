@@ -127,8 +127,6 @@ const onSubmit = handleSubmit((values) => {
 const handleTextField = (value) => {
   formData.value.phone = value;
 };
-
-const bikeOptions = [{}];
 </script>
 
 <style lang="sass"></style>
