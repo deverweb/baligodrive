@@ -68,7 +68,6 @@ export const useFormStore = defineStore("form", () => {
     bike,
     dates,
     client_name,
-    client_name,
     computedPrice,
     computedDate,
     computedDateStr,
