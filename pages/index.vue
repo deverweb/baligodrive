@@ -7,7 +7,7 @@
       @click="handle"
       >123123</TheButton
     > -->
-    <!-- <SectionIndexOffer></SectionIndexOffer>
+    <SectionIndexOffer></SectionIndexOffer>
     <SectionSimpleSixBlocks
       class="pt-[123px] pb-[245px] md:pb-[195px] xsm:pb-[155px] md:pt-[93px] sm:pt-[76px]"
       :blocks="indexSixBlocks"
@@ -22,7 +22,7 @@
       :title="'Частые вопросы'"
       :subTitle="'Все что вам нужно знать о нашем сервисе!'"
     ></SectionFaq>
-    <SectionIndexInvest></SectionIndexInvest> -->
+    <SectionIndexInvest></SectionIndexInvest>
   </main>
 </template>
 

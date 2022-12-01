@@ -14,7 +14,7 @@ const nuxtApp = useNuxtApp();
 const store = useGlobalStore();
 const commersialStore = useCommercialStore();
 
-commersialStore.fillData();
+// commersialStore.fillData();
 
 nuxtApp.hook("page:finish", () => {
   store.activeMobileMenu = false;
