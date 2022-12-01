@@ -904,7 +904,7 @@ const onSubmit = handleSubmit((values) => {
     },
     commercialStore.token
   );
-  console.log(values);
+  // console.log(values);
 });
 </script>
 

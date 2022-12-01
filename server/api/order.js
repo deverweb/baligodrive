@@ -30,6 +30,5 @@ export default defineEventHandler(async (event) => {
     },
   });
   let result = await response.text();
-  console.log("orderjs api, result fetch", result);
   return result;
 });

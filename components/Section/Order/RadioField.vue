@@ -67,10 +67,8 @@ const emit = defineEmits(["bikeImgChanged"]);
 
 const handleChange = (value) => {
   if (value.bike) {
-    console.log("changed bike");
     emit("bikeImgChanged", value);
   }
-  console.log("changed", value);
 };
 
 let checked = ref(props.options[0]);

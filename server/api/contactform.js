@@ -1,7 +1,6 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   var formdata = new FormData();
-  console.log("contactform body", body);
   formdata.append("name", body.data.client_name);
   formdata.append("surname", " ");
   formdata.append("phone", body.data.client_phone);

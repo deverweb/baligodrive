@@ -32,12 +32,6 @@ useHead({
   title: "BaliGo Bike",
 });
 const store = useCommercialStore();
-const handle = () => {
-  console.log("store.token", store.token.access_token);
-  store.smallFormOrder(store.token.access_token);
-
-  // store.orderBike("bike", store.token.access_token);
-};
 
 const indexSixBlocks = [
   {

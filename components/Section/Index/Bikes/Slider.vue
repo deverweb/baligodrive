@@ -99,10 +99,10 @@ import { storeToRefs } from "pinia";
 const modules = [Navigation];
 
 let store = useCommercialStore();
-console.log("in slider componentt, store bikes", store.bikes);
-console.log(store.bikes[0]);
-console.log(store.bikes[1]);
-console.log(store.bikes[2]);
+// console.log("in slider componentt, store bikes", store.bikes);
+// console.log(store.bikes[0]);
+// console.log(store.bikes[1]);
+// console.log(store.bikes[2]);
 let { bikes } = storeToRefs(store);
 bikes.value = Object.values(
   store.bikes.reduce((unique, o) => {

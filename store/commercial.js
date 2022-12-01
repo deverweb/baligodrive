@@ -29,7 +29,6 @@ export const useCommercialStore = defineStore("commercial", () => {
         drawing: val.group.split("+")[1].trim(),
       };
     });
-    console.log("store bikes", bikes.value);
     bikeModels.value = data.value.bikes.map((val, i) => {
       return {
         name: val.brand + " " + val.mark,
@@ -57,7 +56,6 @@ export const useCommercialStore = defineStore("commercial", () => {
         data: values,
       },
     });
-    console.log("smallorderfform datavalue", data.value);
   };
   // return { bikes, surfBoards, fillData }
   return {
