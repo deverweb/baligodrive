@@ -120,7 +120,7 @@ const formData = ref({
 
 const onSubmit = handleSubmit((values) => {
   formStore.fillForm(values);
-  // commercialStore.smallFormOrder(commercialStore.token.access_token, values);
+  commercialStore.smallFormOrder(commercialStore.token.access_token, values);
   router.push({ path: "/order" });
 });
 
