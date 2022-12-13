@@ -1,11 +1,5 @@
 <template>
   <main class="flex-grow">
-    <!-- <TheButton
-      v-if="true"
-      class="z-[250] fixed w-[350px] h-[70px]"
-      @click="handle"
-      >123123</TheButton
-    > -->
     <SectionIndexOffer></SectionIndexOffer>
     <SectionSimpleSixBlocks
       class="pt-[123px] pb-[245px] md:pb-[195px] xsm:pb-[155px] md:pt-[93px] sm:pt-[76px]"
@@ -16,11 +10,93 @@
     <SectionIndexBikesSlider></SectionIndexBikesSlider>
     <SectionIndexForm></SectionIndexForm>
     <SectionIndexCards></SectionIndexCards>
-    <SectionFaq
-      :questions="questions"
-      :title="'Частые вопросы'"
-      :subTitle="'Все что вам нужно знать о нашем сервисе!'"
-    ></SectionFaq>
+    <section class="pb-[130px]">
+      <h2
+        class="section-title text-center mb-[90px] md:mb-[26px] xsm:mb-[30px]"
+      >
+        Частые<br />вопросы
+      </h2>
+      <div class="container mb-[40px]">
+        <ul class="faq-tabs sm:hidden flex items-center">
+          <li
+            :class="{ active: activeSlide == 1 }"
+            class="text-center"
+            @click="changeTab(1)"
+          >
+            Основные
+          </li>
+          <li
+            :class="{ active: activeSlide == 2 }"
+            class="text-center"
+            @click="changeTab(2)"
+          >
+            Полезное
+          </li>
+          <li
+            :class="{ active: activeSlide == 3 }"
+            class="text-center"
+            @click="changeTab(3)"
+          >
+            Доставка и страховка
+          </li>
+        </ul>
+        <div class="faq-phone-tabs hidden font-Euroblack text-[12px] sm:block">
+          <div
+            @click="activeTabList = !activeTabList"
+            class="faq-phone-current px-[30px]"
+          >
+            <span>{{ currentTabText }}</span>
+            <SvgArrowDownIcon
+              class="transition-transform"
+              :class="{ 'rotate-180': activeTabList }"
+            ></SvgArrowDownIcon>
+          </div>
+          <ul class="faq-phone-list" v-show="activeTabList">
+            <li
+              @click="changeTab(1)"
+              :class="{ active: activeSlide == 1 }"
+              class="pl-[30px] h-[60px] flex items-center"
+            >
+              Основные
+            </li>
+            <li
+              @click="changeTab(2)"
+              :class="{ active: activeSlide == 2 }"
+              class="pl-[30px] h-[60px] flex items-center"
+            >
+              Полезное
+            </li>
+            <li
+              @click="changeTab(3)"
+              :class="{ active: activeSlide == 3 }"
+              class="pl-[30px] h-[60px] flex items-center"
+            >
+              Доставка и страховка
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-questions-inner">
+        <SectionFaq
+          class="mt-[50px] pt-[0px] top-0"
+          :questions="questions1"
+          v-if="activeSlide == 1"
+        ></SectionFaq>
+
+        <SectionFaq
+          class="mt-[50px] pt-[0px] top-0"
+          :questions="questions2"
+          v-if="activeSlide == 2"
+        ></SectionFaq>
+
+        <SectionFaq
+          class="mt-[50px] pt-[0px] top-0"
+          :questions="questions3"
+          v-if="activeSlide == 3"
+        ></SectionFaq>
+      </div>
+    </section>
+
     <SectionIndexInvest></SectionIndexInvest>
   </main>
 </template>
@@ -32,6 +108,37 @@ useHead({
   title: "BaliGo Bike",
 });
 const store = useCommercialStore();
+let phone = ref("");
+let activeSlide = ref(1);
+let activeTabList = ref(false);
+const changeTab = (slide) => {
+  activeSlide.value = slide;
+};
+
+watch(
+  () => activeSlide.value,
+  () => {
+    activeTabList.value = false;
+  }
+);
+
+const slide = ref([
+  {
+    slide: 1,
+    text: "Основное",
+  },
+  {
+    slide: 2,
+    text: "Полезное",
+  },
+  {
+    slide: 3,
+    text: "Доставка и страховка",
+  },
+]);
+let currentTabText = computed(() => {
+  return slide.value.find((val) => val.slide == activeSlide.value).text;
+});
 
 const indexSixBlocks = [
   {
@@ -83,6 +190,140 @@ const questions = ref([
     text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации.",
   },
 ]);
+const questions1 = [
+  {
+    title: "Как арендовать байк?",
+    text: "Вы можете сделать это, оставив заявку на сайте baligo.bike или написать нам в WatsApp или Telegram. С вами свяжется менеджер для подтверждения заказа, а также ответит на все интересующие вопросы.",
+  },
+  {
+    title: "Как я могу оплатить за аренду байка?",
+    text: "Для Вас мы предусмотрели самые удобные варианты оплаты, в частности вы можете оплатить на сайте или у нас в офисе:<br>Банковскими картами Visa, Mastercard, Мир;<br>Криптовалютой;<br>Наличными в офисе или при доставке байка;",
+  },
+  {
+    title: "Что входит в аренду байка?",
+    text: `<div>В стоимость аренды байка по умолчанию входит:
+			<ul class="list-disc">
+				<li>Полная страховка (угон и повреждения байка);</li>
+				<li>2 новых стандартных шлема;</li>
+				<li>Держатель для телефона;</li>
+				<li>Дождевик;</li>
+				<li>Аптечка;</li>
+			</ul>
+			<br>Также дополнительные аксессуары Вы можете заказать при бронировании байка</div>`,
+  },
+
+  {
+    title: "Можно уехать на соседний остров?",
+    text: "На всей арендованной технике пределы острова Бали покидать запрещено.",
+  },
+  {
+    title: "Как понять, какой байк мне подходит?",
+    text: "Всё зависит от Вас, но есть несколько критериев, которые могут Вам помочь выбрать нужную модель:<br>- Если Вы планируете поездки на небольшие расстояния вдвоём или только водитель, то Вам подойдут мини скутеры: Honda Vario, Yamaha Lexi, Yamaha Gear, Yamaha Mio M3, Yamaha Free Go, Yamaha XRide<br>- Если Ваши поездки будут дальними и/или с пассажиром, то рекомендуем выбрать более мощные и комфортные байки - Yamaha Aerox, Yamaha Nmax, Honda PCX, Honda AVD",
+  },
+  {
+    title: "Что делать если я арендовал байк, но мне не удобно/ не нравится?",
+    text: "Если вы арендовали у нас байк и он вас не устраивает, то можно всегда с доплатой поменять его на байк лучше либо же просто вернуть транспорт и получить остаток суммы аренды по нашей политике возвратов",
+  },
+];
+const questions2 = [
+  {
+    title:
+      "Что делать если я попал в ДТП, а виноват местный. Как договариваться?",
+    text: "Важно понимать, что если на Бали происходит дорожное происшествие без серьезного ущерба здоровью, никто не вызывает полицейскую службу и все расходятся полюбовно. В случае конфликтной ситуации на дороге, - самое главное не паниковать и уведомить владельца или компанию по аренде, для скорейшей помощи и решения ситуации.",
+  },
+  {
+    title: "Какие основные штрафы за нарушение ПДД есть на Бали?",
+    text: "Пересечение СТОП-ЛИНИИ на красном сигнале светофора -  штраф от 500.000 до 1.000.000 IDR<br>Управление байком без шлема - штраф от 250.000 до 500.000 IDR<br>Пассажир на байке без шлема - штраф от 250.000 до 500.000 IDR<br>Передвижение на байке втроем - штраф от 250.000 до 500.000 IDR<br>Управление байком без МВУ (категория 'А') штраф от 1.000.000 до 1.500.000 IDR.",
+  },
+  {
+    title: "Нужны ли права для аренды байка?",
+    text: "Мы не требуем от Вас наличие категории А в водительском удостоверении.Но учтите, что по закону наличие прав для вождения байка с соответствующей категорией обязательно.",
+  },
+  {
+    title: "Что делать, если меня остановила полиция, а прав нет?",
+    text: "Если у вас нет прав, то мы советуем откладывать 100 тысяч рупий отдельно в карман для таких ситуаций чтобы оперативно на нейтрально-позитивной волне решать вопрос маленьким пожертвованием полицейским.",
+  },
+  {
+    title: "Можно ли ездить по острову с правами другой страны?",
+    text: "Если Ваши водительские права нового образца - пластик и с переводом на английский язык, то они котируются в Индонезии.При возможности желательно сделать международные права( книжечка) перед отлетом, так как даже при наличии прав нового образца полиция может захотеть облегчить ваши карманы.",
+  },
+  {
+    title: "Можно ли сделать местные права?",
+    text: "На данный момент можно получить только туристические права, которые будут действовать год по всей Индонезии. Выдают их в полиции без каких либо тестов, обращайтесь и мы поделимся с вами контактом",
+  },
+  {
+    title: "Каким бензином лучше всего заправляться и где это делать?",
+    text: "На Бали есть только одна сеть заправок - Pertamania. Вам нужен Pertamax(92) синего цвета. Бензин также можно приобрести практически в любом районе у местных, но он будет дороже, чем на заправке. Они выставляют стеклянные бутылки вдоль дороги или маленькую колонку при своем магазине.",
+  },
+];
+const questions3 = [
+  {
+    title: "Бесплатно ли доставляют транспорт ?",
+    text: "Любой транспорт арендованный у нас мы доставляем/принимаем в радиусе 25 км от нашего автопарка в Чангу, в наше рабочее время. Дальние доставки или доставка/возврат вне рабочего времени возможны, но за дополнительную плату.",
+  },
+  {
+    title: "Есть ли у вас страховка техники и на каких условиях?",
+    text: "На все байки мы предоставляем полную страховку от угона и повреждений, которая входит в стоимость аренды. Мы не предоставляем технику в аренду без полной страховки.",
+  },
+  {
+    title: "Что делать, если украли байк?",
+    text: "На все наши байки мы предоставляем полную страховку от угона и повреждений. Если байк украли - необходимо известить нас и мы организуем замену.",
+  },
+  {
+    title: "Могу ли я передать арендованный байк другому лицу?",
+    text: "Если срок аренды еще не подошел к концу и Вы решили, что Вам транспорт больше не нужен, то у Вас есть возможность передать байк другому лицу. Для этого Вам надо обратиться к нашему менеджеру и попросить переоформить договор на другого человека. Стоимость процедуры переоформления - $10",
+  },
+  {
+    title: "Правила возврата денежных средств",
+    text: "Если по каким-либо причинам у Вас сдвинулись даты поездки, то Вы можете не переживать за произведенную оплату. Оплатой можно воспользоваться позже или подарить  другому человеку. Оплата не сгорает и ей можно воспользоваться в любой момент.",
+  },
+];
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+.faq
+	&-phone
+		&-list
+			border-radius: 12px
+			background-color: #181818
+			li
+				opacity: 0.2
+				transition: 0.2s ease all
+				&:hover
+					opacity: 1
+				&.active
+					opacity: 1
+		&-tabs
+			cursor: pointer
+		&-current
+			cursor: pointer
+			border-radius: 12px
+			height: 60px
+			border: 1px solid #909090
+			display: flex
+			align-items: center
+			justify-content: space-between
+	&-tabs
+		display: flex
+		align-items: center
+		white-space: nowrap
+		+r(768)
+			display: none
+		li
+			flex-grow: 1
+			flex-basis: 0px
+			text-transform: uppercase
+			+eu
+			font-size: 20px
+			color: $light
+			padding-bottom: 30px
+			opacity: 0.2
+			transition: all 0.2s ease
+			cursor: pointer
+			border-bottom: 2px solid rgba($light, 0.2)
+			+r(1200)
+				font-size: 16px
+			&.active
+				opacity: 1
+				border-bottom: 2px solid $light
+</style>

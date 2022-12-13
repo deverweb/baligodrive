@@ -13,13 +13,17 @@
       <SvgCalendarIcon :fill="'#111111'"></SvgCalendarIcon>
     </CustomFieldBtn>
     <Transition :name="props.transition">
-      <CustomDatePickerPanel
+      <div
+        class="date-container lg:h-[374px] lg:flex lg:items-end"
         v-show="isActivePicker"
-        @daypick="onDatePick"
-        @close="isActivePicker = !isActivePicker"
-        :active="isActivePicker"
-        class="dp-panel lg:h-[364px] sm:h-auto"
-      ></CustomDatePickerPanel>
+      >
+        <CustomDatePickerPanel
+          @daypick="onDatePick"
+          @close="isActivePicker = !isActivePicker"
+          :active="isActivePicker"
+          class="dp-panel lg:h-[364px] sm:h-auto"
+        ></CustomDatePickerPanel>
+      </div>
     </Transition>
     <Transition name="text-error">
       <div class="ci-error-container" v-show="errorMessage">
@@ -40,7 +44,6 @@ const props = defineProps({
   styleType: String,
 
   transition: {
-    default: "slide-right",
     type: String,
   },
 });
@@ -109,44 +112,25 @@ const { value, errorMessage } = useField(props.name, isRequired);
 	+r(768)
 		max-height: initial
 		transform: scale(0.5)
-.widget-date-enter-active, .widget-date-leave-active
-	z-index: 5
-	transition: .2s all ease-in-out
-	+r(1200)
-		max-height: 374px
-		transition: 0.3s all
+.slide-right-enter-active,.slide-right-leave-active
+	transition: .3s all linear
+	overflow: hidden
 	+r(768)
-		transition: 0.2s all
-		max-height: initial
-		z-index: 150
+		transition: 0.2s all ease-in
 .slide-right-enter-from, .slide-right-leave-to
 	opacity: 0
 	transform: translateX(-20px)
 	+r(1200)
-		transform: translateY(374px)
-		max-height: 0px
+		// transform: translateY(-20px)
+		transform: none
+		height: 0px
 	+r(768)
-		max-height: initial
-		transform: scale(0.5)
+		height: auto
+
+		transform: scale(0.8)
 
 :root
 	--green-600: $green
-.datepicker
-	&-head
-		// &-close
-		// 	position: relative
-		// 	span
-		// 		height: 21px
-		// 		width: 2px
-		// 		border-radius: 4px
-		// 		background: $light
-		// 		position: absolute
-		// 		top: -10px
-		// 		right: 10px
-		// 		&:first-child
-		// 			transform: rotate(45deg)
-		// 		&:last-child
-		// 			transform: rotate(-45deg)
 
 .dp
 	.vc-container
@@ -168,6 +152,11 @@ const { value, errorMessage } = useField(props.name, isRequired);
 	.vc-weeks
 		padding: 20px
 	&.dp__widget-form
+		.date-container
+			position: absolute
+			top: 0
+		.datepicker-panel
+			position: absolute
 		.dp-panel
 			right: calc(100% + 55px)
 			top: 0
@@ -181,15 +170,20 @@ const { value, errorMessage } = useField(props.name, isRequired);
 			color: rgb(220,38, 38)
 			font-size: 12px
 	&.dp__index-form
-		.dp-panel
+		.date-container
 			position: absolute
 			left: calc(100% + 25px)
 			top: 0
+
 			+r(1200)
 				width: 100%
 				left: 0
 				top: initial
 				bottom: 0
+				position: static
+			.dp-panel
+				+r(1200)
+					width: 100%
 		.ci-error
 			color: #dc2626
 			font-size: 14px

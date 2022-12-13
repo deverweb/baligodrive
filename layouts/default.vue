@@ -6,5 +6,8 @@
     <slot></slot>
     <TheFooter></TheFooter>
     <Widget></Widget>
+    <BikeModal></BikeModal>
   </div>
 </template>
+
+<script setup></script>

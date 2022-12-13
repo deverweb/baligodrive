@@ -17,7 +17,7 @@ button, input
 	outline: none
 html, body
 	min-height: 100vh
-	height: 100%
+	height: auto
 	+helvr
 body
 	color: $light
@@ -27,6 +27,16 @@ body
 	scrollbar-width: none
 	// overflow-x: hidden
 	background-color: #111111
+	&::-webkit-scrollbar
+		display: none
+	.bmodal
+		-ms-overflow-style: none
+		scrollbar-width: none
+		// overflow-x: hidden
+		&::-webkit-scrollbar
+			display: none
+	&.active-bmodal
+		overflow: hidden
 	&.active-popup
 		overflow: hidden
 	&.active-datepicker
@@ -35,8 +45,6 @@ body
 	&.active-widget
 		+r(768)
 			overflow: hidden
-	&::-webkit-scrollbar
-		display: none
 .container
 	max-width: 1400px
 	padding: 0 16px

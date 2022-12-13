@@ -78,13 +78,14 @@
       >
         <SwiperSlide
           class="max-w-[440px] xsm:max-w-[340px] xsm:w-[100%]"
-          v-for="(bike, i) in store.bikes"
+          v-for="(bike, i) in store.bikeModelsArray"
         >
           <SectionIndexBikesSlide
             :data-index="('slide= ', i)"
             :bikeName="bike.name"
             :imgSrc="bike.img"
             :price="bike.hourPriceUsd"
+            :id="bike.id"
           >
           </SectionIndexBikesSlide>
         </SwiperSlide>
@@ -102,6 +103,7 @@ import { storeToRefs } from "pinia";
 const modules = [Navigation];
 
 let store = useCommercialStore();
+// console.log("slider: ", store.bikeModelsArray);
 // let { bikes } = storeToRefs(store);
 // bikes.value = Object.values(
 //   store.bikes.reduce((unique, o) => {

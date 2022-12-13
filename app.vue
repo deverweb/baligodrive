@@ -20,6 +20,16 @@ nuxtApp.hook("page:finish", () => {
   store.activeMobileMenu = false;
   window.scrollTo(0, 0);
 });
+
+useHead({
+  script: [
+    {
+      src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAqNPzsf4Ee-OuexRYSOddBXzMHQnHuxME&libraries=places",
+      async: true,
+      defer: true,
+    },
+  ],
+});
 </script>
 
 <style lang="sass">

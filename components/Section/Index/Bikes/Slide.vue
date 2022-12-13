@@ -39,6 +39,7 @@
     </div>
     <div class="bike-bottom flex items-center justify-between">
       <TheButton
+        @click="handleBikeClick"
         class="h-[70px] btn-primary btn-primary__light white xsm:text-[12px] lil:mr-[8px] lil:text-[10px] lil:gap-[6px] xsm:h-[54px] xsm:w-full xsm:mr-[25px] gap-[11px] w-[250px] px-0 py-0 text-[16px] font-Helvmed text-light"
       >
         <SvgCalendarIcon
@@ -49,6 +50,7 @@
         >
       </TheButton>
       <button
+        @click="handleDetailsClick(props.id)"
         class="bike-detailed font-Helvmed text-center text-[14px] xsm:text-[10px] xsm:tracking-[0.6px]"
       >
         Подробнее
@@ -58,23 +60,38 @@
 </template>
 
 <script setup>
+import { useCommercialStore } from "~~/store/commercial";
+import { useGlobalStore } from "~~/store/global";
+import { useIndexFormStore } from "~~/store/indexform";
+
 const props = defineProps({
+  id: String,
   bikeName: String,
   imgSrc: String,
   price: String,
   description: String,
 });
+
+const indexFormStore = useIndexFormStore();
+const commercialStore = useCommercialStore();
+const globalStore = useGlobalStore();
+
+const handleDetailsClick = (bikeId) => {
+  // console.log("globastoer.activeId before", globalStore.activeBikeId);
+  globalStore.setActiveBikeModal(bikeId);
+  // console.log("globastoer.activeI afd after", globalStore.activeBikeId);
+};
+
+const handleBikeClick = (event) => {
+  indexFormStore.changeSelectedOption(
+    commercialStore.bikes.find((val) => val.id == props.id)
+  );
+
+  document.querySelector(".order ").scrollIntoView({ behavior: "smooth" });
+};
 </script>
 
 <style lang="sass">
-@mixin r($screenWidth)
-	@media only screen and (max-width: $screenWidth + 'px')
-		@content
-
-
-@mixin rmin($screenWidth)
-	@media only screen and (min-width: $screenWidth + 'px')
-		@content
 
 .bike
 	box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.07)

@@ -1,5 +1,5 @@
 <template>
-  <div class="ci">
+  <div class="ci relative" ref="rootInput">
     <div
       class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50"
       v-if="props.subTitle"
@@ -14,9 +14,23 @@
         v-model="value"
         :placeholder="props.placeholder"
         class="ci-input"
+        @input="handleChange"
+        :class="{ autocomplete: props.autocomplete }"
         type="text"
       />
     </div>
+    <Transition name="slide-down">
+      <ul
+        class="ci-suggests absolute pl-[30px] top-0 left-0 right-0"
+        v-if="false"
+        v-show="activeList"
+      >
+        <li class="h-[50px] flex items-center">Test</li>
+        <li class="h-[50px] flex items-center">Test</li>
+        <li class="h-[50px] flex items-center">Test</li>
+        <li class="h-[50px] flex items-center">Test</li>
+      </ul>
+    </Transition>
     <Transition name="text-error">
       <div class="ci-error-container" v-if="errorMessage">
         <div class="ci-error">
@@ -41,9 +55,12 @@ const props = defineProps({
   },
   type: String,
   subTitle: String,
+  disabled: Boolean,
+  autocomplete: Boolean,
 });
-
+let rootInput = ref(null);
 let isRequired = (value) => {
+  if (props.disabled) return true;
   if (props.type == "number") {
     if (!value) {
       return "Обязательное поле";
@@ -67,6 +84,45 @@ let nameRef = toRef(props, "name");
 const { errorMessage, value } = useField(nameRef, isRequired);
 
 const emit = defineEmits(["fieldValue"]);
+let activeList = ref(false);
+
+const handleChange = (event) => {
+  // console.log("event.value", event.target.value);
+  // if (!event.target.value) {
+  //   activeList.value = false;
+  //   return;
+  // }
+  // activeList.value = true;
+  // const displaySuggestions = function (predictions, status) {
+  //   if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
+  //     alert(status);
+  //     return;
+  //   }
+  //   predictions.forEach((prediction) => {
+  //     console.log(prediction);
+  //   });
+  // };
+  // service.value.getQueryPredictions(
+  //   {
+  //     input: event.target.value,
+  //   },
+  //   displaySuggestions
+  // );
+};
+let service = ref(null);
+onMounted(() => {
+  if (props.autocomplete) {
+    service.value = new window.google.maps.places.AutocompleteService({
+      componentRestrictions: { country: ["IDN"] },
+    });
+    // rootInput.value.querySelector("input"),
+    //   {
+    //     types: ["establishment"],
+    //     componentRestrictions: { country: ["IDN"] },
+    //     fields: ["place_id", "geometry", "name"],
+    //   }
+  }
+});
 </script>
 
 <style lang="sass">
@@ -81,7 +137,42 @@ const emit = defineEmits(["fieldValue"]);
 	max-height: 0px
 	opacity: 0
 	transform: translateY(-25px)
+.pac-container
+	margin-top: -44px
+	margin-left: -53px
+	background-color: #353535
+	color: $light
+	border: none
+.pac-logo
+
+.pac-item
+	color: $light
+	border: none
+	padding: 8px 4px
+	&:hover
+		background-color: lighten(#353535, 10%)
+	span
+		opacity: 1
+	&-query
+		opacity: 1
+		color: $light
+	.pac-matched
+		color: white
+		font-weight: bold
+		opacity: 1
 .ci
+	&-suggests
+		background-color: #353535
+		top: 100%
+		border-radius: 12px
+		padding: 0
+		z-index: 10
+		&.active
+		li
+			cursor: pointer
+			padding-left: 30px
+			&:hover
+				background-color: lighten(#353535, 10%)
 	&.ci__widget-form
 		position: relative
 		border-bottom: 1px solid #f3f3f3

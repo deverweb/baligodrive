@@ -1,6 +1,6 @@
 <template>
   <div
-    class="datepicker-panel xsm:px-[25px] absolute xsm:flex xsm:flex-col xsm:bg-[#181818]"
+    class="datepicker-panel xsm:px-[25px] xsm:flex xsm:flex-col xsm:bg-[#181818]"
     :class="{ 'z-[50]': props.active }"
   >
     <Teleport to="body">

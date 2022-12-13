@@ -156,17 +156,20 @@
         >
           <SectionOrderStep
             class="mb-[38px] sm:mb-[31px]"
-            number="4"
+            number="3"
             text="Выберите локации доставки и возврата"
           ></SectionOrderStep>
           <div
             class="order-stamp-top sm:gap-0 sm:gap-x-[10px] mb-[38px] md:gap-x-[20px] md:mb-[64px] md:gap-y-[21px] md:flex-wrap flex items-center"
           >
             <CustomTextField
+              :class="{ 'opacity-50 pointer-events-none': isDeliveryOfficy }"
               type="string"
-              class="ci__payment-form sm:mb-[23px] flex-shrink flex-grow md:mr-0 mr-[25px]"
+              :disabled="isDeliveryOfficy"
+              class="ci__payment-form sm:w-[248px] transition-opacity sm:mb-[23px] flex-shrink flex-grow md:mr-0 mr-[25px]"
               :subTitle="'Локация доставки'"
               :name="'firstAddress'"
+              :autocomplete="true"
               :placeholder="'Введите адрес'"
             >
               <SvgGeoIcon
@@ -199,6 +202,7 @@
               :addText="false"
               :checked="false"
               :name="'getAtOffice'"
+              v-model:isChecked="isDeliveryOfficy"
               ><span class="sm:text-[16px] text-[14px] font-Helvmed"
                 >Заберу в офисе</span
               ></SectionOrderCheckboxField
@@ -209,9 +213,12 @@
           >
             <CustomTextField
               type="string"
-              class="ci__payment-form sm:mb-[23px] flex-grow flex-shrink md:mr-0 mr-[25px]"
+              class="ci__payment-form sm:mb-[23px] sm:w-[248px] flex-grow flex-shrink md:mr-0 mr-[25px]"
               :subTitle="'Локация возврата'"
               :name="'lastAddress'"
+              :autocomplete="true"
+              :disabled="isReturnOffice"
+              :class="{ 'opacity-50 pointer-events-none': isReturnOffice }"
               :placeholder="'Введите адрес'"
             >
               <SvgGeoIcon
@@ -243,6 +250,7 @@
               class="ml-[50px] sm:w-auto md:ml-0 w-[142px] relative top-[17px]"
               :addText="false"
               :checked="false"
+              v-model:isChecked="isReturnOffice"
               :name="'returnAtOffice'"
               ><span class="sm:text-[16px] text-[14px] font-Helvmed"
                 >Отдам в офисе</span
@@ -253,7 +261,7 @@
         <div class="border-bottom order-step sm:py-[40px] py-[50px]">
           <SectionOrderStep
             class="mb-[38px] sm:mb-[28px]"
-            number="5"
+            number="4"
             text="Введите ваши контактные данные"
           ></SectionOrderStep>
           <div
@@ -263,8 +271,8 @@
               :type="'string'"
               class="ci__payment-form"
               name="clientName"
-              placeholder="Введите ваши ФИО"
-              :subTitle="'ФИО'"
+              placeholder="Фамилия"
+              :subTitle="'Ваша Фамилия'"
             >
               <SvgPersonIcon></SvgPersonIcon
             ></CustomTextField>
@@ -395,7 +403,11 @@
           <div
             class="order-view-images w-[45%] md:mb-[90px] md:max-h-[360px] md:flex xl:hidden md:ml-0 flex ml-auto flex-shrink-0"
           >
-            <img class="flex-shrink-0 h-[230px]" :src="bikeImage" alt="" />
+            <img
+              class="flex-shrink-0 h-[230px] object-contain"
+              :src="bikeImage"
+              alt=""
+            />
             <img v-if="false" class="flex-shrink-0" :src="bikeImage" alt="" />
           </div>
           <div
@@ -609,8 +621,8 @@
             class="order-view-images md:justify-center md:mb-[90px] sm:mb-[52px] md:max-h-[360px] md:flex xl:hidden md:ml-0 flex ml-auto flex-shrink-0"
           >
             <img
-              class="flex-shrink-0 sm:w-[85%] sm:mr-[25px] sm:object-contain mr-[25px] md:mr-0"
-              src="/img/order/modal-bike.png"
+              class="flex-shrink-0 object-contain sm:w-[85%] sm:mr-[25px] sm:object-contain mr-[25px] md:mr-0"
+              :src="bikeImage"
               alt=""
             />
             <img
@@ -650,7 +662,7 @@
                 <div
                   class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
                 >
-                  {{ formStore.bike.hourPriceUsd }}$ / день
+                  <!-- {{ formStore.bike.hourPriceUsd }}$ / день -->
                 </div>
               </div>
             </div>
@@ -825,7 +837,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useFormStore } from "~~/store/form";
 import { useCommercialStore } from "~~/store/commercial";
 gsap.registerPlugin(ScrollTrigger);
-const nuxtApp = useNuxtApp();
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
 
@@ -835,21 +846,21 @@ const formStore = useFormStore();
 //     end: "2022-12-31T15:00:43.433Z",
 //   },
 //   bike: {
-//     id: "9269",
-//     hourPriceUsd: "10",
-//     img: "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
+//     id: "9221",
+//     hourPriceUsd: "15",
+//     img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
 //     allImages: [
-//       "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
+//       "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
 //     ],
 //     description: {
 //       title: "Описание",
 //       value: "",
 //     },
 //     brand: "HONDA",
-//     group: "Honda PCX 160 cc + Test",
-//     mark: "PCX 160 CC",
-//     name: "HONDA PCX 160 CC",
-//     drawing: "Test",
+//     group: "Honda Vario 160 cc + Red Bull",
+//     mark: "VARIO 160 CC",
+//     name: "HONDA VARIO 160 CC",
+//     drawing: "Red Bull",
 //   },
 //   client_name: "123",
 //   client_phone: "123123",
@@ -864,12 +875,16 @@ let drawingsBikes = drawings.map((val, i) => {
     name: val.drawing,
     price: val.hourPriceUsd,
     img: val.img,
+    drawing: val.drawing,
   };
 });
 let bikeImage = ref(formStore.bike.img);
 const handleBikeImage = (payload) => {
   bikeImage.value = payload.img;
 };
+
+let isDeliveryOfficy = ref(false);
+let isReturnOffice = ref(false);
 
 const { handleSubmit } = useForm();
 let order = ref(null);
@@ -919,8 +934,17 @@ onBeforeUnmount(() => {
   ScrollTrigger.getById("index").kill();
 });
 
-const onSubmit = handleSubmit((values) => {
-  commercialStore.orderBike(
+const onSubmit = handleSubmit(async (values) => {
+  // console.log("values: ", values);
+  // console.log("commercisl store oRderBike");
+  // console.log("date Formstore.dates:", formStore.dates);
+  // console.log(
+  // "commercialStore.companyInfo.locations[0]L: ",
+  // commercialStore.companyInfo.locations[0]
+  // );
+  // console.log("commercialStore.token: ", commercialStore.token);
+
+  await commercialStore.orderBike(
     {
       ...values,
       date: formStore.dates,
@@ -928,7 +952,7 @@ const onSubmit = handleSubmit((values) => {
     },
     commercialStore.token
   );
-  // console.log(values);
+  useRouter().push("/payment");
 });
 </script>
 

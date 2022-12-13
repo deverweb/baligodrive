@@ -11,8 +11,15 @@
 .btn-primary
 	transition: all 0.2s ease
 	background-color: $green
+	border: 1px solid transparent
 	svg, path
 		transition: all 0.2s ease
+	&__blue
+		background-color: #20A0E1
+		&:hover
+			background-color: transparent
+			color: $light
+			border: 1px solid #20A0E1
 	&__dark
 		&:hover
 			background-color: transparent

@@ -6,7 +6,8 @@ export default defineNuxtConfig({
         { charset: "utf-8" },
         {
           name: "viewport",
-          content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+          content:
+            "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
         },
         { "http-equiv": "x-ua-compatible", content: "IE=edge" },
         // {
@@ -21,6 +22,7 @@ export default defineNuxtConfig({
     // layoutTransition: true,
     // pageTransition: { name: "page", mode: "out-in" },
   },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -34,11 +36,19 @@ export default defineNuxtConfig({
   router: {
     options: {},
   },
-  plugins: [{ src: "~/plugins/v-calendar", ssr: false, mode: "client" }],
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n", ["@pinia/nuxt", { autoImports: ["defineStore", "acceptHMRUpdate"] }]],
+  plugins: [
+    { src: "~/plugins/v-calendar", ssr: false, mode: "client" },
+    { src: "~/plugins/vue-tel-input", ssr: false, mode: "client" },
+  ],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/i18n",
+    ["@pinia/nuxt", { autoImports: ["defineStore", "acceptHMRUpdate"] }],
+  ],
   runtimeConfig: {
     CLIENT_ID: process.env.CLIENT_ID,
     SECRET_ID: process.env.SECRET_ID,
+    GOOGLE_MAPS_API_KEY: "AIzaSyB-pliMJcE5T6ImjjMfFNzJ3vobhPfuRNs",
   },
 
   i18n: {
@@ -79,4 +89,4 @@ export default defineNuxtConfig({
       },
     },
   },
-})
+});

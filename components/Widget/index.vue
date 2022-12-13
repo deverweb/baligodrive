@@ -1,11 +1,15 @@
 <template>
   <div
+    ref="$widget"
     class="wg z-[10]"
-    :class="{ 'z-[30] active': isActiveWidget }"
+    :class="{ 'z-[40] active': isActiveWidget }"
     v-if="!isOrder"
   >
     <button class="wg-circle" @click="isActiveWidget = !isActiveWidget">
-      <SvgCalendarIcon :fill="'white'"></SvgCalendarIcon>
+      <SvgCalendarIcon
+        class="w-[18px] h-[18px]"
+        :fill="'white'"
+      ></SvgCalendarIcon>
     </button>
     <Transition name="widget">
       <form
@@ -46,18 +50,21 @@
             type="string"
             class="ci__widget-form"
             :name="'client_name'"
-            placeholder="Имя Фамилия"
+            placeholder="Ваше Имя"
           >
             <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
           </CustomTextField>
-          <CustomTextField
+          <!-- <CustomTextField
             type="number"
             class="ci__widget-form"
             name="client_phone"
             placeholder="Телефон"
           >
             <SvgPhoneIcon></SvgPhoneIcon>
-          </CustomTextField>
+          </CustomTextField> -->
+          <CustomPhoneField type="widget" name="client_phone">
+            <SvgPhoneIcon></SvgPhoneIcon>
+          </CustomPhoneField>
         </div>
         <div
           class="wg-bottom grow-0 h-[130px] shrink-0 py-[30px] bg-light rounded-b-[12px] flex items-center justify-center"
@@ -73,14 +80,19 @@
 
 <script setup>
 import { useForm } from "vee-validate";
-
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
+gsap.registerPlugin(ScrollTrigger);
 
 let commercialStore = useCommercialStore();
 let formStore = useFormStore();
 let router = useRouter();
 let route = useRoute();
+
+let $widget = ref(null);
+
 const { handleSubmit } = useForm();
 
 const onSubmit = handleSubmit((values) => {
@@ -90,6 +102,41 @@ const onSubmit = handleSubmit((values) => {
   router.push({ path: "/order" });
 });
 
+onMounted(() => {
+  window.addEventListener("scroll", handleWidgetActive);
+
+  function getDurationHeight() {
+    let pageHeight = document.querySelector(".layout").offsetHeight;
+    let footerHeight = document.querySelector("footer").offsetHeight;
+    // console.log("pageHeight: ", pageHeight);
+    // console.log("footerHeight: ", footerHeight);
+    return pageHeight - footerHeight;
+  }
+  // console.log($widget.value);
+  // gsap.to(".wg", {
+  //   scrollTrigger: {
+  //     trigger: ".offer-title",
+  //     start: "top top",
+  //     end: "top 100px",
+  //     markers: true,
+  //     pin: true,
+  //   },
+  //   // duration: 2,
+  //   // y: -200,
+  // });
+  // ScrollTrigger.create({
+  // trigger: ".offer",
+  // start: "top top",
+  // endTrigger: "header",
+  // end: () => `+=${getDurationHeight()}`,
+  // pin: $widget.value,
+  // });
+});
+
+onBeforeUnmount(() => {
+  // ScrollTrigger.getById("index").kill();
+});
+
 let bikes = Object.values(
   commercialStore.bikes.reduce((unique, o) => {
     if (!unique[o.name] || +o.date > +unique[o.name].date) unique[o.name] = o;
@@ -97,15 +144,16 @@ let bikes = Object.values(
     return unique;
   }, {})
 );
+router.afterEach(() => {
+  isActiveWidget.value = false;
+});
 
-let isActiveWidget = ref(true);
+let isActiveWidget = ref(false);
+
 let handleWidgetActive = (evt) => {
   isActiveWidget.value = false;
   window.removeEventListener("scroll", handleWidgetActive);
 };
-onMounted(() => {
-  window.addEventListener("scroll", handleWidgetActive);
-});
 
 onUnmounted(() => {
   window.removeEventListener("scroll", handleWidgetActive);
@@ -140,6 +188,12 @@ let isOrder = computed(() => {
 	position: fixed
 	right: 100px
 	bottom: 80px
+	// position: sticky
+	// right: 100px
+	// bottom: 140px
+	// top: 0
+	// right: 100px
+	// margin-left: auto
 	+r(1200)
 		right: 70px
 		bottom: 50px

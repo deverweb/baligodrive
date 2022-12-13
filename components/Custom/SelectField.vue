@@ -48,12 +48,7 @@
 </template>
 
 <script setup>
-import {
-  Field,
-  ErrorMessage,
-  useIsFieldValid,
-  useFieldError,
-} from "vee-validate";
+import { Field, ErrorMessage, useFieldError } from "vee-validate";
 
 let error = useFieldError(props.name);
 
@@ -63,16 +58,23 @@ const props = defineProps({
     required: false,
     default: {},
   },
+  selectedOption: Object || null,
   subTitle: String,
   styleType: String,
   defaultLabel: {
     type: String,
     required: true,
   },
+  selectedOption: {
+    type: Object || null,
+    required: false,
+    default: null,
+  },
   name: {
     type: String,
     required: true,
   },
+  disabled: Boolean,
 });
 let localSelectedOption = ref(null);
 let isSelectActive = ref(false);
@@ -90,23 +92,42 @@ onUnmounted(() => {
 });
 
 let computedLabel = computed(() => {
-  if (localSelectedOption.value) {
+  if (localSelectedOption.value && !props.selectedOption) {
     if (localSelectedOption.value.name) {
       return localSelectedOption.value.name;
-    } else return localSelectedOption.value;
-  } else {
-    return props.defaultLabel;
+    } else {
+      return localSelectedOption.value;
+    }
   }
+  if (props.selectedOption) {
+    if (props.selectedOption.name) {
+      return props.selectedOption.name;
+    } else {
+      return props.selectedOption;
+    }
+  }
+  return props.defaultLabel;
 });
 
-let emit = defineEmits(["toggleActive"]);
+watch(
+  () => props.selectedOption,
+  () => {
+    if (props.selectedOption) {
+      localSelectedOption.value = props.selectedOption;
+    }
+  }
+);
+
+let emit = defineEmits(["toggleActive", "update:selectedOption"]);
 
 const selectOption = (option) => {
   isSelectActive.value = false;
+  emit("update:selectedOption", option);
   localSelectedOption.value = option;
 };
 
 let isRequired = (value) => {
+  if (props.disabled) return true;
   if (!value) return "Необходимо выбрать";
   return true;
 };

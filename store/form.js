@@ -13,6 +13,7 @@ export const useFormStore = defineStore("form", () => {
     client_phone.value = body.client_phone;
     client_name.value = body.client_name;
     // formData.value = body;
+    // console.log(body);
   };
   let computedDate = computed(() => {
     if (dates.value) {

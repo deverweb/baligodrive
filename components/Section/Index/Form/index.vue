@@ -13,6 +13,7 @@
           Забронируйте байк И СЁРФ
         </h2>
         <p
+          id="orderbike"
           class="section-desc mb-[49px] sm:max-w-full lg:mb-[51px] sm:mb-[41px] max-w-[380px] lg:mx-auto"
         >
           Мы доставим ваш байк прямо к вилле или вы можете забрать его сами в
@@ -23,13 +24,16 @@
             <CustomDatePicker
               name="date"
               styleType="index-form"
+              transition="slide-right"
               class="mb-[10px] dp__index-form"
             >
             </CustomDatePicker>
             <CustomSelectField
               :styleType="'index-form'"
               class="mb-[10px] cs__index-form"
+              transition="widget-date"
               :active="formData.bikeField.active"
+              v-model:selectedOption="indexFormStore.selectedOption"
               :name="formData.bikeField.name"
               :defaultLabel="formData.bikeField.defaultLabel"
               :options="bikes"
@@ -40,11 +44,11 @@
               type="string"
               class="ci__index-form mb-[10px]"
               :name="'client_name'"
-              placeholder="Имя Фамилия"
+              placeholder="Ваше Имя"
             >
               <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
             </CustomTextField>
-            <CustomTextField
+            <!-- <CustomTextField
               type="number"
               @fieldValue="handleTextField"
               class="ci__index-form mb-[10px]"
@@ -53,7 +57,14 @@
               v-model="formData.phone"
             >
               <SvgPhoneIcon></SvgPhoneIcon>
-            </CustomTextField>
+            </CustomTextField> -->
+            <CustomPhoneField
+              class="index__phone mb-[10px]"
+              type="index"
+              name="client_phone"
+            >
+              <SvgPhoneIcon></SvgPhoneIcon>
+            </CustomPhoneField>
             <CustomSelectField
               v-if="false"
               :styleType="'index-form'"
@@ -83,15 +94,18 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
 import { useForm } from "vee-validate";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
+import { useIndexFormStore } from "~~/store/indexform";
 
 const { handleSubmit } = useForm();
 const router = useRouter();
 const bikes = ref([]);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
+const indexFormStore = useIndexFormStore();
 
 bikes.value = Object.values(
   commercialStore.bikes.reduce((unique, o) => {
