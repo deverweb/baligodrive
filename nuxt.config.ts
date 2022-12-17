@@ -141,7 +141,8 @@ export default defineNuxtConfig({
             oferta: "Договор оферты",
             terms: "Условия аренды",
             privacyPolicy: "Политика конфиденциальности",
-            dev: "Разработка сайта: Дмитрий Челпанов",
+            dev: "Разработка сайта:",
+            devName: "Дмитрий Челпанов",
           },
           terms: {
             title: "Условия аренды",
@@ -213,7 +214,8 @@ export default defineNuxtConfig({
             oferta: "Contract offer",
             terms: "Rent terms",
             privacyPolicy: "Privacy Policy",
-            dev: "Website developer: Dmitriy Chelpanov",
+            dev: "Website developer: ",
+            devName: "Dmitry Chelpanov",
           },
           terms: {
             title: "Rent terms",

@@ -77,7 +77,7 @@
         <div class="footer-dev flex">
           <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>
           <a target="_blank" href="https://t.me/chelpanoff">
-            Челпанов Дмитрий</a
+            {{ $t("footerRights.devName") }}</a
           >
         </div>
       </div>
@@ -107,7 +107,7 @@
           <div class="footer-dev mb-[10px] flex">
             <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>
             <a target="_blank" href="https://t.me/chelpanoff">
-              Челпанов Дмитрий</a
+              {{ $t("footerRights.devName") }}</a
             >
           </div>
           <div class="footer-rights">
@@ -194,7 +194,9 @@
       </div>
       <div class="footer-dev mb-[14px] flex">
         <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>
-        <a target="_blank" href="https://t.me/chelpanoff"> Челпанов Дмитрий</a>
+        <a target="_blank" href="https://t.me/chelpanoff">
+          {{ $t("footerRights.devName") }}</a
+        >
       </div>
       <div class="footer-rights">Bali.GoDrive © 2022, All rights reserved.</div>
       <div class="footer-payments flex gap-[8px] mt-[37px]">

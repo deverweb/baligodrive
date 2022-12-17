@@ -67,6 +67,7 @@
         <span>+6281337413060</span>
       </a>
       <a
+        target="_blank"
         href="https://goo.gl/maps/QbxBDe7BeCUWwEgf9"
         class="contacts-item flex xsm:gap-x-[7px] gap-x-[23px] items-start"
       >
@@ -83,6 +84,7 @@
     </div>
   </div>
   <a
+    target="_blank"
     href="https://goo.gl/maps/QbxBDe7BeCUWwEgf9"
     class="contacts-hand xsm:w-screen xsm:flex xsm:justify-end xsm:relative xsm:left-0 xsm:right-0 md:hidden lg:w-[33%] xl:w-[40%] 2xl:right-0 absolute bottom-0 right-[8%]"
   >
