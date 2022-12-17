@@ -1,6 +1,6 @@
 export const useGlobalStore = defineStore("global", () => {
   let { setLocale } = useI18n();
-
+  let router = useRouter();
   let activeLangSwitcher = ref(false);
 
   const switchLang = (lang) => {
@@ -18,21 +18,17 @@ export const useGlobalStore = defineStore("global", () => {
 
   let activeMobileMenu = ref(false);
 
-  const navigationLinks = [
+  const ruNavigationLinks = [
     {
-      label: "Главная",
+      label: "Аренда",
       to: "/",
     },
     {
-      label: "Условия аренды",
-      to: "/terms",
+      label: "Частые вопросы",
+      to: "/faq",
     },
     {
-      label: "Нужно знать",
-      to: "/mustknow",
-    },
-    {
-      label: "Стать партнёром",
+      label: "Стать партнером",
       to: "/invest",
     },
 
@@ -41,12 +37,32 @@ export const useGlobalStore = defineStore("global", () => {
       to: "/contacts",
     },
   ];
+  const enNavigationLinks = [
+    {
+      label: "Rent",
+      to: "/",
+    },
+    {
+      label: "FAQ",
+      to: "/faq",
+    },
+    {
+      label: "Partnership",
+      to: "/invest",
+    },
+
+    {
+      label: "Contacts",
+      to: "/contacts",
+    },
+  ];
 
   return {
     activeLangSwitcher,
     switchLang,
     activeMobileMenu,
-    navigationLinks,
+    ruNavigationLinks,
+    enNavigationLinks,
     activeBikeId,
     activeBikeModal,
     setActiveBikeModal,

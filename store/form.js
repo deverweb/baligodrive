@@ -6,14 +6,11 @@ export const useFormStore = defineStore("form", () => {
   let client_phone = ref(null);
   const fillForm = (body) => {
     bike.value = body.bike;
-    // console.log(bike.value);
     dates.value = body.date;
     dates.value.end = new Date(dates.value.end);
     dates.value.start = new Date(dates.value.start);
     client_phone.value = body.client_phone;
     client_name.value = body.client_name;
-    // formData.value = body;
-    // console.log(body);
   };
   let computedDate = computed(() => {
     if (dates.value) {

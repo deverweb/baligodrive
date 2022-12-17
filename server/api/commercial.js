@@ -1,14 +1,4 @@
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig();
-  const formdata = new FormData();
-  formdata.append("client_id", process.env.CLIENT_ID);
-  formdata.append("client_secret", process.env.SECRET_ID);
-  formdata.append("grant_type", "client_credentials");
-  const tokenRequestOptions = {
-    method: "POST",
-    body: formdata,
-    redirect: "follow",
-  };
   async function getCompanyInfo(token) {
     let dataResponse = await fetch(
       "https://api.rentsyst.com/v1/company/settings",
@@ -63,7 +53,7 @@ export default defineEventHandler(async (event) => {
       getVehicles(tokenResult.access_token),
       getCars(tokenResult.access_token),
     ]);
-    // console.log(dataResult)
+    // console.log(dataResult);
 
     return {
       token: tokenResult,

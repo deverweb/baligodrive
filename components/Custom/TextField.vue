@@ -43,6 +43,7 @@
 
 <script setup>
 import { useField } from "vee-validate";
+let { locale } = useI18n();
 
 const props = defineProps({
   name: {
@@ -63,17 +64,20 @@ let isRequired = (value) => {
   if (props.disabled) return true;
   if (props.type == "number") {
     if (!value) {
-      return "Обязательное поле";
+      if (locale.value == "ru") return "Обязательное поле";
+      if (locale.value == "en") return "Required";
     }
 
     if (!/^\d+$/.test(value)) {
-      return "Только цифры";
+      if (locale.value == "ru") return "Только цифры";
+      if (locale.value == "en") return "Numbers only";
     }
     return true;
   }
   if (props.type == "string") {
     if (!value) {
-      return "Обязательное поле";
+      if (locale.value == "ru") return "Обязательное поле";
+      if (locale.value == "en") return "Required";
     }
     return true;
   }
@@ -143,7 +147,6 @@ onMounted(() => {
 	background-color: #353535
 	color: $light
 	border: none
-.pac-logo
 
 .pac-item
 	color: $light

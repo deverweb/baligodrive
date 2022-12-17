@@ -5,9 +5,12 @@
     <div class="footer-desktop grid grid-cols-4 lg:hidden">
       <div class="footer-col pt-[4px] flex flex-col items-start">
         <Logo class="text-[32px] tracking-[-1px] mb-[9px]"></Logo>
-        <NuxtLink class="footer-link mb-[9px]" to="/termsofuse"
-          >Пользовательское соглашение</NuxtLink
-        >
+        <NuxtLink class="footer-link mb-[9px]" to="/termsofuse">{{
+          $t("footerRights.termsOfuse")
+        }}</NuxtLink>
+        <NuxtLink class="footer-link mb-[9px]" to="/terms">{{
+          $t("footerRights.terms")
+        }}</NuxtLink>
         <div class="footer-rights">
           Bali.GoDrive © 2022, All rights reserved.
         </div>
@@ -21,17 +24,19 @@
             class="w-[19px] h-[19px] relative top-[-1px] mr-[10px]"
           ></SvgBikeIcon>
 
-          <span class="tracking-[-0.5px]">Забронировать байк</span>
+          <span @click="handleFooterClickRend" class="tracking-[-0.5px]">{{
+            $t("footerRights.rentBike")
+          }}</span>
         </div>
         <div
           class="footer-policy inline-flex text-[16px] items-baseline flex-col"
         >
-          <NuxtLink class="inline-block mb-[12px] font-Helvreg" to="/oferta"
-            >Договор оферты</NuxtLink
-          >
-          <NuxtLink class="inline-block" to="/policy"
-            >Политика конфиденциальности</NuxtLink
-          >
+          <NuxtLink class="inline-block mb-[12px] font-Helvreg" to="/oferta">{{
+            $t("footerRights.oferta")
+          }}</NuxtLink>
+          <NuxtLink class="inline-block" to="/policy">{{
+            $t("footerRights.privacyPolicy")
+          }}</NuxtLink>
         </div>
       </div>
       <div class="footer-col pl-[30px] pt-[11px]">
@@ -70,7 +75,7 @@
           </div>
         </div>
         <div class="footer-dev flex">
-          <span class="mr-[5px]">Разработка сайта:</span>
+          <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>
           <a target="_blank" href="https://t.me/chelpanoff">
             Челпанов Дмитрий</a
           >
@@ -84,18 +89,23 @@
           <div
             class="footer-policy mb-[10px] inline-flex text-[16px] items-baseline flex-col"
           >
-            <NuxtLink class="footer-link mb-[10px]" to="/termsofuse"
-              >Пользовательское соглашение</NuxtLink
+            <NuxtLink class="footer-link mb-[10px]" to="/termsofuse">{{
+              $t("footerRights.termsOfuse")
+            }}</NuxtLink>
+            <NuxtLink class="footer-link mb-[10px]" to="/terms">{{
+              $t("footerRights.terms")
+            }}</NuxtLink>
+            <NuxtLink
+              class="inline-block mb-[10px] font-Helvreg"
+              to="/oferta"
+              >{{ $t("footerRights.oferta") }}</NuxtLink
             >
-            <NuxtLink class="inline-block mb-[10px] font-Helvreg" to="/oferta"
-              >Договор оферты</NuxtLink
-            >
-            <NuxtLink class="inline-block" to="/policy"
-              >Политика конфиденциальности</NuxtLink
-            >
+            <NuxtLink class="inline-block" to="/policy">{{
+              $t("footerRights.privacyPolicy")
+            }}</NuxtLink>
           </div>
           <div class="footer-dev mb-[10px] flex">
-            <span class="mr-[5px]">Разработка сайта:</span>
+            <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>
             <a target="_blank" href="https://t.me/chelpanoff">
               Челпанов Дмитрий</a
             >
@@ -169,18 +179,21 @@
       <div
         class="footer-policy mb-[16px] inline-flex text-[16px] items-baseline flex-col"
       >
-        <NuxtLink class="footer-link mb-[15px]" to="/termsofuse"
-          >Пользовательское соглашение</NuxtLink
-        >
-        <NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/oferta"
-          >Договор оферты</NuxtLink
-        >
-        <NuxtLink class="inline-block" to="/policy"
-          >Политика конфиденциальности</NuxtLink
-        >
+        <NuxtLink class="footer-link mb-[15px]" to="/termsofuse">{{
+          $t("footerRights.termsOfuse")
+        }}</NuxtLink>
+        <NuxtLink class="footer-link mb-[15px]" to="/terms">{{
+          $t("footerRights.terms")
+        }}</NuxtLink>
+        <NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/oferta">{{
+          $t("footerRights.oferta")
+        }}</NuxtLink>
+        <NuxtLink class="inline-block" to="/policy">{{
+          $t("footerRights.privacyPolicy")
+        }}</NuxtLink>
       </div>
       <div class="footer-dev mb-[14px] flex">
-        <span class="mr-[5px]">Разработка сайта:</span>
+        <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>
         <a target="_blank" href="https://t.me/chelpanoff"> Челпанов Дмитрий</a>
       </div>
       <div class="footer-rights">Bali.GoDrive © 2022, All rights reserved.</div>
@@ -197,17 +210,23 @@
 </template>
 
 <script setup>
-// import { useWidgetStore } from "~~/store/widget"
-
+let route = useRoute();
+let router = useRouter();
 const payments = [
   "/svg/footer/visa.svg",
   "/svg/footer/master.svg",
   "/svg/footer/inter.svg",
 ];
-
-// const store = useWidgetStore()
-
-// const { toggleVisibility } = store
+const handleFooterClickRend = async () => {
+  if (route.path == "/") {
+    document.querySelector(".order").scrollIntoView({ behavior: "smooth" });
+  } else {
+    router.push("/");
+    setTimeout(() => {
+      document.querySelector(".order").scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  }
+};
 </script>
 
 <style lang="sass">

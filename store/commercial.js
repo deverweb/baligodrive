@@ -1,116 +1,430 @@
-import order from "~~/server/api/order";
-
 export const useCommercialStore = defineStore("commercial", () => {
   let bikes = ref(null);
-  let companyInfo = ref(null);
-  let surfBoards = ref(null);
-  let data1 = ref(null);
   let bikeModels = ref(null);
   let bikeModelsArray = ref(null);
-  let token = useCookie("token", {
-    sameSite: "strict",
-    // expires:
-  });
+
   const fillData = async () => {
-    let { data } = await useFetch("/api/commercial");
-    token.value = data.value.token.access_token;
-    // console.log(token.value);
-    surfBoards.value = data.value;
-    bikes.value = data.value.bikes.map((val, i) => {
-      let desc = val.custom_fields.find((field) => field.title == "Описание");
-      let hourPriceUsd = val.price.slice(0, -3);
-      return {
-        id: val.id,
-        hourPriceUsd,
-        img: val.thumbnail,
-        allImages: val.thumbnails,
-        description: desc,
-        brand: val.brand,
-        group: val.group,
-        mark: val.mark,
-        name: val.brand + " " + val.mark,
-        drawing: val.group.split("+")[1].trim(),
-      };
-    });
-    bikeModels.value = data.value.bikes.map((val, i) => {
-      return {
-        name: val.brand + " " + val.mark,
-        drawings: val,
-      };
-    });
-    // console.log("bikes.value", bikes.value);
-    bikeModelsArray.value = bikes.value.reduce((summaryArray, current, i) => {
-      let model = `${current.brand} ${current.mark}`;
-
-      if (summaryArray.length > 0) {
-        if (summaryArray.find((val) => val.model == model)) {
-          //
-          summaryArray.find((val) => val.model == model)["bikes"].push(current);
-        } else {
-          summaryArray.push({
-            model,
-            bikes: [current],
-            ...current,
-          });
-        }
-      } else {
-        summaryArray.push({
-          model,
-          bikes: [current],
-          ...current,
-        });
-      }
-
-      return summaryArray;
-    }, []);
-    // console.log("bikesModels: ", bikeModelsArray.value);
-    token.value = data.value.token;
-    companyInfo.value = data.value.info;
-    data1.value = data.value;
+    bikes.value = [
+      {
+        id: "9269",
+        hourPriceUsd: "18",
+        img: "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
+        allImages: [
+          "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
+        ],
+        description: {
+          title: "Описание",
+          value: "",
+        },
+        brand: "HONDA",
+        group: "Honda PCX 160 cc + Test",
+        mark: "PCX 160 CC",
+        name: "HONDA PCX 160 CC",
+        drawing: "Test",
+      },
+      {
+        id: "9221",
+        hourPriceUsd: "15",
+        img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+        allImages: [
+          "https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg",
+        ],
+        brand: "HONDA",
+        group: "Honda Vario 160 cc + Red Bull",
+        mark: "VARIO 160 CC",
+        name: "HONDA VARIO 160 CC",
+        drawing: "Red Bull",
+      },
+      {
+        id: "8365",
+        hourPriceUsd: "18",
+        img: "https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg",
+        allImages: [
+          "https://rentsyst.com/static/cache/vehicle/20815/vehicle_thumbnail_33439.jpg",
+        ],
+        brand: "HONDA",
+        group: "Honda PCX 160 cc + Red Bull",
+        mark: "PCX 160 CC",
+        name: "HONDA PCX 160 CC",
+        drawing: "Red Bull",
+      },
+    ];
+    bikeModels.value = [
+      {
+        name: "HONDA PCX 160 CC",
+        drawings: {
+          id: "9269",
+          year: 2023,
+          number_seats: 1,
+          number_doors: 2,
+          large_bags: 1,
+          small_bags: 1,
+          odometer: 0,
+          brand: "HONDA",
+          mark: "PCX 160 CC",
+          group: "Honda PCX 160 cc + Test",
+          color: {
+            title: "Red",
+            code: "#ff0205",
+          },
+          type: "Bike",
+          body_type: "Bicycle",
+          min_price: "18.00",
+          price: "18.00",
+          status: "active",
+          currency: "$",
+          fuel: "Gasoline",
+          volume_tank: null,
+          volume_engine: null,
+          transmission: "Automatic Transmission (AT)",
+          locations: [
+            [
+              {
+                id: 4913,
+                name: "BaliGo Bike Canggu",
+                address:
+                  "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия",
+              },
+            ],
+          ],
+          options: [[]],
+          thumbnail:
+            "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
+          thumbnails: [
+            "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
+          ],
+          photos: [
+            "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
+          ],
+          custom_fields: [
+            {
+              title: "Описание",
+              value: "",
+            },
+          ],
+          _links: {
+            self: {
+              href: "http://api.rentsyst.com/v1/vehicle/vehicle/view?id=22507",
+            },
+          },
+          periods_price: [],
+          insurance_deposit: 0,
+        },
+      },
+      {
+        name: "HONDA VARIO 160 CC",
+        drawings: {
+          id: "9221",
+          year: 2023,
+          number_seats: 1,
+          number_doors: 2,
+          large_bags: 1,
+          small_bags: 1,
+          odometer: 0,
+          brand: "HONDA",
+          mark: "VARIO 160 CC",
+          group: "Honda Vario 160 cc + Red Bull",
+          color: {
+            title: "Red",
+            code: "#ff0205",
+          },
+          type: "Bike",
+          body_type: "Scooter",
+          min_price: "23.00",
+          price: "15.00",
+          status: "active",
+          currency: "$",
+          fuel: "Gasoline",
+          volume_tank: null,
+          volume_engine: null,
+          transmission: "Automatic Transmission (AT)",
+          locations: [
+            [
+              {
+                id: 4913,
+                name: "BaliGo Bike Canggu",
+                address:
+                  "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия",
+              },
+            ],
+          ],
+          options: [
+            [
+              {
+                id: "usb",
+                name: "USB",
+                icon: "trunk",
+              },
+            ],
+          ],
+          thumbnail:
+            "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+          thumbnails: [
+            "https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg",
+          ],
+          photos: [
+            "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+          ],
+          custom_fields: [],
+          _links: {
+            self: {
+              href: "http://api.rentsyst.com/v1/vehicle/vehicle/view?id=22441",
+            },
+          },
+          periods_price: [
+            {
+              period_from: 5,
+              period_to: 7,
+              discount: 0,
+              name: "Vario 5-7 Days",
+              type: "day",
+              limit_value: " Km/day",
+              limit_price: " $ / Km",
+              currency: "$",
+            },
+            {
+              period_from: 8,
+              period_to: 14,
+              discount: -20,
+              name: "Vario 8-14 Days",
+              type: "day",
+              limit_value: " Km/day",
+              limit_price: " $ / Km",
+              currency: "$",
+            },
+            {
+              period_from: 15,
+              period_to: 21,
+              discount: -40,
+              name: "Vario 15-21 Days",
+              type: "day",
+              limit_value: " Km/day",
+              limit_price: " $ / Km",
+              currency: "$",
+            },
+            {
+              period_from: 22,
+              period_to: 31,
+              discount: -53.33333,
+              name: "22-31 Days",
+              type: "day",
+              limit_value: " Km/day",
+              limit_price: " $ / Km",
+              currency: "$",
+            },
+          ],
+          insurance_deposit: 0,
+        },
+      },
+      {
+        name: "HONDA PCX 160 CC",
+        drawings: {
+          id: "8365",
+          year: 2023,
+          number_seats: 2,
+          number_doors: 2,
+          large_bags: 1,
+          small_bags: 1,
+          odometer: 0,
+          brand: "HONDA",
+          mark: "PCX 160 CC",
+          group: "Honda PCX 160 cc + Red Bull",
+          color: {
+            title: "Red",
+            code: "#ff0205",
+          },
+          type: "Bike",
+          body_type: "Scooter",
+          min_price: "27.00",
+          price: "18.00",
+          status: "active",
+          currency: "$",
+          fuel: "Gasoline",
+          volume_tank: null,
+          volume_engine: 155,
+          transmission: "Automatic Transmission (AT)",
+          locations: [
+            [
+              {
+                id: 4913,
+                name: "BaliGo Bike Canggu",
+                address:
+                  "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия",
+              },
+            ],
+          ],
+          options: [
+            [
+              {
+                id: "usb",
+                name: "USB",
+                icon: "trunk",
+              },
+            ],
+          ],
+          thumbnail:
+            "https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg",
+          thumbnails: [
+            "https://rentsyst.com/static/cache/vehicle/20815/vehicle_thumbnail_33439.jpg",
+          ],
+          photos: [
+            "https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg",
+          ],
+          custom_fields: [],
+          _links: {
+            self: {
+              href: "http://api.rentsyst.com/v1/vehicle/vehicle/view?id=20815",
+            },
+          },
+          periods_price: [
+            {
+              period_from: 5,
+              period_to: 7,
+              discount: 0,
+              name: "PCX 5-7 Days",
+              type: "day",
+              limit_value: " Km/day",
+              limit_price: " $ / Km",
+              currency: "$",
+            },
+            {
+              period_from: 8,
+              period_to: 14,
+              discount: -16.6667,
+              name: "PCX 8-14 Days",
+              type: "day",
+              limit_value: " Km/day",
+              limit_price: " $ / Km",
+              currency: "$",
+            },
+            {
+              period_from: 15,
+              period_to: 21,
+              discount: -33.33333,
+              name: "PCX 15-21 Days",
+              type: "day",
+              limit_value: " Km/day",
+              limit_price: " $ / Km",
+              currency: "$",
+            },
+            {
+              period_from: 22,
+              period_to: 31,
+              discount: -50,
+              name: "PCX 22-31 days",
+              type: "day",
+              limit_value: " Km/day",
+              limit_price: " $ / Km",
+              currency: "$",
+            },
+          ],
+          insurance_deposit: 0,
+        },
+      },
+    ];
+    bikeModelsArray.value = [
+      {
+        model: "HONDA PCX 160 CC",
+        bikes: [
+          {
+            id: "9269",
+            hourPriceUsd: "18",
+            img: "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
+            allImages: [
+              "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
+            ],
+            description: {
+              title: "Описание",
+              value: "",
+            },
+            brand: "HONDA",
+            group: "Honda PCX 160 cc + Test",
+            mark: "PCX 160 CC",
+            name: "HONDA PCX 160 CC",
+            drawing: "Test",
+          },
+          {
+            id: "8365",
+            hourPriceUsd: "18",
+            img: "https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg",
+            allImages: [
+              "https://rentsyst.com/static/cache/vehicle/20815/vehicle_thumbnail_33439.jpg",
+            ],
+            brand: "HONDA",
+            group: "Honda PCX 160 cc + Red Bull",
+            mark: "PCX 160 CC",
+            name: "HONDA PCX 160 CC",
+            drawing: "Red Bull",
+          },
+        ],
+        id: "9269",
+        hourPriceUsd: "18",
+        img: "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
+        allImages: [
+          "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
+        ],
+        description: {
+          title: "Описание",
+          value: "",
+        },
+        brand: "HONDA",
+        group: "Honda PCX 160 cc + Test",
+        mark: "PCX 160 CC",
+        name: "HONDA PCX 160 CC",
+        drawing: "Test",
+      },
+      {
+        model: "HONDA VARIO 160 CC",
+        bikes: [
+          {
+            id: "9221",
+            hourPriceUsd: "15",
+            img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+            allImages: [
+              "https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg",
+            ],
+            brand: "HONDA",
+            group: "Honda Vario 160 cc + Red Bull",
+            mark: "VARIO 160 CC",
+            name: "HONDA VARIO 160 CC",
+            drawing: "Red Bull",
+          },
+        ],
+        id: "9221",
+        hourPriceUsd: "15",
+        img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+        allImages: [
+          "https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg",
+        ],
+        brand: "HONDA",
+        group: "Honda Vario 160 cc + Red Bull",
+        mark: "VARIO 160 CC",
+        name: "HONDA VARIO 160 CC",
+        drawing: "Red Bull",
+      },
+    ];
   };
-  const orderBike = async (bodyData, token) => {
-    let { data: orderData } = await useFetch("/api/order", {
+  const orderBike = async (bodyData) => {
+    let { data } = await useFetch("/api/docs", {
       method: "POST",
       body: {
-        token,
+        sheet: "bigform",
         data: bodyData,
       },
     });
-    // console.log("orderBike store data: ", orderData.value);
-    let { data: insuranceData } = await useFetch("/api/insurance", {
-      method: "POST",
-      body: {
-        token,
-        data: {
-          orderId: orderData.value.order_id,
-          insuranceId: orderData.value.insurances[0].id,
-          helmetsId: orderData.value.options[0].id,
-          helmetsCount: Number(bodyData.adultHelmetCount),
-        },
-      },
-    });
-    // console.log(
-    //   "orderBike func, insurance api requiest result: ",
-    //   insuranceData.value
-    // );
-    return insuranceData.value;
   };
-  const smallFormOrder = async (token, values) => {
-    let { data } = await useFetch("/api/contactform", {
+  const smallFormOrder = async (values) => {
+    // console.log('commertcial store smallFormOrder values: ', values)
+    let { data } = await useFetch("/api/docs", {
       method: "POST",
       body: {
-        token,
+        sheet: "smallform",
         data: values,
       },
     });
   };
-  // return { bikes, surfBoards, fillData }
   return {
     bikes,
-    token,
-    companyInfo,
-    surfBoards,
-    data1,
     bikeModels,
     fillData,
     orderBike,

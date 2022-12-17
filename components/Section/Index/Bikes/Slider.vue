@@ -5,14 +5,13 @@
     <div class="container">
       <div class="catalog-wrapper mb-[24px] xsm:mb-0 xsm:relative">
         <h2
+          v-html="$t('mainPageSlider.title')"
           class="catalog-title section-title text-center mb-[30px] md:mb-[26px] xsm:mb-[31px]"
-        >
-          Каталог<br />байков
-        </h2>
+        ></h2>
         <p
           class="catalog-desc section-desc text-center xsm:max-w-[233px] xsm:mb-[3px] xsm:mx-auto"
         >
-          Выберите и забронируйте байк из каталога
+          {{ $t("mainPageSlider.subtitle") }}
         </p>
         <div
           class="catalog-drag xsm:flex hidden justify-end xsm:max-h-[35px] xsm:absolute xsm:right-0 xsm:bottom-[-38px]"

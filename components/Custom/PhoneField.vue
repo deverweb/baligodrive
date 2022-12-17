@@ -1,6 +1,13 @@
 <template>
   <div class="flex items-center h-[76px] field">
     <slot></slot>
+    <input
+      type="text"
+      v-model="phone"
+      class="hidden"
+      name="client_phone"
+      id="client_phone"
+    />
     <ClientOnly>
       <vue-tel-input
         :class="classes"
@@ -13,9 +20,7 @@
         :dropdownOptions="{
           showFlags: true,
           showSearchBox: true,
-          showDialCode: true,
           showDialCodeInList: true,
-          showDialCodeInSelection: true,
         }"
         :inputOptions="{
           maxlength: 17,
@@ -85,6 +90,7 @@ const classes = computed(() => {
 		font-size: 16px
 		+helvr
 		.vti__dropdown-list
+			z-index: 5
 			+r(600)
 				max-width: calc(100vw - 70px)
 				left: -22px

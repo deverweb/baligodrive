@@ -123,7 +123,7 @@
               @click="handleBron"
               class="btn-primary__light xsm:mb-[8px] self-end xsm:w-full gap-[11px] shrink-0 text-light hover:text-dark w-[250px] h-[70px]"
               ><SvgCalendarIcon class="w-[13px] h-[13px]"></SvgCalendarIcon>
-              <span class="text-[16px]">Забронировать</span>
+              <span class="text-[16px]">{{ $t("buttonBooking") }}</span>
             </TheButton>
             <div class="bmodal-after text-[14px]">
               <span class="font-Helvbold"

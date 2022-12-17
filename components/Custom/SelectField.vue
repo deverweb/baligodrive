@@ -49,7 +49,7 @@
 
 <script setup>
 import { Field, ErrorMessage, useFieldError } from "vee-validate";
-
+let { locale } = useI18n();
 let error = useFieldError(props.name);
 
 const props = defineProps({
@@ -128,7 +128,10 @@ const selectOption = (option) => {
 
 let isRequired = (value) => {
   if (props.disabled) return true;
-  if (!value) return "Необходимо выбрать";
+  if (!value) {
+    if (locale.value == "ru") return "Необходимо выбрать";
+    if (locale.value == "en") return "Have to select";
+  }
   return true;
 };
 </script>

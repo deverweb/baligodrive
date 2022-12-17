@@ -10,12 +10,11 @@
     <SectionIndexBikesSlider></SectionIndexBikesSlider>
     <SectionIndexForm></SectionIndexForm>
     <SectionIndexCards></SectionIndexCards>
-    <section class="pb-[130px]">
+    <section class="pb-[60px]">
       <h2
+        v-html="$t('mainPageFaq.title')"
         class="section-title text-center mb-[90px] md:mb-[26px] xsm:mb-[30px]"
-      >
-        Частые<br />вопросы
-      </h2>
+      ></h2>
       <div class="container mb-[40px]">
         <ul class="faq-tabs sm:hidden flex items-center">
           <li
@@ -23,21 +22,21 @@
             class="text-center"
             @click="changeTab(1)"
           >
-            Основные
+            {{ $t("mainPageFaq.firstTab") }}
           </li>
           <li
             :class="{ active: activeSlide == 2 }"
             class="text-center"
             @click="changeTab(2)"
           >
-            Полезное
+            {{ $t("mainPageFaq.secondTab") }}
           </li>
           <li
             :class="{ active: activeSlide == 3 }"
             class="text-center"
             @click="changeTab(3)"
           >
-            Доставка и страховка
+            {{ $t("mainPageFaq.thirdTab") }}
           </li>
         </ul>
         <div class="faq-phone-tabs hidden font-Euroblack text-[12px] sm:block">
@@ -51,27 +50,31 @@
               :class="{ 'rotate-180': activeTabList }"
             ></SvgArrowDownIcon>
           </div>
-          <ul class="faq-phone-list" v-show="activeTabList">
+          <ul
+            class="faq-phone-list"
+            :class="{ 'mt-[10px]': activeTabList }"
+            v-show="activeTabList"
+          >
             <li
               @click="changeTab(1)"
               :class="{ active: activeSlide == 1 }"
               class="pl-[30px] h-[60px] flex items-center"
             >
-              Основные
+              {{ $t("mainPageFaq.firstTab") }}
             </li>
             <li
               @click="changeTab(2)"
               :class="{ active: activeSlide == 2 }"
               class="pl-[30px] h-[60px] flex items-center"
             >
-              Полезное
+              {{ $t("mainPageFaq.secondTab") }}
             </li>
             <li
               @click="changeTab(3)"
               :class="{ active: activeSlide == 3 }"
               class="pl-[30px] h-[60px] flex items-center"
             >
-              Доставка и страховка
+              {{ $t("mainPageFaq.thirdTab") }}
             </li>
           </ul>
         </div>
@@ -97,18 +100,26 @@
       </div>
     </section>
 
-    <SectionIndexInvest></SectionIndexInvest>
+    <SectionIndexInvest class="top-[70px]"></SectionIndexInvest>
+    <section
+      class="contacts md:pt-[20px] md:pb-[60px] xsm:pb-0 pt-[150px] pb-[168px] rounded-t-[70px] md:rounded-t-[44px] relative z-[10] bg-[#1f1f1f]"
+    >
+      <div class="container">
+        <SectionContacts></SectionContacts>
+      </div>
+    </section>
   </main>
 </template>
 
 <script setup>
 import { useCommercialStore } from "~~/store/commercial";
-
+let { locale } = useI18n();
 useHead({
   title: "BaliGo Bike",
 });
+
 const store = useCommercialStore();
-let phone = ref("");
+store.fillData();
 let activeSlide = ref(1);
 let activeTabList = ref(false);
 const changeTab = (slide) => {
@@ -122,7 +133,7 @@ watch(
   }
 );
 
-const slide = ref([
+const ruSlide = [
   {
     slide: 1,
     text: "Основное",
@@ -135,62 +146,82 @@ const slide = ref([
     slide: 3,
     text: "Доставка и страховка",
   },
-]);
+];
+const enSlide = [
+  {
+    slide: 1,
+    text: "Main",
+  },
+  {
+    slide: 2,
+    text: "Useful",
+  },
+  {
+    slide: 3,
+    text: "Delivery and insurance",
+  },
+];
+let slide = computed(() => {
+  if (locale.value == "ru") {
+    return ruSlide;
+  }
+  if (locale.value == "en") {
+    return enSlide;
+  }
+});
 let currentTabText = computed(() => {
   return slide.value.find((val) => val.slide == activeSlide.value).text;
 });
 
-const indexSixBlocks = [
+const indexSixBlocks = computed(() => {
+  if (locale.value == "ru") return ruBlocks;
+  if (locale.value == "en") return enBlocks;
+  return ruBlocks;
+});
+
+const ruBlocks = [
   {
-    title: "Выбираете байк",
+    title: "Выбираете байк и дату",
+    text: "Широкий выбор дизайна байков",
   },
   {
-    title: "Выбираете дату",
+    title: "Выбираете место доставки и возврата",
+    text: "бесплатная доставка байка",
   },
   {
-    title: "Бронируете и оплачиваете",
-  },
-  {
-    title: "Приезжаете",
-    text: "И мы доставляем вам байк прямо к вилле",
-  },
-  {
-    title: "Катаетесь на байке",
-    text: "И мы доставляем вам байк прямо к вилле",
-  },
-  {
-    title: "Привозите байк нам ",
-    text: "И мы доставляем вам байк прямо к вилле",
+    title: "Бронируете и оплачиваете",
+    text: "множество способов оплаты",
   },
 ];
-const questions = ref([
+const enBlocks = [
   {
-    title: "Как долго вы доставляете байк?",
-    text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации.",
+    title: "Choose bike and date.",
+    text: "Wide range of bike designs",
   },
   {
-    title: "Как долго вы доставляете байк?",
-    text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации.",
+    title: "Choose the place of delivery and return",
+    text: "Bike free shipping",
   },
   {
-    title: "Как долго вы доставляете байк?",
-    text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации.",
+    title: "Book and pay",
+    text: "Many payment methods",
   },
-  {
-    title: "Как долго вы доставляете байк?",
-    text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации.",
-  },
+];
 
-  {
-    title: "Как долго вы доставляете байк?",
-    text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации.",
-  },
-  {
-    title: "Как долго вы доставляете байк?",
-    text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации.",
-  },
-]);
-const questions1 = [
+const questions1 = computed(() => {
+  if (locale.value == "ru") return ruQuestions1;
+  if (locale.value == "en") return enQuestions1;
+});
+const questions2 = computed(() => {
+  if (locale.value == "ru") return ruQuestions2;
+  if (locale.value == "en") return enQuestions2;
+});
+const questions3 = computed(() => {
+  if (locale.value == "ru") return ruQuestions3;
+  if (locale.value == "en") return enQuestions3;
+});
+
+const ruQuestions1 = [
   {
     title: "Как арендовать байк?",
     text: "Вы можете сделать это, оставив заявку на сайте baligo.bike или написать нам в WatsApp или Telegram. С вами свяжется менеджер для подтверждения заказа, а также ответит на все интересующие вопросы.",
@@ -225,7 +256,7 @@ const questions1 = [
     text: "Если вы арендовали у нас байк и он вас не устраивает, то можно всегда с доплатой поменять его на байк лучше либо же просто вернуть транспорт и получить остаток суммы аренды по нашей политике возвратов",
   },
 ];
-const questions2 = [
+const ruQuestions2 = [
   {
     title:
       "Что делать если я попал в ДТП, а виноват местный. Как договариваться?",
@@ -256,7 +287,7 @@ const questions2 = [
     text: "На Бали есть только одна сеть заправок - Pertamania. Вам нужен Pertamax(92) синего цвета. Бензин также можно приобрести практически в любом районе у местных, но он будет дороже, чем на заправке. Они выставляют стеклянные бутылки вдоль дороги или маленькую колонку при своем магазине.",
   },
 ];
-const questions3 = [
+const ruQuestions3 = [
   {
     title: "Бесплатно ли доставляют транспорт ?",
     text: "Любой транспорт арендованный у нас мы доставляем/принимаем в радиусе 25 км от нашего автопарка в Чангу, в наше рабочее время. Дальние доставки или доставка/возврат вне рабочего времени возможны, но за дополнительную плату.",
@@ -276,6 +307,104 @@ const questions3 = [
   {
     title: "Правила возврата денежных средств",
     text: "Если по каким-либо причинам у Вас сдвинулись даты поездки, то Вы можете не переживать за произведенную оплату. Оплатой можно воспользоваться позже или подарить  другому человеку. Оплата не сгорает и ей можно воспользоваться в любой момент.",
+  },
+];
+
+const enQuestions1 = [
+  {
+    title: "How to rent a bike?",
+    text: "You can do this by leaving a request on the baligo.bike website or write to us on WatsApp or Telegram. The manager will contact you to confirm the order, as well as answer all your questions.",
+  },
+  {
+    title: "How can I pay for bike rental?",
+    text: "For you, we have provided the most convenient payment options, in particular, you can pay on the website or in our office:<br>- Bank cards Visa, Mastercard, Mir;<br>- Cryptocurrency;<br>- Cash at the office or upon delivery of the bike.",
+  },
+  {
+    title: "What is included in the bike rental?",
+    text: `<div>The default bike rental price includes::
+			<ul class="list-disc">
+				<li> Full insurance (theft and damage to the bike);</li>
+				<li>2 new standard helmets;</li>
+				<li>Holder for your mobile phone;</li>
+				<li>Raincoat;</li>
+				<li>First aid kit.</li>
+			</ul>
+			<br>You can also order additional accessories when booking a bike.</div>`,
+  },
+
+  {
+    title: "Can I go to a neighboring island?",
+    text: "On all rented equipment it is forbidden to leave the island of Bali.",
+  },
+  {
+    title: "How do I know which bike is right for me?",
+    text: `It all depends on you, but there are several criteria that can help you choose the right model:
+		<br>- If you plan to travel short distances together or only the driver, then mini scooters are suitable for you: Honda Vario, Yamaha Lexi, Yamaha Gear, Yamaha Mio M3, Yamaha Free Go, Yamaha XRide.
+		<br>- If your trips are long and/or with a passenger, we recommend choosing more powerful and comfortable bikes - Yamaha Aerox, Yamaha Nmax, Honda PCX, Honda AVD.`,
+  },
+  {
+    title:
+      "What should I do if I rented a bike, but I don’t feel comfortable / don’t like it?",
+    text: "If you have rented a bike from us and it does not suit you, then you can always exchange it for a bike with a surcharge, or simply return the vehicle and receive the rest of the rental amount according to our return policy.",
+  },
+];
+const enQuestions2 = [
+  {
+    title:
+      "What to do if I got into an accident, and the local is to blame. How to negotiate?",
+    text: "It is important to understand that if a traffic accident occurs in Bali without serious damage to health, no one calls the police service and everyone disperses amicably. In the event of a conflict situation on the road, the most important thing is not to panic and notify the owner or the rental company so that they can help and resolve the situation as soon as possible.",
+  },
+  {
+    title: "What are the main fines for traffic violations in Bali?",
+    text: `- Crossing the STOP LINE at a red traffic light - fine from 500.000 to 1.000.000 IDR.
+		<br>- Riding a bike without a helmet - fine from 250.000 to 500.000 IDR.
+		<br>- A passenger on a bike without a helmet - fine from 250.000 to 500.000 IDR.
+		<br>- Riding a bike in three - fine from 250.000 to 500.000 IDR.
+		<br>- Driving a bike without an IDP (category "A") fine from 1.000.000 to 1.500.000 IDR.`,
+  },
+  {
+    title: "Do I need a license to rent a bike?",
+    text: "We do not require you to have a category A driver's license. But please note that according to the law, it is mandatory to have a license to drive a bike with the appropriate category.",
+  },
+  {
+    title:
+      "What should I do if the police stopped me, but I don’t have my license?",
+    text: "If you do not have rights, then we advise you to set aside 100 thousand rupees separately in your pocket for such situations in order to quickly resolve the issue on a neutral-positive wave with a small donation to the police.",
+  },
+  {
+    title:
+      "Is it possible to drive around the island with the rights of another country?",
+    text: "If your new driver's license is plastic and translated into English, then it is quoted in Indonesia. If possible, it is advisable to make an international license (booklet) before departure, since even if you have a new type of license, the police may want to lighten your pockets.",
+  },
+  {
+    title: "Is it possible to get a local driver's license?",
+    text: "At the moment, you can only get a tourist license, which will be valid for a year throughout Indonesia. They are issued by the police without any tests, contact us and we will share the contact with you.",
+  },
+  {
+    title: "What kind of gasoline is best to refuel and where to do it?",
+    text: "There is only one gas station network in Bali - Pertamania. You need Pertamax(92) in blue. Gasoline can also be purchased in almost any area from locals, but it will be more expensive than at a gas station. They display glass bottles along the road or a small column at their store.",
+  },
+];
+const enQuestions3 = [
+  {
+    title: "Is transport delivered free of charge?",
+    text: "We deliver/receive any transport rented from us within a radius of 25 km from our fleet in Canggu, during our working hours. Long-distance deliveries or delivery/returns outside business hours are possible, but at an additional cost.",
+  },
+  {
+    title: "Do you have equipment insurance and under what conditions?",
+    text: "For all bikes we provide full insurance against theft and damage, which is included in the rental price. We do not rent equipment without full insurance.",
+  },
+  {
+    title: "What to do if the bike was stolen?",
+    text: "We provide full insurance against theft and damage for all our bikes. If the bike is stolen - you need to notify us and we will arrange a replacement.",
+  },
+  {
+    title: "Can I transfer the rented bike to another person?",
+    text: "If the rental period has not yet expired and you decide that you no longer need transport, then you have the opportunity to transfer the bike to another person. To do this, you need to contact our manager and ask to renew the contract for another person. The cost of the renewal procedure is $10.",
+  },
+  {
+    title: "Refund policy",
+    text: "If for some reason your travel dates have shifted, then you can not worry about the payment made. Payment can be used later or presented to another person. Payment does not expire and can be used at any time",
   },
 ];
 </script>

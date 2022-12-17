@@ -7,7 +7,7 @@
       class="flex-grow z-[2] md:flex-grow-0 md:flex-shrink-0 xl:basis-auto tracking-[-0.6px] md:tracking-[1px] flex-shrink basis-[0%]"
     ></Logo>
     <HeaderNav
-      :links="navigationLinks"
+      :links="links"
       class="flex-grow z-[2] flex justify-center md:hidden"
     ></HeaderNav>
     <HeaderLangSwitcher
@@ -21,7 +21,7 @@
           'bg-dark z-[-1] border-t-[1px] border-solid border-dark-500':
             !isHeaderLeft,
         }"
-        :links="navigationLinks"
+        :links="links"
       ></HeaderMobileMenu>
     </TransitionFullSlideDown>
   </header>
@@ -31,10 +31,14 @@
 import { storeToRefs } from "pinia";
 import { useGlobalStore } from "~~/store/global";
 const store = useGlobalStore();
-
-const { navigationLinks } = store;
+const { locale } = useI18n();
+const { ruNavigationLinks, enNavigationLinks } = store;
 let { activeLangSwitcher } = storeToRefs(store);
-
+let links = computed(() => {
+  if (locale.value == "ru") return ruNavigationLinks;
+  if (locale.value == "en") return enNavigationLinks;
+  return ruNavigationLinks;
+});
 const OFFSET_TOP = 20;
 
 let isHeaderLeft = ref(false);

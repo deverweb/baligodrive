@@ -45,15 +45,15 @@
         <SvgCalendarIcon
           class="flex-shrink-0 w-[19px] xsm:w-[13px]"
         ></SvgCalendarIcon>
-        <span class="xsm:tracking-[-0.2px] xsm:top-0 relative top-[1px]"
-          >Забронировать</span
-        >
+        <span class="xsm:tracking-[-0.2px] xsm:top-0 relative top-[1px]">{{
+          $t("buttonBooking")
+        }}</span>
       </TheButton>
       <button
         @click="handleDetailsClick(props.id)"
         class="bike-detailed font-Helvmed text-center text-[14px] xsm:text-[10px] xsm:tracking-[0.6px]"
       >
-        Подробнее
+        {{ $t("buttonLearnMore") }}
       </button>
     </div>
   </div>

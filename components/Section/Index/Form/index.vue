@@ -10,14 +10,13 @@
           ref="formEl"
           class="section-title xsm:text-[26px] order-title mb-[29px] sm:mb-[22px] lg:mb-[26px] lg:max-w-[70%] lg:mx-auto md:max-w-max"
         >
-          Забронируйте байк И СЁРФ
+          {{ $t("mainPageForm.title") }}
         </h2>
         <p
           id="orderbike"
           class="section-desc mb-[49px] sm:max-w-full lg:mb-[51px] sm:mb-[41px] max-w-[380px] lg:mx-auto"
         >
-          Мы доставим ваш байк прямо к вилле или вы можете забрать его сами в
-          нашем офисе
+          {{ $t("mainPageForm.subtitle") }}
         </p>
         <form @submit="onSubmit" class="form">
           <div class="max-w-[360px] lg:mx-auto lg:text-left">
@@ -35,7 +34,7 @@
               :active="formData.bikeField.active"
               v-model:selectedOption="indexFormStore.selectedOption"
               :name="formData.bikeField.name"
-              :defaultLabel="formData.bikeField.defaultLabel"
+              :defaultLabel="bikePlaceholder"
               :options="bikes"
             >
               <SvgBikeIcon></SvgBikeIcon>
@@ -44,20 +43,11 @@
               type="string"
               class="ci__index-form mb-[10px]"
               :name="'client_name'"
-              placeholder="Ваше Имя"
+              :placeholder="namePlaceholder"
             >
               <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
             </CustomTextField>
-            <!-- <CustomTextField
-              type="number"
-              @fieldValue="handleTextField"
-              class="ci__index-form mb-[10px]"
-              placeholder="Телефон"
-              name="client_phone"
-              v-model="formData.phone"
-            >
-              <SvgPhoneIcon></SvgPhoneIcon>
-            </CustomTextField> -->
+
             <CustomPhoneField
               class="index__phone mb-[10px]"
               type="index"
@@ -81,7 +71,7 @@
               class="w-[360px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
             >
               <SvgCalendarIcon></SvgCalendarIcon>
-              <span class="relative top-[1px]">Забронировать</span>
+              <span class="relative top-[1px]">{{ $t("buttonBooking") }}</span>
             </TheButton>
           </div>
         </form>
@@ -94,12 +84,11 @@
 </template>
 
 <script setup>
-import { storeToRefs } from "pinia";
 import { useForm } from "vee-validate";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
 import { useIndexFormStore } from "~~/store/indexform";
-
+let { locale } = useI18n();
 const { handleSubmit } = useForm();
 const router = useRouter();
 const bikes = ref([]);
@@ -114,6 +103,16 @@ bikes.value = Object.values(
     return unique;
   }, {})
 );
+
+let namePlaceholder = computed(() => {
+  if (locale.value == "ru") return "Ваше Имя";
+  if (locale.value == "en") return "Your Name";
+});
+
+let bikePlaceholder = computed(() => {
+  if (locale.value == "ru") return "Модель байка";
+  if (locale.value == "en") return "Bike model";
+});
 
 const formData = ref({
   phone: "",

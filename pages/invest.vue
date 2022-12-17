@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div class="h-screen"></div>
 </template>
 
 <script setup></script>

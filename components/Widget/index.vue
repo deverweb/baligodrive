@@ -7,7 +7,7 @@
   >
     <button class="wg-circle" @click="isActiveWidget = !isActiveWidget">
       <SvgCalendarIcon
-        class="w-[18px] h-[18px]"
+        class="w-[18px] h-[18px] xsm:w-[15px] xsm:h-[15px]"
         :fill="'white'"
       ></SvgCalendarIcon>
     </button>
@@ -20,7 +20,7 @@
         <div
           class="wg-head h-[72px] flex items-center justify-center grow-0 shrink-0 tracking-[-0.5px] rounded-t-[12px]"
         >
-          <span>Забронировать байк</span>
+          <span>{{ $t("mainPageForm.title") }}</span>
           <button
             @click="isActiveWidget = !isActiveWidget"
             class="wg-head-close w-[50px] h-[50px] sm:w-[40px] sm:h-[40px] hidden sm:flex rounded-full bg-white items-center justify-center"
@@ -42,7 +42,7 @@
             :options="bikes"
             class="cs__widget-form"
             :styleType="'widget-form'"
-            defaultLabel="Модель байка"
+            :defaultLabel="bikeDefaultLabel"
           >
             <SvgBikeIcon :fill="'black'"></SvgBikeIcon>
           </CustomSelectField>
@@ -50,10 +50,16 @@
             type="string"
             class="ci__widget-form"
             :name="'client_name'"
-            placeholder="Ваше Имя"
+            :placeholder="namePlaceholder"
           >
             <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
           </CustomTextField>
+          <input
+            type="text"
+            class="hidden"
+            name="client_phone"
+            id="client_phone"
+          />
           <!-- <CustomTextField
             type="number"
             class="ci__widget-form"
@@ -62,7 +68,7 @@
           >
             <SvgPhoneIcon></SvgPhoneIcon>
           </CustomTextField> -->
-          <CustomPhoneField type="widget" name="client_phone">
+          <CustomPhoneField type="widget" name="client_phone1">
             <SvgPhoneIcon></SvgPhoneIcon>
           </CustomPhoneField>
         </div>
@@ -70,7 +76,7 @@
           class="wg-bottom grow-0 h-[130px] shrink-0 py-[30px] bg-light rounded-b-[12px] flex items-center justify-center"
         >
           <TheButton class="w-[292px] btn-primary__light h-[70px] text-[16px]">
-            <span>Оформление заказа</span>
+            <span>{{ btnText }}</span>
           </TheButton>
         </div>
       </form>
@@ -84,6 +90,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
+let { locale } = useI18n();
 gsap.registerPlugin(ScrollTrigger);
 
 let commercialStore = useCommercialStore();
@@ -93,12 +100,33 @@ let route = useRoute();
 
 let $widget = ref(null);
 
+let bikeDefaultLabel = computed(() => {
+  if (locale.value == "ru") {
+    return "Модель байка";
+  }
+  if (locale.value == "en") return "Bike Model";
+});
+
+let namePlaceholder = computed(() => {
+  if (locale.value == "ru") {
+    return "Ваше Имя";
+  }
+  if (locale.value == "en") return "Your Name";
+});
+
+let btnText = computed(() => {
+  if (locale.value == "ru") {
+    return "Оформление заказа";
+  }
+  if (locale.value == "en") return "Checkout";
+});
+
 const { handleSubmit } = useForm();
 
 const onSubmit = handleSubmit((values) => {
-  // console.log(values);
+  console.log("values", values);
   formStore.fillForm(values);
-  commercialStore.smallFormOrder(commercialStore.token.access_token, values);
+  commercialStore.smallFormOrder(values);
   router.push({ path: "/order" });
 });
 
@@ -197,6 +225,11 @@ let isOrder = computed(() => {
 	+r(1200)
 		right: 70px
 		bottom: 50px
+	+r(990)
+		right: 50px
+	+r(600)
+		right: 25px
+		bottom: 25px
 	&-circle
 		width: 60px
 		height: 60px
@@ -207,6 +240,9 @@ let isOrder = computed(() => {
 		background: $green
 		box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25)
 		transition: transform 0.2s ease
+		+r(768)
+			width: 50px
+			height: 50px
 		&:active
 			transform: scale(0.8)
 	&-table

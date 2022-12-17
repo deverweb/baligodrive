@@ -821,7 +821,7 @@
         >
           <SvgCalendarIcon></SvgCalendarIcon>
           <span class="sm:hidden">Забронировать даты и комплектующие</span>
-          <span class="hidden sm:block">Забронировать</span>
+          <span class="hidden sm:block">{{$t('buttonBooking')}}</span>
         </TheButton>
       </div>
     </div>
