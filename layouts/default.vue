@@ -7,6 +7,7 @@
     <TheFooter></TheFooter>
     <Widget></Widget>
     <BikeModal></BikeModal>
+    <InvestModal></InvestModal>
   </div>
 </template>
 

@@ -5,10 +5,8 @@
     <div class="footer-desktop grid grid-cols-4 lg:hidden">
       <div class="footer-col pt-[4px] flex flex-col items-start">
         <Logo class="text-[32px] tracking-[-1px] mb-[9px]"></Logo>
-        <NuxtLink class="footer-link mb-[9px]" to="/termsofuse">{{
-          $t("footerRights.termsOfuse")
-        }}</NuxtLink>
-        <NuxtLink class="footer-link mb-[9px]" to="/terms">{{
+
+        <NuxtLink class="footer-link mb-[9px] text-[16px]" to="/terms">{{
           $t("footerRights.terms")
         }}</NuxtLink>
         <div class="footer-rights">
@@ -89,10 +87,7 @@
           <div
             class="footer-policy mb-[10px] inline-flex text-[16px] items-baseline flex-col"
           >
-            <NuxtLink class="footer-link mb-[10px]" to="/termsofuse">{{
-              $t("footerRights.termsOfuse")
-            }}</NuxtLink>
-            <NuxtLink class="footer-link mb-[10px]" to="/terms">{{
+            <NuxtLink class="footer-link mb-[10px] text-[16px]" to="/terms">{{
               $t("footerRights.terms")
             }}</NuxtLink>
             <NuxtLink
@@ -179,10 +174,7 @@
       <div
         class="footer-policy mb-[16px] inline-flex text-[16px] items-baseline flex-col"
       >
-        <NuxtLink class="footer-link mb-[15px]" to="/termsofuse">{{
-          $t("footerRights.termsOfuse")
-        }}</NuxtLink>
-        <NuxtLink class="footer-link mb-[15px]" to="/terms">{{
+        <NuxtLink class="footer-link mb-[15px] text-[16px]" to="/terms">{{
           $t("footerRights.terms")
         }}</NuxtLink>
         <NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/oferta">{{

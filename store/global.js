@@ -16,6 +16,8 @@ export const useGlobalStore = defineStore("global", () => {
     activeBikeModal.value = true;
   };
 
+  let activeInvestModal = ref(false);
+
   let activeMobileMenu = ref(false);
 
   const ruNavigationLinks = [
@@ -46,10 +48,10 @@ export const useGlobalStore = defineStore("global", () => {
       label: "FAQ",
       to: "/faq",
     },
-    {
-      label: "Partnership",
-      to: "/invest",
-    },
+    // {
+    //   label: "Partnership",
+    //   to: "/invest",
+    // },
 
     {
       label: "Contacts",
@@ -66,5 +68,6 @@ export const useGlobalStore = defineStore("global", () => {
     activeBikeId,
     activeBikeModal,
     setActiveBikeModal,
+    activeInvestModal,
   };
 });
