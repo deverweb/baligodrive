@@ -27,10 +27,10 @@ export const useGlobalStore = defineStore("global", () => {
       label: "Частые вопросы",
       to: "/faq",
     },
-    {
-      label: "Стать партнером",
-      to: "/invest",
-    },
+    // {
+    //   label: "Стать партнером",
+    //   to: "/invest",
+    // },
 
     {
       label: "Контакты",
