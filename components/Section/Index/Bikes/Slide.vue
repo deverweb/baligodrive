@@ -20,7 +20,7 @@
     <div class="bike-rates mb-[35px] grid-cols-2 grid auto-rows-[1fr]">
       <div
         class="bike-rate pt-[12px] pb-[15px] text-[#111111]"
-        v-for="rate in props.rates.shift()"
+        v-for="rate in rates"
       >
         <div class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
           {{ rate.minDays }} - {{ rate.maxDays }} дней
@@ -76,7 +76,7 @@ const props = defineProps({
   rates: Array,
   discount: Number,
 });
-
+const rates = ref(props.rates.filter((val, i) => i != 0));
 const indexFormStore = useIndexFormStore();
 const commercialStore = useCommercialStore();
 const globalStore = useGlobalStore();
