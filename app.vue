@@ -8,12 +8,10 @@
 <script setup>
 import { useGlobalStore } from "./store/global";
 import { useCommercialStore } from "~~/store/commercial";
-
 const nuxtApp = useNuxtApp();
 
 const store = useGlobalStore();
 const commersialStore = useCommercialStore();
-
 commersialStore.fillData();
 
 nuxtApp.hook("page:finish", () => {

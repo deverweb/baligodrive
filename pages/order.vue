@@ -846,16 +846,16 @@ import { useCommercialStore } from "~~/store/commercial";
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
-const formvalues = useStorage("formvalues");
+// const formvalues = useStorage("formvalues");
 let bikeImage = ref(null);
-if (process.client) {
-  if (formvalues.value) {
-    formStore.fillForm(JSON.parse(formvalues.value));
-    bikeImage.value = formStore.bike.img;
-  } else {
-    useRouter().push("/");
-  }
-}
+// if (process.client) {
+//   if (formvalues.value) {
+//     formStore.fillForm(JSON.parse(formvalues.value));
+//     bikeImage.value = formStore.bike.img;
+//   } else {
+//     useRouter().push("/");
+//   }
+// }
 const handleBikeImage = (payload) => {
   bikeImage.value = payload.img;
 };

@@ -85,13 +85,13 @@
 
 <script setup>
 import { useForm } from "vee-validate";
+import { useStorage } from "@vueuse/core";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
 import { useIndexFormStore } from "~~/store/indexform";
 let { locale } = useI18n();
 const { handleSubmit } = useForm();
 const router = useRouter();
-const bikes = ref([]);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
 const indexFormStore = useIndexFormStore();
@@ -122,8 +122,9 @@ const formData = ref({
     active: false,
   },
 });
-
+// let formvalues = useStorage("formvalues");
 const onSubmit = handleSubmit((values) => {
+  // formvalues.value = values;
   formStore.fillForm(values);
   commercialStore.smallFormOrder({
     order_date:
@@ -138,10 +139,6 @@ const onSubmit = handleSubmit((values) => {
   });
   router.push({ path: "/order" });
 });
-
-const handleTextField = (value) => {
-  formData.value.phone = value;
-};
 </script>
 
 <style lang="sass"></style>

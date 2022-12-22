@@ -109,10 +109,10 @@ let btnText = computed(() => {
   }
   if (locale.value == "en") return "Checkout";
 });
-let formvalues = useStorage("formvalues", {});
+// let formvalues = useStorage("formvalues");
 const { handleSubmit } = useForm();
 const onSubmit = handleSubmit((values) => {
-  formvalues.value = values;
+  // formvalues.value = values;
   formStore.fillForm(values);
   commercialStore.smallFormOrder({
     order_date:
