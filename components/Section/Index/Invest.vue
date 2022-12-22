@@ -1,6 +1,6 @@
 <template>
   <section
-    class="invest z-[5] md:overflow-hidden sm:rounded-[44px] rounded-[70px] md:pl-[33px] xsm:pl-[0px] rounded-b-none relative md:pt-[93px] xsm:pt-[76px] sm:pb-[303px] pt-[120px] md:pb-[240px] pb-[203px] bg-light text-dark-300"
+    class="invest z-[5] md:overflow-hidden sm:rounded-[44px] rounded-[70px] md:pl-[33px] xsm:pl-[0px] rounded-b-none relative md:pt-[93px] xsm:pt-[76px] sm:pb-[303px] pt-[120px] md:pb-[310px] pb-[203px] bg-light text-dark-300"
   >
     <div class="container">
       <div
@@ -17,16 +17,17 @@
           {{ $t("mainPageInvest.text") }}
         </p>
         <TheButton
-          class="w-[328px] btn-primary__light white h-[70px] md:w-[339px] gap-[9px] xsm:max-w-[340px] xsm:w-full text-light"
+          @click="globalStore.activeInvestModal = true"
+          class="w-[328px] z-[3] btn-primary__light white h-[70px] md:w-[339px] gap-[9px] xsm:max-w-[340px] xsm:w-full text-light"
         >
-          <SvgMoneyIcon></SvgMoneyIcon>
+          <SvgMoneyIcon fill="white"></SvgMoneyIcon>
           <span class="text-[16px] tracking-[0.3px] relative top-[1px]">{{
             $t("mainPageInvest.btnText")
           }}</span>
         </TheButton>
       </div>
       <div
-        class="invest-img absolute bottom-[70px] left-[51.6%] sm:w-[80%] sm:bottom-[30px] md:w-[82%] xsm:left-[6.5%] md:left-[20.5%] md:bottom-[49px]"
+        class="invest-img absolute bottom-[70px] xsm:w-[80%] left-[51.6%] sm:bottom-[30px] sm:left-[40%] md:w-[60%] xsm:left-[12.5%] md:left-[40.5%] md:bottom-[49px]"
       >
         <img :src="'/img/index/invest-arrow.png'" alt="" />
       </div>
@@ -34,6 +35,10 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { useGlobalStore } from "~~/store/global";
+
+let globalStore = useGlobalStore();
+</script>
 
 <style lang="sass"></style>

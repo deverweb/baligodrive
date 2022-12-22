@@ -7,7 +7,7 @@
     >
       <h2
         v-html="$t('mainPageServices.title')"
-        class="section-title text-center mb-[79px] md:mb-[67px]"
+        class="section-title service-title text-center mb-[79px] md:mb-[67px]"
       ></h2>
       <div
         class="service-items grid grid-cols-4 xsm:grid-cols-1 md:grid-cols-2 md:gap-x-[11px] items-stretch gap-x-[50px] md:gap-y-[5px] gap-y-[39px]"

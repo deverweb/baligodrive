@@ -86,7 +86,7 @@
   <a
     target="_blank"
     href="https://goo.gl/maps/QbxBDe7BeCUWwEgf9"
-    class="contacts-hand xsm:w-screen xsm:flex xsm:justify-end xsm:relative xsm:left-0 xsm:right-0 md:hidden lg:w-[33%] xl:w-[40%] 2xl:right-0 absolute bottom-0 right-[8%]"
+    class="contacts-hand xsm:w-full xsm:flex xsm:justify-end xsm:relative xsm:left-0 xsm:right-0 md:hidden lg:w-[33%] xl:w-[40%] 2xl:right-0 absolute bottom-0 right-[8%]"
   >
     <img class="xsm:w-[90%]" src="/img/contacts/hand.png" alt="" />
     <span

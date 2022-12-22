@@ -18,7 +18,7 @@
         v-show="isActiveWidget"
       >
         <div
-          class="wg-head h-[72px] flex items-center justify-center grow-0 shrink-0 tracking-[-0.5px] rounded-t-[12px]"
+          class="wg-head h-[72px] flex items-center justify-center grow-0 shrink-0 tracking-[-0.5px] xsm:rounded-none rounded-t-[12px]"
         >
           <span>{{ $t("mainPageForm.title") }}</span>
           <button
@@ -31,7 +31,7 @@
         <div class="wg-list grow px-[30px] bg-light">
           <CustomDatePicker
             transition="widget-date"
-            styleType="widget-form"
+            styleType="widget"
             :name="'date'"
             class="dp__widget-form"
             defaultLabel="Модель байка"
@@ -39,9 +39,9 @@
           </CustomDatePicker>
           <CustomSelectField
             name="bike"
-            :options="bikes"
+            :options="commercialStore.bikeModelsArray"
             class="cs__widget-form"
-            :styleType="'widget-form'"
+            :styleType="'widget'"
             :defaultLabel="bikeDefaultLabel"
           >
             <SvgBikeIcon :fill="'black'"></SvgBikeIcon>
@@ -54,21 +54,8 @@
           >
             <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
           </CustomTextField>
-          <input
-            type="text"
-            class="hidden"
-            name="client_phone"
-            id="client_phone"
-          />
-          <!-- <CustomTextField
-            type="number"
-            class="ci__widget-form"
-            name="client_phone"
-            placeholder="Телефон"
-          >
-            <SvgPhoneIcon></SvgPhoneIcon>
-          </CustomTextField> -->
-          <CustomPhoneField type="widget" name="client_phone1">
+
+          <CustomPhoneField type="widget" name="client_phone">
             <SvgPhoneIcon></SvgPhoneIcon>
           </CustomPhoneField>
         </div>
@@ -90,6 +77,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
+import { useStorage } from "@vueuse/core";
+
 let { locale } = useI18n();
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,13 +109,22 @@ let btnText = computed(() => {
   }
   if (locale.value == "en") return "Checkout";
 });
-
+let formvalues = useStorage("formvalues", {});
 const { handleSubmit } = useForm();
-
 const onSubmit = handleSubmit((values) => {
-  console.log("values", values);
+  formvalues.value = values;
   formStore.fillForm(values);
-  commercialStore.smallFormOrder(values);
+  commercialStore.smallFormOrder({
+    order_date:
+      new Date().toLocaleDateString() +
+      " " +
+      new Date().toLocaleTimeString().slice(0, -3),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: values.date.start,
+    order_date_end: values.date.end,
+    bike_choice: values.bike.name,
+  });
   router.push({ path: "/order" });
 });
 
@@ -165,13 +163,6 @@ onBeforeUnmount(() => {
   // ScrollTrigger.getById("index").kill();
 });
 
-let bikes = Object.values(
-  commercialStore.bikes.reduce((unique, o) => {
-    if (!unique[o.name] || +o.date > +unique[o.name].date) unique[o.name] = o;
-
-    return unique;
-  }, {})
-);
 router.afterEach(() => {
   isActiveWidget.value = false;
 });

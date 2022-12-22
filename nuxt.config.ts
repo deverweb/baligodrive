@@ -44,6 +44,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/i18n",
     ["@pinia/nuxt", { autoImports: ["defineStore", "acceptHMRUpdate"] }],
+    "@vueuse/nuxt",
   ],
   runtimeConfig: {
     CLIENT_ID: process.env.CLIENT_ID,

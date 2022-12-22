@@ -2,28 +2,31 @@ export const useFormStore = defineStore("form", () => {
   let formData = ref(null);
   let bike = ref(null);
   let dates = ref(null);
+  let dateDif = ref(null);
   let client_name = ref(null);
+  let rate = ref(null);
   let client_phone = ref(null);
   const fillForm = (body) => {
     bike.value = body.bike;
     dates.value = body.date;
     dates.value.end = new Date(dates.value.end);
     dates.value.start = new Date(dates.value.start);
-    client_phone.value = body.client_phone;
-    client_name.value = body.client_name;
-  };
-  let computedDate = computed(() => {
-    if (dates.value) {
-      return Math.ceil(
+    dateDif.value = Number(
+      Math.ceil(
         Math.abs(dates.value.end.getTime() - dates.value.start.getTime()) /
           (1000 * 3600 * 24)
-      );
-    }
-    return "";
-  });
+      ) + 1
+    );
+    client_phone.value = body.client_phone;
+    client_name.value = body.client_name;
+    rate.value = bike.value.rates.find((val, i) => {
+      return dateDif.value >= val.minDays && dateDif.value <= val.maxDays;
+    });
+  };
+
   let computedPrice = computed(() => {
     if (bike.value) {
-      return Number(computedDate.value) * Number(bike.value.hourPriceUsd);
+      return Number(dateDif.value) * rate.value.dayPriceUSD;
     }
     return "";
   });
@@ -63,11 +66,12 @@ export const useFormStore = defineStore("form", () => {
   return {
     formData,
     fillForm,
+    dateDif,
     bike,
     dates,
+    rate,
     client_name,
     computedPrice,
-    computedDate,
     computedDateStr,
     computedDateStrEnd,
     computedDateStrStart,

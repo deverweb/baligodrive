@@ -1,5 +1,7 @@
 <template>
-  <div class="pt-[220px] font-Euroblack text-[90px]">Страница оплаты</div>
+  <div class="pt-[220px] uppercase grow font-Euroblack text-[90px]">
+    Страница оплаты
+  </div>
 </template>
 
 <script setup></script>

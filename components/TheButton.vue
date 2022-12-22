@@ -1,10 +1,37 @@
 <template>
-  <button class="btn-primary flex items-center justify-center rounded-[12px]">
-    <slot></slot>
+  <button
+    :disabled="props.loading"
+    :class="{ 'select-none pointer-events-none ': props.loading }"
+    class="btn-primary relative flex items-center justify-center rounded-[12px]"
+  >
+    <div
+      class="btn-primary-loading grid place-items-center"
+      v-if="props.loading"
+    >
+      <svg class="spinner" viewBox="0 0 50 50">
+        <circle
+          class="path"
+          cx="25"
+          cy="25"
+          r="20"
+          stroke="white"
+          fill="none"
+          stroke-width="5"
+        ></circle>
+      </svg>
+    </div>
+    <slot v-else></slot>
   </button>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+});
+</script>
 
 <style lang="sass">
 
@@ -43,4 +70,35 @@
 			border: 1px solid $light
 			background-color: rgba($green, 0)
 			backdrop-filter: blur(4px)
+	.spinner
+		animation: rotate 2s linear infinite
+		z-index: 2
+		width: 30px
+		height: 30px
+		.path
+			stroke: white
+			stroke-linecap: round
+			animation: dash 1.5s ease-in-out infinite
+
+
+
+
+@keyframes rotate
+	100%
+		transform: rotate(360deg)
+
+
+
+@keyframes dash
+	0%
+		stroke-dasharray: 1, 150
+		stroke-dashoffset: 0
+
+	50%
+		stroke-dasharray: 90, 150
+		stroke-dashoffset: -35
+
+	100%
+		stroke-dasharray: 90, 150
+		stroke-dashoffset: -124
 </style>

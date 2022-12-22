@@ -78,7 +78,6 @@ let range = ref({
 });
 
 let emit = defineEmits(["daypick", "close"]);
-
 const handleClose = () => {
   emit("close");
 };

@@ -22,20 +22,20 @@
           <div class="max-w-[360px] lg:mx-auto lg:text-left">
             <CustomDatePicker
               name="date"
-              styleType="index-form"
+              styleType="index"
               transition="slide-right"
               class="mb-[10px] dp__index-form"
             >
             </CustomDatePicker>
             <CustomSelectField
-              :styleType="'index-form'"
+              :styleType="'index'"
               class="mb-[10px] cs__index-form"
               transition="widget-date"
               :active="formData.bikeField.active"
               v-model:selectedOption="indexFormStore.selectedOption"
               :name="formData.bikeField.name"
               :defaultLabel="bikePlaceholder"
-              :options="bikes"
+              :options="commercialStore.bikeModelsArray"
             >
               <SvgBikeIcon></SvgBikeIcon>
             </CustomSelectField>
@@ -49,7 +49,7 @@
             </CustomTextField>
 
             <CustomPhoneField
-              class="index__phone mb-[10px]"
+              class="mb-[10px]"
               type="index"
               name="client_phone"
             >
@@ -77,7 +77,7 @@
         </form>
       </div>
       <SectionIndexFormOrderBike
-        class="absolute lg:max-w-[80%] 2xl:z-[0] 2xl:bottom-[5%] 2xl:left-[40%] 2xl:scale-[0.85] lg:scale-100 sm:max-w-full left-[50%] lg:bottom-auto lg:relative lg:left-0"
+        class="absolute lg:max-w-[60%] 2xl:z-[0] 2xl:bottom-[5%] 2xl:left-[40%] 2xl:scale-[0.85] lg:scale-100 xsm:max-w-full left-[50%] lg:bottom-auto lg:relative lg:left-0"
       ></SectionIndexFormOrderBike>
     </div>
   </section>
@@ -95,14 +95,6 @@ const bikes = ref([]);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
 const indexFormStore = useIndexFormStore();
-
-bikes.value = Object.values(
-  commercialStore.bikes.reduce((unique, o) => {
-    if (!unique[o.name] || +o.date > +unique[o.name].date) unique[o.name] = o;
-
-    return unique;
-  }, {})
-);
 
 let namePlaceholder = computed(() => {
   if (locale.value == "ru") return "Ваше Имя";
@@ -133,7 +125,17 @@ const formData = ref({
 
 const onSubmit = handleSubmit((values) => {
   formStore.fillForm(values);
-  commercialStore.smallFormOrder(commercialStore.token.access_token, values);
+  commercialStore.smallFormOrder({
+    order_date:
+      new Date().toLocaleDateString() +
+      " " +
+      new Date().toLocaleTimeString().slice(0, -3),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: values.date.start,
+    order_date_end: values.date.end,
+    bike_choice: values.bike.name,
+  });
   router.push({ path: "/order" });
 });
 

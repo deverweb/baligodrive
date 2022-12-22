@@ -18,6 +18,10 @@ export const useGlobalStore = defineStore("global", () => {
 
   let activeInvestModal = ref(false);
 
+  const setActiveInvestModal = () => {
+    activeInvestModal.value = true;
+  };
+
   let activeMobileMenu = ref(false);
 
   const ruNavigationLinks = [
@@ -69,5 +73,6 @@ export const useGlobalStore = defineStore("global", () => {
     activeBikeModal,
     setActiveBikeModal,
     activeInvestModal,
+    setActiveInvestModal,
   };
 });

@@ -1,6 +1,8 @@
 <template>
-  <div class="flex items-center h-[76px] field">
-    <slot></slot>
+  <div :class="classes" class="flex items-center pf">
+    <div class="pf-icon-container">
+      <slot></slot>
+    </div>
     <input
       type="text"
       v-model="phone"
@@ -10,12 +12,14 @@
     />
     <ClientOnly>
       <vue-tel-input
-        :class="classes"
-        class="ml-[7px]"
-        v-model="phone"
+        class="ml-[7px] phone-input"
+        v-model="phoneValue"
         mode="international"
+        @country-changed="handleCountryChange"
+        @on-input="handleInput"
+        :preferredCountries="['ID', 'RU', 'UA']"
         autoformat
-        defaultCountry="RU"
+        :autoDefaultCountry="false"
         placeholder="Номер телефона"
         :dropdownOptions="{
           showFlags: true,
@@ -34,6 +38,19 @@
 </template>
 
 <script setup>
+import { useField } from "vee-validate";
+
+let { value: phoneValue } = useField(props.name);
+let ctCode = ref(0);
+const handleCountryChange = (obj) => {
+  ctCode.value = obj.dialCode;
+};
+
+const handleInput = (num, obj) => {
+  if (num.length < ctCode.value.length + 1)
+    phoneValue.value = "+" + ctCode.value;
+};
+
 let phone = ref("");
 const props = defineProps({
   name: {
@@ -42,24 +59,24 @@ const props = defineProps({
   },
   type: String,
 });
-const telValidate = (telnumber) => {
-  if (telnumber.valid) {
-    phone.value = telnumber.number;
-  } else {
-    phone.value = "";
-  }
-};
 
 const classes = computed(() => {
-  if (props.type == "widget") return "widget-phone";
-  if (props.type == "index") return "index-phone";
-  if (props.type == "order") return "order-phone";
+  return props.type + "-phone";
 });
 </script>
 
 <style lang="sass">
-.field
-	&.index__phone
+.pf
+
+	&:focus-within
+		box-shadow: none
+		input
+			border: none
+			&:focus
+				border: none
+			&:active
+				border: none
+	&.index-phone
 		color: $dark
 		font-size: 16px
 		background-color: $light
@@ -70,38 +87,66 @@ const classes = computed(() => {
 		display: flex
 		align-items: center
 		border-radius: 12px
-	// .vue-tel-input
-	// 	&.index-phone
-
-.vue-tel-input
-	&.index-phone
-		.field
+		border: none
+		.phone-input
+			border: none
 			color: $dark
 			font-size: 16px
 			background-color: $light
 			z-index: 2
-			padding: 23px 21px 20px 50px
+			// padding: 23px 21px 20px 50px
 			user-select: none
 			display: flex
 			align-items: center
 			border-radius: 12px
-	&.widget-phone
-		color: $dark
-		font-size: 16px
-		+helvr
+			height: 100%
+			&:focus-within
+				box-shadow: none
+	&.invest-phone
+		padding-left: 3px
+		border-bottom: 1px solid #F3F3F3
+		+r(600)
+			width: 100%
+		.pf-icon-container
+			width: 14px
 		.vti__dropdown-list
-			z-index: 5
-			+r(600)
-				max-width: calc(100vw - 70px)
-				left: -22px
-				top: 40px
-		&:focus-within
-			box-shadow: none
-		input
+			z-index: 10
+		.phone-input
+			height: 71px
+			display: flex
+			align-items: center
+			color: $dark
+			font-size: 16px
+			background-color: white
 			border: none
-			&:focus
+			z-index: 10
+			&:focus-within
+				box-shadow: none
+			input
 				border: none
-			&:active
+				&:focus
+					border: none
+				&:active
+					border: none
+	&.widget-phone
+		.phone-input
+			color: $dark
+			font-size: 16px
+			height: 76px
+			+helvr
+			border: none
+			.vti__dropdown-list
+				z-index: 5
+				+r(600)
+					max-width: calc(100vw - 70px)
+					left: -22px
+					top: 40px
+			&:focus-within
+				box-shadow: none
+			input
 				border: none
-	border: none
+				&:focus
+					border: none
+				&:active
+					border: none
 </style>

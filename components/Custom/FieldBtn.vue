@@ -27,11 +27,7 @@ const props = defineProps({
 });
 
 const computedClass = computed(() => {
-  return {
-    "index-form": props.styleType == "index-form",
-    "order-form": props.styleType == "order-form",
-    "widget-form": props.styleType == "widget-form",
-  };
+  return props.styleType + "-form";
 });
 </script>
 
@@ -48,6 +44,28 @@ const computedClass = computed(() => {
 	+r(768)
 		padding-top: 17px
 		padding-bottom: 19px
+	&.invest-form
+		z-index: 3
+		color: $dark
+		background-color: white
+		height: 67px
+		border-bottom: 1px solid #F3F3F3
+		border-radius: 0
+		.field-btn-icon
+			position: absolute
+			width: 32px
+		.field-btn-text
+			white-space: nowrap
+			overflow: hidden
+			text-overflow: ellipsis
+			padding-left: 32px
+		.field-btn-arrow
+			margin-right: 7px
+			margin-top: 8px
+			height: 7px
+			width: 10px
+			path
+				stroke: $dark
 	&.order-form
 		z-index: 3
 		color: $light

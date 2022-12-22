@@ -56,7 +56,7 @@
 
     <div
       class="catalog-bikes bikes lg:gap-[36px] lg:grid-cols-1"
-      v-if="store.bikes"
+      v-if="store.bikeModelsArray"
     >
       <Swiper
         class=""
@@ -83,8 +83,9 @@
             :data-index="('slide= ', i)"
             :bikeName="bike.name"
             :imgSrc="bike.img"
-            :price="bike.hourPriceUsd"
             :id="bike.id"
+            :rates="bike.rates"
+            :discount="bike.discount"
           >
           </SectionIndexBikesSlide>
         </SwiperSlide>
@@ -119,7 +120,7 @@ let store = useCommercialStore();
 	.swiper-wrapper
 		padding-top: 40px
 		+r(990)
-			padding-bottom: 50px
+			padding-bottom: 40px
 		+r(600)
 			padding-top: 44px
 			padding-bottom: 43px

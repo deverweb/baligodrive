@@ -170,12 +170,49 @@ onMounted(() => {
 		border-radius: 12px
 		padding: 0
 		z-index: 10
-		&.active
 		li
 			cursor: pointer
 			padding-left: 30px
 			&:hover
 				background-color: lighten(#353535, 10%)
+	&.ci__invest-form
+		position: relative
+		border-bottom: 1px solid #F3F3F3
+
+		.ci-error
+			color: red
+			font-size: 12px
+		.ci-error-container
+			// height: 10px
+			bottom: 0
+			position: absolute
+		.ci-container
+			display: flex
+			font-size: 16px
+			align-items: center
+			height: 65px
+			position: relative
+			padding-right: 21px
+			padding-left: 3px
+			border-radius: 0
+			background-color: white
+		.ci-icon-container
+			width: 30px
+			display: flex
+			justify-content: flex-start
+		.ci-input
+			height: 100%
+			white-space: nowrap
+			background-color: white
+			overflow: hidden
+			flex-grow: 1
+			text-overflow: ellipsis
+			color: $dark
+		input
+			&:focus::placeholder
+				color: transparent
+			&::placeholder
+				color: $dark
 	&.ci__widget-form
 		position: relative
 		border-bottom: 1px solid #f3f3f3

@@ -64,6 +64,7 @@ body
 		font-size: 58px
 		letter-spacing: -2px
 		line-height: 0.96
+				
 		+r(991)
 			font-size: 46px
 			font-size: calc(var(--index) * 2.6)
@@ -73,6 +74,10 @@ body
 			// font-size: 28px
 			// line-height: 27px
 			letter-spacing: -1px
+		&.order-title, &.service-title
+			+r(480)
+				font-size: calc(var(--index) * 1.9)
+				
 	&-desc
 		font-size: 18px
 		line-height: 23px

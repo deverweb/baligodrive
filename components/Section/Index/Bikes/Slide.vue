@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bike bg-light xsm:h-[600px] h-[750px] xsm:px-[31px] xsm:pr-[30px] xsm:pb-[31px] pb-[39px] pt-[33px] xsm:pt-[25px] px-[40px] rounded-[26px] xsm:rounded-[20px] flex flex-col lg:max-w-[440px] lg:mx-auto"
+    class="bike bg-light h-[auto] xsm:px-[31px] xsm:pr-[30px] xsm:pb-[31px] pb-[39px] pt-[33px] xsm:pt-[25px] px-[40px] rounded-[26px] xsm:rounded-[20px] flex flex-col lg:max-w-[440px] lg:mx-auto"
   >
     <div
       class="bike-title xsm:tracking-[-0.2px] lil:text-[18px] font-Helvbold uppercase text-[28px] xsm:text-[22px]"
@@ -9,32 +9,36 @@
     </div>
 
     <div
-      class="bike-img flex items-center mt-auto mb-[82px] h-[300px] md:h-[280px] xsm:h-[260px] xsm:mb-[63px]"
+      class="bike-img flex items-center mt-auto mb-[40px] h-[300px] md:h-[280px] xsm:h-[260px] xsm:mb-[23px]"
     >
       <img
-        class="object-contain mx-auto max-w-full ml-[-5px]"
+        class="object-contain h-full mx-auto max-w-full ml-[-5px]"
         :src="props.imgSrc"
         alt=""
       />
     </div>
-    <div class="bike-desc">
+    <div class="bike-rates mb-[35px] grid-cols-2 grid auto-rows-[1fr]">
       <div
-        class="bike-desc__text text-[16px] xsm:tracking-[0.2px] text-dark xsm:text-[12px] xsm:leading-[16px] leading-[20px] xsm:mb-[18px] mb-[26px]"
+        class="bike-rate pt-[12px] pb-[15px] text-[#111111]"
+        v-for="rate in props.rates"
       >
-        В 2022 году Yamaha выпустила этот мотоцикл на рынок, сделав его желанным
-        для многих.
-      </div>
-    </div>
-    <div
-      class="bike-price flex items-end font-Helvbold justify-between mb-[26px] xsm:mb-[21px]"
-    >
-      <div class="bike-price__fuel text-[18px] xsm:text-[14px] lil:text-[10px]">
-        Стоимость аренды:
-      </div>
-      <div
-        class="bike-price__value text-[18px] xsm:text-[14px] lil:text-[10px]"
-      >
-        от {{ props.price }}$ / день
+        <div class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
+          {{ rate.minDays }} - {{ rate.maxDays }} дней
+        </div>
+        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]">
+          {{ rate.dayPriceUSD }}$ / день
+        </div>
+        <div class="bike-rate-rup font-Helvmed mb-[3px] text-[14px]">
+          {{ rate.dayPriceRUP }} рупий
+        </div>
+        <div class="bike-rate-discount opacity-50 text-[12px] font-Helvmed">
+          Старая цена:
+          <span class="line-through">
+            {{
+              (rate.dayPriceUSD * ((100 + props.discount) / 100)).toFixed(0)
+            }}$ / день
+          </span>
+        </div>
       </div>
     </div>
     <div class="bike-bottom flex items-center justify-between">
@@ -68,8 +72,9 @@ const props = defineProps({
   id: String,
   bikeName: String,
   imgSrc: String,
-  price: String,
   description: String,
+  rates: Array,
+  discount: Number,
 });
 
 const indexFormStore = useIndexFormStore();
@@ -84,7 +89,7 @@ const handleDetailsClick = (bikeId) => {
 
 const handleBikeClick = (event) => {
   indexFormStore.changeSelectedOption(
-    commercialStore.bikes.find((val) => val.id == props.id)
+    commercialStore.bikeModelsArray.find((val) => val.id == props.id)
   );
 
   document.querySelector(".order ").scrollIntoView({ behavior: "smooth" });
@@ -97,7 +102,18 @@ const handleBikeClick = (event) => {
 	box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.07)
 	+r(600)
 		box-shadow: 0px 3.86364px 30.9091px rgba(0, 0, 0, 0.07)
+	&-rate
+		border-bottom: 1px solid #E0E0E0
+		&:nth-child(even)
+			padding-left: 20px
 
+		&:nth-child(odd)
+			border-right: 1px solid #E0E0E0
+			padding-right: 15px
+		&:last-child
+			border: none
+		&:nth-child(3)
+			border-bottom: none
 	&-detailed
 		position: relative
 		color: #AAAAAA

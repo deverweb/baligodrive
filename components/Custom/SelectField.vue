@@ -148,6 +148,43 @@ let isRequired = (value) => {
 	opacity: 0
 	transform: translateY(-20px)
 .cs
+	&.cs__invest-form
+		position: relative
+		color: $dark
+		background-color: white
+		font-size: 16px
+		+r(600)
+			width: 100%
+		.cs-current
+			position: relative
+			box-shadow: none
+		.cs-error-container
+			position: absolute
+			bottom: 0
+			z-index: 4
+			height: auto
+		.cs-error
+			font-size: 12px
+		.cs-list-container
+			max-height: 155px
+			overflow-y: auto
+			position: absolute
+			background-color: #f5f5f5
+			width: 100%
+			top: calc(100% - 1px)
+			z-index: 10
+			li
+				padding-left: 31px
+				font-size: 16px
+				height: 61px
+				display: flex
+				align-items: center
+				background-color: transparent
+				transition: 0.2s ease-in-out all
+				cursor: pointer
+				&:hover
+					background-color: $light
+
 	&.cs__widget-form
 		position: relative
 		color: $dark
