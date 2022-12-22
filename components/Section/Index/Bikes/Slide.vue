@@ -20,7 +20,7 @@
     <div class="bike-rates mb-[35px] grid-cols-2 grid auto-rows-[1fr]">
       <div
         class="bike-rate pt-[12px] pb-[15px] text-[#111111]"
-        v-for="rate in props.rates"
+        v-for="rate in props.rates.shift()"
       >
         <div class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
           {{ rate.minDays }} - {{ rate.maxDays }} дней
