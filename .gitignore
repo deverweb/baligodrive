@@ -5,6 +5,5 @@ node_modules
 .cache
 .output
 dist
-server/baligobike-api-6f8fd72f74.json
-server/linear-stock-371713-73fa8f6f5bfc.json
+server/*.json
 
