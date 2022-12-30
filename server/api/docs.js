@@ -1,16 +1,17 @@
 import { GoogleSpreadsheet } from "google-spreadsheet";
-// import json from "./linear-stock-371713-73fa8f6f5bfc.json";
-import json from "./baligobike-api-6f8fd7272f74.json";
+import json from "./linear-stock-371713-73fa8f6f5bfc.json";
+// import json from "./baligobike-api-6f8fd7272f74.json";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  // console.log("body", body);
-  // const doc = new GoogleSpreadsheet(
-  //   "1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM"
-  // );
+  console.log("body", body);
+  console.log("env: ", process.env.GOOGLE_MAPS_API_KEY);
   const doc = new GoogleSpreadsheet(
-    "1LHmvh_YJztViJKhoT4TPiaVOWYS08cpbwKaLPszpBkI"
+    "1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM"
   );
+  // const doc = new GoogleSpreadsheet(
+  // "1LHmvh_YJztViJKhoT4TPiaVOWYS08cpbwKaLPszpBkI"
+  // );
   const email_key = json.client_email;
   const private_key = json.private_key;
   await doc.useServiceAccountAuth({
