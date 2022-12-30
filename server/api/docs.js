@@ -6,14 +6,12 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   console.log("body", body);
   console.log("env: ", process.env.GOOGLE_MAPS_API_KEY);
-  const doc = new GoogleSpreadsheet(
-    "1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM"
-  );
+  const doc = new GoogleSpreadsheet("1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM");
   // const doc = new GoogleSpreadsheet(
   // "1LHmvh_YJztViJKhoT4TPiaVOWYS08cpbwKaLPszpBkI"
   // );
-  const email_key = json.client_email;
-  const private_key = json.private_key;
+  const email_key = process.env.EMAIL_KEY;
+  const private_key = process.env.PRIVATE_KEY;
   await doc.useServiceAccountAuth({
     client_email: email_key,
     private_key: private_key,
@@ -28,9 +26,7 @@ export default defineEventHandler(async (event) => {
       order_date: body.data.order_date,
       client_name: body.data.client_name,
       client_messenger: body.data.client_messenger,
-      order_date_start: new Date(
-        body.data.order_date_start
-      ).toLocaleDateString(),
+      order_date_start: new Date(body.data.order_date_start).toLocaleDateString(),
       order_date_end: new Date(body.data.order_date_end).toLocaleDateString(),
       bike_model: body.data.bike_choice,
     });

@@ -364,4 +364,3 @@ const bikeModelsArray = [
     drawing: "Red Bull",
   },
 ];
-console.log("");
