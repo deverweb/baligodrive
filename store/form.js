@@ -6,7 +6,10 @@ export const useFormStore = defineStore("form", () => {
   let client_name = ref(null);
   let rate = ref(null);
   let client_phone = ref(null);
+  let bikeImage = ref(null);
   const fillForm = (body) => {
+    console.log("form store body after submit", body);
+
     bike.value = body.bike;
     dates.value = body.date;
     dates.value.end = new Date(dates.value.end);
@@ -70,6 +73,7 @@ export const useFormStore = defineStore("form", () => {
     bike,
     dates,
     rate,
+    bikeImage,
     client_name,
     computedPrice,
     computedDateStr,

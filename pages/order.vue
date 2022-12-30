@@ -333,226 +333,18 @@
         </form>
       </div>
       <!-- <div class="modal-container max-w-[50%] absolute right-[80px] top-[130px]"> -->
-      <div
+      <OrderPinnedOrder
+        class="top-[130px] right-[80px] xl:top-[77px] xl:right-[55px]"
         ref="orderSticky"
-        class="order-sticky max-w-[40%] md:hidden md:max-w-full md:pt-[50px] absolute right-[80px] xl:right-[55px] xl:max-w-[230px] xl:top-[77px] top-[130px]"
-      >
-        <div class="order-sticky-container">
-          <div
-            class="order-view px-[40px] md:pb-[36px] md:items-center md:flex-col xl:pl-[22px] pb-[27px] xl:pb-[30px] flex md:rounded-t-[44px] rounded-t-[17px] bg-dark-300 md:pt-[68px] pt-[42px]"
-          >
-            <div class="order-view-text shrink-0 md:text-center">
-              <div
-                class="font-Euroblack uppercase md:mb-[80px] md:text-[30px] mb-[48px] xl:mb-[36px] tracking-[-0.6px]"
-              >
-                Ваш заказ:
-              </div>
-              <div class="order-view-list md:hidden">
-                <div
-                  class="order-view-item mb-[38px] xl:mb-[32px] flex items-start"
-                >
-                  <SvgBikeIcon :fill="'#30B21B'"></SvgBikeIcon>
-                  <div class="ml-[15px] order-view-item-container">
-                    <div
-                      class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]"
-                    >
-                      {{ formStore.bike.name }}
-                    </div>
-                    <div
-                      class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                    >
-                      {{ formStore.rate.dayPriceUSD }}$ / день ({{
-                        formStore.computedPrice
-                      }}$ итого)
-                    </div>
-                  </div>
-                </div>
-                <!-- <div
-                class="order-view-item mb-[38px] xl:mb-[32px] flex items-start"
-              >
-                <SvgSurfIcon stroke="#30B21B"></SvgSurfIcon>
-                <div class="ml-[15px] order-view-item-container">
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]"
-                  >
-                    BaliGo Custom Surf
-                  </div>
-                  <div
-                    class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                  >
-                    3$ / день (27$ итого)
-                  </div>
-                </div>
-              </div> -->
-                <div class="order-view-item flex items-start">
-                  <SvgCalendarIcon :fill="'#30B21B'"></SvgCalendarIcon>
-                  <div class="ml-[18px] order-view-item-container">
-                    <div
-                      class="order-view-item-name font-Helvmed text-[16px] mb-[5px] leading-[20px]"
-                    >
-                      с {{ formStore.computedDateStrStart }} <br />по
-                      {{ formStore.computedDateStrEnd }}
-                    </div>
-                    <div
-                      class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                    >
-                      {{ formStore.rate.dayPriceUSD }}$ x
-                      {{ formStore.dateDif }} суток
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="order-view-images w-[45%] md:mb-[90px] md:max-h-[360px] md:flex xl:hidden md:ml-0 flex ml-auto flex-shrink-0"
-            >
-              <img
-                class="flex-shrink-0 h-[230px] object-contain"
-                :src="bikeImage"
-                alt=""
-              />
-              <img v-if="false" class="flex-shrink-0" :src="bikeImage" alt="" />
-            </div>
-            <div
-              class="order-view-list hidden md:self-start md:gap-x-[54px] md:pl-[8px] md:flex md:items-start"
-            >
-              <div
-                class="order-view-item md:mb-0 mb-[38px] xl:mb-[32px] flex items-start"
-              >
-                <SvgBikeIcon :fill="'#30B21B'"></SvgBikeIcon>
-                <div class="ml-[15px] order-view-item-container">
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]"
-                  >
-                    {{ formStore.bike.name }}
-                  </div>
-                  <div
-                    class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                  >
-                    {{ formStore.rate.dayPriceUSD }}$ / день ({{
-                      formStore.computedPrice
-                    }}$ итого)
-                  </div>
-                </div>
-              </div>
-              <!-- <div
-              class="order-view-item md:mb-0 mb-[38px] xl:mb-[32px] flex items-start"
-            >
-              <SvgSurfIcon stroke="#30B21B"></SvgSurfIcon>
-              <div class="ml-[15px] order-view-item-container">
-                <div
-                  class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]"
-                >
-                  BaliGo Custom Surf
-                </div>
-                <div
-                  class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                >
-                  3$ / день (27$ итого)
-                </div>
-              </div>
-            </div> -->
-              <div class="order-view-item flex items-start">
-                <SvgCalendarIcon :fill="'#30B21B'"></SvgCalendarIcon>
-                <div class="ml-[18px] order-view-item-container">
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] mb-[5px] leading-[20px]"
-                  >
-                    с {{ formStore.computedDateStrStart }} <br />по
-                    {{ formStore.computedDateStrEnd }}
-                  </div>
-                  <div
-                    class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                  >
-                    {{ formStore.rate.dayPriceUSD }} x {{ formStore.dateDif }}$
-                    суток
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            v-if="false"
-            class="order-paid p-[40px] md:pt-[47px] md:px-[50px] xl:px-[42px] pb-[36px] md:pb-[54px] xl:pb-[48px] xl:pt-[31px] pt-[33px] md:bg-[#282828] xl:bg-dark-300 bg-[#282828]"
-          >
-            <div
-              class="order-paid-title tracking-[-0.6px] md:mb-[44px] xl:mb-[39px] font-Euroblack uppercase xl:leading-[1] mb-[30px]"
-            >
-              Платная комплектация:
-            </div>
-            <div
-              class="order-paid-list md:grid md:grid-cols-3 md:gap-x-[50px] md:gap-y-[0] xl:flex-col pl-[10px] xl:pl-0 flex gap-x-[54px] xl:gap-x-0 xl:gap-y-[34px] flex-wrap"
-            >
-              <div class="order-view-item flex items-start">
-                <SvgSurfIcon stroke="#30B21B"></SvgSurfIcon>
-                <div class="ml-[15px] order-view-item-container">
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] xl:mb-[4px] mb-[7px] leading-[1]"
-                  >
-                    BaliGo Custom Surf
-                  </div>
-                  z
-                  <div
-                    class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                  >
-                    3$ / день (27$ итого)
-                  </div>
-                </div>
-              </div>
-              <div class="order-view-item flex items-start">
-                <SvgSurfIcon stroke="#30B21B"></SvgSurfIcon>
-                <div class="ml-[15px] order-view-item-container">
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] xl:mb-[4px] mb-[7px] leading-[1]"
-                  >
-                    BaliGo Custom Surf
-                  </div>
-                  <div
-                    class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                  >
-                    3$ / день (27$ итого)
-                  </div>
-                </div>
-              </div>
-              <div class="order-view-item flex items-start">
-                <SvgSurfIcon stroke="#30B21B"></SvgSurfIcon>
-                <div class="ml-[15px] order-view-item-container">
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] xl:mb-[4px] mb-[7px] leading-[1]"
-                  >
-                    BaliGo Custom Surf
-                  </div>
-                  <div
-                    class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                  >
-                    3$ / день (27$ итого)
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="order-summary px-[40px] bg-green md:px-[50px] md:text-dark flex justify-between items-center font-Euroblack text-[18px] h-[92px] uppercase md:rounded-b-[44px] rounded-b-[12px]"
-          >
-            <div
-              class="order-summary-container flex justify-between w-full xl:hidden md:flex"
-            >
-              <span class="tracking-[-0.6px]">ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:</span>
-              <span class="tracking-[-0.6px]"
-                >{{ formStore.computedPrice }}$</span
-              >
-            </div>
-            <div
-              class="order-summary-container w-full justify-between hidden xl:flex md:hidden"
-            >
-              <span class="tracking-[-0.6px]">ИТОГО:</span>
-              <span class="tracking-[-0.6px]"
-                >{{ formStore.computedPrice }}$</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
+        :bike-name="formStore.bike.name"
+        :bike-image="formStore.bikeImage"
+        :full-price="formStore.computedPrice"
+        :day-price-u-s-d="formStore.rate.dayPriceUSD"
+        :date-dif="formStore.dateDif"
+        :date-str-end="formStore.computedDateStrEnd"
+        :date-str-start="formStore.computedDateStrStart"
+      ></OrderPinnedOrder>
+
       <div
         class="order-mobile-modal sm:pt-[40px] hidden md:block md:max-w-full md:pt-[50px]"
       >
@@ -625,7 +417,7 @@
             >
               <img
                 class="flex-shrink-0 object-contain sm:w-[85%] sm:mr-[25px] sm:object-contain mr-[25px] md:mr-0"
-                :src="bikeImage"
+                :src="formStore.bikeImage"
                 alt=""
               />
               <img
@@ -829,20 +621,20 @@
         </div>
       </div>
     </div>
-    <div v-else>v else</div>
+    <div v-else>Загрузка</div>
 
     <!-- </div> -->
   </div>
 </template>
 
 <script setup>
-import { useForm, useField } from "vee-validate";
-// import ScrollMagic from "scrollmagic"
+import { useForm } from "vee-validate";
 import { useStorage } from "@vueuse/core";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useFormStore } from "~~/store/form";
 import { useCommercialStore } from "~~/store/commercial";
+import { propsToAttrMap } from "@vue/shared";
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
@@ -856,8 +648,70 @@ let bikeImage = ref(null);
 //     useRouter().push("/");
 //   }
 // }
+formStore.fillForm({
+  date: {
+    start: "2022-12-30T04:34:23.560Z",
+    end: "2022-12-31T04:34:23.560Z",
+  },
+  bike: {
+    model: "HONDA VARIO 160 CC",
+    bikes: [
+      {
+        id: "9221",
+        hourPriceUsd: "15",
+        img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+        brand: "HONDA",
+        mark: "VARIO 160 CC",
+        name: "HONDA VARIO 160 CC",
+        drawing: "Red Bull",
+      },
+    ],
+    discount: 20,
+    rates: [
+      {
+        minDays: 1,
+        maxDays: 4,
+        dayPriceUSD: 15,
+        dayPriceRUP: 210000,
+      },
+      {
+        minDays: 5,
+        maxDays: 7,
+        dayPriceUSD: 14,
+        dayPriceRUP: 210000,
+      },
+      {
+        minDays: 8,
+        maxDays: 14,
+        dayPriceUSD: 11,
+        dayPriceRUP: 170000,
+      },
+      {
+        minDays: 15,
+        maxDays: 21,
+        dayPriceUSD: 9,
+        dayPriceRUP: 130000,
+      },
+      {
+        minDays: 22,
+        maxDays: 90,
+        dayPriceUSD: 7,
+        dayPriceRUP: 100000,
+      },
+    ],
+    id: "9221",
+    hourPriceUsd: "15",
+    img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+    brand: "HONDA",
+    mark: "VARIO 160 CC",
+    name: "HONDA VARIO 160 CC",
+    drawing: "Red Bull",
+  },
+  client_name: "23333333",
+  client_phone: "+62 22 2222222",
+});
 const handleBikeImage = (payload) => {
-  bikeImage.value = payload.img;
+  formStore.bikeImage = payload.img;
 };
 
 let isDeliveryOfficy = ref(false);
@@ -879,21 +733,23 @@ onMounted(() => {
   //   end: () => `+=${getDurationHeight()}`,
   //   pin: ".order-sticky",
   // })
-
+  console.log("order: ", order.value);
+  console.log("orderSticky: ", orderSticky.value.orderSticky);
+  console.log("orderBody: ", orderBody.value);
   let getDurationHeight = () => {
     let computedStyle = getComputedStyle(order.value);
     let elementHeight = order.value.clientHeight;
     elementHeight -=
       parseFloat(computedStyle.paddingTop) +
       parseFloat(computedStyle.paddingBottom);
-    return elementHeight - orderSticky.value.offsetHeight + 50;
+    return elementHeight - orderSticky.value.orderSticky.offsetHeight + 50;
   };
   ScrollTrigger.create({
     id: "index",
     trigger: orderBody.value,
     start: "top 180px",
     end: () => `+=${getDurationHeight()}`,
-    pin: orderSticky.value,
+    pin: orderSticky.value.orderSticky,
   });
 
   // setTimeout(() => {
@@ -914,7 +770,7 @@ onMounted(() => {
 
 const onSubmit = handleSubmit(async (values) => {
   commercialStore.orderBike({
-    // order_id: values.order_id,
+    order_id: values.order_id,
     order_date:
       new Date().toLocaleDateString() +
       " " +

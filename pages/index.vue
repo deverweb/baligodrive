@@ -11,50 +11,25 @@
     <SectionIndexForm></SectionIndexForm>
     <SectionIndexCards></SectionIndexCards>
     <section class="pb-[60px]">
-      <h2
-        v-html="$t('mainPageFaq.title')"
-        class="section-title text-center mb-[90px] md:mb-[26px] xsm:mb-[30px]"
-      ></h2>
+      <h2 v-html="$t('mainPageFaq.title')" class="section-title text-center mb-[90px] md:mb-[26px] xsm:mb-[30px]"></h2>
       <div class="container mb-[40px]">
         <ul class="faq-tabs sm:hidden flex items-center">
-          <li
-            :class="{ active: activeSlide == 1 }"
-            class="text-center"
-            @click="changeTab(1)"
-          >
+          <li :class="{ active: activeSlide == 1 }" class="text-center" @click="changeTab(1)">
             {{ $t("mainPageFaq.firstTab") }}
           </li>
-          <li
-            :class="{ active: activeSlide == 2 }"
-            class="text-center"
-            @click="changeTab(2)"
-          >
+          <li :class="{ active: activeSlide == 2 }" class="text-center" @click="changeTab(2)">
             {{ $t("mainPageFaq.secondTab") }}
           </li>
-          <li
-            :class="{ active: activeSlide == 3 }"
-            class="text-center"
-            @click="changeTab(3)"
-          >
+          <li :class="{ active: activeSlide == 3 }" class="text-center" @click="changeTab(3)">
             {{ $t("mainPageFaq.thirdTab") }}
           </li>
         </ul>
         <div class="faq-phone-tabs hidden font-Euroblack text-[12px] sm:block">
-          <div
-            @click="activeTabList = !activeTabList"
-            class="faq-phone-current px-[30px]"
-          >
+          <div @click="activeTabList = !activeTabList" class="faq-phone-current px-[30px]">
             <span>{{ currentTabText }}</span>
-            <SvgArrowDownIcon
-              class="transition-transform"
-              :class="{ 'rotate-180': activeTabList }"
-            ></SvgArrowDownIcon>
+            <SvgArrowDownIcon class="transition-transform" :class="{ 'rotate-180': activeTabList }"></SvgArrowDownIcon>
           </div>
-          <ul
-            class="faq-phone-list"
-            :class="{ 'mt-[10px]': activeTabList }"
-            v-show="activeTabList"
-          >
+          <ul class="faq-phone-list" :class="{ 'mt-[10px]': activeTabList }" v-show="activeTabList">
             <li
               @click="changeTab(1)"
               :class="{ active: activeSlide == 1 }"
@@ -80,23 +55,11 @@
         </div>
       </div>
       <div class="faq-questions-inner">
-        <SectionFaq
-          class="mt-[50px] pt-[0px] top-0"
-          :questions="questions1"
-          v-if="activeSlide == 1"
-        ></SectionFaq>
+        <SectionFaq class="mt-[50px] pt-[0px] top-0" :questions="questions1" v-if="activeSlide == 1"></SectionFaq>
 
-        <SectionFaq
-          class="mt-[50px] pt-[0px] top-0"
-          :questions="questions2"
-          v-if="activeSlide == 2"
-        ></SectionFaq>
+        <SectionFaq class="mt-[50px] pt-[0px] top-0" :questions="questions2" v-if="activeSlide == 2"></SectionFaq>
 
-        <SectionFaq
-          class="mt-[50px] pt-[0px] top-0"
-          :questions="questions3"
-          v-if="activeSlide == 3"
-        ></SectionFaq>
+        <SectionFaq class="mt-[50px] pt-[0px] top-0" :questions="questions3" v-if="activeSlide == 3"></SectionFaq>
       </div>
     </section>
 
@@ -234,11 +197,11 @@ const ruQuestions1 = [
     title: "Что входит в аренду байка?",
     text: `<div>В стоимость аренды байка по умолчанию входит:
 			<ul class="list-disc">
-				<li>Полная страховка (угон и повреждения байка);</li>
-				<li>2 новых стандартных шлема;</li>
-				<li>Держатель для телефона;</li>
-				<li>Дождевик;</li>
-				<li>Аптечка;</li>
+				<li> - Полная страховка (угон и повреждения байка);</li>
+				<li> - 2 новых стандартных шлема;</li>
+				<li> - Держатель для телефона;</li>
+				<li> - Дождевик;</li>
+				<li> - Аптечка;</li>
 			</ul>
 			<br>Также дополнительные аксессуары Вы можете заказать при бронировании байка</div>`,
   },
@@ -258,8 +221,7 @@ const ruQuestions1 = [
 ];
 const ruQuestions2 = [
   {
-    title:
-      "Что делать если я попал в ДТП, а виноват местный. Как договариваться?",
+    title: "Что делать если я попал в ДТП, а виноват местный. Как договариваться?",
     text: "Важно понимать, что если на Бали происходит дорожное происшествие без серьезного ущерба здоровью, никто не вызывает полицейскую службу и все расходятся полюбовно. В случае конфликтной ситуации на дороге, - самое главное не паниковать и уведомить владельца или компанию по аренде, для скорейшей помощи и решения ситуации.",
   },
   {
@@ -321,13 +283,13 @@ const enQuestions1 = [
   },
   {
     title: "What is included in the bike rental?",
-    text: `<div>The default bike rental price includes::
+    text: `<div>The default bike rental price includes:
 			<ul class="list-disc">
-				<li> Full insurance (theft and damage to the bike);</li>
-				<li>2 new standard helmets;</li>
-				<li>Holder for your mobile phone;</li>
-				<li>Raincoat;</li>
-				<li>First aid kit.</li>
+				<li> - Full insurance (theft and damage to the bike);</li>
+				<li> - 2 new standard helmets;</li>
+				<li> - Holder for your mobile phone;</li>
+				<li> - Raincoat;</li>
+				<li> - First aid kit.</li>
 			</ul>
 			<br>You can also order additional accessories when booking a bike.</div>`,
   },
@@ -343,15 +305,13 @@ const enQuestions1 = [
 		<br>- If your trips are long and/or with a passenger, we recommend choosing more powerful and comfortable bikes - Yamaha Aerox, Yamaha Nmax, Honda PCX, Honda AVD.`,
   },
   {
-    title:
-      "What should I do if I rented a bike, but I don’t feel comfortable / don’t like it?",
+    title: "What should I do if I rented a bike, but I don’t feel comfortable / don’t like it?",
     text: "If you have rented a bike from us and it does not suit you, then you can always exchange it for a bike with a surcharge, or simply return the vehicle and receive the rest of the rental amount according to our return policy.",
   },
 ];
 const enQuestions2 = [
   {
-    title:
-      "What to do if I got into an accident, and the local is to blame. How to negotiate?",
+    title: "What to do if I got into an accident, and the local is to blame. How to negotiate?",
     text: "It is important to understand that if a traffic accident occurs in Bali without serious damage to health, no one calls the police service and everyone disperses amicably. In the event of a conflict situation on the road, the most important thing is not to panic and notify the owner or the rental company so that they can help and resolve the situation as soon as possible.",
   },
   {
@@ -367,13 +327,11 @@ const enQuestions2 = [
     text: "We do not require you to have a category A driver's license. But please note that according to the law, it is mandatory to have a license to drive a bike with the appropriate category.",
   },
   {
-    title:
-      "What should I do if the police stopped me, but I don’t have my license?",
+    title: "What should I do if the police stopped me, but I don’t have my license?",
     text: "If you do not have rights, then we advise you to set aside 100 thousand rupees separately in your pocket for such situations in order to quickly resolve the issue on a neutral-positive wave with a small donation to the police.",
   },
   {
-    title:
-      "Is it possible to drive around the island with the rights of another country?",
+    title: "Is it possible to drive around the island with the rights of another country?",
     text: "If your new driver's license is plastic and translated into English, then it is quoted in Indonesia. If possible, it is advisable to make an international license (booklet) before departure, since even if you have a new type of license, the police may want to lighten your pockets.",
   },
   {
