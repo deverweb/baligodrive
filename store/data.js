@@ -3,9 +3,7 @@ const bikes = [
     id: "9269",
     hourPriceUsd: "18",
     img: "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
-    allImages: [
-      "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
-    ],
+    allImages: ["https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png"],
     description: {
       title: "Описание",
       value: "",
@@ -20,9 +18,7 @@ const bikes = [
     id: "9221",
     hourPriceUsd: "15",
     img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
-    allImages: [
-      "https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg",
-    ],
+    allImages: ["https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg"],
     brand: "HONDA",
     group: "Honda Vario 160 cc + Red Bull",
     mark: "VARIO 160 CC",
@@ -33,9 +29,7 @@ const bikes = [
     id: "8365",
     hourPriceUsd: "18",
     img: "https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg",
-    allImages: [
-      "https://rentsyst.com/static/cache/vehicle/20815/vehicle_thumbnail_33439.jpg",
-    ],
+    allImages: ["https://rentsyst.com/static/cache/vehicle/20815/vehicle_thumbnail_33439.jpg"],
     brand: "HONDA",
     group: "Honda PCX 160 cc + Red Bull",
     mark: "PCX 160 CC",
@@ -43,8 +37,7 @@ const bikes = [
     drawing: "Red Bull",
   },
 ];
-const location =
-  "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия";
+const location = "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия";
 const bikeModels = [
   {
     name: "HONDA PCX 160 CC",
@@ -78,20 +71,14 @@ const bikeModels = [
           {
             id: 4913,
             name: "BaliGo Bike Canggu",
-            address:
-              "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия",
+            address: "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия",
           },
         ],
       ],
       options: [[]],
-      thumbnail:
-        "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
-      thumbnails: [
-        "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
-      ],
-      photos: [
-        "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
-      ],
+      thumbnail: "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
+      thumbnails: ["https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png"],
+      photos: ["https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png"],
       custom_fields: [
         {
           title: "Описание",
@@ -139,8 +126,7 @@ const bikeModels = [
           {
             id: 4913,
             name: "BaliGo Bike Canggu",
-            address:
-              "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия",
+            address: "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия",
           },
         ],
       ],
@@ -153,14 +139,9 @@ const bikeModels = [
           },
         ],
       ],
-      thumbnail:
-        "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
-      thumbnails: [
-        "https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg",
-      ],
-      photos: [
-        "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
-      ],
+      thumbnail: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+      thumbnails: ["https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg"],
+      photos: ["https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg"],
       custom_fields: [],
       _links: {
         self: {
@@ -244,8 +225,7 @@ const bikeModels = [
           {
             id: 4913,
             name: "BaliGo Bike Canggu",
-            address:
-              "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия",
+            address: "Jl. Batu Mejan Canggu No.38, Canggu, Kec. Kuta Utara, Kabupatén Badung, Bali 80351, Индонезия",
           },
         ],
       ],
@@ -258,14 +238,9 @@ const bikeModels = [
           },
         ],
       ],
-      thumbnail:
-        "https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg",
-      thumbnails: [
-        "https://rentsyst.com/static/cache/vehicle/20815/vehicle_thumbnail_33439.jpg",
-      ],
-      photos: [
-        "https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg",
-      ],
+      thumbnail: "https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg",
+      thumbnails: ["https://rentsyst.com/static/cache/vehicle/20815/vehicle_thumbnail_33439.jpg"],
+      photos: ["https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg"],
       custom_fields: [],
       _links: {
         self: {
@@ -326,9 +301,7 @@ const bikeModelsArray = [
         id: "9269",
         hourPriceUsd: "18",
         img: "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
-        allImages: [
-          "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
-        ],
+        allImages: ["https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png"],
         description: {
           title: "Описание",
           value: "",
@@ -343,9 +316,7 @@ const bikeModelsArray = [
         id: "8365",
         hourPriceUsd: "18",
         img: "https://rentsyst.com/static/cache/vehicle/20815/vehicle_list_33439.jpg",
-        allImages: [
-          "https://rentsyst.com/static/cache/vehicle/20815/vehicle_thumbnail_33439.jpg",
-        ],
+        allImages: ["https://rentsyst.com/static/cache/vehicle/20815/vehicle_thumbnail_33439.jpg"],
         brand: "HONDA",
         group: "Honda PCX 160 cc + Red Bull",
         mark: "PCX 160 CC",
@@ -356,9 +327,7 @@ const bikeModelsArray = [
     id: "9269",
     hourPriceUsd: "18",
     img: "https://rentsyst.com/static/cache/vehicle/22507/vehicle_list_33385.png",
-    allImages: [
-      "https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png",
-    ],
+    allImages: ["https://rentsyst.com/static/cache/vehicle/22507/vehicle_thumbnail_33385.png"],
     description: {
       title: "Описание",
       value: "",
@@ -376,9 +345,7 @@ const bikeModelsArray = [
         id: "9221",
         hourPriceUsd: "15",
         img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
-        allImages: [
-          "https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg",
-        ],
+        allImages: ["https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg"],
         brand: "HONDA",
         group: "Honda Vario 160 cc + Red Bull",
         mark: "VARIO 160 CC",
@@ -389,9 +356,7 @@ const bikeModelsArray = [
     id: "9221",
     hourPriceUsd: "15",
     img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
-    allImages: [
-      "https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg",
-    ],
+    allImages: ["https://rentsyst.com/static/cache/vehicle/22441/vehicle_thumbnail_33445.jpg"],
     brand: "HONDA",
     group: "Honda Vario 160 cc + Red Bull",
     mark: "VARIO 160 CC",
@@ -399,3 +364,4 @@ const bikeModelsArray = [
     drawing: "Red Bull",
   },
 ];
+console.log("");
