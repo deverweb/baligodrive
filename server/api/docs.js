@@ -1,6 +1,4 @@
 import { GoogleSpreadsheet } from "google-spreadsheet";
-import json from "./linear-stock-371713-73fa8f6f5bfc.json";
-// import json from "./baligobike-api-6f8fd7272f74.json";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);

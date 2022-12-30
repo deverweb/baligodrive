@@ -1,9 +1,6 @@
 <template>
   <div ref="root" class="cs" :class="{ 'z-[4]': isSelectActive }">
-    <div
-      class="cs-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50"
-      v-if="props.subTitle"
-    >
+    <div class="cs-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">
       {{ props.subTitle }}
     </div>
     <CustomFieldBtn
@@ -16,21 +13,11 @@
       ><slot></slot
     ></CustomFieldBtn>
 
-    <Field
-      class="hidden"
-      v-model="localSelectedOption"
-      :rules="isRequired"
-      :name="props.name"
-      as="select"
-    ></Field>
+    <Field class="hidden" v-model="localSelectedOption" :rules="isRequired" :name="props.name" as="select"></Field>
     <Transition :name="'select-down'">
       <div v-show="isSelectActive" class="cs-list-container z-[2]">
         <ul class="cs-list">
-          <li
-            @click.stop="selectOption(option)"
-            v-for="(option, i) in props.options"
-            class="cs-list-item"
-          >
+          <li @click.stop="selectOption(option)" v-for="(option, i) in props.options" class="cs-list-item">
             <span v-if="option.name">{{ option.name }}</span>
             <span v-else>{{ option }}</span>
           </li>
@@ -58,7 +45,6 @@ const props = defineProps({
     required: false,
     default: {},
   },
-  selectedOption: Object || null,
   subTitle: String,
   styleType: String,
   defaultLabel: {
@@ -81,8 +67,7 @@ let isSelectActive = ref(false);
 let root = ref(null);
 
 const handleOutsideClicks = (e) => {
-  if (!root.value.isEqualNode(e.target.closest(".cs")))
-    isSelectActive.value = false;
+  if (!root.value.isEqualNode(e.target.closest(".cs"))) isSelectActive.value = false;
 };
 onMounted(() => {
   document.addEventListener("click", handleOutsideClicks);
