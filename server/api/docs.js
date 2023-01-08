@@ -2,11 +2,8 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  // console.log("body", body);
-  const doc = new GoogleSpreadsheet("1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM");
-  // const doc = new GoogleSpreadsheet(
-  // "1LHmvh_YJztViJKhoT4TPiaVOWYS08cpbwKaLPszpBkI"
-  // );
+  // const doc = new GoogleSpreadsheet("1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM");
+  const doc = new GoogleSpreadsheet("1LHmvh_YJztViJKhoT4TPiaVOWYS08cpbwKaLPszpBkI");
   const email_key = process.env.EMAIL_KEY;
   const private_key = process.env.PRIVATE_KEY;
   await doc.useServiceAccountAuth({

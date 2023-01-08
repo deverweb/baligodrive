@@ -8,17 +8,14 @@ export const useFormStore = defineStore("form", () => {
   let client_phone = ref(null);
   let bikeImage = ref(null);
   const fillForm = (body) => {
-    console.log("form store body after submit", body);
+    // console.log("form store body after submit", body);
 
     bike.value = body.bike;
     dates.value = body.date;
     dates.value.end = new Date(dates.value.end);
     dates.value.start = new Date(dates.value.start);
     dateDif.value = Number(
-      Math.ceil(
-        Math.abs(dates.value.end.getTime() - dates.value.start.getTime()) /
-          (1000 * 3600 * 24)
-      ) + 1
+      Math.ceil(Math.abs(dates.value.end.getTime() - dates.value.start.getTime()) / (1000 * 3600 * 24)) + 1
     );
     client_phone.value = body.client_phone;
     client_name.value = body.client_name;
@@ -37,9 +34,7 @@ export const useFormStore = defineStore("form", () => {
   let computedDateStr = computed(() => {
     if (dates.value) {
       let str = "";
-      str = `с ${formatDate(dates.value.start)} — до ${formatDate(
-        dates.value.end
-      )}`;
+      str = `с ${formatDate(dates.value.start)} — до ${formatDate(dates.value.end)}`;
       return str;
     }
     return "";

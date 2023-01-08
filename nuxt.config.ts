@@ -6,8 +6,7 @@ export default defineNuxtConfig({
         { charset: "utf-8" },
         {
           name: "viewport",
-          content:
-            "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+          content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
         },
         { "http-equiv": "x-ua-compatible", content: "IE=edge" },
         // {
@@ -50,6 +49,10 @@ export default defineNuxtConfig({
     CLIENT_ID: process.env.CLIENT_ID,
     SECRET_ID: process.env.SECRET_ID,
     GOOGLE_MAPS_API_KEY: "AIzaSyB-pliMJcE5T6ImjjMfFNzJ3vobhPfuRNs",
+    public: {
+      CENT_API_TOKEN: process.env.CENT_API_TOKEN,
+      CENT_SHOP_ID: process.env.CENT_SHOP_ID,
+    },
   },
 
   i18n: {
@@ -94,8 +97,7 @@ export default defineNuxtConfig({
           },
           mainPageSecond: {
             title: "Как это работает?",
-            subtitle:
-              "Мы принимаем онлайн оплату в рублях, гривнах, долларах, евро и криптовалюте.",
+            subtitle: "Мы принимаем онлайн оплату в рублях, гривнах, долларах, евро и криптовалюте.",
           },
           mainPageSlider: {
             title: "Каталог<br>байков",
@@ -103,8 +105,7 @@ export default defineNuxtConfig({
           },
           mainPageForm: {
             title: "Забронируйте байк",
-            subtitle:
-              "Мы доставим ваш байк прямо к вилле или вы можете забрать его сами в нашем офисе",
+            subtitle: "Мы доставим ваш байк прямо к вилле или вы можете забрать его сами в нашем офисе",
           },
           mainPageServices: {
             title: "КОМПЛЕКСНАЯ<br />УСЛУГА АРЕНДЫ",
@@ -133,8 +134,7 @@ export default defineNuxtConfig({
           },
           datePickerComponent: {
             mobileTitle: "Выберите даты брони",
-            mobileDescription:
-              "Выберите дату взятия в аренду и дату возврата, чтобы забронировать байк",
+            mobileDescription: "Выберите дату взятия в аренду и дату возврата, чтобы забронировать байк",
           },
           footerRights: {
             termsOfuse: "Пользовательское соглашение",
@@ -167,8 +167,7 @@ export default defineNuxtConfig({
           },
           mainPageSecond: {
             title: "How it works?",
-            subtitle:
-              "We accept online payments in rubles, hryvnias, dollars and euros.",
+            subtitle: "We accept online payments in rubles, hryvnias, dollars and euros.",
           },
           mainPageSlider: {
             title: "Bike<br>catalog",
@@ -176,8 +175,7 @@ export default defineNuxtConfig({
           },
           mainPageForm: {
             title: "Book a bike",
-            subtitle:
-              "We will deliver your bike directly to the villa or you can pick it up at our office",
+            subtitle: "We will deliver your bike directly to the villa or you can pick it up at our office",
           },
           mainPageServices: {
             title: "Complete<br>rental service",
@@ -195,8 +193,7 @@ export default defineNuxtConfig({
           },
           contactsComponent: {
             title: "Contacts",
-            description:
-              "Our office is located in the heart of Changgu. You can reach us by public transport or taxi.",
+            description: "Our office is located in the heart of Changgu. You can reach us by public transport or taxi.",
             communication: "Communication in messengers:",
             clickInfo: "Click to<br>get directions!",
           },
@@ -206,8 +203,7 @@ export default defineNuxtConfig({
           },
           datePickerComponent: {
             mobileTitle: "Select booking dates",
-            mobileDescription:
-              "Select your rental date and return date to book your bike",
+            mobileDescription: "Select your rental date and return date to book your bike",
           },
           footerRights: {
             termsOfuse: "Terms of use",

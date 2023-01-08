@@ -4,19 +4,14 @@
     class="order px-[80px] xl:pt-[134px] md:pt-[131px] sm:pt-[66px] md:px-[0px] xl:px-[55px] sm:pb-[70px] md:pb-[150px] pb-[130px] 2xl:pt-[173px] pt-[179px] relative rounded-t-[70px] sm:rounded-t-[44px] bg-dark-700"
   >
     <div v-if="formStore.bike">
-      <div
-        ref="orderBody"
-        class="order-body sm:px-[25px] md:px-[50px] max-w-[46.6%] xl:max-w-[68.8%] md:max-w-full"
-      >
+      <div ref="orderBody" class="order-body sm:px-[25px] md:px-[50px] max-w-[46.6%] xl:max-w-[68.8%] md:max-w-full">
         <h1
           class="order-title sm:text-[28px] tracking-[-1.5px] md:leading-[0.98] xl:tracking-[-1.2px] md:text-center xl:text-[36px] font-Euroblack md:text-[48px] text-[48px] uppercase border-bottom xl:pb-[41px] sm:pb-[34px] md:pb-[42px] pb-[30px]"
         >
           ОФОРМЛЕНИЕ ЗАКАЗА
         </h1>
         <form @submit="onSubmit">
-          <div
-            class="border-bottom order-step sm:pt-[40px] sm:pb-[41px] pt-[50px] pb-[49px]"
-          >
+          <div class="border-bottom order-step sm:pt-[40px] sm:pb-[41px] pt-[50px] pb-[49px]">
             <SectionOrderStep
               class="mb-[48px] sm:mb-[30px]"
               number="1"
@@ -45,33 +40,17 @@
             :options="surfBoards"
           ></SectionOrderRadioField>
         </div> -->
-          <div
-            class="border-bottom order-step sm:pt-[41px] sm:pb-[38px] pt-[50px] pb-[51px]"
-          >
+          <div class="border-bottom order-step sm:pt-[41px] sm:pb-[38px] pt-[50px] pb-[51px]">
             <SectionOrderStep
               class="mb-[48px] sm:mb-[40px]"
               number="2"
               text="Выберите дополнительную комплектацию"
             ></SectionOrderStep>
-            <p
-              class="font-Helvmed text-[14px] opacity-50 sm:mb-[28px] mb-[36px]"
-            >
-              Бесплатная комплектация
-            </p>
-            <SectionOrderCheckboxField
-              :addText="true"
-              class="sm:mb-[22px] mb-[46px]"
-              :checked="true"
-              name="insurance"
-            >
+            <p class="font-Helvmed text-[14px] opacity-50 sm:mb-[28px] mb-[36px]">Бесплатная комплектация</p>
+            <SectionOrderCheckboxField :addText="true" class="sm:mb-[22px] mb-[46px]" :checked="true" name="insurance">
               <span>Страховка от повреждений и угона</span>
             </SectionOrderCheckboxField>
-            <SectionOrderCheckboxField
-              :addText="true"
-              class="sm:mb-[22px] mb-[46px]"
-              :checked="true"
-              name="firstaid"
-            >
+            <SectionOrderCheckboxField :addText="true" class="sm:mb-[22px] mb-[46px]" :checked="true" name="firstaid">
               <span>Аптечка</span>
             </SectionOrderCheckboxField>
             <SectionOrderCheckboxField
@@ -98,10 +77,7 @@
               <SvgSmallHelmetIcon></SvgSmallHelmetIcon>
               <span>Новый детский шлем</span>
             </SectionOrderSimpleRadioField>
-            <SectionOrderSimpleRadioField
-              widthClasses="w-[291px] md:w-[256px] sm:w-[161px]"
-              name="rainCoatCount"
-            >
+            <SectionOrderSimpleRadioField widthClasses="w-[291px] md:w-[256px] sm:w-[161px]" name="rainCoatCount">
               <SvgRainCoat></SvgRainCoat>
               <span>Дождевик стандартный</span>
             </SectionOrderSimpleRadioField>
@@ -154,9 +130,7 @@
             <span>Дождевик премиальный</span>
           </SectionOrderSimpleRadioField>
         </div> -->
-          <div
-            class="border-bottom order-step order-stamp sm:pt-[40px] sm:pb-[59px] md:pb-[69px] py-[50px]"
-          >
+          <div class="border-bottom order-step order-stamp sm:pt-[40px] sm:pb-[59px] md:pb-[69px] py-[50px]">
             <SectionOrderStep
               class="mb-[38px] sm:mb-[31px]"
               number="3"
@@ -175,27 +149,14 @@
                 :autocomplete="true"
                 :placeholder="'Введите адрес'"
               >
-                <SvgGeoIcon
-                  class="h-[15px] w-[11px]"
-                  :fill="'#4c4c4d'"
-                ></SvgGeoIcon>
+                <SvgGeoIcon class="h-[15px] w-[11px]" :fill="'#4c4c4d'"></SvgGeoIcon>
               </CustomTextField>
               <CustomSelectField
                 :styleType="'order'"
                 subTitle="Время доставки"
                 :name="'deliveryTime'"
                 class="w-[248px] sm:w-full sm:mb-[23px] sm:max-w-[350px] cs__order-form flex-shrink-0"
-                :options="[
-                  '10:00',
-                  '11:00',
-                  '12:00',
-                  '13:00',
-                  '14:00',
-                  '15:00',
-                  '16:00',
-                  '17:00',
-                  '18:00',
-                ]"
+                :options="['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']"
                 :defaultLabel="'Время доставки'"
               >
                 <SvgClockIcon></SvgClockIcon>
@@ -206,9 +167,7 @@
                 :checked="false"
                 :name="'getAtOffice'"
                 v-model:isChecked="isDeliveryOfficy"
-                ><span class="sm:text-[16px] text-[14px] font-Helvmed"
-                  >Заберу в офисе</span
-                ></SectionOrderCheckboxField
+                ><span class="sm:text-[16px] text-[14px] font-Helvmed">Заберу в офисе</span></SectionOrderCheckboxField
               >
             </div>
             <div
@@ -224,27 +183,14 @@
                 :class="{ 'opacity-50 pointer-events-none': isReturnOffice }"
                 :placeholder="'Введите адрес'"
               >
-                <SvgGeoIcon
-                  class="h-[15px] w-[11px]"
-                  :fill="'#4c4c4d'"
-                ></SvgGeoIcon>
+                <SvgGeoIcon class="h-[15px] w-[11px]" :fill="'#4c4c4d'"></SvgGeoIcon>
               </CustomTextField>
               <CustomSelectField
                 :styleType="'order'"
                 subTitle="Время возврата"
                 :name="'returnTime'"
                 class="w-[248px] sm:mb-[23px] sm:w-full sm:max-w-[350px] cs__order-form flex-shrink-0"
-                :options="[
-                  '10:00',
-                  '11:00',
-                  '12:00',
-                  '13:00',
-                  '14:00',
-                  '15:00',
-                  '16:00',
-                  '17:00',
-                  '18:00',
-                ]"
+                :options="['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']"
                 :defaultLabel="'Время возврата'"
               >
                 <SvgClockIcon></SvgClockIcon>
@@ -255,9 +201,7 @@
                 :checked="false"
                 v-model:isChecked="isReturnOffice"
                 :name="'returnAtOffice'"
-                ><span class="sm:text-[16px] text-[14px] font-Helvmed"
-                  >Отдам в офисе</span
-                ></SectionOrderCheckboxField
+                ><span class="sm:text-[16px] text-[14px] font-Helvmed">Отдам в офисе</span></SectionOrderCheckboxField
               >
             </div>
           </div>
@@ -286,10 +230,7 @@
                 placeholder="Введите ваш E-mail"
                 :subTitle="'E-mail'"
               >
-                <SvgMailIcon
-                  class="w-[15px] h-[11px]"
-                  fill="#616162"
-                ></SvgMailIcon
+                <SvgMailIcon class="w-[15px] h-[11px]" fill="#616162"></SvgMailIcon
               ></CustomTextField>
               <CustomTextField
                 :type="'number'"
@@ -304,11 +245,7 @@
                 :styleType="'order'"
                 class="cs__order-form"
                 :name="'clientMessenger'"
-                :options="[
-                  { name: 'Telegram' },
-                  { name: 'Whatsapp' },
-                  { name: 'Viber' },
-                ]"
+                :options="[{ name: 'Telegram' }, { name: 'Whatsapp' }, { name: 'Viber' }]"
                 :defaultLabel="'Выберите мессенджер'"
                 :subTitle="'Какой мессенджер используете'"
               >
@@ -323,10 +260,7 @@
               <SvgFileIcon></SvgFileIcon>
             </CustomFileField>
           </div>
-          <TheButton
-            class="mt-[50px] md:hidden btn-primary__dark w-full h-[70px] gap-[15px]"
-            type="submit"
-          >
+          <TheButton class="mt-[50px] md:hidden btn-primary__dark w-full h-[70px] gap-[15px]" type="submit">
             <SvgCalendarIcon></SvgCalendarIcon>
             <span>Забронировать даты и комплектующие</span>
           </TheButton>
@@ -345,9 +279,7 @@
         :date-str-start="formStore.computedDateStrStart"
       ></OrderPinnedOrder>
 
-      <div
-        class="order-mobile-modal sm:pt-[40px] hidden md:block md:max-w-full md:pt-[50px]"
-      >
+      <div class="order-mobile-modal sm:pt-[40px] hidden md:block md:max-w-full md:pt-[50px]">
         <div class="order-mobile-container hidden md:block">
           <div
             class="order-view sm:pb-[8px] sm:px-[25px] px-[40px] md:pb-[36px] md:items-center md:flex-col xl:pl-[42px] pb-[27px] xl:pb-[10px] flex md:rounded-t-[44px] rounded-t-[17px] bg-dark-300 sm:pt-[40px] md:pt-[68px] pt-[42px]"
@@ -359,55 +291,33 @@
                 Ваш заказ:
               </div>
               <div class="order-view-list md:hidden">
-                <div
-                  class="order-view-item mb-[38px] xl:mb-[32px] flex items-start"
-                >
+                <div class="order-view-item mb-[38px] xl:mb-[32px] flex items-start">
                   <SvgBikeIcon :fill="'#30B21B'"></SvgBikeIcon>
                   <div class="ml-[15px] order-view-item-container">
-                    <div
-                      class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]"
-                    >
+                    <div class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]">
                       {{ formStore.bike.name }}
                     </div>
-                    <div
-                      class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                    >
-                      {{ formStore.rate.dayPriceUSD }}$ / день ({{
-                        formStore.computedPrice
-                      }}$ итого)
+                    <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+                      {{ formStore.rate.dayPriceUSD }}$ / день ({{ formStore.computedPrice }}$ итого)
                     </div>
                   </div>
                 </div>
-                <div
-                  class="order-view-item mb-[38px] xl:mb-[32px] flex items-start"
-                >
+                <div class="order-view-item mb-[38px] xl:mb-[32px] flex items-start">
                   <SvgSurfIcon stroke="#30B21B"></SvgSurfIcon>
                   <div class="ml-[15px] order-view-item-container">
-                    <div
-                      class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]"
-                    >
+                    <div class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]">
                       BaliGo Custom Surf
                     </div>
-                    <div
-                      class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                    >
-                      3$ / день (27$ итого)
-                    </div>
+                    <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">3$ / день (27$ итого)</div>
                   </div>
                 </div>
                 <div class="order-view-item flex items-start">
                   <SvgCalendarIcon :fill="'#30B21B'"></SvgCalendarIcon>
                   <div class="ml-[18px] order-view-item-container">
-                    <div
-                      class="order-view-item-name font-Helvmed text-[16px] mb-[5px] leading-[20px]"
-                    >
+                    <div class="order-view-item-name font-Helvmed text-[16px] mb-[5px] leading-[20px]">
                       с 19.10.2022<br />по 28.10.2022
                     </div>
-                    <div
-                      class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
-                    >
-                      (8$ + 3$) x 9 дней
-                    </div>
+                    <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">(8$ + 3$) x 9 дней</div>
                   </div>
                 </div>
               </div>
@@ -434,24 +344,14 @@
                 class="order-view-item sm:w-full sm:mb-[39px] md:mb-0 mb-[38px] xl:mb-[32px] flex items-start sm:items-center"
               >
                 <SvgBikeIcon :fill="'#30B21B'"></SvgBikeIcon>
-                <div
-                  class="ml-[18px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container"
-                >
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]"
-                  >
+                <div class="ml-[18px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container">
+                  <div class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]">
                     {{ formStore.bike.name }}
                   </div>
-                  <div
-                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
-                  >
-                    {{ formStore.rate.dayPriceUSD }}$ / день ({{
-                      formStore.computedPrice
-                    }}$ итого)
+                  <div class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed">
+                    {{ formStore.rate.dayPriceUSD }}$ / день ({{ formStore.computedPrice }}$ итого)
                   </div>
-                  <div
-                    class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block"
-                  >
+                  <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
                     {{ formStore.computedPrice }}$
                   </div>
                   <div
@@ -462,24 +362,15 @@
                 </div>
               </div>
 
-              <div
-                class="order-view-item sm:w-full sm:mb-[39px] flex items-start sm:items-center"
-              >
+              <div class="order-view-item sm:w-full sm:mb-[39px] flex items-start sm:items-center">
                 <SvgCalendarIcon :fill="'#30B21B'"></SvgCalendarIcon>
-                <div
-                  class="ml-[18px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container"
-                >
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] mb-[5px] leading-[20px]"
-                  >
+                <div class="ml-[18px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container">
+                  <div class="order-view-item-name font-Helvmed text-[16px] mb-[5px] leading-[20px]">
                     с {{ formStore.computedDateStrStart }} по
                     {{ formStore.computedDateStrEnd }}
                   </div>
-                  <div
-                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
-                  >
-                    {{ formStore.rate.dayPriceUSD }}$ x
-                    {{ formStore.dateDif }} суток
+                  <div class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed">
+                    {{ formStore.rate.dayPriceUSD }}$ x {{ formStore.dateDif }} суток
                   </div>
                 </div>
               </div>
@@ -497,28 +388,16 @@
             <div
               class="order-paid-list sm:grid-cols-1 md:grid md:grid-cols-3 md:gap-x-[50px] md:gap-y-[0] xl:flex-col pl-[10px] xl:pl-0 flex gap-x-[54px] xl:gap-x-0 xl:gap-y-[34px] flex-wrap"
             >
-              <div
-                class="order-view-item sm:w-full sm:mb-[45px] flex items-start sm:items-center"
-              >
+              <div class="order-view-item sm:w-full sm:mb-[45px] flex items-start sm:items-center">
                 <SvgSurfIcon stroke="#30B21B"></SvgSurfIcon>
-                <div
-                  class="ml-[15px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container"
-                >
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] xl:mb-[4px] mb-[7px] leading-[1]"
-                  >
+                <div class="ml-[15px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container">
+                  <div class="order-view-item-name font-Helvmed text-[16px] xl:mb-[4px] mb-[7px] leading-[1]">
                     BaliGo Custom Surf
                   </div>
-                  <div
-                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
-                  >
+                  <div class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed">
                     3$ / день (27$ итого)
                   </div>
-                  <div
-                    class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block"
-                  >
-                    72$
-                  </div>
+                  <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">72$</div>
                   <div
                     class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
                   >
@@ -526,28 +405,16 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="order-view-item sm:w-full sm:mb-[45px] flex items-start sm:items-center"
-              >
+              <div class="order-view-item sm:w-full sm:mb-[45px] flex items-start sm:items-center">
                 <SvgSurfIcon stroke="#30B21B"></SvgSurfIcon>
-                <div
-                  class="ml-[15px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container"
-                >
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] xl:mb-[4px] mb-[7px] leading-[1]"
-                  >
+                <div class="ml-[15px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container">
+                  <div class="order-view-item-name font-Helvmed text-[16px] xl:mb-[4px] mb-[7px] leading-[1]">
                     BaliGo Custom Surf
                   </div>
-                  <div
-                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
-                  >
+                  <div class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed">
                     3$ / день (27$ итого)
                   </div>
-                  <div
-                    class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block"
-                  >
-                    72$
-                  </div>
+                  <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">72$</div>
                   <div
                     class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
                   >
@@ -557,24 +424,14 @@
               </div>
               <div class="order-view-item flex items-start sm:items-center">
                 <SvgSurfIcon stroke="#30B21B"></SvgSurfIcon>
-                <div
-                  class="ml-[15px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container"
-                >
-                  <div
-                    class="order-view-item-name font-Helvmed text-[16px] xl:mb-[4px] mb-[7px] leading-[1]"
-                  >
+                <div class="ml-[15px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container">
+                  <div class="order-view-item-name font-Helvmed text-[16px] xl:mb-[4px] mb-[7px] leading-[1]">
                     BaliGo Custom Surf
                   </div>
-                  <div
-                    class="order-view-item-price sm:hidden text-[14px] opacity-50 font-Helvmed"
-                  >
+                  <div class="order-view-item-price sm:hidden text-[14px] opacity-50 font-Helvmed">
                     3$ / день (27$ итого)
                   </div>
-                  <div
-                    class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block"
-                  >
-                    72$
-                  </div>
+                  <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">72$</div>
                   <div
                     class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
                   >
@@ -587,28 +444,18 @@
           <div
             class="order-summary sm:px-[25px] px-[40px] bg-green md:px-[50px] flex justify-between items-center font-Euroblack text-[18px] h-[92px] uppercase md:rounded-b-[44px] rounded-b-[12px]"
           >
-            <div
-              class="order-summary-container flex justify-between w-full xl:hidden md:flex sm:hidden"
-            >
+            <div class="order-summary-container flex justify-between w-full xl:hidden md:flex sm:hidden">
               <span class="tracking-[-0.6px]">ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:</span>
-              <span class="tracking-[-0.6px]"
-                >{{ formStore.computedPrice }}$</span
-              >
+              <span class="tracking-[-0.6px]">{{ formStore.computedPrice }}$</span>
             </div>
-            <div
-              class="order-summary-container w-full justify-between hidden xl:flex md:hidden sm:flex"
-            >
+            <div class="order-summary-container w-full justify-between hidden xl:flex md:hidden sm:flex">
               <span class="tracking-[-0.6px]">ИТОГО:</span>
-              <span class="tracking-[-0.6px]"
-                >{{ formStore.computedPrice }}$</span
-              >
+              <span class="tracking-[-0.6px]">{{ formStore.computedPrice }}$</span>
             </div>
           </div>
         </div>
         <div class="sm:px-[25px] md:px-[50px] order-mobile-modal-btn">
-          <hr
-            class="hidden md:block sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light"
-          />
+          <hr class="hidden md:block sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
           <TheButton
             @click="onSubmit"
             class="mt-[50px] sm:mt-0 sm:w-full sm:ml-0 hidden md:flex btn-primary__dark w-full h-[70px] gap-[15px]"
@@ -634,12 +481,16 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useFormStore } from "~~/store/form";
 import { useCommercialStore } from "~~/store/commercial";
-import { propsToAttrMap } from "@vue/shared";
+const router = useRouter();
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
+onBeforeMount(() => {
+  if (!formStore.bike) {
+    router.push("/");
+  }
+});
 // const formvalues = useStorage("formvalues");
-let bikeImage = ref(null);
 // if (process.client) {
 //   if (formvalues.value) {
 //     formStore.fillForm(JSON.parse(formvalues.value));
@@ -648,68 +499,68 @@ let bikeImage = ref(null);
 //     useRouter().push("/");
 //   }
 // }
-formStore.fillForm({
-  date: {
-    start: "2022-12-30T04:34:23.560Z",
-    end: "2022-12-31T04:34:23.560Z",
-  },
-  bike: {
-    model: "HONDA VARIO 160 CC",
-    bikes: [
-      {
-        id: "9221",
-        hourPriceUsd: "15",
-        img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
-        brand: "HONDA",
-        mark: "VARIO 160 CC",
-        name: "HONDA VARIO 160 CC",
-        drawing: "Red Bull",
-      },
-    ],
-    discount: 20,
-    rates: [
-      {
-        minDays: 1,
-        maxDays: 4,
-        dayPriceUSD: 15,
-        dayPriceRUP: 210000,
-      },
-      {
-        minDays: 5,
-        maxDays: 7,
-        dayPriceUSD: 14,
-        dayPriceRUP: 210000,
-      },
-      {
-        minDays: 8,
-        maxDays: 14,
-        dayPriceUSD: 11,
-        dayPriceRUP: 170000,
-      },
-      {
-        minDays: 15,
-        maxDays: 21,
-        dayPriceUSD: 9,
-        dayPriceRUP: 130000,
-      },
-      {
-        minDays: 22,
-        maxDays: 90,
-        dayPriceUSD: 7,
-        dayPriceRUP: 100000,
-      },
-    ],
-    id: "9221",
-    hourPriceUsd: "15",
-    img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
-    brand: "HONDA",
-    mark: "VARIO 160 CC",
-    name: "HONDA VARIO 160 CC",
-    drawing: "Red Bull",
-  },
-  client_name: "23333333",
-  client_phone: "+62 22 2222222",
-});
+// formStore.fillForm({
+//   date: {
+//     start: "2022-12-30T04:34:23.560Z",
+//     end: "2022-12-31T04:34:23.560Z",
+//   },
+//   bike: {
+//     model: "HONDA VARIO 160 CC",
+//     bikes: [
+//       {
+//         id: "9221",
+//         hourPriceUsd: "15",
+//         img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+//         brand: "HONDA",
+//         mark: "VARIO 160 CC",
+//         name: "HONDA VARIO 160 CC",
+//         drawing: "Red Bull",
+//       },
+//     ],
+//     discount: 20,
+//     rates: [
+//       {
+//         minDays: 1,
+//         maxDays: 4,
+//         dayPriceUSD: 15,
+//         dayPriceRUP: 210000,
+//       },
+//       {
+//         minDays: 5,
+//         maxDays: 7,
+//         dayPriceUSD: 14,
+//         dayPriceRUP: 210000,
+//       },
+//       {
+//         minDays: 8,
+//         maxDays: 14,
+//         dayPriceUSD: 11,
+//         dayPriceRUP: 170000,
+//       },
+//       {
+//         minDays: 15,
+//         maxDays: 21,
+//         dayPriceUSD: 9,
+//         dayPriceRUP: 130000,
+//       },
+//       {
+//         minDays: 22,
+//         maxDays: 90,
+//         dayPriceUSD: 7,
+//         dayPriceRUP: 100000,
+//       },
+//     ],
+//     id: "9221",
+//     hourPriceUsd: "15",
+//     img: "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg",
+//     brand: "HONDA",
+//     mark: "VARIO 160 CC",
+//     name: "HONDA VARIO 160 CC",
+//     drawing: "Red Bull",
+//   },
+//   client_name: "23333333",
+//   client_phone: "+62 22 2222222",
+// });
 const handleBikeImage = (payload) => {
   formStore.bikeImage = payload.img;
 };
@@ -733,15 +584,13 @@ onMounted(() => {
   //   end: () => `+=${getDurationHeight()}`,
   //   pin: ".order-sticky",
   // })
-  console.log("order: ", order.value);
-  console.log("orderSticky: ", orderSticky.value.orderSticky);
-  console.log("orderBody: ", orderBody.value);
+  // console.log("order: ", order.value);
+  // console.log("orderSticky: ", orderSticky.value.orderSticky);
+  // console.log("orderBody: ", orderBody.value);
   let getDurationHeight = () => {
     let computedStyle = getComputedStyle(order.value);
     let elementHeight = order.value.clientHeight;
-    elementHeight -=
-      parseFloat(computedStyle.paddingTop) +
-      parseFloat(computedStyle.paddingBottom);
+    elementHeight -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
     return elementHeight - orderSticky.value.orderSticky.offsetHeight + 50;
   };
   ScrollTrigger.create({
@@ -771,28 +620,21 @@ onMounted(() => {
 const onSubmit = handleSubmit(async (values) => {
   commercialStore.orderBike({
     order_id: values.order_id,
-    order_date:
-      new Date().toLocaleDateString() +
-      " " +
-      new Date().toLocaleTimeString().slice(0, -3),
+    order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
     client_name: formStore.client_name,
     client_surname: values.clientName,
     client_phone: values.clientPhone,
     client_social: values.clientMessenger.name,
     client_email: values.clientEmail,
     order_date_start:
-      new Date(formStore.dates.start).toLocaleDateString() +
-      "" +
-      new Date(formStore.dates.start).toLocaleTimeString(),
+      new Date(formStore.dates.start).toLocaleDateString() + "" + new Date(formStore.dates.start).toLocaleTimeString(),
     order_date_end:
-      new Date(formStore.dates.end).toLocaleDateString() +
-      "" +
-      new Date(formStore.dates.end).toLocaleTimeString(),
+      new Date(formStore.dates.end).toLocaleDateString() + "" + new Date(formStore.dates.end).toLocaleTimeString(),
     bike_model: values.bike.name,
     bike_painting: values.bike.drawing,
     location_delivery: values.firstAddress,
-    location_return: values.lastAddress,
     time_delivery: values.deliveryTime,
+    location_return: values.lastAddress,
     time_return: values.returnTime,
     helmets: values.adultHelmetCount,
     full_price: formStore.computedPrice,
