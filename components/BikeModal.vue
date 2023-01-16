@@ -8,28 +8,15 @@
       @click="handleOutsideClick"
     >
       <div class="bmodal-window relative flex justify-between md:flex-col">
-        <div
-          class="bmodal-top h-[57px] hidden xsm:flex justify-between items-center"
-        >
-          <div
-            class="text-dark tracking-[-0.6px] uppercase font-Euroblack text-[20px]"
-          >
+        <div class="bmodal-top h-[57px] hidden xsm:flex justify-between items-center">
+          <div class="text-dark tracking-[-0.6px] uppercase font-Euroblack text-[20px]">
             <span class="text-green">BALI.</span>GODRIVE
           </div>
-          <button
-            class="bmodal-close"
-            @click="globalStore.activeBikeModal = false"
-          >
-            <SvgCloseIcon
-              class="w-[20px] h-[20px]"
-              fill="#000000"
-            ></SvgCloseIcon>
+          <button class="bmodal-close" @click="globalStore.activeBikeModal = false">
+            <SvgCloseIcon class="w-[20px] h-[20px]" fill="#000000"></SvgCloseIcon>
           </button>
         </div>
-        <button
-          class="bmodal-close xsm:hidden"
-          @click="globalStore.activeBikeModal = false"
-        >
+        <button class="bmodal-close xsm:hidden" @click="globalStore.activeBikeModal = false">
           <SvgCloseIcon class="w-[20px] h-[20px]" fill="#000000"></SvgCloseIcon>
         </button>
         <div class="bmodal-left">
@@ -37,18 +24,13 @@
             {{ bike?.model }}
           </div>
           <div class="bmodal-price xsm:order-2 hidden md:block text-center">
-            (от {{ bike?.hourPriceUsd }}$ / день)
+            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[0].dayPriceUSD }}$ /
+            {{ locale == "ru" ? "день" : "day" }})
           </div>
           <div class="bmodal-img xsm:order-3">
-            <img
-              :src="bikeImg"
-              class="max-w-[90%] h-[450px] xsm:h-full"
-              alt=""
-            />
+            <img :src="bikeImg" class="max-w-[90%] h-[450px] xsm:h-full" alt="" />
           </div>
-          <div
-            class="bmodal-paint xsm:mb-[56px] xsm:order-4 hidden md:flex mb-[31px]"
-          >
+          <div class="bmodal-paint xsm:mb-[56px] xsm:order-4 hidden md:flex mb-[31px]">
             <SectionOrderRadioField
               @bikeImgChanged="handleRadioChange"
               type="bmodal"
@@ -61,33 +43,32 @@
           <p
             class="bmodal-description xsm:order-6 xsm:mb-[37px] mb-[45px] xsm:text-[14px] hidden md:flex flex-grow text-[16px] xsm:leading-[143%] leading-[125%]"
           >
-            Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то
-            маневренное и динамичное. Он будет комфортен для перемещения по
-            городу и в то же время достаточно лёгкий в управлении и резвый для
-            совершения обгона на трассе. Диодная оптика и комбинированные
-            тормоза выделяют этот байк на фоне других моделей данного класса.
-            Байк оснащен багажником 18л, в который свободно влезает мотошлем.
+            {{ locale == "ru" ? bike.ruDescription : bike.engDescription }}
           </p>
           <ul class="bmodal-list xsm:order-5 xsm:mb-[57px] md:mb-[43px]">
             <li>
-              <span>Год выпуска:</span>
-              <span>2020</span>
+              <span>{{ langObj.year }}:</span>
+              <span>{{ bike.year }}</span>
+            </li>
+            <li v-if="bike.dry_weight">
+              <span>{{ langObj.dry_weight }}:</span>
+              <span>{{ bike.dry_weight }} {{ locale == "ru" ? "кг" : "kg" }}</span>
             </li>
             <li>
-              <span>Объем багажника:</span>
-              <span>18 литров</span>
+              <span>{{ langObj.trunk_volume }}:</span>
+              <span>{{ bike.trunk_volume }} {{ langObj.liters }}</span>
             </li>
             <li>
-              <span>Мощность:</span>
-              <span>11,1 л.с</span>
+              <span>{{ langObj.capacity }}:</span>
+              <span>{{ bike.capacity }} {{ locale == "ru" ? "л.с." : "hp" }}</span>
             </li>
             <li>
-              <span>Объем топливного бака:</span>
-              <span>5,5 литров</span>
+              <span>{{ langObj.fuel_tank_volume }}:</span>
+              <span>{{ bike.fuel_tank_volume }} {{ langObj.liters }}</span>
             </li>
-            <li>
-              <span>Средний расход:</span>
-              <span>2,3 литра / 100 км</span>
+            <li v-if="bike.average_consumption">
+              <span>{{ langObj.average_consumption }}:</span>
+              <span>{{ bike.average_consumption }} {{ langObj.fuel_tank_volume_second }}</span>
             </li>
           </ul>
         </div>
@@ -96,7 +77,8 @@
             {{ bike?.model }}
           </div>
           <div class="bmodal-price md:hidden">
-            (от {{ bike?.hourPriceUsd }}$ / день)
+            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[0].dayPriceUSD }}$ /
+            {{ locale == "ru" ? "день" : "day" }})
           </div>
           <div class="bmodal-paint md:hidden mb-[31px]">
             <SectionOrderRadioField
@@ -108,15 +90,8 @@
               :options="bike?.bikes"
             ></SectionOrderRadioField>
           </div>
-          <p
-            class="bmodal-description md:hidden flex-grow text-[16px] leading-[125%]"
-          >
-            Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то
-            маневренное и динамичное. Он будет комфортен для перемещения по
-            городу и в то же время достаточно лёгкий в управлении и резвый для
-            совершения обгона на трассе. Диодная оптика и комбинированные
-            тормоза выделяют этот байк на фоне других моделей данного класса.
-            Байк оснащен багажником 18л, в который свободно влезает мотошлем.
+          <p class="bmodal-description md:hidden flex-grow text-[16px] leading-[125%]">
+            {{ locale == "ru" ? bike.ruDescription : bike.engDescription }}
           </p>
           <div class="bmodal-bottom xsm:flex-col flex gap-[26px] md:gap-[32px]">
             <TheButton
@@ -126,12 +101,15 @@
               <span class="text-[16px]">{{ $t("buttonBooking") }}</span>
             </TheButton>
             <div class="bmodal-after text-[14px]">
-              <span class="font-Helvbold"
-                >В стоимость аренды также входят:</span
-              >
+              <span class="font-Helvbold">{{
+                locale == "ru" ? "В стоимость аренды также входят:" : "The rental price also includes:"
+              }}</span>
               <p class="font-Helvmed">
-                полная страховка от повреждений и угона, шлемы, дождевик,
-                аптечка, держатель для телефона.
+                {{
+                  locale == "ru"
+                    ? "полная страховка от повреждений и угона, шлемы, дождевик, аптечка, держатель для телефона."
+                    : "full insurance against damage and theft, helmets, raincoat, first aid kit, phone holder."
+                }}
               </p>
             </div>
           </div>
@@ -146,15 +124,11 @@ import { useCommercialStore } from "~~/store/commercial";
 import { useGlobalStore } from "~~/store/global";
 import { useIndexFormStore } from "~~/store/indexform";
 
+let { locale } = useI18n();
+
 let commercialStore = useCommercialStore();
 let globalStore = useGlobalStore();
 let indexForm = useIndexFormStore();
-// globalStore.activeBikeModal = true;
-
-// let bike = ref({});
-// bike.value.bikes = [];
-// bike.value.hourPriceUsd = 0;
-// bike.value.model = "";
 
 const handleOutsideClick = (event) => {
   if (!event.target.closest(".bmodal-window")) {
@@ -164,8 +138,6 @@ const handleOutsideClick = (event) => {
 let img = ref("");
 const handleRadioChange = (value) => {
   img.value = value.img;
-  // console.log(bike.value);
-  // console.log("handle change");
 };
 
 const handleBron = () => {
@@ -173,6 +145,31 @@ const handleBron = () => {
   indexForm.changeSelectedOption(bike.value);
   document.querySelector(".order ").scrollIntoView({ behavior: "smooth" });
 };
+
+const langObj = computed(() => {
+  if (locale.value == "ru")
+    return {
+      year: "Год выпуска",
+      trunk_volume: "Объем багажника",
+      capacity: "Мощность",
+      fuel_tank_volume: "Объем топливного бака",
+      average_consumption: "Средний расход",
+      dry_weight: "Сухой вес",
+      liters: "Литров",
+      fuel_tank_volume_second: "литров / 100 км",
+    };
+  if (locale.value == "en")
+    return {
+      year: "Year",
+      trunk_volume: "Trunk volume",
+      capacity: "Capacity",
+      fuel_tank_volume: "Fuel tank volume",
+      average_consumption: "Average consumption",
+      dry_weight: "Dry weight",
+      liters: "liters",
+      fuel_tank_volume_second: "liters / 100 km",
+    };
+});
 
 let bikeImg = computed(() => {
   if (!bike) return "";
@@ -182,12 +179,11 @@ let bikeImg = computed(() => {
 
 let bike = computed(() => {
   return {
-    ...commercialStore.bikeModelsArray.find(
-      (val) => val.id == globalStore.activeBikeId
-    ),
+    ...commercialStore.bikeModelsArray.find((val) => {
+      return val.id == globalStore.activeBikeId;
+    }),
   };
 });
-
 watch(
   () => globalStore.activeBikeModal,
   () => {

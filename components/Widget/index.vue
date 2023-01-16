@@ -134,8 +134,6 @@ onMounted(() => {
   function getDurationHeight() {
     let pageHeight = document.querySelector(".layout").offsetHeight;
     let footerHeight = document.querySelector("footer").offsetHeight;
-    // console.log("pageHeight: ", pageHeight);
-    // console.log("footerHeight: ", footerHeight);
     return pageHeight - footerHeight;
   }
   // console.log($widget.value);

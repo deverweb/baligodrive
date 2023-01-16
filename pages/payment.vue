@@ -2,15 +2,16 @@
   <div
     class="pt-[220px] md:pt-[100px] sm:pt-[70px] pb-[80px] px-[80px] sm:px-[25px] xl:px-[50px] payment bg-[#202020] rounded-t-[74px] md:rounded-t-[44px]"
   >
-    <div class="payment-body relative">
+    <div class="payment-body relative" v-if="formStore.bike">
       <div class="payment-left w-[54%] md:w-full xl:w-[65%] lg:w-[70%]">
         <div
           class="payment-title mb-[50px] pb-[50px] sm:mb-[40px] sm:text-center lil:text-[24px] xsm:text-[28px] sm:pb-[30px] sm:text-[36px] text-[48px] font-Euroblack"
         >
-          ОПЛАТА ЗАКАЗА
+          {{ locale == "ru" ? "ОПЛАТА ЗАКАЗА" : "ORDER PAYMENT" }}
         </div>
+
         <div class="payment-form">
-          <SectionOrderStep class="mb-[38px]" number="6" text="Выберите метод оплаты"></SectionOrderStep>
+          <SectionOrderStep class="mb-[38px]" number="6" :text="langObj.choosePayment"></SectionOrderStep>
           <div class="payment-checkboxbody">
             <SectionOrderNormalRadioField
               field-value="consult"
@@ -19,7 +20,13 @@
               class="mb-[30px] ml-[30px] sm:ml-0"
               v-model:isChecked="paymentType"
             >
-              <span class="sm:leading-[1] text-[18px] sm:text-[15px]">Оплата после консультации менеджера </span>
+              <span class="sm:leading-[1] text-[18px] sm:text-[15px]">
+                {{
+                  locale == "ru"
+                    ? "Оплата после консультации менеджера "
+                    : "Payment after consultation with the manager"
+                }}
+              </span>
             </SectionOrderNormalRadioField>
             <SectionOrderNormalRadioField
               field-value="russiacard"
@@ -28,7 +35,9 @@
               class="mb-[30px] ml-[30px] sm:ml-0"
               v-model:isChecked="paymentType"
             >
-              <span class="sm:leading-[1] text-[18px] sm:text-[15px]">Оплата картой на сайте (Россия) </span>
+              <span class="sm:leading-[1] text-[18px] sm:text-[15px]">
+                {{ locale == "ru" ? "Оплата картой на сайте (Россия)" : "Payment by card on the site (Russia)" }}
+              </span>
             </SectionOrderNormalRadioField>
             <SectionOrderNormalRadioField
               field-value="worldcard"
@@ -37,7 +46,11 @@
               class="mb-[30px] ml-[30px] sm:ml-0"
               v-model:isChecked="paymentType"
             >
-              <span class="sm:leading-[1] text-[18px] sm:text-[15px]">Оплата картой на сайте (для всего мира)</span>
+              <span class="sm:leading-[1] text-[18px] sm:text-[15px]">{{
+                locale == "ru"
+                  ? "Оплата картой на сайте (для всего мира)"
+                  : "Payment by card on the site (for the whole world)"
+              }}</span>
             </SectionOrderNormalRadioField>
             <SectionOrderNormalRadioField
               field-value="binance"
@@ -46,7 +59,11 @@
               class="ml-[30px] sm:ml-0"
               v-model:isChecked="paymentType"
             >
-              <span class="sm:leading-[1] text-[18px] sm:text-[15px]">Оплата криптовалютой через Binance Pay</span>
+              <span class="sm:leading-[1] text-[18px] sm:text-[15px]">
+                {{
+                  locale == "ru" ? "Оплата криптовалютой через Binance Pay" : "Cryptocurrency payment via Binance Pay"
+                }}
+              </span>
             </SectionOrderNormalRadioField>
           </div>
           <a :href="paymentLink">
@@ -55,7 +72,11 @@
               class="w-[300px] xsm:h-[67px] xsm:max-w-[300px] xsm:w-full gap-[15px] sm:mt-[50px] mt-[70px] h-[70px] btn-primary__dark"
             >
               <SvgMoneyIcon class="sm:hidden" fill="#ffffff"></SvgMoneyIcon>
-              <span class="sm:text-[16px]">Оплатить заказ</span>
+              <span class="sm:text-[16px]"
+                >Оплатить заказ
+
+                {{ locale == "ru" ? "Оплатить заказ" : "Pay for the order" }}
+              </span>
             </TheButton>
           </a>
         </div>
@@ -75,12 +96,14 @@
         </OrderPinnedOrder>
       </div>
     </div>
+    <div v-else>Загрузка</div>
   </div>
 </template>
 
 <script setup>
 import { useFormStore } from "~~/store/form";
 
+const { locale } = useI18n();
 const formStore = useFormStore();
 const router = useRouter();
 let paymentType = ref("consult");
@@ -91,7 +114,16 @@ onBeforeMount(() => {
     router.push("/");
   }
 });
-
+let langObj = computed(() => {
+  if (locale.value == "ru")
+    return {
+      choosePayment: "Выберите метод оплаты",
+    };
+  if (locale.value == "en")
+    return {
+      choosePayment: "Select a Payment Method",
+    };
+});
 let paymentLink = ref("#");
 // formStore.fillForm({
 //   date: {

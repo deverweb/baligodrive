@@ -1,14 +1,7 @@
 <template>
   <div class="order-radio" :class="classes">
-    <div
-      class="flex flex-wrap sm:gap-x-[20px] order-radio-top sm:gap-y-[17px] items-center md:gap-[28px] gap-[21px]"
-    >
-      <div
-        :data-id="option.id"
-        ref="root"
-        class="order-option flex flex-col"
-        v-for="(option, i) in props.options"
-      >
+    <div class="flex flex-wrap sm:gap-x-[20px] order-radio-top sm:gap-y-[17px] items-baseline md:gap-[28px] gap-[21px]">
+      <div :data-id="option.id" ref="root" class="order-option flex flex-col" v-for="(option, i) in props.options">
         <Field
           class="hidden cursor-pointer"
           v-model="checked"
@@ -18,10 +11,7 @@
           :value="option"
           @change="handleChange(option)"
         ></Field>
-        <label
-          :for="props.name + option.id"
-          class="order-option-container cursor-pointer"
-        >
+        <label :for="props.name + option.id" class="order-option-container cursor-pointer">
           <div
             :class="{ 'bg-[#1B1B1B]  hover:bg-[#262626]': props.bg }"
             class="order-option-card justify-center overflow-hidden flex sm:mb-[13px] mb-[16px] rounded-[13px] sm:w-[100px] sm:h-[100px] w-[104px] h-[104px]"
@@ -82,17 +72,12 @@ if (props.options[0]) checked.value = props.options[0];
 
 watch(
   () => {
-    // console.log("props options change");
     checked.value = props.options[0];
-    // console.log("props.options[0]", props.options[0]);
     handleChange(props.options[0]);
     return props.options;
   },
   () => {}
 );
-
-// console.log(props.options);
-// checked.value = props.options[0];
 </script>
 
 <style lang="sass">

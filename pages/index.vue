@@ -11,7 +11,7 @@
     <SectionIndexForm></SectionIndexForm>
     <SectionIndexCards></SectionIndexCards>
     <section class="pb-[60px]">
-      <h2 v-html="$t('mainPageFaq.title')" class="section-title text-center mb-[90px] md:mb-[26px] xsm:mb-[30px]"></h2>
+      <h2 v-html="$t('mainPageFaq.title')" class="section-title text-center mb-[90px] md:mb-[66px] xsm:mb-[30px]"></h2>
       <div class="container mb-[40px]">
         <ul class="faq-tabs sm:hidden flex items-center">
           <li :class="{ active: activeSlide == 1 }" class="text-center" @click="changeTab(1)">

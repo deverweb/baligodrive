@@ -2,41 +2,24 @@
   <div
     class="bike bg-light h-[auto] xsm:px-[31px] xsm:pr-[30px] xsm:pb-[31px] pb-[39px] pt-[33px] xsm:pt-[25px] px-[40px] rounded-[26px] xsm:rounded-[20px] flex flex-col lg:max-w-[440px] lg:mx-auto"
   >
-    <div
-      class="bike-title xsm:tracking-[-0.2px] lil:text-[18px] font-Helvbold uppercase text-[28px] xsm:text-[22px]"
-    >
+    <div class="bike-title xsm:tracking-[-0.2px] lil:text-[18px] font-Helvbold uppercase text-[28px] xsm:text-[22px]">
       {{ props.bikeName }}
     </div>
 
-    <div
-      class="bike-img flex items-center mt-auto mb-[40px] h-[300px] md:h-[280px] xsm:h-[260px] xsm:mb-[23px]"
-    >
-      <img
-        class="object-contain h-full mx-auto max-w-full ml-[-5px]"
-        :src="props.imgSrc"
-        alt=""
-      />
+    <div class="bike-img flex items-center mt-auto mb-[40px] h-[300px] md:h-[280px] xsm:h-[260px] xsm:mb-[23px]">
+      <img class="object-contain h-full mx-auto max-w-full ml-[-5px]" :src="props.imgSrc" alt="" />
     </div>
     <div class="bike-rates mb-[35px] grid-cols-2 grid auto-rows-[1fr]">
-      <div
-        class="bike-rate pt-[12px] pb-[15px] text-[#111111]"
-        v-for="rate in rates"
-      >
+      <div class="bike-rate pt-[12px] pb-[15px] text-[#111111]" v-for="rate in rates">
         <div class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
           {{ rate.minDays }} - {{ rate.maxDays }} дней
         </div>
-        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]">
-          {{ rate.dayPriceUSD }}$ / день
-        </div>
-        <div class="bike-rate-rup font-Helvmed mb-[3px] text-[14px]">
-          {{ rate.dayPriceRUP }} рупий
-        </div>
+        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]">{{ rate.dayPriceUSD }}$ / день</div>
+        <div class="bike-rate-rup font-Helvmed mb-[3px] text-[14px]">{{ rate.dayPriceRUP }} рупий</div>
         <div class="bike-rate-discount opacity-50 text-[12px] font-Helvmed">
           Старая цена:
           <span class="line-through">
-            {{
-              (rate.dayPriceUSD * ((100 + props.discount) / 100)).toFixed(0)
-            }}$ / день
+            {{ (rate.dayPriceUSD * ((100 + props.discount) / 100)).toFixed(0) }}$ / день
           </span>
         </div>
       </div>
@@ -46,12 +29,8 @@
         @click="handleBikeClick"
         class="h-[70px] btn-primary btn-primary__light white xsm:text-[12px] lil:mr-[8px] lil:text-[10px] lil:gap-[6px] xsm:h-[54px] xsm:w-full xsm:mr-[25px] gap-[11px] w-[250px] px-0 py-0 text-[16px] font-Helvmed text-light"
       >
-        <SvgCalendarIcon
-          class="flex-shrink-0 w-[19px] xsm:w-[13px]"
-        ></SvgCalendarIcon>
-        <span class="xsm:tracking-[-0.2px] xsm:top-0 relative top-[1px]">{{
-          $t("buttonBooking")
-        }}</span>
+        <SvgCalendarIcon class="flex-shrink-0 w-[19px] xsm:w-[13px]"></SvgCalendarIcon>
+        <span class="xsm:tracking-[-0.2px] xsm:top-0 relative top-[1px]">{{ $t("buttonBooking") }}</span>
       </TheButton>
       <button
         @click="handleDetailsClick(props.id)"
@@ -82,15 +61,11 @@ const commercialStore = useCommercialStore();
 const globalStore = useGlobalStore();
 
 const handleDetailsClick = (bikeId) => {
-  // console.log("globastoer.activeId before", globalStore.activeBikeId);
   globalStore.setActiveBikeModal(bikeId);
-  // console.log("globastoer.activeI afd after", globalStore.activeBikeId);
 };
 
 const handleBikeClick = (event) => {
-  indexFormStore.changeSelectedOption(
-    commercialStore.bikeModelsArray.find((val) => val.id == props.id)
-  );
+  indexFormStore.changeSelectedOption(commercialStore.bikeModelsArray.find((val) => val.id == props.id));
 
   document.querySelector(".order ").scrollIntoView({ behavior: "smooth" });
 };

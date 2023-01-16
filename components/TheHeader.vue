@@ -1,15 +1,12 @@
 <template>
   <header
     :class="computedHeaderClasses"
-    class="header h-[93px] xl:justify-between z-[35] xl:px-[80px] sm:w-full sm:left-0 xsm:h-[80px] xsm:px-[25px] md:px-[50px] px-[80px] md:w-[calc(100%-41px)] xl:w-[calc(100%-53px)] w-[calc(100%-40px)] flex fixed items-center md:h-[100px] md:right-0 md:left-[21px] xl:left-[26px] left-[20px] right-[100px]"
+    class="header h-[93px] xl:justify-between z-[35] xl:px-[80px] sm:w-full sm:left-0 xsm:h-[80px] xsm:px-[25px] md:px-[50px] px-[80px] md:w-[calc(100%-41px)] w-[calc(100%-40px)] flex fixed items-center md:h-[100px] md:right-0 md:left-[21px] left-[20px] right-[100px]"
   >
     <Logo
       class="flex-grow z-[2] md:flex-grow-0 md:flex-shrink-0 xl:basis-auto tracking-[-0.6px] md:tracking-[1px] flex-shrink basis-[0%]"
     ></Logo>
-    <HeaderNav
-      :links="links"
-      class="flex-grow z-[2] flex justify-center md:hidden"
-    ></HeaderNav>
+    <HeaderNav :links="links" class="flex-grow z-[2] flex justify-center md:hidden"></HeaderNav>
     <HeaderLangSwitcher
       class="flex-grow z-[2] xsm:hidden md:flex-grow-0 md:mr-[39px] md:flex-shrink-0 md:justify-start md:ml-auto xl:basis-auto justify-end flex flex-shrink basis-[0%]"
     ></HeaderLangSwitcher>
@@ -18,8 +15,7 @@
       <HeaderMobileMenu
         :class="{
           'bg-dark-600 ': isHeaderLeft,
-          'bg-dark z-[-1] border-t-[1px] border-solid border-dark-500':
-            !isHeaderLeft,
+          'bg-dark z-[-1] border-t-[1px] border-solid border-dark-500': !isHeaderLeft,
         }"
         :links="links"
       ></HeaderMobileMenu>
@@ -87,10 +83,6 @@ onMounted(() => {
 <style lang="sass">
 .header
 	transition: background .3s ease, top .3s ease, transform .3s ease
-	+r(1440)
-		zoom: 0.75
-	+r(991)
-		zoom: 1
 	&::before
 		content: ""
 		position: absolute
