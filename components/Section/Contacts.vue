@@ -3,15 +3,11 @@
     class="contacts-inner xsm:mb-[58px] xsm:pt-[58px] xsm:text-center sm:w-full sm:w-max-[568px] xsm:flex xsm:items-center xsm:flex-col md:pt-[80px] md:mt-0 w-[567px] xl:ml-0 2xl:ml-[5%] ml-[10.2%]"
   >
     <h1
-      class="contact-title xsm:mb-[16px] xsm:text-[28px] xsm:tracking-[-0.8px] md:text-[46px] tracking-[-1.9px] font-Euroblack text-[58px] uppercase mb-[13px]"
+      class="contact-title xsm:mb-[26px] xsm:text-[28px] xsm:tracking-[-0.8px] md:text-[46px] tracking-[-1.9px] font-Euroblack text-[58px] uppercase mb-[33px]"
     >
       {{ $t("contactsComponent.title") }}
     </h1>
-    <p
-      class="contacts-desc xsm:mb-[29px] xsm:leading-[20px] xsm:text-[16px] leading-[23px] md:mb-[51px] mb-[40px]"
-    >
-      {{ $t("contactsComponent.description") }}
-    </p>
+
     <div
       class="contacts-phone-subtitle mb-[6px] xsm:mb-[14px] xsm:self-start xsm:flex xsm:tracking-[0.2px] text-[14px] font-Helvreg opacity-50"
     >
@@ -47,10 +43,7 @@
         class="contacts-item flex gap-x-[23px] xsm:gap-x-[7px] items-center xsm:mb-[23px] mb-[30px]"
       >
         <span class="w-[20px]">
-          <SvgMailIcon
-            :fill="'#30b21b'"
-            class="w-[19px] h-[14px] xsm:w-[12px] xsm:h-[9px]"
-          ></SvgMailIcon>
+          <SvgMailIcon :fill="'#30b21b'" class="w-[19px] h-[14px] xsm:w-[12px] xsm:h-[9px]"></SvgMailIcon>
         </span>
         <span>info@godrive.bike</span>
       </a>
@@ -59,10 +52,7 @@
         class="contacts-item flex xsm:gap-x-[7px] gap-x-[23px] items-center xsm:mb-[23px] mb-[38px]"
       >
         <span class="w-[20px]">
-          <SvgPhoneIcon
-            :fill="'#30b21b'"
-            class="w-[19px] h-[19px] xsm:w-[12px] xsm:h-[12px]"
-          ></SvgPhoneIcon>
+          <SvgPhoneIcon :fill="'#30b21b'" class="w-[19px] h-[19px] xsm:w-[12px] xsm:h-[12px]"></SvgPhoneIcon>
         </span>
         <span>+6281337413060</span>
       </a>
@@ -77,9 +67,7 @@
             class="w-[12px] relative top-[3px] h-[19px] xsm:w-[8px] xsm:h-[12px]"
           ></SvgGeoIcon>
         </span>
-        <span class="leading-[25px] xsm:text-left xsm:leading-[19px]"
-          >Jl. Batu Mejan Canggu 38,<br />Canggu</span
-        >
+        <span class="leading-[25px] xsm:text-left xsm:leading-[19px]">Jl. Batu Mejan Canggu 38,<br />Canggu</span>
       </a>
     </div>
   </div>
