@@ -24,7 +24,7 @@
             {{ bike?.model }}
           </div>
           <div class="bmodal-price xsm:order-2 hidden md:block text-center">
-            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[0].dayPriceUSD }}$ /
+            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[bike.rates.length - 1].dayPriceUSD }}$ /
             {{ locale == "ru" ? "день" : "day" }})
           </div>
           <div class="bmodal-img xsm:order-3">
@@ -77,7 +77,7 @@
             {{ bike?.model }}
           </div>
           <div class="bmodal-price md:hidden">
-            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[0].dayPriceUSD }}$ /
+            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[bike.rates.length - 1].dayPriceUSD }}$ /
             {{ locale == "ru" ? "день" : "day" }})
           </div>
           <div class="bmodal-paint md:hidden mb-[31px]">
@@ -86,7 +86,7 @@
               type="bmodal"
               :showPrice="false"
               :bg="false"
-              :name="'bikeValue'"
+              :name="'bikeValuePC'"
               :options="bike?.bikes"
             ></SectionOrderRadioField>
           </div>
@@ -123,10 +123,12 @@
 import { useCommercialStore } from "~~/store/commercial";
 import { useGlobalStore } from "~~/store/global";
 import { useIndexFormStore } from "~~/store/indexform";
+import { useFormStore } from "~~/store/form";
 
 let { locale } = useI18n();
 
 let commercialStore = useCommercialStore();
+let formStore = useFormStore();
 let globalStore = useGlobalStore();
 let indexForm = useIndexFormStore();
 
@@ -137,6 +139,7 @@ const handleOutsideClick = (event) => {
 };
 let img = ref("");
 const handleRadioChange = (value) => {
+  formStore.choosedDrawing = value.id;
   img.value = value.img;
 };
 

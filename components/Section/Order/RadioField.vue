@@ -2,15 +2,15 @@
   <div class="order-radio" :class="classes">
     <div class="flex flex-wrap sm:gap-x-[20px] order-radio-top sm:gap-y-[17px] items-baseline md:gap-[28px] gap-[21px]">
       <div :data-id="option.id" ref="root" class="order-option flex flex-col" v-for="(option, i) in props.options">
-        <Field
+        <input
           class="hidden cursor-pointer"
-          v-model="checked"
           :id="props.name + option.id"
           type="radio"
+          :checked="handleChecked(option, i)"
           :name="props.name"
           :value="option"
           @change="handleChange(option)"
-        ></Field>
+        />
         <label :for="props.name + option.id" class="order-option-container cursor-pointer">
           <div
             :class="{ 'bg-[#1B1B1B]  hover:bg-[#262626]': props.bg }"
@@ -34,12 +34,14 @@
 </template>
 
 <script setup>
-import { Field } from "vee-validate";
-
 const props = defineProps({
   options: {
     required: true,
     type: Array || null || undefined,
+  },
+  choosedDrawing: {
+    require: false,
+    type: String,
   },
   name: {
     required: true,
@@ -55,8 +57,16 @@ const props = defineProps({
     type: Boolean,
   },
 });
-
+let checkedAttr = ref(null);
+// if(props.choosedDrawing)
 const emit = defineEmits(["bikeImgChanged"]);
+
+const handleChecked = (id, i) => {
+  if (!props.choosedDrawing && i == 0) {
+    return true;
+  }
+  return id.id == props.choosedDrawing ? true : null;
+};
 
 const classes = computed(() => {
   if (props.type == "bmodal") return "bmodal-radio";
@@ -68,6 +78,7 @@ const handleChange = (value) => {
   }
 };
 let checked = ref(null);
+
 if (props.options[0]) checked.value = props.options[0];
 
 watch(

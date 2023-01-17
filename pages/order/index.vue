@@ -8,20 +8,21 @@
         <h1
           class="order-title sm:text-[28px] tracking-[-1.5px] md:leading-[0.98] xl:tracking-[-1.2px] md:text-center xl:text-[36px] font-Euroblack md:text-[48px] text-[48px] uppercase border-bottom xl:pb-[41px] sm:pb-[34px] md:pb-[42px] pb-[30px]"
         >
-          ОФОРМЛЕНИЕ ЗАКАЗА
+          {{ locale == "ru" ? "ОФОРМЛЕНИЕ ЗАКАЗА" : "ORDERING" }}
         </h1>
         <form @submit="onSubmit">
           <div class="border-bottom order-step sm:pt-[40px] sm:pb-[41px] pt-[50px] pb-[49px]">
             <SectionOrderStep
               class="mb-[48px] sm:mb-[30px]"
               number="1"
-              text="Выберите расцветку и обклейку байка"
+              :text="locale == `ru` ? `Выберите раскраску байка` : `Select bike design`"
             ></SectionOrderStep>
             <SectionOrderRadioField
               @bikeImgChanged="handleBikeImage"
               :showPrice="false"
               :bg="false"
               :name="'bike'"
+              :choosedDrawing="formStore.choosedDrawing"
               :options="formStore.bike.bikes"
             ></SectionOrderRadioField>
           </div>
@@ -44,14 +45,20 @@
             <SectionOrderStep
               class="mb-[48px] sm:mb-[40px]"
               number="2"
-              text="Выберите дополнительную комплектацию"
+              :text="locale == 'ru' ? 'Выберите дополнительную комплектацию' : 'Choose additional equipment'"
             ></SectionOrderStep>
-            <p class="font-Helvmed text-[14px] opacity-50 sm:mb-[28px] mb-[36px]">Бесплатная комплектация</p>
+            <p class="font-Helvmed text-[14px] opacity-50 sm:mb-[28px] mb-[36px]">
+              {{ locale == "ru" ? "Бесплатная комплектация" : "Free equipment" }}
+            </p>
             <SectionOrderCheckboxField :addText="true" class="sm:mb-[22px] mb-[46px]" :checked="true" name="insurance">
-              <span>Страховка от повреждений и угона</span>
+              <span>
+                {{ locale == "ru" ? "Страховка от повреждений и угона" : "Damage and theft insurance" }}
+              </span>
             </SectionOrderCheckboxField>
             <SectionOrderCheckboxField :addText="true" class="sm:mb-[22px] mb-[46px]" :checked="true" name="firstaid">
-              <span>Аптечка</span>
+              <span>
+                {{ locale == "ru" ? "Аптечка" : "First aid kit" }}
+              </span>
             </SectionOrderCheckboxField>
             <SectionOrderCheckboxField
               :addText="true"
@@ -59,7 +66,9 @@
               :checked="true"
               name="phoneholder"
             >
-              <span>Держатель для телефона</span>
+              <span>
+                {{ locale == "ru" ? "Держатель для телефона" : "Holder for phone" }}
+              </span>
             </SectionOrderCheckboxField>
             <SectionOrderSimpleRadioField
               widthClasses="w-[291px] md:w-[256px] sm:w-[161px]"
@@ -67,7 +76,9 @@
               name="adultHelmetCount"
             >
               <SvgSmallHelmetIcon></SvgSmallHelmetIcon>
-              <span>Новый взрослый шлем</span>
+              <span>
+                {{ locale == "ru" ? "Новый взрослый шлем" : "New adult helmet" }}
+              </span>
             </SectionOrderSimpleRadioField>
             <SectionOrderSimpleRadioField
               widthClasses="w-[291px] md:w-[256px] sm:w-[161px]"
@@ -75,11 +86,13 @@
               name="childHelmetCount"
             >
               <SvgSmallHelmetIcon></SvgSmallHelmetIcon>
-              <span>Новый детский шлем</span>
+              <span>{{ locale == "ru" ? "Новый детский шлем" : "New children's helmet" }}</span>
             </SectionOrderSimpleRadioField>
             <SectionOrderSimpleRadioField widthClasses="w-[291px] md:w-[256px] sm:w-[161px]" name="rainCoatCount">
               <SvgRainCoat></SvgRainCoat>
-              <span>Дождевик стандартный</span>
+              <span>
+                {{ locale == "ru" ? "Дождевик стандартный" : "Raincoat standard" }}
+              </span>
             </SectionOrderSimpleRadioField>
           </div>
           <!-- <div
@@ -134,7 +147,7 @@
             <SectionOrderStep
               class="mb-[38px] sm:mb-[31px]"
               number="3"
-              text="Выберите локации доставки и возврата"
+              :text="locale == 'ru' ? 'Выберите локации доставки и возврата' : 'Select delivery and return locations'"
             ></SectionOrderStep>
             <div
               class="order-stamp-top sm:gap-0 sm:gap-x-[10px] mb-[38px] md:gap-x-[20px] md:mb-[64px] md:gap-y-[21px] md:flex-wrap flex items-center"
@@ -482,6 +495,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useFormStore } from "~~/store/form";
 import { useCommercialStore } from "~~/store/commercial";
 const router = useRouter();
+const { locale } = useI18n();
 
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();

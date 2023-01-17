@@ -7,6 +7,7 @@ export const useFormStore = defineStore("form", () => {
   let rate = ref(null);
   let client_phone = ref(null);
   let bikeImage = ref(null);
+  let choosedDrawing = ref(null);
   const fillForm = (body) => {
     bike.value = body.bike;
     dates.value = body.date;
@@ -21,7 +22,15 @@ export const useFormStore = defineStore("form", () => {
       return dateDif.value >= val.minDays && dateDif.value <= val.maxDays;
     });
   };
-
+  const resetData = () => {
+    bike.value = null;
+    dates.value = null;
+    dateDif.value = null;
+    client_phone.value = null;
+    client_name.value = null;
+    rate.value = null;
+    choosedDrawing.value = null;
+  };
   let computedPrice = computed(() => {
     if (bike.value) {
       return Number(dateDif.value) * rate.value.dayPriceUSD;
@@ -72,5 +81,7 @@ export const useFormStore = defineStore("form", () => {
     computedDateStr,
     computedDateStrEnd,
     computedDateStrStart,
+    choosedDrawing,
+    resetData,
   };
 });

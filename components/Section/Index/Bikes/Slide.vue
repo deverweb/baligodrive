@@ -12,14 +12,19 @@
     <div class="bike-rates mb-[35px] grid-cols-2 grid auto-rows-[1fr]">
       <div class="bike-rate pt-[12px] pb-[15px] text-[#111111]" v-for="rate in rates">
         <div class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
-          {{ rate.minDays }} - {{ rate.maxDays }} дней
+          {{ rate.minDays }} - {{ rate.maxDays }} {{ locale == "ru" ? "дней" : "days" }}
         </div>
-        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]">{{ rate.dayPriceUSD }}$ / день</div>
-        <div class="bike-rate-rup font-Helvmed mb-[3px] text-[14px]">{{ rate.dayPriceRUP }} рупий</div>
+        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]">
+          {{ rate.dayPriceUSD }}$ / {{ locale == "ru" ? "день" : "day" }}
+        </div>
+        <div class="bike-rate-rup font-Helvmed mb-[3px] text-[14px]">
+          {{ rate.dayPriceRUP }} {{ locale == "ru" ? "рупий" : "rupees" }}
+        </div>
         <div class="bike-rate-discount opacity-50 text-[12px] font-Helvmed">
-          Старая цена:
+          {{ locale == "ru" ? "Старая цена:" : "Old price:" }}
           <span class="line-through">
-            {{ (rate.dayPriceUSD * ((100 + props.discount) / 100)).toFixed(0) }}$ / день
+            {{ (rate.dayPriceUSD * ((100 + props.discount) / 100)).toFixed(0) }}$ /
+            {{ locale == "ru" ? "день" : "day" }}
           </span>
         </div>
       </div>
@@ -46,6 +51,8 @@
 import { useCommercialStore } from "~~/store/commercial";
 import { useGlobalStore } from "~~/store/global";
 import { useIndexFormStore } from "~~/store/indexform";
+
+const { locale } = useI18n();
 
 const props = defineProps({
   id: String,

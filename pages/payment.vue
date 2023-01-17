@@ -205,6 +205,7 @@ const onSubmit = () => {
         return data.json();
       })
       .then((result) => {
+        formStore.resetData();
         window.open(result.link_page_url, "_blank").focus();
       });
   }
