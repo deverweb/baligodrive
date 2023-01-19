@@ -58,7 +58,7 @@
       </a>
       <a
         target="_blank"
-        href="https://goo.gl/maps/QbxBDe7BeCUWwEgf9"
+        href="https://www.google.com/maps/place/BaliGo+Bike+(Rent+bike)/@-8.6522292,115.1283395,17z/data=!3m1!4b1!4m5!3m4!1s0x2dd2390cea676dab:0x3129b6707d72af46!8m2!3d-8.6522292!4d115.1305282"
         class="contacts-item flex xsm:gap-x-[7px] gap-x-[23px] items-start"
       >
         <span class="w-[20px] flex justify-center">
@@ -73,7 +73,7 @@
   </div>
   <a
     target="_blank"
-    href="https://goo.gl/maps/QbxBDe7BeCUWwEgf9"
+    href="https://www.google.com/maps/place/BaliGo+Bike+(Rent+bike)/@-8.6522292,115.1283395,17z/data=!3m1!4b1!4m5!3m4!1s0x2dd2390cea676dab:0x3129b6707d72af46!8m2!3d-8.6522292!4d115.1305282"
     class="contacts-hand xsm:w-full xsm:flex xsm:justify-end xsm:relative xsm:left-0 xsm:right-0 md:hidden lg:w-[33%] xl:w-[40%] 2xl:right-0 absolute bottom-0 right-[8%]"
   >
     <img class="xsm:w-[90%]" src="/img/contacts/hand.png" alt="" />
