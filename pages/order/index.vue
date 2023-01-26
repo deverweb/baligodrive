@@ -511,7 +511,10 @@ const formStore = useFormStore();
 //   }
 // }
 
+let drawing = ref(formStore.bike.drawing)
+
 const handleBikeImage = (payload) => {
+	drawing.value = payload.drawing
   formStore.bikeImage = payload.img;
 };
 
@@ -583,8 +586,8 @@ const onSubmit = handleSubmit(async (values) => {
       new Date(formStore.dates.start).toLocaleDateString() + "" + new Date(formStore.dates.start).toLocaleTimeString(),
     order_date_end:
       new Date(formStore.dates.end).toLocaleDateString() + "" + new Date(formStore.dates.end).toLocaleTimeString(),
-    bike_model: values.bike.name,
-    bike_painting: values.bike.drawing,
+    bike_model: formStore.bike.name,
+    bike_painting: drawing.value,
     location_delivery: values.firstAddress,
     time_delivery: values.deliveryTime,
     location_return: values.lastAddress,

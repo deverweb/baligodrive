@@ -72,8 +72,7 @@
               class="w-[300px] xsm:h-[67px] xsm:max-w-[300px] xsm:w-full gap-[15px] sm:mt-[50px] mt-[70px] h-[70px] btn-primary__dark"
             >
               <SvgMoneyIcon class="sm:hidden" fill="#ffffff"></SvgMoneyIcon>
-              <span class="sm:text-[16px]"
-                >Оплатить заказ
+              <span class="sm:text-[16px]">
 
                 {{ locale == "ru" ? "Оплатить заказ" : "Pay for the order" }}
               </span>

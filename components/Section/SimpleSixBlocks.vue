@@ -2,14 +2,14 @@
   <section class="how bg-dark-300">
     <div class="container">
       <h2
-        class="section-title text-light text-center mb-[32px] md:mb-[26px] sm:mb-[31px]"
+        class="section-title text-light text-center mb-[32px] md:mb-[26px] sm:mb-[31px]" v-html="props.sectionTitle"
       >
-        {{ $t("mainPageSecond.title") }}
+        
       </h2>
-      <p
-        class="how-desc section-desc mb-[62px] sm:mb-[51px] max-w-[370px] text-light text-center mx-auto"
+      <p :style="`max-width: ${props.subtitleWidth}px`"	
+        class=" how-desc section-desc mb-[62px] sm:mb-[51px] text-light text-center mx-auto"
       >
-        {{ $t("mainPageSecond.subtitle") }}
+			{{ props.sectionSubtitle }}
       </p>
       <div
         class="how-blocks grid grid-cols-3 gap-[24px] sm:gap-[20px] md:grid-cols-1 md:items-center md:gap-[30px]"
@@ -56,6 +56,11 @@ const props = defineProps({
     type: String,
     required: true,
   },
+	subtitleWidth: {
+		type: Number,
+		required: false,
+		default: 370
+	},
   blocks: {
     type: Array,
     required: true,
