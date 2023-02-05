@@ -10,7 +10,7 @@
       <img class="object-contain h-full mx-auto max-w-full ml-[-5px]" :src="props.imgSrc" alt="" />
     </div>
     <div class="bike-rates mb-[35px] grid-cols-2 grid auto-rows-[1fr]">
-      <div class="bike-rate pt-[12px] pb-[15px] text-[#111111]" v-for="rate in rates">
+      <div class="bike-rate pt-[12px] pb-[15px] text-[#111111]" v-for="rate in props.rates">
         <div class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
           {{ rate.minDays }} - {{ rate.maxDays }} {{ locale == "ru" ? "дней" : "days" }}
         </div>
@@ -62,7 +62,7 @@ const props = defineProps({
   rates: Array,
   discount: Number,
 });
-const rates = ref(props.rates.filter((val, i) => i != 0));
+// const rates = ref(props.rates.filter((val, i) => i != 0));
 const indexFormStore = useIndexFormStore();
 const commercialStore = useCommercialStore();
 const globalStore = useGlobalStore();
@@ -84,18 +84,19 @@ const handleBikeClick = (event) => {
 	box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.07)
 	+r(600)
 		box-shadow: 0px 3.86364px 30.9091px rgba(0, 0, 0, 0.07)
+	&-rates
+		border-top: 1px solid #e0e0e0
 	&-rate
 		border-bottom: 1px solid #E0E0E0
+		// &:not(:nth-child(1)), &:not(:nth-child(2))
+
 		&:nth-child(even)
 			padding-left: 20px
 
 		&:nth-child(odd)
 			border-right: 1px solid #E0E0E0
 			padding-right: 15px
-		&:last-child
-			border: none
-		&:nth-child(3)
-			border-bottom: none
+
 	&-detailed
 		position: relative
 		color: #AAAAAA

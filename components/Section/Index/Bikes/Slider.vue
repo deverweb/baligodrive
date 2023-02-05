@@ -95,6 +95,8 @@ let store = useCommercialStore();
 
 <style lang="sass">
 .catalog
+	.swiper-slide
+		height: auto
 	.swiper-wrapper
 		padding-top: 40px
 		+r(990)

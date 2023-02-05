@@ -39,13 +39,13 @@
       class="contacts-items xsm:w-full font-Euroblack tracking-[-0.6px] lil:text-[14px] xsm:text-[16px] text-[25px] uppercase whitespace-nowrap"
     >
       <a
-        href="mailto:info@godrive.bike"
+        href="mailto:info@baligo.bike"
         class="contacts-item flex gap-x-[23px] xsm:gap-x-[7px] items-center xsm:mb-[23px] mb-[30px]"
       >
         <span class="w-[20px]">
           <SvgMailIcon :fill="'#30b21b'" class="w-[19px] h-[14px] xsm:w-[12px] xsm:h-[9px]"></SvgMailIcon>
         </span>
-        <span>info@godrive.bike</span>
+        <span>info@baligo.bike</span>
       </a>
       <a
         href="tel:+6281337413060"

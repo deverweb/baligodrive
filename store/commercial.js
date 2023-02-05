@@ -27,12 +27,12 @@ export const useCommercialStore = defineStore("commercial", () => {
         rates: [
           {
             minDays: 1,
-            maxDays: 4,
-            dayPriceUSD: 18,
-            dayPriceRUP: 280000,
+            maxDays: 3,
+            dayPriceUSD: 40,
+            dayPriceRUP: 600000,
           },
           {
-            minDays: 5,
+            minDays: 4,
             maxDays: 7,
             dayPriceUSD: 18,
             dayPriceRUP: 280000,
@@ -88,12 +88,12 @@ export const useCommercialStore = defineStore("commercial", () => {
         rates: [
           {
             minDays: 1,
-            maxDays: 4,
-            dayPriceUSD: 14,
-            dayPriceRUP: 210000,
+            maxDays: 3,
+            dayPriceUSD: 30,
+            dayPriceRUP: 450000,
           },
           {
-            minDays: 5,
+            minDays: 4,
             maxDays: 7,
             dayPriceUSD: 14,
             dayPriceRUP: 210000,
@@ -165,12 +165,12 @@ export const useCommercialStore = defineStore("commercial", () => {
         rates: [
           {
             minDays: 1,
-            maxDays: 4,
-            dayPriceUSD: 10,
-            dayPriceRUP: 150000,
+            maxDays: 3,
+            dayPriceUSD: 23,
+            dayPriceRUP: 350000,
           },
           {
-            minDays: 5,
+            minDays: 4,
             maxDays: 7,
             dayPriceUSD: 10,
             dayPriceRUP: 150000,
@@ -241,12 +241,12 @@ export const useCommercialStore = defineStore("commercial", () => {
         rates: [
           {
             minDays: 1,
-            maxDays: 4,
-            dayPriceUSD: 18,
-            dayPriceRUP: 280000,
+            maxDays: 3,
+            dayPriceUSD: 40,
+            dayPriceRUP: 600000,
           },
           {
-            minDays: 5,
+            minDays: 4,
             maxDays: 7,
             dayPriceUSD: 18,
             dayPriceRUP: 280000,
@@ -275,6 +275,61 @@ export const useCommercialStore = defineStore("commercial", () => {
         brand: "YAMAHA",
         mark: "NMAX 155cc",
         name: "YAMAHA NMAX 155cc",
+      },
+      {
+        model: "Yamaha Xride 125cc",
+        year: "2023",
+        dry_weight: "98",
+        trunk_volume: "18",
+        capacity: "9,4",
+        fuel_tank_volume: "4,2",
+        engDescription: `Yamaha Xride - это скутер из создан, как для твёрдового покрытия так и для бездорожья. Он оснащён двигателем Blue Core объёмом 125 куб, что делает его очень динамичным. Он идеально подходит для тех кто увлекается серфингом, его также можно оснастить креплением для серфборда.				`,
+        ruDescription: `The Yamaha Xride is a scooter designed for both hard and off-road use. It is equipped with a 125 cc Blue Core engine, which makes it very dynamic. It is ideal for those who love to surf and can also be equipped with a surfboard attachment.`,
+        bikes: [
+          {
+            id: "1",
+            img: "/img/bikes/xride-blue.png",
+            drawing: "No drawing",
+          },
+        ],
+        discount: 20,
+        rates: [
+          {
+            minDays: 1,
+            maxDays: 3,
+            dayPriceUSD: 23,
+            dayPriceRUP: 350000,
+          },
+          {
+            minDays: 4,
+            maxDays: 7,
+            dayPriceUSD: 10,
+            dayPriceRUP: 150000,
+          },
+          {
+            minDays: 8,
+            maxDays: 14,
+            dayPriceUSD: 8,
+            dayPriceRUP: 120000,
+          },
+          {
+            minDays: 15,
+            maxDays: 21,
+            dayPriceUSD: 6,
+            dayPriceRUP: 90000,
+          },
+          {
+            minDays: 22,
+            maxDays: 90,
+            dayPriceUSD: 5,
+            dayPriceRUP: 70000,
+          },
+        ],
+        id: "Yamaha Xride 125cc",
+        img: "/img/bikes/xride-blue.png",
+        brand: "YAMAHA",
+        mark: "Xride 125cc",
+        name: "Yamaha Xride 125cc",
       },
     ];
   };

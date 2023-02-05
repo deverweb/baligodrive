@@ -10,7 +10,7 @@
       <div class="bmodal-window relative flex justify-between md:flex-col">
         <div class="bmodal-top h-[57px] hidden xsm:flex justify-between items-center">
           <div class="text-dark tracking-[-0.6px] uppercase font-Euroblack text-[20px]">
-            <span class="text-green">BALI.</span>GODRIVE
+            <span class="text-green">BALIGO.</span>BIKE
           </div>
           <button class="bmodal-close" @click="globalStore.activeBikeModal = false">
             <SvgCloseIcon class="w-[20px] h-[20px]" fill="#000000"></SvgCloseIcon>

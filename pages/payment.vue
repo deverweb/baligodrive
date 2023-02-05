@@ -39,7 +39,7 @@
                 {{ locale == "ru" ? "Оплата картой на сайте (Россия)" : "Payment by card on the site (Russia)" }}
               </span>
             </SectionOrderNormalRadioField>
-            <SectionOrderNormalRadioField
+            <!-- <SectionOrderNormalRadioField
               field-value="worldcard"
               name="payment"
               :checked="false"
@@ -64,7 +64,7 @@
                   locale == "ru" ? "Оплата криптовалютой через Binance Pay" : "Cryptocurrency payment via Binance Pay"
                 }}
               </span>
-            </SectionOrderNormalRadioField>
+            </SectionOrderNormalRadioField> -->
           </div>
           <a :href="paymentLink">
             <TheButton
@@ -73,7 +73,6 @@
             >
               <SvgMoneyIcon class="sm:hidden" fill="#ffffff"></SvgMoneyIcon>
               <span class="sm:text-[16px]">
-
                 {{ locale == "ru" ? "Оплатить заказ" : "Pay for the order" }}
               </span>
             </TheButton>

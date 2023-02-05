@@ -8,7 +8,7 @@
           type="radio"
           :checked="handleChecked(option, i)"
           :name="props.name"
-					v-model="radioValue"
+          v-model="radioValue"
           :value="option"
           @change="handleChange(option)"
         />
@@ -35,9 +35,9 @@
 </template>
 
 <script setup>
-import { useField } from 'vee-validate';
+import { useField } from "vee-validate";
 
-const {value: radioValue} = useField(props.name)
+const { value: radioValue } = useField(props.name);
 
 const props = defineProps({
   options: {
@@ -45,8 +45,8 @@ const props = defineProps({
     type: Array || null || undefined,
   },
   choosedDrawing: {
-    require: false,
-    type: String,
+    required: false,
+    type: String || null,
   },
   name: {
     required: true,
@@ -78,7 +78,7 @@ const classes = computed(() => {
 });
 
 const handleChange = (value) => {
-	console.log(value)
+  // console.log(value);
   if (value) {
     emit("bikeImgChanged", value);
   }

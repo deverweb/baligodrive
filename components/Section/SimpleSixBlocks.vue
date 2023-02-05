@@ -68,4 +68,33 @@ const props = defineProps({
 });
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+.how-block
+	position: relative
+	&::before
+		content: ""
+		background-color: rgba($light, 0.3)
+		position: absolute
+		left: 100%
+		top: 50%
+		transform: translate(0, -50%)
+		height: 1px
+		width: 50%
+		+r(990)
+			height: 50%
+			top: 100%
+			left: 50%
+			transform: translate(-50%, 0)
+			width: 1px
+
+	&:nth-child(3n)
+		&::before
+			display: none
+			+r(990)
+				display: block
+	&:last-child
+		&::before
+			+r(990)
+				display: none
+
+</style>

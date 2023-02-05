@@ -1,22 +1,10 @@
 <template>
-  <div
-    ref="$widget"
-    class="wg z-[10]"
-    :class="{ 'z-[40] active': isActiveWidget }"
-    v-if="!isOrder"
-  >
+  <div ref="$widget" class="wg z-[10]" :class="{ 'z-[40] active': isActiveWidget }" v-if="!isOrder">
     <button class="wg-circle" @click="isActiveWidget = !isActiveWidget">
-      <SvgCalendarIcon
-        class="w-[18px] h-[18px] xsm:w-[15px] xsm:h-[15px]"
-        :fill="'white'"
-      ></SvgCalendarIcon>
+      <SvgCalendarIcon class="w-[18px] h-[18px] xsm:w-[15px] xsm:h-[15px]" :fill="'white'"></SvgCalendarIcon>
     </button>
     <Transition name="widget">
-      <form
-        @submit="onSubmit"
-        class="wg-table flex flex-col"
-        v-show="isActiveWidget"
-      >
+      <form @submit="onSubmit" class="wg-table flex flex-col" v-show="isActiveWidget">
         <div
           class="wg-head h-[72px] flex items-center justify-center grow-0 shrink-0 tracking-[-0.5px] xsm:rounded-none rounded-t-[12px]"
         >
@@ -46,12 +34,7 @@
           >
             <SvgBikeIcon :fill="'black'"></SvgBikeIcon>
           </CustomSelectField>
-          <CustomTextField
-            type="string"
-            class="ci__widget-form"
-            :name="'client_name'"
-            :placeholder="namePlaceholder"
-          >
+          <CustomTextField type="string" class="ci__widget-form" :name="'client_name'" :placeholder="namePlaceholder">
             <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
           </CustomTextField>
 
@@ -114,11 +97,9 @@ const { handleSubmit } = useForm();
 const onSubmit = handleSubmit((values) => {
   // formvalues.value = values;
   formStore.fillForm(values);
+  // console.log(values);
   commercialStore.smallFormOrder({
-    order_date:
-      new Date().toLocaleDateString() +
-      " " +
-      new Date().toLocaleTimeString().slice(0, -3),
+    order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
     client_name: values.client_name,
     client_messenger: " +" + values.client_phone.substring(1),
     order_date_start: values.date.start,
