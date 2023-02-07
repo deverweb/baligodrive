@@ -25,12 +25,12 @@ export const useCommercialStore = defineStore("commercial", () => {
           },
         ],
         rates: [
-          // {
-          //   minDays: 1,
-          //   maxDays: 3,
-          //   dayPriceUSD: 40,
-          //   dayPriceRUP: 600000,
-          // },
+          {
+            minDays: 1,
+            maxDays: 3,
+            dayPriceUSD: 40,
+            dayPriceRUP: 600000,
+          },
           {
             minDays: 4,
             maxDays: 7,
@@ -86,12 +86,12 @@ export const useCommercialStore = defineStore("commercial", () => {
         ],
         discount: 20,
         rates: [
-          // {
-          //   minDays: 1,
-          //   maxDays: 3,
-          //   dayPriceUSD: 30,
-          //   dayPriceRUP: 450000,
-          // },
+          {
+            minDays: 1,
+            maxDays: 3,
+            dayPriceUSD: 30,
+            dayPriceRUP: 450000,
+          },
           {
             minDays: 4,
             maxDays: 7,
@@ -163,12 +163,12 @@ export const useCommercialStore = defineStore("commercial", () => {
         ],
         discount: 20,
         rates: [
-          // {
-          //   minDays: 1,
-          //   maxDays: 3,
-          //   dayPriceUSD: 23,
-          //   dayPriceRUP: 350000,
-          // },
+          {
+            minDays: 1,
+            maxDays: 3,
+            dayPriceUSD: 23,
+            dayPriceRUP: 350000,
+          },
           {
             minDays: 4,
             maxDays: 7,
@@ -239,12 +239,12 @@ export const useCommercialStore = defineStore("commercial", () => {
         ],
         discount: 20,
         rates: [
-          // {
-          //   minDays: 1,
-          //   maxDays: 3,
-          //   dayPriceUSD: 40,
-          //   dayPriceRUP: 600000,
-          // },
+          {
+            minDays: 1,
+            maxDays: 3,
+            dayPriceUSD: 40,
+            dayPriceRUP: 600000,
+          },
           {
             minDays: 4,
             maxDays: 7,
@@ -294,12 +294,12 @@ export const useCommercialStore = defineStore("commercial", () => {
         ],
         discount: 20,
         rates: [
-          // {
-          //   minDays: 1,
-          //   maxDays: 3,
-          //   dayPriceUSD: 23,
-          //   dayPriceRUP: 350000,
-          // },
+          {
+            minDays: 1,
+            maxDays: 3,
+            dayPriceUSD: 23,
+            dayPriceRUP: 350000,
+          },
           {
             minDays: 4,
             maxDays: 7,
