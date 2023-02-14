@@ -201,27 +201,27 @@
             </div>
             <div class="calc-right-item">
               <div class="calc-right-item-label">Годовой процент</div>
-              <div class="calc-right-item-num">{{ YEAR_PERCENT }}%</div>
+              <div class="calc-right-item-num">{{ Number(YEAR_PERCENT.toFixed(1)) }}%</div>
             </div>
             <div class="calc-right-item">
               <div class="calc-right-item-label">Сумма возврата итого</div>
-              <div class="calc-right-item-num">{{ return_sum }}$</div>
+              <div class="calc-right-item-num">{{ Math.round(return_sum.toFixed(2)) }}$</div>
             </div>
             <div class="calc-right-item">
               <div class="calc-right-item-label special">Ежемесячная выплата %</div>
-              <div class="calc-right-item-num special">{{ month_pay }}$</div>
+              <div class="calc-right-item-num special">{{ Math.round(month_pay) }}$</div>
             </div>
             <div class="calc-right-item">
               <div class="calc-right-item-label special">Сумма ПО всем %</div>
-              <div class="calc-right-item-num special">{{ percent_sum }}$</div>
+              <div class="calc-right-item-num special">{{ Math.round(percent_sum) }}$</div>
             </div>
             <div class="calc-right-item">
               <div class="calc-right-item-label">ROI среднегодовой</div>
-              <div class="calc-right-item-num">{{ ROI_middle }}</div>
+              <div class="calc-right-item-num">{{ Math.round(ROI_middle) }}</div>
             </div>
             <div class="calc-right-item">
               <div class="calc-right-item-label">ROI ВСЕГО</div>
-              <div class="calc-right-item-num">{{ ROI_all }}</div>
+              <div class="calc-right-item-num">{{ Math.round(ROI_all) }}</div>
             </div>
           </div>
         </div>
@@ -321,28 +321,28 @@ const handleChange = (value) => {
   }
 };
 const PERCENT = computed(() => {
-  return ((24 + (monthCount.value - 24) * 0.5) / 100 / 12).toFixed(4);
+  return (24 + (monthCount.value - 24) * 0.5) / 100 / 12;
 });
 const YEAR_PERCENT = computed(() => {
-  return Math.round(PERCENT.value * 1200);
+  return PERCENT.value * 1200;
 });
 const month_pay = computed(() => {
   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
     return 0;
   }
-  return Math.round(investSum.value * PERCENT.value);
+  return investSum.value * PERCENT.value;
 });
 const percent_sum = computed(() => {
   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
     return 0;
   }
-  return Math.round(Number(investSum.value * monthCount.value * PERCENT.value));
+  return Number(investSum.value * monthCount.value * PERCENT.value);
 });
 const return_sum = computed(() => {
   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
     return 0;
   }
-  return Math.round(Number(percent_sum.value + investSum.value));
+  return Number(percent_sum.value + investSum.value);
 });
 
 const ROI_all = computed(() => {
@@ -352,15 +352,56 @@ const ROI_all = computed(() => {
   if (investSum.value == 0 || !investSum.value) {
     return 0;
   } else {
-    return Math.round(((return_sum.value - investSum.value) / investSum.value) * 100);
+    return ((return_sum.value - investSum.value) / investSum.value) * 100;
   }
 });
 const ROI_middle = computed(() => {
   if (investSum.value < MIN_VALUE) {
     return 0;
   }
-  return Math.round(ROI_all.value / (monthCount.value / 12));
+  return ROI_all.value / (monthCount.value / 12);
 });
+// const PERCENT = computed(() => {
+//   return ((24 + (monthCount.value - 24) * 0.5) / 100 / 12).toFixed(4);
+// });
+// const YEAR_PERCENT = computed(() => {
+//   return Math.round(PERCENT.value * 1200);
+// });
+// const month_pay = computed(() => {
+//   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
+//     return 0;
+//   }
+//   return Math.round(investSum.value * PERCENT.value);
+// });
+// const percent_sum = computed(() => {
+//   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
+//     return 0;
+//   }
+//   return Math.round(Number(investSum.value * monthCount.value * PERCENT.value));
+// });
+// const return_sum = computed(() => {
+//   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
+//     return 0;
+//   }
+//   return Math.round(Number(percent_sum.value + investSum.value));
+// });
+
+// const ROI_all = computed(() => {
+//   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
+//     return 0;
+//   }
+//   if (investSum.value == 0 || !investSum.value) {
+//     return 0;
+//   } else {
+//     return Math.round(((return_sum.value - investSum.value) / investSum.value) * 100);
+//   }
+// });
+// const ROI_middle = computed(() => {
+//   if (investSum.value < MIN_VALUE) {
+//     return 0;
+//   }
+//   return Math.round(ROI_all.value / (monthCount.value / 12));
+// });
 const processBlocks = [
   {
     title: "Подача заявки",
