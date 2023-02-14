@@ -35,9 +35,14 @@ export default defineNuxtConfig({
   router: {
     options: {},
   },
+  vueStyle: {
+    sourceMap: true,
+  },
+  sass: {},
   plugins: [
     { src: "~/plugins/v-calendar", ssr: false, mode: "client" },
     { src: "~/plugins/vue-tel-input", ssr: false, mode: "client" },
+    { src: "~/plugins/slider", ssr: false, mode: "client" },
   ],
   modules: [
     "@nuxtjs/tailwindcss",
@@ -54,7 +59,6 @@ export default defineNuxtConfig({
       CENT_SHOP_ID: process.env.CENT_SHOP_ID,
     },
   },
-
   i18n: {
     strategy: "no_prefix",
     locales: [
@@ -117,8 +121,8 @@ export default defineNuxtConfig({
             thirdTab: "Доставка и страховка",
           },
           mainPageInvest: {
-            title: "Хотите инвестировать в бизнес аренды байков?",
-            text: "Оставьте заявку и мы расскажем, как Вы можете инвестировать в бизнес аренды байков на Бали с доходностью от 20% годовых.",
+            title: "ИНВЕСТИРУЙТЕ БЕЗ РИСКОВ",
+            text: "В связи с политической обстановкой в мире, мы решили предложить инвесторам диверсификацию рисков — инвестиции в бизнес аренды скутеров на острове Бали. Индонезия — это один из самых политически стабильных и быстро развивающихся рынков Азии и всего мира.",
             btnText: "Подробнее об инвестициях",
           },
           contactsComponent: {
@@ -187,8 +191,8 @@ export default defineNuxtConfig({
             thirdTab: "Delivery and insurance",
           },
           mainPageInvest: {
-            title: "Interested in investing in a bike rental business?",
-            text: "Leave a request and we will tell you how you can invest in a bike rental business in Bali with a yield of 20% per annum.",
+            title: "INVEST WITHOUT RISK",
+            text: "Due to the political situation in the world, we decided to offer investors a diversification of risks - investment in the business of renting scooters in Bali. Indonesia is one of the most politically stable and fastest growing markets in Asia and around the world.",
             btnText: "More about investments",
           },
           contactsComponent: {

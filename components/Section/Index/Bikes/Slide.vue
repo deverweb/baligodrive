@@ -14,8 +14,11 @@
         <div class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
           {{ rate.minDays }} - {{ rate.maxDays }} {{ locale == "ru" ? "дней" : "days" }}
         </div>
-        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]">
+        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]" v-if="!rate.isFixed">
           {{ rate.dayPriceUSD }}$ / {{ locale == "ru" ? "день" : "day" }}
+        </div>
+        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]" v-if="rate.isFixed">
+          {{ rate.dayPriceUSD }}$ / {{ locale == "ru" ? "фикс." : "fixed" }}
         </div>
         <div class="bike-rate-rup font-Helvmed mb-[3px] text-[14px]">
           {{ rate.dayPriceRUP }} {{ locale == "ru" ? "рупий" : "rupees" }}

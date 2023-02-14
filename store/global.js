@@ -29,9 +29,15 @@ export const useGlobalStore = defineStore("global", () => {
       label: "Аренда",
       to: "/",
     },
+
     {
       label: "Частые вопросы",
       to: "/faq",
+    },
+
+    {
+      label: "О компании",
+      to: "/about",
     },
     // {
     //   label: "Стать партнером",
@@ -52,10 +58,10 @@ export const useGlobalStore = defineStore("global", () => {
       label: "FAQ",
       to: "/faq",
     },
-    // {
-    //   label: "Partnership",
-    //   to: "/invest",
-    // },
+    {
+      label: "About",
+      to: "/about",
+    },
 
     {
       label: "Contacts",

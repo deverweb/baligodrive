@@ -33,7 +33,11 @@ export const useFormStore = defineStore("form", () => {
   };
   let computedPrice = computed(() => {
     if (bike.value) {
-      return Number(dateDif.value) * rate.value.dayPriceUSD;
+      if (rate.value.isFixed) {
+        return rate.value.dayPriceUSD;
+      } else {
+        return Number(dateDif.value) * rate.value.dayPriceUSD;
+      }
     }
     return "";
   });

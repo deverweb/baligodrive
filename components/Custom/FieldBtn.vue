@@ -7,11 +7,7 @@
       {{ props.label }}
     </div>
     <SvgInputFile v-if="props.fileInput"></SvgInputFile>
-    <SvgArrowIcon
-      class="transition field-btn-arrow"
-      :class="{ 'rotate-180': props.active }"
-      v-else
-    ></SvgArrowIcon>
+    <SvgArrowIcon class="transition field-btn-arrow" :class="{ 'rotate-180': props.active }" v-else></SvgArrowIcon>
   </div>
 </template>
 
@@ -51,17 +47,21 @@ const computedClass = computed(() => {
 		height: 67px
 		border-bottom: 1px solid #F3F3F3
 		border-radius: 0
+		display: flex
+		justify-content: space-between
+		align-items: center
+		+r(768)
+			font-size: 15px
 		.field-btn-icon
 			position: absolute
 			width: 32px
+			left: 17px
 		.field-btn-text
 			white-space: nowrap
 			overflow: hidden
 			text-overflow: ellipsis
-			padding-left: 32px
 		.field-btn-arrow
-			margin-right: 7px
-			margin-top: 8px
+			margin-right: 21px
 			height: 7px
 			width: 10px
 			path

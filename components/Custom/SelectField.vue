@@ -138,11 +138,13 @@ let isRequired = (value) => {
 		color: $dark
 		background-color: white
 		font-size: 16px
-		+r(600)
-			width: 100%
 		.cs-current
 			position: relative
 			box-shadow: none
+			height: 100%
+			border-radius: 12px
+			border: 1px solid #d4d4d4
+			padding-left: 50px
 		.cs-error-container
 			position: absolute
 			bottom: 0

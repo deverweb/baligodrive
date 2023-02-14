@@ -1,12 +1,9 @@
 <template>
   <div class="ci relative" ref="rootInput">
-    <div
-      class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50"
-      v-if="props.subTitle"
-    >
+    <div class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">
       {{ props.subTitle }}
     </div>
-    <div class="ci-container">
+    <div class="ci-container relative">
       <div class="ci-icon-container">
         <slot></slot>
       </div>
@@ -18,13 +15,15 @@
         :class="{ autocomplete: props.autocomplete }"
         type="text"
       />
+
+      <span
+        v-if="props.extraph"
+        class="absolute select-none sm:text-[12px] pointer-events-none right-[30px] sm:right-[24px] text-[16px] text-[#111] opacity-50 top-[50%] translate-y-[-50%]"
+        >{{ props.extraph }}</span
+      >
     </div>
     <Transition name="slide-down">
-      <ul
-        class="ci-suggests absolute pl-[30px] top-0 left-0 right-0"
-        v-if="false"
-        v-show="activeList"
-      >
+      <ul class="ci-suggests absolute pl-[30px] top-0 left-0 right-0" v-if="false" v-show="activeList">
         <li class="h-[50px] flex items-center">Test</li>
         <li class="h-[50px] flex items-center">Test</li>
         <li class="h-[50px] flex items-center">Test</li>
@@ -46,6 +45,10 @@ import { useField } from "vee-validate";
 let { locale } = useI18n();
 
 const props = defineProps({
+  extraph: {
+    required: false,
+    type: String,
+  },
   name: {
     required: true,
     type: String,
@@ -53,6 +56,10 @@ const props = defineProps({
   placeholder: {
     required: true,
     type: String,
+  },
+  minValue: {
+    required: false,
+    type: Number,
   },
   type: String,
   subTitle: String,
@@ -67,7 +74,12 @@ let isRequired = (value) => {
       if (locale.value == "ru") return "Обязательное поле";
       if (locale.value == "en") return "Required";
     }
-
+    if (props.minValue) {
+      if (value < props.minValue) {
+        if (locale.value == "ru") return "Значение меньше минимального";
+        if (locale.value == "en") return "Value is less than minimum";
+      }
+    }
     if (!/^\d+$/.test(value)) {
       if (locale.value == "ru") return "Только цифры";
       if (locale.value == "en") return "Numbers only";
@@ -89,8 +101,12 @@ const { errorMessage, value } = useField(nameRef, isRequired);
 
 const emit = defineEmits(["fieldValue"]);
 let activeList = ref(false);
+let hasText = computed(() => {
+  return value.value == "";
+});
 
 const handleChange = (event) => {
+  emit("fieldValue", value.value);
   // console.log("event.value", event.target.value);
   // if (!event.target.value) {
   //   activeList.value = false;
@@ -175,31 +191,63 @@ onMounted(() => {
 			padding-left: 30px
 			&:hover
 				background-color: lighten(#353535, 10%)
-	&.ci__invest-form
+	&.ci__last-form
 		position: relative
-		border-bottom: 1px solid #F3F3F3
-
 		.ci-error
 			color: red
 			font-size: 12px
-		.ci-error-container
-			// height: 10px
-			bottom: 0
-			position: absolute
+			&-container
+				height: 16px
 		.ci-container
 			display: flex
 			font-size: 16px
 			align-items: center
-			height: 65px
+			height: 67px
 			position: relative
-			padding-right: 21px
-			padding-left: 3px
-			border-radius: 0
-			background-color: white
+			padding-right: 30px
+			padding-left: 20px
+			border-radius: 12px
+			border: 1px solid #D6D6D6
+			input
+				width: 100%
+				height: 100%
 		.ci-icon-container
 			width: 30px
 			display: flex
 			justify-content: flex-start
+			margin-ight: 6px
+	&.ci__invest-form
+		position: relative
+
+		.ci-error
+			color: red
+			font-size: 14px
+		.ci-error-container
+			// height: 10px
+			bottom: -30px
+			left: 5px
+			position: absolute
+		.ci-container
+			display: flex
+			font-size: inherit
+			align-items: center
+			height: 100%
+			position: relative
+			padding-right: 190px
+			padding-left: 30px
+			border-radius: 12px
+			background-color: white
+			+r(768)
+				padding-left: 19px
+				padding-right: 140px
+		.ci-icon-container
+			width: 30px
+			display: flex
+			justify-content: flex-start
+			margin-right: 7px
+			+r(768)
+				width: 24px
+				margin-right: 4px
 		.ci-input
 			height: 100%
 			white-space: nowrap

@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="footer px-[80px] lg:pt-[58px] sm:pt-[68px] lg:px-[48px] sm:px-[25px] 2xl:px-[40px] bg-dark-300 pt-[58px] sm:pb-[41px] pb-[54px]"
+    class="footer px-[80px] lg:pt-[58px] sm:pt-[68px] lg:px-[48px] sm:px-[25px] 2xl:px-[40px] bg-dark-300 pt-[50px] sm:pb-[41px] pb-[57px]"
   >
     <div class="footer-desktop grid grid-cols-4 lg:hidden">
       <div class="footer-col pt-[4px] flex flex-col items-start">
@@ -237,4 +237,6 @@ const handleFooterClickRend = async () => {
 			letter-spacing: -0.5px
 			+r(1200)
 				font-size: 14px
+			+r(380)
+				white-space: normal
 </style>

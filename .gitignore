@@ -4,9 +4,5 @@ node_modules
 .nitro
 .cache
 .output
-dist
-server/api/baligobike-api-6f8fd7272f74.json
-server/api/linear-stock-371713-73fa8f6f5bfc.json
-./server/api/baligobike-api-6f8fd7272f74.json
-./server/api/linear-stock-371713-73fa8f6f5bfc.json
 .env
+dist
