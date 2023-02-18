@@ -24,16 +24,18 @@
           <span>WhatsApp</span>
         </TheButton></a
       >
-      <TheButton
-        class="btn-primary__blue xsm:rounded-[8px] xxsm:w-full pr-[22px] xsm:pr-[11px] xsm:w-[165px] xsm:h-[46px] xsm:text-[12px] w-[250px] gap-[10px] h-[70px]"
-      >
-        <SvgTelegramIcon
-          class="h-[18px] w-[22px] xsm:w-[14px] xsm:h-[12px]"
-          opacity="1"
-          fill="#FBFBFD"
-        ></SvgTelegramIcon>
-        <span>Telegram</span>
-      </TheButton>
+      <a class="xxsm:w-full" href="https://t.me/baligobike">
+        <TheButton
+          class="btn-primary__blue xsm:rounded-[8px] xxsm:w-full pr-[22px] xsm:pr-[11px] xsm:w-[165px] xsm:h-[46px] xsm:text-[12px] w-[250px] gap-[10px] h-[70px]"
+        >
+          <SvgTelegramIcon
+            class="h-[18px] w-[22px] xsm:w-[14px] xsm:h-[12px]"
+            opacity="1"
+            fill="#FBFBFD"
+          ></SvgTelegramIcon>
+          <span>Telegram</span>
+        </TheButton>
+      </a>
     </div>
     <div
       class="contacts-items xsm:w-full font-Euroblack tracking-[-0.6px] lil:text-[14px] xsm:text-[16px] text-[25px] uppercase whitespace-nowrap"

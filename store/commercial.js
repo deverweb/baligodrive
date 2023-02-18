@@ -303,8 +303,8 @@ export const useCommercialStore = defineStore("commercial", () => {
         trunk_volume: "18",
         capacity: "9,4",
         fuel_tank_volume: "4,2",
-        engDescription: `Yamaha Xride - это скутер из создан, как для твёрдового покрытия так и для бездорожья. Он оснащён двигателем Blue Core объёмом 125 куб, что делает его очень динамичным. Он идеально подходит для тех кто увлекается серфингом, его также можно оснастить креплением для серфборда.				`,
-        ruDescription: `The Yamaha Xride is a scooter designed for both hard and off-road use. It is equipped with a 125 cc Blue Core engine, which makes it very dynamic. It is ideal for those who love to surf and can also be equipped with a surfboard attachment.`,
+        ruDescription: `Yamaha Xride - это скутер из создан, как для твёрдового покрытия так и для бездорожья. Он оснащён двигателем Blue Core объёмом 125 куб, что делает его очень динамичным. Он идеально подходит для тех кто увлекается серфингом, его также можно оснастить креплением для серфборда.				`,
+        engDescription: `The Yamaha Xride is a scooter designed for both hard and off-road use. It is equipped with a 125 cc Blue Core engine, which makes it very dynamic. It is ideal for those who love to surf and can also be equipped with a surfboard attachment.`,
         bikes: [
           {
             id: "1",

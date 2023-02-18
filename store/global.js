@@ -39,10 +39,10 @@ export const useGlobalStore = defineStore("global", () => {
       label: "О компании",
       to: "/about",
     },
-    // {
-    //   label: "Стать партнером",
-    //   to: "/invest",
-    // },
+    {
+      label: "Инвестиции",
+      to: "/invest",
+    },
 
     {
       label: "Контакты",
@@ -63,6 +63,10 @@ export const useGlobalStore = defineStore("global", () => {
       to: "/about",
     },
 
+    {
+      label: "Investments",
+      to: "/invest",
+    },
     {
       label: "Contacts",
       to: "/contacts",

@@ -146,10 +146,10 @@ let isRequired = (value) => {
 			border: 1px solid #d4d4d4
 			padding-left: 50px
 		.cs-error-container
-			position: absolute
+			position: relative
 			bottom: 0
 			z-index: 4
-			height: auto
+			height: 16px
 		.cs-error
 			font-size: 12px
 		.cs-list-container

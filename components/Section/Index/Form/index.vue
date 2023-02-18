@@ -3,9 +3,7 @@
     class="order relative z-[7] rounded-b-[70px] sm:rounded-b-[44px] bg-dark-300 py-[151px] lg:pb-[71px] lg:pt-[94px] sm:pt-[50px] text-light"
   >
     <div class="container flex lg:flex-col lg:items-center lg:text-center">
-      <div
-        class="order-content sm:mb-[78px] max-w-[52%] lg:mb-[46px] lg:max-w-full"
-      >
+      <div class="order-content sm:mb-[78px] max-w-[52%] lg:mb-[46px] lg:max-w-full">
         <h2
           ref="formEl"
           class="section-title xsm:text-[26px] order-title mb-[29px] sm:mb-[22px] lg:mb-[26px] lg:max-w-[70%] lg:mx-auto md:max-w-max"
@@ -20,12 +18,7 @@
         </p>
         <form @submit="onSubmit" class="form">
           <div class="max-w-[360px] lg:mx-auto lg:text-left">
-            <CustomDatePicker
-              name="date"
-              styleType="index"
-              transition="slide-right"
-              class="mb-[10px] dp__index-form"
-            >
+            <CustomDatePicker name="date" styleType="index" transition="slide-right" class="mb-[10px] dp__index-form">
             </CustomDatePicker>
             <CustomSelectField
               :styleType="'index'"
@@ -48,11 +41,7 @@
               <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
             </CustomTextField>
 
-            <CustomPhoneField
-              class="mb-[10px]"
-              type="index"
-              name="client_phone"
-            >
+            <CustomPhoneField class="mb-[10px]" type="index" name="client_phone">
               <SvgPhoneIcon></SvgPhoneIcon>
             </CustomPhoneField>
             <CustomSelectField
@@ -76,6 +65,7 @@
           </div>
         </form>
       </div>
+
       <SectionIndexFormOrderBike
         class="absolute lg:max-w-[60%] 2xl:z-[0] 2xl:bottom-[5%] 2xl:left-[40%] 2xl:scale-[0.85] lg:scale-100 xsm:max-w-full left-[50%] lg:bottom-auto lg:relative lg:left-0"
       ></SectionIndexFormOrderBike>
@@ -124,13 +114,10 @@ const formData = ref({
 });
 // let formvalues = useStorage("formvalues");
 const onSubmit = handleSubmit((values) => {
-  // formvalues.value = values;
+  formvalues.value = values;
   formStore.fillForm(values);
   commercialStore.smallFormOrder({
-    order_date:
-      new Date().toLocaleDateString() +
-      " " +
-      new Date().toLocaleTimeString().slice(0, -3),
+    order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
     client_name: values.client_name,
     client_messenger: " +" + values.client_phone.substring(1),
     order_date_start: values.date.start,

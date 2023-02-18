@@ -3,7 +3,7 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   // const doc = new GoogleSpreadsheet("1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM");
-	const doc_id = process.env.DOC_ID
+  const doc_id = process.env.DOC_ID;
   const email_key = process.env.EMAIL_KEY;
   const private_key = process.env.PRIVATE_KEY;
   // const doc = new GoogleSpreadsheet("1LHmvh_YJztViJKhoT4TPiaVOWYS08cpbwKaLPszpBkI");
@@ -15,6 +15,18 @@ export default defineEventHandler(async (event) => {
   //
   let sheet;
   await doc.loadInfo();
+  if (body.sheet == "investform") {
+    sheet = doc.sheetsByIndex[2];
+
+    await sheet.addRow({
+      order_date: body.data.date,
+      client_name: body.data.client_name,
+      client_phone: body.data.client_phone,
+      messenger: body.data.messenger,
+      invest_size: body.data.invest_size,
+    });
+    return "if smallform";
+  }
   if (body.sheet == "smallform") {
     sheet = doc.sheetsByIndex[1];
 
@@ -29,16 +41,6 @@ export default defineEventHandler(async (event) => {
     return "if smallform";
   }
 
-  if (body.sheet == "investform") {
-    sheet = doc.sheetsByIndex[2];
-    await sheet.addRow({
-      order_date: body.data.date,
-      client_name: body.data.client_name,
-      client_phone: body.data.client_phone,
-      invest_size: body.data.invest_size,
-    });
-    return "invest form";
-  }
   if (body.sheet == "bigform") {
     sheet = doc.sheetsByIndex[0];
     const rows = await sheet.getRows();

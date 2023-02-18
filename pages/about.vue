@@ -7,16 +7,18 @@
         <h2
           class="max-w-[800px] sm:text-[32px] md:text-[46px] sm:mb-[20px] md:mb-[25px] leading-[0.96] font-Euroblack tracking-[-1.75px] text-[58px] xsm:max-w-full sm:max-w-[90%] md:max-w-[60%] mx-auto mb-[30px] text-light text-center"
         >
-          КТО МЫ И ПОЧЕМУ НАМ ДОВЕРЯЮТ?
+          {{ test("КТО МЫ И ПОЧЕМУ НАМ ДОВЕРЯЮТ?", "WHO WE ARE AND WHY WE ARE TRUSTED?") }}
         </h2>
         <p
+          v-html="
+            test(
+              'Наша команда работает уже более 8 лет в сфере транспорта. Мы&nbsp;—&nbsp;главные&nbsp;партнёры&nbsp;компаний-агрегаторов <b>Bolt, Uber и Яндекс.Такси.</b>',
+              'Our team has been working in the field of transport for more than 8 years. We&nbsp;are&nbsp;the&nbsp;main&nbsp;partners&nbsp;of aggregator companies <b>Bolt, Uber and Yandex.Taxi.</b>'
+            )
+          "
           class="text-center sm:text-[14px] lil:text-[12px] max-w-[650px] md:text-[16px] md:mb-[44px] mb-[54px] mx-auto leading-[1.25]"
-        >
-          Наша команда работает уже более 7 лет в сфере транспорта.
-          Мы&nbsp;—&nbsp;главные&nbsp;партнёры&nbsp;компаний-агрегаторов
-          <b>Bolt, Uber и Яндекс.Такси.</b>
-        </p>
-        <SectionSimpleSixBlocks class="" :blocks="indexSixBlocks"></SectionSimpleSixBlocks>
+        ></p>
+        <SectionSimpleSixBlocks class="" :blocks="test(ruIndexSixBlocks, engIndexSixBlocks)"></SectionSimpleSixBlocks>
       </div>
     </section>
     <section
@@ -24,7 +26,9 @@
     >
       <div class="container">
         <div class="about-row mb-[92px] md:mb-[78px]">
-          <div class="about-row-title sm:mb-[24px] md:mb-[40px] mb-[53px]">Наши партнеры</div>
+          <div class="about-row-title sm:mb-[24px] md:mb-[40px] mb-[53px]">
+            {{ test("Наши партнеры", "Our partners") }}
+          </div>
           <div class="about-row-items flex sm:grid sm:grid-cols-2 justify-between items-center">
             <div class="about-row-item" v-for="partner in partners">
               <img :src="partner" alt="" />
@@ -32,7 +36,9 @@
           </div>
         </div>
         <div class="about-row">
-          <div class="about-row-title sm:mb-[39px] md:mb-[25px] mb-[18px]">Наши проекты</div>
+          <div class="about-row-title sm:mb-[39px] md:mb-[25px] mb-[18px]">
+            {{ test("Наши проекты", "Our projects") }}
+          </div>
           <div class="about-row-items flex sm:grid sm:grid-cols-2 justify-between items-center">
             <div class="about-row-item" v-for="project in projects">
               <img :src="project" alt="" />
@@ -48,12 +54,12 @@
         <h2
           class="font-Euroblack uppercase sm:mb-[44px] md:mb-[57px] sm:text-[32px] tracking-[-2px] md:tracking-[-1.6px] leading-[0.96] text-[58px] md:text-[46px] text-center mb-[70px] md:mx-auto"
         >
-          Наши достижения
+          {{ test("Наши достижения", "Our achievements") }}
         </h2>
         <div
-          class="about-ach-videos mb-[96px] sm:mb-[78px] md:mb-[60px] sm:gap-[16px] md:gap-[30px] md:flex-col flex gap-[20px]"
+          class="about-ach-videos justify-center md:items-center mb-[96px] sm:mb-[78px] md:mb-[60px] sm:gap-[16px] md:gap-[30px] md:flex-col flex gap-[20px]"
         >
-          <div
+          <!-- <div
             class="about-ach-video cursor-pointer grid place-items-center rounded-[12px] bg-cover bg-no-repeat bg-[url('/img/about/video-1.png')] grow bg-lime"
           >
             <svg
@@ -67,9 +73,10 @@
               <circle opacity="0.3" cx="25" cy="25" r="23.5" stroke="white" stroke-width="3" />
               <path d="M34 25L20.5 32.7942L20.5 17.2058L34 25Z" fill="white" />
             </svg>
-          </div>
+          </div> -->
           <div
-            class="about-ach-video cursor-pointer grid place-items-center rounded-[12px] bg-cover bg-no-repeat bg-[url('/img/about/video-2.png')] grow bg-lime"
+            @click="handleOpenVideo"
+            class="about-ach-video md:max-w-none max-w-[50%] cursor-pointer grid place-items-center rounded-[12px] bg-cover bg-no-repeat bg-[url('/img/about/video-2.png')] grow bg-lime"
           >
             <svg
               class="relative w-[50px] h-[50px] sm:w-[25px] sm:h-[25px]"
@@ -83,6 +90,16 @@
               <path d="M34 25L20.5 32.7942L20.5 17.2058L34 25Z" fill="white" />
             </svg>
           </div>
+          <CustomModal @disable="handleCloseVideo" :active="activeVideoModal">
+            <iframe
+              class=""
+              :src="iframeSrc"
+              title="Uberlin Shuttle"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </CustomModal>
         </div>
         <div
           class="about-ach-numbers sm:grid-cols-1 grid grid-cols-4 sm:gap-x-0 sm:gap-y-[49px] md:gap-x-[80px] md:gap-y-[88px] md:grid-cols-2 gap-[50px]"
@@ -94,7 +111,7 @@
           >
             <span
               class="font-Helvmed font-thin text-[20px] md:text-[16px] lg:text-[18px] text-light opacity-40 lg:mb-[2px] mb-[-3px]"
-              >более</span
+              >{{ test("более", "more than") }}</span
             >
             <span
               class="font-Euroblack whitespace-nowrap text-[52px] lg:text-[36px] md:text-[42px] xl:text-[42px] md:mb-[21px] mb-[12px] leading-[1] tracking-[-1.7px]"
@@ -103,7 +120,7 @@
             <p
               class="text-[18px] sm:max-w-[70%] sm:min-w-[180px] lg:text-[16px] font-thin opacity-60 md:leading-[20px] leading-[23px]"
             >
-              {{ item.text }}
+              {{ test(item.text, item.engText) }}
             </p>
           </div>
         </div>
@@ -116,6 +133,22 @@
 </template>
 
 <script setup>
+const { locale } = useI18n();
+
+const test = (ruStr, engStr) => {
+  return locale.value == "ru" ? ruStr : engStr;
+};
+const iframeSrc = ref("https://www.youtube.com/embed/BCYOfKGYSak");
+const activeVideoModal = ref(false);
+const handleCloseVideo = (event, evtarget) => {
+  activeVideoModal.value = false;
+  iframeSrc.value = "";
+};
+const handleOpenVideo = () => {
+  activeVideoModal.value = true;
+  iframeSrc.value = "https://www.youtube.com/embed/BCYOfKGYSak";
+};
+
 const partners = [
   "./svg/about/partners/uber.svg",
   "./svg/about/partners/bolt.svg",
@@ -127,10 +160,38 @@ const projects = [
   "./svg/about/projects/boltua.svg",
   "./svg/about/projects/ubershuttle.svg",
 ];
-const indexSixBlocks = [
+
+const engIndexSixBlocks = [
   {
-    title: "7 лет на рынке",
-    text: "Уже более 7 лет работаем в сфере транспорта и агрегаторов",
+    title: "8 years on the market",
+    text: "For more than 8 years we have been working in the field of transport and aggregators",
+  },
+  {
+    title: "Launched Uber, Bolt and Yandex.Taxi",
+    text: "Participated in the launch of Uber, Bolt and Yandex.Taxi in Russia, Ukraine, Kazakhstan and Poland",
+  },
+  {
+    title: "Partners of Uber, Bolt and Yandex.Taxi",
+    text: "We are the largest partners of Uber, Bolt and Yandex.Taxi",
+  },
+  {
+    title: "Uber Shuttle",
+    text: "in 2019 we successfully launched the project in Kyiv and in 2022 in Lviv",
+  },
+  {
+    title: "DiDi Partners",
+    text: "In 2020 we entered into a partnership to launch a company in Russia",
+  },
+  {
+    title: "BaliGo.bike",
+    text: "Launched a new scooter rental business in Indonesia on the island of Bali",
+  },
+];
+
+const ruIndexSixBlocks = [
+  {
+    title: "8 лет на рынке",
+    text: "Уже более 8 лет работаем в сфере транспорта и агрегаторов",
   },
   {
     title: "Запускали Uber, Bolt и Yandex.Taxi",
@@ -157,6 +218,7 @@ const numbers = [
   {
     num: "400 000",
     text: "Поездок еженедельно совершают наши водители",
+    engText: "Trips are made weekly by our drivers",
     pcOrder: 0,
     tabletOrder: 0,
     phoneOrder: 0,
@@ -164,6 +226,7 @@ const numbers = [
   {
     num: "100 000",
     text: "Частных водителей сотрудничают с нами",
+    engText: "Private drivers cooperate with us",
     pcOrder: 1,
     tabletOrder: 2,
     phoneOrder: 1,
@@ -171,6 +234,7 @@ const numbers = [
   {
     num: "1000",
     text: "Автопарков заключили с нами партнёрство",
+    engText: "Autoparks entered into partnership with us",
     pcOrder: 2,
     tabletOrder: 3,
     phoneOrder: 3,
@@ -178,6 +242,7 @@ const numbers = [
   {
     num: "2 000",
     text: "Единиц транспорта в инвестиционном управлении",
+    engText: "Vehicle units in investment management",
     pcOrder: 3,
     tabletOrder: 1,
     phoneOrder: 2,
@@ -186,6 +251,16 @@ const numbers = [
 </script>
 
 <style lang="sass">
+iframe
+	max-width: 80%
+	max-height: 70%
+	width: 100%
+	height: 100%
+	+r(990)
+		width: 100%
+		max-width: initial
+		max-height: 60%
+		height: 50%
 .about
 	&-ach
 		&-video

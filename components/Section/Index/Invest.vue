@@ -15,7 +15,7 @@
           class="section-desc sm:text-[16px] md:text-center sm:text-left text-left invest-desc mb-[31px] md:mb-[28px] xsm:mb-[41px]"
           v-html="$t('mainPageInvest.text')"
         ></p>
-        <NuxtLink to="/investments" class="xsm:max-w-[340px] xsm:w-full">
+        <NuxtLink to="/invest" class="xsm:max-w-[340px] xsm:w-full">
           <TheButton
             class="w-[330px] z-[3] btn-primary__light white sm:h-[70px] h-[79px] md:w-[339px] gap-[9px] xsm:w-full text-light"
           >
