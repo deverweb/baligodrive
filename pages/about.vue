@@ -59,7 +59,8 @@
         <div
           class="about-ach-videos justify-center md:items-center mb-[96px] sm:mb-[78px] md:mb-[60px] sm:gap-[16px] md:gap-[30px] md:flex-col flex gap-[20px]"
         >
-          <!-- <div
+          <div
+            @click="handleOpenVideo('https://www.youtube.com/embed/zamywX_JBGQ')"
             class="about-ach-video cursor-pointer grid place-items-center rounded-[12px] bg-cover bg-no-repeat bg-[url('/img/about/video-1.png')] grow bg-lime"
           >
             <svg
@@ -73,9 +74,10 @@
               <circle opacity="0.3" cx="25" cy="25" r="23.5" stroke="white" stroke-width="3" />
               <path d="M34 25L20.5 32.7942L20.5 17.2058L34 25Z" fill="white" />
             </svg>
-          </div> -->
+          </div>
+
           <div
-            @click="handleOpenVideo"
+            @click="handleOpenVideo('https://www.youtube.com/embed/BCYOfKGYSak')"
             class="about-ach-video md:max-w-none max-w-[50%] cursor-pointer grid place-items-center rounded-[12px] bg-cover bg-no-repeat bg-[url('/img/about/video-2.png')] grow bg-lime"
           >
             <svg
@@ -144,9 +146,9 @@ const handleCloseVideo = (event, evtarget) => {
   activeVideoModal.value = false;
   iframeSrc.value = "";
 };
-const handleOpenVideo = () => {
+const handleOpenVideo = (arg) => {
   activeVideoModal.value = true;
-  iframeSrc.value = "https://www.youtube.com/embed/BCYOfKGYSak";
+  iframeSrc.value = arg;
 };
 
 const partners = [
@@ -266,6 +268,7 @@ iframe
 		&-video
 			aspect-ratio: 674 / 380
 			position: relative
+			width: 100%
 			&::before
 				content: ""
 				top: 0

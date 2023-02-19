@@ -1,7 +1,7 @@
 <template>
   <header
     :class="computedHeaderClasses"
-    class="header h-[93px] xl:justify-between z-[35] xl:px-[80px] sm:w-full sm:left-0 xsm:h-[80px] xsm:px-[25px] md:px-[50px] px-[80px] md:w-[calc(100%-40px)] w-[calc(100%-40px)] flex fixed items-center md:h-[100px] md:right-0 md:left-[20px] left-[20px] right-[100px]"
+    class="header h-[93px] xl:justify-between z-[35] xl:px-[80px] lg:px-[50px] sm:w-full sm:left-0 xsm:h-[80px] xsm:px-[25px] md:px-[50px] px-[80px] md:w-[calc(100%-40px)] w-[calc(100%-40px)] flex fixed items-center md:h-[100px] md:right-0 md:left-[20px] left-[20px] right-[100px]"
   >
     <Logo
       class="flex-grow z-[2] md:flex-grow-0 md:flex-shrink-0 xl:basis-auto tracking-[-0.6px] md:tracking-[1px] flex-shrink basis-[0%]"
@@ -103,6 +103,10 @@ onMounted(() => {
 		&::before
 			background-color: $dark200
 			box-shadow: 0px 0px 10px rgba(0,0,0,0.5)
+	nav
+		ul
+			+r(1440)
+				zoom: 0.9
 
 	&.header-left
 		&::before
