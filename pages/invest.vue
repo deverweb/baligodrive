@@ -413,7 +413,7 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://baligo.bike" + route.path + "/",
+      href: "https://baligo.bike/invest/",
     },
   ],
 });
