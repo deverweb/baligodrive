@@ -3,13 +3,7 @@
     <div class="pf-icon-container">
       <slot></slot>
     </div>
-    <input
-      type="text"
-      v-model="phone"
-      class="hidden"
-      name="client_phone"
-      id="client_phone"
-    />
+    <input type="text" v-model="phone" class="hidden" name="client_phone" id="client_phone" />
     <ClientOnly>
       <vue-tel-input
         class="ml-[7px] phone-input"
@@ -47,8 +41,7 @@ const handleCountryChange = (obj) => {
 };
 
 const handleInput = (num, obj) => {
-  if (num.length < ctCode.value.length + 1)
-    phoneValue.value = "+" + ctCode.value;
+  if (num.length < ctCode.value.length + 1) phoneValue.value = "+" + ctCode.value;
 };
 
 let phone = ref("");
@@ -104,21 +97,28 @@ const classes = computed(() => {
 				box-shadow: none
 	&.invest-phone
 		padding-left: 3px
-		border-bottom: 1px solid #F3F3F3
-		+r(600)
-			width: 100%
+
+		height: 67px
+		position: relative
+		padding-right: 30px
+		padding-left: 20px
+		border-radius: 12px
+		border: 1px solid #D6D6D6
+
 		.pf-icon-container
 			width: 14px
 		.vti__dropdown-list
 			z-index: 10
+		.vue-tel-input
+			border-radius: 0
+			border: none
+			background: transparent
 		.phone-input
 			height: 71px
 			display: flex
 			align-items: center
 			color: $dark
 			font-size: 16px
-			background-color: white
-			border: none
 			z-index: 10
 			&:focus-within
 				box-shadow: none

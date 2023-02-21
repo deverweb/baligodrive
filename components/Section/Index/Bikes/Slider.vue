@@ -20,22 +20,86 @@
     </div>
 
     <div
-      class="catalog-arrows w-[550px] sm:w-[90px] sm:self-center translate-x-[-50%] left-[50%] gap-[0px] sm:static sm:transform-none absolute top-[146px] md:top-[118px] justify-between xsm:mt-0 sm:order-[1] flex xsm:justify-center xsm:gap-[30px] xsm:px-0 sm:top-0 select-none z-[2]"
+      class="catalog-arrows sm:w-full w-[90%] sm:self-center translate-y-[-50%] translate-x-[-50%] left-[50%] gap-[0px] absolute top-[40%] md:top-[35%] justify-between flex select-none z-[2]"
     >
       <div class="catalog-arrows-prev cursor-pointer">
-        <svg width="31" height="16" viewBox="0 0 31 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M0.292891 7.29289C-0.097633 7.68341 -0.097633 8.31658 0.292891 8.7071L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31945 8.07107 0.92893C7.68054 0.538406 7.04738 0.538406 6.65685 0.92893L0.292891 7.29289ZM31 7L0.999998 7L0.999998 9L31 9L31 7Z"
-            fill="black"
-          />
+        <svg
+          width="160"
+          class="md:w-[100px] xsm:w-[60px]"
+          height="160"
+          viewBox="0 0 160 160"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g filter="url(#filter0_d_1451_814)">
+            <circle cx="80" cy="76" r="50" fill="#30B21B" />
+          </g>
+          <path d="M84 62L70 76L84 90" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <defs>
+            <filter
+              id="filter0_d_1451_814"
+              x="0"
+              y="0"
+              width="160"
+              height="160"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="15" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1451_814" />
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1451_814" result="shape" />
+            </filter>
+          </defs>
         </svg>
       </div>
       <div class="catalog-arrows-next cursor-pointer">
-        <svg width="31" height="16" viewBox="0 0 31 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M30.7071 8.70711C31.0976 8.31659 31.0976 7.68342 30.7071 7.2929L24.3431 0.928936C23.9526 0.538412 23.3195 0.538412 22.9289 0.928936C22.5384 1.31946 22.5384 1.95263 22.9289 2.34315L28.5858 8L22.9289 13.6569C22.5384 14.0474 22.5384 14.6805 22.9289 15.0711C23.3195 15.4616 23.9526 15.4616 24.3431 15.0711L30.7071 8.70711ZM-1.74846e-07 9L30 9.00001L30 7.00001L1.74846e-07 7L-1.74846e-07 9Z"
-            fill="black"
-          />
+        <svg
+          class="md:w-[100px] xsm:w-[60px]"
+          width="160"
+          height="160"
+          viewBox="0 0 160 160"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g filter="url(#filter0_d_1451_815)">
+            <circle cx="80" cy="76" r="50" transform="rotate(-180 80 76)" fill="#30B21B" />
+          </g>
+          <path d="M76 90L90 76L76 62" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          <defs>
+            <filter
+              id="filter0_d_1451_815"
+              x="0"
+              y="0"
+              width="160"
+              height="160"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha"
+              />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="15" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1451_815" />
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1451_815" result="shape" />
+            </filter>
+          </defs>
         </svg>
       </div>
     </div>

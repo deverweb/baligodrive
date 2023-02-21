@@ -341,14 +341,17 @@
           >
             <SvgPersonIcon class="sm:w-[12] sm:h-[14px]" fill="#000" opacity="1"></SvgPersonIcon>
           </CustomTextField>
-          <CustomTextField
+          <CustomPhoneField class="ci__last-form w-[360px] max-w-full md:h-[63px]" type="invest" name="client_phone">
+            <SvgPhoneIcon></SvgPhoneIcon>
+          </CustomPhoneField>
+          <!-- <CustomTextField
             type="number"
             class="ci__last-form w-[360px] max-w-full md:h-[63px]"
             name="client_phone"
             :placeholder="test('Телефон', 'Phone')"
           >
             <SvgPhoneIcon class="sm:w-[13] sm:h-[13px]"></SvgPhoneIcon>
-          </CustomTextField>
+          </CustomTextField> -->
           <CustomSelectField
             class="w-[360px] h-[67px] md:h-[63px] max-w-full cs__invest-form"
             name="messenger"
@@ -381,6 +384,7 @@ import { useForm, Form } from "vee-validate";
 import { useCommercialStore } from "~~/store/commercial";
 
 const { locale } = useI18n();
+const route = useRoute();
 const { handleSubmit } = useForm();
 const test = (ruStr, engStr) => {
   return locale.value == "ru" ? ruStr : engStr;
@@ -391,6 +395,28 @@ const investSum = ref(0);
 const MIN_VALUE = 20000;
 // <!-- <Slider v-model="monthCount"></Slider> -->
 const messengerOptions = ref(["Viber", "Telegram", "Whatsapp"]);
+const computedTitle = computed(() => {
+  if (locale.value == "ru") return "Инвестиции на Бали";
+  if (locale.value == "en") return "Investment in Bali";
+  // test("Инвестиции на Бали", "Investment in Bali");
+});
+// useServerSeoMeta({
+//   title: () => {
+//     if (locale.value == "ru") return "Инвестиции на Бали";
+//     if (locale.value == "en") return "Investment in Bali";
+//   },
+//   description: () => computedTitle.value,
+// });
+useHead({
+  title: () => computedTitle.value,
+  meta: [{ name: "description", content: () => computedTitle.value }],
+  link: [
+    {
+      rel: "canonical",
+      href: "https://baligo.bike" + route.path + "/",
+    },
+  ],
+});
 
 const onSubmit = (values, { resetForm }) => {
   // pretty print the values object

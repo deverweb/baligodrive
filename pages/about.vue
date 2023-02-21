@@ -152,15 +152,15 @@ const handleOpenVideo = (arg) => {
 };
 
 const partners = [
-  "./svg/about/partners/uber.svg",
-  "./svg/about/partners/bolt.svg",
-  "./svg/about/partners/ya.svg",
-  "./svg/about/partners/didi.svg",
+  "/svg/about/partners/uber.svg",
+  "/svg/about/partners/bolt.svg",
+  "/svg/about/partners/ya.svg",
+  "/svg/about/partners/didi.svg",
 ];
 const projects = [
-  "./svg/about/projects/uberlin.svg",
-  "./svg/about/projects/boltua.svg",
-  "./svg/about/projects/ubershuttle.svg",
+  "/svg/about/projects/uberlin.svg",
+  "/svg/about/projects/boltua.svg",
+  "/svg/about/projects/ubershuttle.svg",
 ];
 
 const engIndexSixBlocks = [

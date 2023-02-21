@@ -168,7 +168,7 @@ watch(
   }
 );
 let isOrder = computed(() => {
-  return route.path == "/order" || route.path == "/payment";
+  return route.path == "/order" || route.path == "/payment" || route.path == "/invest";
 });
 </script>
 
