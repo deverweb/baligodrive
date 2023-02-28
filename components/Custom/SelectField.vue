@@ -153,7 +153,7 @@ let isRequired = (value) => {
 		.cs-error
 			font-size: 12px
 		.cs-list-container
-			max-height: 155px
+			max-height: 250px
 			overflow-y: auto
 			position: absolute
 			background-color: #f5f5f5

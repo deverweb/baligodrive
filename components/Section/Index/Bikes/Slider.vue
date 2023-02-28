@@ -20,12 +20,12 @@
     </div>
 
     <div
-      class="catalog-arrows sm:w-full w-[90%] sm:self-center translate-y-[-50%] translate-x-[-50%] left-[50%] gap-[0px] absolute top-[40%] md:top-[35%] justify-between flex select-none z-[2]"
+      class="catalog-arrows sm:w-full w-[90%] sm:self-center translate-y-[-50%] translate-x-[-50%] left-[50%] gap-[0px] absolute top-[52%] md:top-[35%] justify-between flex select-none z-[2]"
     >
       <div class="catalog-arrows-prev cursor-pointer">
         <svg
           width="160"
-          class="md:w-[100px] xsm:w-[60px]"
+          class="w-[135px] md:w-[100px] xsm:w-[60px]"
           height="160"
           viewBox="0 0 160 160"
           fill="none"
@@ -64,7 +64,7 @@
       </div>
       <div class="catalog-arrows-next cursor-pointer">
         <svg
-          class="md:w-[100px] xsm:w-[60px]"
+          class="w-[135px] md:w-[100px] xsm:w-[60px]"
           width="160"
           height="160"
           viewBox="0 0 160 160"

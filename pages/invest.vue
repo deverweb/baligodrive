@@ -314,7 +314,7 @@
       ></SectionSimpleSixBlocks>
     </section>
     <section
-      class="bg-light md:relative sm:pt-[76px] sm:pb-[78px] md:pb-[102px] invest-form-section text-dark rounded-t-[70px] md:pt-[91px] pt-[122px] md:rounded-t-[44px] pb-[180px]"
+      class="bg-light md:relative sm:pt-[76px] sm:pb-[178px] md:pb-[202px] invest-form-section text-dark rounded-t-[70px] md:pt-[91px] pt-[122px] md:rounded-t-[44px] pb-[280px]"
     >
       <div class="container">
         <div
