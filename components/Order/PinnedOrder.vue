@@ -18,8 +18,17 @@
                 <div class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]">
                   {{ props.bikeName }}
                 </div>
-                <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+                <div
+                  v-if="!props.fixedOrMonthly || props.dateDif > 30"
+                  class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
+                >
                   {{ props.dayPriceUSD }}$ / день ({{ props.fullPrice }}$ итого)
+                </div>
+                <div
+                  v-if="props.fixedOrMonthly && props.dateDif <= 30"
+                  class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
+                >
+                  {{ props.dayPriceUSD }}$ итого
                 </div>
               </div>
             </div>
@@ -31,8 +40,17 @@
                   с {{ props.dateStrStart }} <br />по
                   {{ props.dateStrEnd }}
                 </div>
-                <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+                <div
+                  v-if="!props.fixedOrMonthly || props.dateDif > 30"
+                  class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
+                >
                   {{ props.dayPriceUSD }}$ x {{ props.dateDif }} суток
+                </div>
+                <div
+                  v-if="props.fixedOrMonthly && props.dateDif <= 30"
+                  class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
+                >
+                  {{ props.dateDif }} суток
                 </div>
               </div>
             </div>
@@ -51,8 +69,11 @@
               <div class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]">
                 {{ props.bikeName }}
               </div>
-              <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+              <div v-if="!props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
                 {{ props.dayPriceUSD }}$ / день ({{ props.fullPrice }}$ итого)
+              </div>
+              <div v-if="props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+                {{ props.dayPriceUSD }}$ итого)
               </div>
             </div>
           </div>
@@ -64,8 +85,11 @@
                 с {{ props.dateStrStart }} <br />по
                 {{ props.dateStrEnd }}
               </div>
-              <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+              <div v-if="!props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
                 {{ props.dayPriceUSD }} x {{ props.dateDif }}$ суток
+              </div>
+              <div v-if="props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+                {{ props.dayPriceUSD }}
               </div>
             </div>
           </div>
@@ -73,7 +97,7 @@
       </div>
 
       <div
-        class="order-summary px-[40px] bg-green md:px-[50px] md:text-dark flex justify-between items-center font-Euroblack text-[18px] h-[92px] uppercase md:rounded-b-[44px] rounded-b-[12px]"
+        class="order-summary px-[40px] bg-green md:px-[50px] md:text-dark flex justify-between items-center font-Euroblack text-[16px] h-[92px] uppercase md:rounded-b-[44px] rounded-b-[12px]"
       >
         <div class="order-summary-container flex justify-between w-full xl:hidden md:flex">
           <span class="tracking-[-0.6px]">ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:</span>
@@ -97,6 +121,7 @@ const props = defineProps({
   dateStrStart: String || Number,
   dateStrEnd: String || Number,
   dateDif: Number,
+  fixedOrMonthly: Boolean,
 });
 
 const orderSticky = ref(null);

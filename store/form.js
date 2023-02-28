@@ -33,6 +33,13 @@ export const useFormStore = defineStore("form", () => {
   };
   let computedPrice = computed(() => {
     if (bike.value) {
+      if (rate.value.isMonthly) {
+        if (dateDif.value > 30) {
+          //ЗДЕСЬ СЧИТАТЬ
+          return Number(((rate.value.dayPriceUSD / 30) * dateDif.value).toFixed());
+        }
+        return rate.value.dayPriceUSD;
+      }
       if (rate.value.isFixed) {
         return rate.value.dayPriceUSD;
       } else {

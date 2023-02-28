@@ -11,11 +11,14 @@
     </div>
     <div class="bike-rates mb-[35px] grid-cols-2 grid auto-rows-[1fr]">
       <div class="bike-rate pt-[12px] pb-[15px] text-[#111111]" v-for="rate in props.rates">
-        <div class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
+        <div v-if="rate.isMonthly" class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
+          {{ locale == "ru" ? "Ежемесячно" : "Monthly" }}
+        </div>
+        <div v-else class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
           {{ rate.minDays }} - {{ rate.maxDays }} {{ locale == "ru" ? "дней" : "days" }}
         </div>
         <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]" v-if="!rate.isFixed">
-          {{ rate.dayPriceUSD }}$ / {{ locale == "ru" ? "день" : "day" }}
+          {{ rate.dayPriceUSD }}$ {{ !rate.isMonthly ? (locale == "ru" ? "/ день" : "/ day") : "" }}
         </div>
         <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]" v-if="rate.isFixed">
           {{ rate.dayPriceUSD }}$ / {{ locale == "ru" ? "фикс." : "fixed" }}
@@ -25,9 +28,13 @@
         </div>
         <div class="bike-rate-discount opacity-50 text-[12px] font-Helvmed">
           {{ locale == "ru" ? "Старая цена:" : "Old price:" }}
-          <span class="line-through">
+          <span v-if="!rate.isMonthly" class="line-through">
             {{ (rate.dayPriceUSD * ((100 + props.discount) / 100)).toFixed(0) }}$ /
             {{ locale == "ru" ? "день" : "day" }}
+          </span>
+          <span v-if="rate.isMonthly" class="line-through">
+            {{ (rate.dayPriceUSD * ((100 + props.discount) / 100)).toFixed(0) }}$ /
+            {{ locale == "ru" ? "месяц" : "month" }}
           </span>
         </div>
       </div>

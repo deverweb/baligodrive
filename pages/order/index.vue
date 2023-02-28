@@ -286,10 +286,11 @@
         :bike-name="formStore.bike.name"
         :bike-image="formStore.bikeImage"
         :full-price="formStore.computedPrice"
-        :day-price-u-s-d="formStore.rate.dayPriceUSD"
+        :day-price-u-s-d="computedDayPrice"
         :date-dif="formStore.dateDif"
         :date-str-end="formStore.computedDateStrEnd"
         :date-str-start="formStore.computedDateStrStart"
+        :fixedOrMonthly="formStore.rate.isMonthly || formStore.rate.isFixed"
       ></OrderPinnedOrder>
 
       <div class="order-mobile-modal sm:pt-[40px] hidden md:block md:max-w-full md:pt-[50px]">
@@ -310,8 +311,17 @@
                     <div class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]">
                       {{ formStore.bike.name }}
                     </div>
-                    <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+                    <div
+                      v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
+                      class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
+                    >
                       {{ formStore.rate.dayPriceUSD }}$ / день ({{ formStore.computedPrice }}$ итого)
+                    </div>
+                    <div
+                      v-if="formStore.rate.isMonthly || formStore.rate.isFixed"
+                      class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
+                    >
+                      {{ formStore.rate.dayPriceUSD }}$ итого
                     </div>
                   </div>
                 </div>
@@ -361,12 +371,30 @@
                   <div class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]">
                     {{ formStore.bike.name }}
                   </div>
-                  <div class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed">
+                  <div
+                    v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
+                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
+                  >
                     {{ formStore.rate.dayPriceUSD }}$ / день ({{ formStore.computedPrice }}$ итого)
+                  </div>
+                  <div
+                    v-if="formStore.rate.isMonthly && formStore.dateDif > 30"
+                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
+                  >
+                    {{ (formStore.rate.dayPriceUSD / 30).toFixed(2) }}$ / день ({{ formStore.computedPrice }}$ итого)
+                  </div>
+                  <div
+                    v-if="(formStore.rate.isMonthly || formStore.rate.isFixed) && formStore.dateDif <= 30"
+                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
+                  >
+                    {{ formStore.computedPrice }}$ итого
                   </div>
                   <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
                     {{ formStore.computedPrice }}$
                   </div>
+                  <!-- <div v-if="formStore.rate.isMonthly && formStore.dateDif > 30"  class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
+                    {{ (formStore.rate.dayPriceUSD/30).toFixed(2) }}$
+                  </div> -->
                   <div
                     class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
                   >
@@ -378,12 +406,28 @@
               <div class="order-view-item sm:w-full sm:mb-[39px] flex items-start sm:items-center">
                 <SvgCalendarIcon :fill="'#30B21B'"></SvgCalendarIcon>
                 <div class="ml-[18px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container">
-                  <div class="order-view-item-name font-Helvmed text-[16px] mb-[5px] leading-[20px]">
+                  <div class="order-view-item-name font-Helvmed text-[16px] mb-[4px] leading-[1]">
                     с {{ formStore.computedDateStrStart }} по
                     {{ formStore.computedDateStrEnd }}
                   </div>
-                  <div class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed">
+
+                  <div
+                    v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
+                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
+                  >
                     {{ formStore.rate.dayPriceUSD }}$ x {{ formStore.dateDif }} суток
+                  </div>
+                  <div
+                    v-if="formStore.rate.isMonthly && formStore.dateDif > 30"
+                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
+                  >
+                    {{ (formStore.rate.dayPriceUSD / 30).toFixed(2) }}$ x {{ formStore.dateDif }} суток
+                  </div>
+                  <div
+                    v-if="(formStore.rate.isMonthly || formStore.rate.isFixed) && formStore.dateDif <= 30"
+                    class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
+                  >
+                    {{ formStore.dateDif }} суток
                   </div>
                 </div>
               </div>
@@ -455,7 +499,7 @@
             </div>
           </div>
           <div
-            class="order-summary sm:px-[25px] px-[40px] bg-green md:px-[50px] flex justify-between items-center font-Euroblack text-[18px] h-[92px] uppercase md:rounded-b-[44px] rounded-b-[12px]"
+            class="order-summary sm:px-[25px] px-[40px] bg-green md:px-[50px] flex justify-between items-center font-Euroblack text-[16px] h-[92px] uppercase md:rounded-b-[44px] rounded-b-[12px]"
           >
             <div class="order-summary-container flex justify-between w-full xl:hidden md:flex sm:hidden">
               <span class="tracking-[-0.6px]">ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:</span>
@@ -503,8 +547,8 @@ const formStore = useFormStore();
 
 // formStore.fillForm({
 //   date: {
-//     start: "2023-01-30T17:19:12.706Z",
-//     end: "2023-01-31T17:19:12.706Z",
+//     start: "2023-02-23T17:19:12.706Z",
+//     end: "2023-03-27T17:19:12.706Z",
 //   },
 //   bike: {
 //     model: "HONDA VARIO 160 CC",
@@ -532,34 +576,44 @@ const formStore = useFormStore();
 //     discount: 20,
 //     rates: [
 //       {
+//         isFixed: true,
+//         isMonthly: false,
 //         minDays: 1,
-//         maxDays: 4,
-//         dayPriceUSD: 14,
-//         dayPriceRUP: 210000,
+//         maxDays: 3,
+//         dayPriceRUP: 700000,
+//         dayPriceUSD: 47,
 //       },
 //       {
-//         minDays: 5,
+//         isFixed: false,
+//         minDays: 4,
 //         maxDays: 7,
-//         dayPriceUSD: 14,
-//         dayPriceRUP: 210000,
+//         isMonthly: false,
+//         dayPriceRUP: 270000,
+//         dayPriceUSD: 18,
 //       },
 //       {
+//         isFixed: false,
 //         minDays: 8,
 //         maxDays: 14,
-//         dayPriceUSD: 11,
-//         dayPriceRUP: 170000,
+//         isMonthly: false,
+//         dayPriceRUP: 220000,
+//         dayPriceUSD: 15,
 //       },
 //       {
+//         isFixed: false,
 //         minDays: 15,
 //         maxDays: 21,
-//         dayPriceUSD: 9,
-//         dayPriceRUP: 130000,
+//         isMonthly: false,
+//         dayPriceRUP: 170000,
+//         dayPriceUSD: 11,
 //       },
 //       {
+//         isFixed: false,
+//         isMonthly: true,
 //         minDays: 22,
 //         maxDays: 90,
-//         dayPriceUSD: 7,
-//         dayPriceRUP: 100000,
+//         dayPriceUSD: 233,
+//         dayPriceRUP: 3500000,
 //       },
 //     ],
 //     id: "9221",
@@ -571,16 +625,22 @@ const formStore = useFormStore();
 //   client_name: "12312312",
 //   client_phone: "+62 31 2312312",
 // });
-
+const computedDayPrice = computed(() => {
+  if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
+    return Number((formStore.rate.dayPriceUSD / 30).toFixed(2));
+  } else {
+    return formStore.rate.dayPriceUSD;
+  }
+});
 // const formvalues = useStorage("formvalues");
-// if (process.client) {
-//   if (formvalues.value) {
-//     formStore.fillForm(JSON.parse(formvalues.value));
-//     bikeImage.value = formStore.bike.img;
-//   } else {
-//     useRouter().push("/");
-//   }
-// }
+if (process.client) {
+  // if (formvalues.value) {
+  //   formStore.fillForm(JSON.parse(formvalues.value));
+  //   bikeImage.value = formStore.bike.img;
+  // } else {
+  // useRouter().push("/");
+  // }
+}
 
 let drawing = ref(formStore.bike.drawing);
 // console.log(drawing.value);
