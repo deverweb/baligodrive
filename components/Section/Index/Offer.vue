@@ -2,30 +2,24 @@
   <div
     class="offer px-[80px] xsm:px-[25px] md:px-[50px] lg:px-[30px] md:pb-[28px] pb-[50px] xsm:min-h-[470px] md:min-h-[650px] rounded-t-[70px] sm:rounded-t-[44px] xsm:h-[calc(100vh-80px)] md:h-[calc(100vh-100px)] h-[calc(100vh-20px)] bg-center bg-cover"
   >
-    <div
-      class="offer-inner flex flex-col xsm:pb-0 xsm:justify-center justify-end pb-[130px] h-full"
-    >
+    <div class="offer-inner flex flex-col xsm:pb-0 xsm:justify-center justify-end pb-[130px] h-full">
       <h1
         v-html="$t('mainPageFirst.title')"
         class="offer-title xsm:leading-[1.08] mb-[48px] xsm:mb-[38px] md:mb-[45px] xsm:tracking-[-1.6px] xsm:text-[calc(var(--index)*3)] sm:text-[calc(var(--index)*4)] max-w-[70%] xl:max-w-[80%] tracking-[-2.6px] md:max-w-none md:leading-[1] md:text-[72px] text-[82px] font-Euroblack uppercase leading-[0.96]"
       ></h1>
       <div class="offer-block sm:flex-col">
-        <div
-          class="offer-social xsm:flex-col xsm:gap-[20px] xsm:items-start flex items-center gap-[76px]"
-        >
+        <div class="offer-social xsm:flex-col xsm:gap-[20px] xsm:items-start flex items-center gap-[76px]">
           <ul
             class="offer-social-text pl-[35px] xsm:pl-[28px] list-disc flex flex-col gap-[16px] sm:text-[18px] text-[24px]"
           >
             <li>{{ $t("mainPageFirst.social.onlyNewBike") }}</li>
             <li>{{ $t("mainPageFirst.social.insurance") }}</li>
           </ul>
-          <div
-            class="offer-social-links flex gap-[23px] xsm:mt-[15px] xsm:mb-[13px]"
-          >
+          <div class="offer-social-links flex gap-[23px] xsm:mt-[15px] xsm:mb-[13px]">
             <a href="https://wa.me/+6281337413060">
               <SvgIndexWaIcon></SvgIndexWaIcon>
             </a>
-            <a href="#">
+            <a href="https://t.me/baligobike">
               <SvgIndexTgIcon></SvgIndexTgIcon>
             </a>
           </div>
