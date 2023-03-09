@@ -1,6 +1,7 @@
 <template>
   <header
     :class="computedHeaderClasses"
+    v-if="!isAgentPage"
     class="header h-[93px] xl:justify-between z-[35] xl:px-[80px] lg:px-[50px] sm:w-full sm:left-0 xsm:h-[80px] xsm:px-[25px] md:px-[50px] px-[80px] md:w-[calc(100%-40px)] w-[calc(100%-40px)] flex fixed items-center md:h-[100px] md:right-0 md:left-[20px] left-[20px] right-[100px]"
   >
     <Logo
@@ -60,7 +61,6 @@ let computedHeaderClasses = computed(() => {
     "scrolling-up": !isScrollingDown.value,
     "header-left": isHeaderLeft.value,
     "header-not-left": !isHeaderLeft.value,
-    hidden: isAgentPage,
   };
 });
 let lastScrollTop = ref(0);
