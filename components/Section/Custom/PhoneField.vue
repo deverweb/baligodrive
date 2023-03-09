@@ -17,6 +17,7 @@
           @on-input="handleInput"
           :preferredCountries="['ID', 'RU', 'UA']"
           autoformat
+          :validCharactersOnly="true"
           :autoDefaultCountry="false"
           placeholder="Номер телефона"
           :dropdownOptions="{
@@ -44,6 +45,11 @@ let ctCode = ref(0);
 const handleCountryChange = (obj) => {
   ctCode.value = obj.dialCode;
 };
+
+// const handle = (num, obj) => {
+//   console.log("num:", num);
+//   console.log("obj:", obj);
+// };
 
 const handleInput = (num, obj) => {
   if (num.length < ctCode.value.length + 1) phoneValue.value = "+" + ctCode.value;

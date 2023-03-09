@@ -221,6 +221,7 @@ import { useFormStore } from "~~/store/form";
 
 const { handleSubmit } = useForm();
 const router = useRouter();
+const route = useRoute();
 const indexFormStore = useIndexFormStore();
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();

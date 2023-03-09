@@ -3,9 +3,13 @@
     :class="computedHeaderClasses"
     class="header h-[93px] xl:justify-between z-[35] xl:px-[80px] lg:px-[50px] sm:w-full sm:left-0 xsm:h-[80px] xsm:px-[25px] md:px-[50px] px-[80px] md:w-[calc(100%-40px)] w-[calc(100%-40px)] flex fixed items-center md:h-[100px] md:right-0 md:left-[20px] left-[20px] right-[100px]"
   >
-    <Logo class="flex-grow z-[2] md:flex-grow-0 md:flex-shrink-0 xl:basis-auto tracking-[-0.6px] md:tracking-[1px] flex-shrink basis-[0%]"></Logo>
+    <Logo
+      class="flex-grow z-[2] md:flex-grow-0 md:flex-shrink-0 xl:basis-auto tracking-[-0.6px] md:tracking-[1px] flex-shrink basis-[0%]"
+    ></Logo>
     <HeaderNav :links="links" class="flex-grow z-[2] flex justify-center md:hidden"></HeaderNav>
-    <HeaderLangSwitcher class="flex-grow z-[2] xsm:hidden md:flex-grow-0 md:mr-[39px] md:flex-shrink-0 md:justify-start md:ml-auto xl:basis-auto justify-end flex flex-shrink basis-[0%]"></HeaderLangSwitcher>
+    <HeaderLangSwitcher
+      class="flex-grow z-[2] xsm:hidden md:flex-grow-0 md:mr-[39px] md:flex-shrink-0 md:justify-start md:ml-auto xl:basis-auto justify-end flex flex-shrink basis-[0%]"
+    ></HeaderLangSwitcher>
     <HeaderGamb class="z-[2] xsm:ml-auto"></HeaderGamb>
     <TransitionFullSlideDown>
       <HeaderMobileMenu
@@ -20,30 +24,35 @@
 </template>
 
 <script setup>
-import { storeToRefs } from "pinia"
-import { useGlobalStore } from "~~/store/global"
-const store = useGlobalStore()
-const { locale } = useI18n()
-const { ruNavigationLinks, enNavigationLinks } = store
-let { activeLangSwitcher } = storeToRefs(store)
+import { storeToRefs } from "pinia";
+import { useGlobalStore } from "~~/store/global";
+const store = useGlobalStore();
+const { locale } = useI18n();
+const route = useRoute();
+const { ruNavigationLinks, enNavigationLinks } = store;
+let { activeLangSwitcher } = storeToRefs(store);
 let links = computed(() => {
-  if (locale.value == "ru") return ruNavigationLinks
-  if (locale.value == "en") return enNavigationLinks
-  return ruNavigationLinks
-})
-const OFFSET_TOP = 20
+  if (locale.value == "ru") return ruNavigationLinks;
+  if (locale.value == "en") return enNavigationLinks;
+  return ruNavigationLinks;
+});
+const OFFSET_TOP = 20;
 
-let isHeaderLeft = ref(false)
-let isScrollingDown = ref(true)
+let isHeaderLeft = ref(false);
+let isScrollingDown = ref(true);
+
+let isAgentPage = computed(() => {
+  return route.path == "/agent/" || route.path == "/agentform/";
+});
 
 watch(
   () => isScrollingDown.value,
   () => {
     if (isScrollingDown.value) {
-      activeLangSwitcher.value = false
+      activeLangSwitcher.value = false;
     }
   }
-)
+);
 
 let computedHeaderClasses = computed(() => {
   return {
@@ -51,29 +60,30 @@ let computedHeaderClasses = computed(() => {
     "scrolling-up": !isScrollingDown.value,
     "header-left": isHeaderLeft.value,
     "header-not-left": !isHeaderLeft.value,
-  }
-})
-let lastScrollTop = ref(0)
+    hidden: isAgentPage,
+  };
+});
+let lastScrollTop = ref(0);
 
 let handleScroll = () => {
-  let scrollTop = window.pageYOffset
+  let scrollTop = window.pageYOffset;
   if (scrollTop > OFFSET_TOP) {
-    isHeaderLeft.value = true
+    isHeaderLeft.value = true;
   } else {
-    isHeaderLeft.value = false
+    isHeaderLeft.value = false;
   }
   if (scrollTop > lastScrollTop.value) {
-    isScrollingDown.value = true
+    isScrollingDown.value = true;
   } else {
-    isScrollingDown.value = false
+    isScrollingDown.value = false;
   }
-  lastScrollTop.value = scrollTop <= 0 ? 0 : scrollTop
-}
+  lastScrollTop.value = scrollTop <= 0 ? 0 : scrollTop;
+};
 
 onMounted(() => {
-  handleScroll()
-  window.addEventListener("scroll", handleScroll)
-})
+  handleScroll();
+  window.addEventListener("scroll", handleScroll);
+});
 </script>
 
 <style lang="sass">
