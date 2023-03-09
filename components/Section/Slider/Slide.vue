@@ -2,7 +2,9 @@
   <div
     class="bike bg-light h-[auto] xsm:px-[31px] xsm:pr-[30px] xsm:pb-[31px] pb-[39px] pt-[33px] xsm:pt-[25px] px-[40px] rounded-[26px] xsm:rounded-[20px] flex flex-col lg:max-w-[440px] lg:mx-auto"
   >
-    <div class="bike-title xsm:tracking-[-0.2px] lil:text-[18px] font-Helvbold uppercase text-[28px] xsm:text-[22px]">
+    <div
+      class="bike-title text-dark-300 xsm:tracking-[-0.2px] lil:text-[18px] font-Helvbold uppercase text-[28px] xsm:text-[22px]"
+    >
       {{ props.bikeName }}
     </div>
 

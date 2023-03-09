@@ -1,28 +1,28 @@
 export const useGlobalStore = defineStore("global", () => {
-  let { setLocale } = useI18n();
-  let router = useRouter();
-  let activeLangSwitcher = ref(false);
+  let { setLocale } = useI18n()
+  let router = useRouter()
+  let activeLangSwitcher = ref(false)
 
   const switchLang = (lang) => {
-    setLocale(lang.code);
-    activeLangSwitcher.value = false;
-  };
+    setLocale(lang.code)
+    activeLangSwitcher.value = false
+  }
 
-  let activeBikeModal = ref(false);
-  let activeBikeId = ref(null);
+  let activeBikeModal = ref(false)
+  let activeBikeId = ref(null)
 
   const setActiveBikeModal = (bikeId) => {
-    activeBikeId.value = bikeId;
-    activeBikeModal.value = true;
-  };
+    activeBikeId.value = bikeId
+    activeBikeModal.value = true
+  }
 
-  let activeInvestModal = ref(false);
+  let activeInvestModal = ref(false)
 
   const setActiveInvestModal = () => {
-    activeInvestModal.value = true;
-  };
+    activeInvestModal.value = true
+  }
 
-  let activeMobileMenu = ref(false);
+  let activeMobileMenu = ref(false)
 
   const ruNavigationLinks = [
     {
@@ -48,7 +48,7 @@ export const useGlobalStore = defineStore("global", () => {
       label: "Контакты",
       to: "/contacts",
     },
-  ];
+  ]
   const enNavigationLinks = [
     {
       label: "Rent",
@@ -71,7 +71,7 @@ export const useGlobalStore = defineStore("global", () => {
       label: "Contacts",
       to: "/contacts",
     },
-  ];
+  ]
 
   return {
     activeLangSwitcher,
@@ -84,5 +84,5 @@ export const useGlobalStore = defineStore("global", () => {
     setActiveBikeModal,
     activeInvestModal,
     setActiveInvestModal,
-  };
-});
+  }
+})

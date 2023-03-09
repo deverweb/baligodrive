@@ -8,6 +8,38 @@ export const useFormStore = defineStore("form", () => {
   let client_phone = ref(null);
   let bikeImage = ref(null);
   let choosedDrawing = ref(null);
+  let agentNumber = ref(null);
+  let hotelName = ref(null);
+
+  const fillBikeInfo = (body) => {
+    bike.value = body;
+    rate.value = bike.value.rates.find((val, i) => {
+      return dateDif.value >= val.minDays && dateDif.value <= val.maxDays;
+    });
+  };
+  const fillDateInfo = (body) => {
+    dates.value = body;
+    dates.value.end = new Date(dates.value.end);
+    dates.value.start = new Date(dates.value.start);
+    dateDif.value = Number(
+      Math.ceil(Math.abs(dates.value.end.getTime() - dates.value.start.getTime()) / (1000 * 3600 * 24)) + 1
+    );
+    rate.value = bike.value.rates.find((val, i) => {
+      return dateDif.value >= val.minDays && dateDif.value <= val.maxDays;
+    });
+  };
+
+  const fillAgentForm = (body) => {
+    bike.value = body.bike;
+    dates.value = body.date;
+    dates.value.end = new Date(dates.value.end);
+    dates.value.start = new Date(dates.value.start);
+    dateDif.value = Number(
+      Math.ceil(Math.abs(dates.value.end.getTime() - dates.value.start.getTime()) / (1000 * 3600 * 24)) + 1
+    );
+    agentNumber.value = body.agent_number;
+    hotelName.value = body.hotel_name;
+  };
   const fillForm = (body) => {
     bike.value = body.bike;
     dates.value = body.date;
@@ -82,10 +114,13 @@ export const useFormStore = defineStore("form", () => {
   return {
     formData,
     fillForm,
+    fillAgentForm,
     dateDif,
     bike,
     dates,
     rate,
+    hotelName,
+    agentNumber,
     bikeImage,
     client_name,
     computedPrice,
@@ -93,6 +128,8 @@ export const useFormStore = defineStore("form", () => {
     computedDateStrEnd,
     computedDateStrStart,
     choosedDrawing,
+    fillBikeInfo,
+    fillDateInfo,
     resetData,
   };
 });

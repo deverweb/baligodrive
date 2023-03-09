@@ -12,55 +12,55 @@
         </h1>
         <form @submit.prevent="onSubmit">
           <div class="border-bottom order-step sm:pt-[40px] sm:pb-[41px] pt-[50px] pb-[49px]">
-            <SectionOrderStep
+            <SectionCustomStep
               class="mb-[48px] sm:mb-[30px]"
               number="1"
               :text="locale == `ru` ? `Выберите раскраску байка` : `Select bike design`"
-            ></SectionOrderStep>
-            <SectionOrderRadioField
+            ></SectionCustomStep>
+            <SectionCustomRadioField
               @bikeImgChanged="handleBikeImage"
               :showPrice="false"
               :bg="false"
               :name="'bike'"
               :choosedDrawing="formStore.choosedDrawing"
               :options="formStore.bike.bikes"
-            ></SectionOrderRadioField>
+            ></SectionCustomRadioField>
           </div>
           <!-- <div
           class="border-bottom order-step sm:pt-[41px] sm:pb-[37px] pt-[50px] pb-[49px]"
         >
-          <SectionOrderStep
+          <SectionCustomStep
             class="mb-[48px] sm:mb-[29px]"
             number="2"
             text="Выберите сёрф"
-          ></SectionOrderStep>
-          <SectionOrderRadioField
+          ></SectionCustomStep>
+          <SectionCustomRadioField
             :showPrice="true"
             :bg="true"
             :name="'surf'"
             :options="surfBoards"
-          ></SectionOrderRadioField>
+          ></SectionCustomRadioField>
         </div> -->
           <div class="border-bottom order-step sm:pt-[41px] sm:pb-[38px] pt-[50px] pb-[51px]">
-            <SectionOrderStep
+            <SectionCustomStep
               class="mb-[48px] sm:mb-[40px]"
               number="2"
               :text="locale == 'ru' ? 'Выберите дополнительную комплектацию' : 'Choose additional equipment'"
-            ></SectionOrderStep>
+            ></SectionCustomStep>
             <p class="font-Helvmed text-[14px] opacity-50 sm:mb-[28px] mb-[36px]">
               {{ locale == "ru" ? "Бесплатная комплектация" : "Free equipment" }}
             </p>
-            <SectionOrderCheckboxField :addText="true" class="sm:mb-[22px] mb-[46px]" :checked="true" name="insurance">
+            <SectionCustomCheckboxField :addText="true" class="sm:mb-[22px] mb-[46px]" :checked="true" name="insurance">
               <span>
                 {{ locale == "ru" ? "Страховка от повреждений и угона" : "Damage and theft insurance" }}
               </span>
-            </SectionOrderCheckboxField>
-            <SectionOrderCheckboxField :addText="true" class="sm:mb-[22px] mb-[46px]" :checked="true" name="firstaid">
+            </SectionCustomCheckboxField>
+            <SectionCustomCheckboxField :addText="true" class="sm:mb-[22px] mb-[46px]" :checked="true" name="firstaid">
               <span>
                 {{ locale == "ru" ? "Аптечка" : "First aid kit" }}
               </span>
-            </SectionOrderCheckboxField>
-            <SectionOrderCheckboxField
+            </SectionCustomCheckboxField>
+            <SectionCustomCheckboxField
               :addText="true"
               class="mb-[48px] sm:mb-[53px]"
               :checked="true"
@@ -69,8 +69,8 @@
               <span>
                 {{ locale == "ru" ? "Держатель для телефона" : "Holder for phone" }}
               </span>
-            </SectionOrderCheckboxField>
-            <SectionOrderSimpleRadioField
+            </SectionCustomCheckboxField>
+            <SectionCustomSimpleRadioField
               widthClasses="w-[291px] md:w-[256px] sm:w-[161px]"
               class="mb-[40px] sm:mb-[29px]"
               name="adultHelmetCount"
@@ -79,21 +79,21 @@
               <span>
                 {{ locale == "ru" ? "Новый взрослый шлем" : "New adult helmet" }}
               </span>
-            </SectionOrderSimpleRadioField>
-            <SectionOrderSimpleRadioField
+            </SectionCustomSimpleRadioField>
+            <SectionCustomSimpleRadioField
               widthClasses="w-[291px] md:w-[256px] sm:w-[161px]"
               class="mb-[40px] sm:mb-[29px]"
               name="childHelmetCount"
             >
               <SvgSmallHelmetIcon></SvgSmallHelmetIcon>
               <span>{{ locale == "ru" ? "Новый детский шлем" : "New children's helmet" }}</span>
-            </SectionOrderSimpleRadioField>
-            <SectionOrderSimpleRadioField widthClasses="w-[291px] md:w-[256px] sm:w-[161px]" name="rainCoatCount">
+            </SectionCustomSimpleRadioField>
+            <SectionCustomSimpleRadioField widthClasses="w-[291px] md:w-[256px] sm:w-[161px]" name="rainCoatCount">
               <SvgRainCoat></SvgRainCoat>
               <span>
                 {{ locale == "ru" ? "Дождевик стандартный" : "Raincoat standard" }}
               </span>
-            </SectionOrderSimpleRadioField>
+            </SectionCustomSimpleRadioField>
           </div>
           <!-- <div
           class="border-bottom order-step sm:pt-[38px] sm:pb-[67px] pt-[48px] pb-[51px]"
@@ -101,7 +101,7 @@
           <p class="font-Helvmed text-[14px] opacity-50 sm:mb-[38px] mb-[36px]">
             Платная комплектация
           </p>
-          <SectionOrderCheckboxField
+          <SectionCustomCheckboxField
             class="mb-[47px] sm:mb-[38px]"
             :addText="true"
             :priceText="'20$ / день'"
@@ -110,8 +110,8 @@
             name="surfBinding"
           >
             <span class="sm:max-w-[220px]">Крепление для сёрфа</span>
-          </SectionOrderCheckboxField>
-          <SectionOrderCheckboxField
+          </SectionCustomCheckboxField>
+          <SectionCustomCheckboxField
             class="mb-[47px] sm:mb-[42px]"
             :addText="true"
             :priceText="'20$'"
@@ -122,8 +122,8 @@
             <span class="sm:max-w-[220px]"
               >Прикуриватель USB со шнуром под телефон</span
             >
-          </SectionOrderCheckboxField>
-          <SectionOrderSimpleRadioField
+          </SectionCustomCheckboxField>
+          <SectionCustomSimpleRadioField
             widthClasses="w-[291px] md:w-[256px] sm:w-[181px]"
             class="mb-[40px] sm:mb-[57px]"
             :price="20"
@@ -132,8 +132,8 @@
           >
             <SvgSmallHelmetIcon></SvgSmallHelmetIcon>
             <span>Новый спортивный шлем</span>
-          </SectionOrderSimpleRadioField>
-          <SectionOrderSimpleRadioField
+          </SectionCustomSimpleRadioField>
+          <SectionCustomSimpleRadioField
             :price="20"
             widthClasses="w-[291px] md:w-[256px] sm:w-[181px]"
             :priceText="'20$ / шт.'"
@@ -141,18 +141,18 @@
           >
             <SvgRainCoat></SvgRainCoat>
             <span>Дождевик премиальный</span>
-          </SectionOrderSimpleRadioField>
+          </SectionCustomSimpleRadioField>
         </div> -->
           <div class="border-bottom order-step order-stamp sm:pt-[40px] sm:pb-[59px] md:pb-[69px] py-[50px]">
-            <SectionOrderStep
+            <SectionCustomStep
               class="mb-[38px] sm:mb-[31px]"
               number="3"
               :text="locale == 'ru' ? 'Выберите локации доставки и возврата' : 'Select delivery and return locations'"
-            ></SectionOrderStep>
+            ></SectionCustomStep>
             <div
               class="order-stamp-top sm:gap-0 sm:gap-x-[10px] mb-[38px] md:gap-x-[20px] md:mb-[64px] md:gap-y-[21px] md:flex-wrap flex items-center"
             >
-              <CustomTextField
+              <SectionCustomTextField
                 :class="{ 'opacity-50 pointer-events-none': isDeliveryOfficy }"
                 type="string"
                 :disabled="isDeliveryOfficy"
@@ -163,8 +163,8 @@
                 :placeholder="'Введите адрес'"
               >
                 <SvgGeoIcon class="h-[15px] w-[11px]" :fill="'#4c4c4d'"></SvgGeoIcon>
-              </CustomTextField>
-              <CustomSelectField
+              </SectionCustomTextField>
+              <SectionCustomSelectField
                 :styleType="'order'"
                 subTitle="Время доставки"
                 :name="'deliveryTime'"
@@ -173,20 +173,20 @@
                 :defaultLabel="'Время доставки'"
               >
                 <SvgClockIcon></SvgClockIcon>
-              </CustomSelectField>
-              <SectionOrderCheckboxField
+              </SectionCustomSelectField>
+              <SectionCustomCheckboxField
                 class="ml-[50px] sm:w-auto md:ml-0 w-[142px] relative top-[17px]"
                 :addText="false"
                 :checked="false"
                 :name="'getAtOffice'"
                 v-model:isChecked="isDeliveryOfficy"
-                ><span class="sm:text-[16px] text-[14px] font-Helvmed">Заберу в офисе</span></SectionOrderCheckboxField
+                ><span class="sm:text-[16px] text-[14px] font-Helvmed">Заберу в офисе</span></SectionCustomCheckboxField
               >
             </div>
             <div
               class="order-stamp-bottom sm:gap-0 sm:gap-x-[10px] md:gap-y-[21px] md:gap-x-[20px] md:flex-wrap flex items-center"
             >
-              <CustomTextField
+              <SectionCustomTextField
                 type="string"
                 class="ci__payment-form sm:mb-[23px] sm:w-[248px] flex-grow flex-shrink md:mr-0 mr-[25px]"
                 :subTitle="'Локация возврата'"
@@ -197,8 +197,8 @@
                 :placeholder="'Введите адрес'"
               >
                 <SvgGeoIcon class="h-[15px] w-[11px]" :fill="'#4c4c4d'"></SvgGeoIcon>
-              </CustomTextField>
-              <CustomSelectField
+              </SectionCustomTextField>
+              <SectionCustomSelectField
                 :styleType="'order'"
                 subTitle="Время возврата"
                 :name="'returnTime'"
@@ -207,27 +207,27 @@
                 :defaultLabel="'Время возврата'"
               >
                 <SvgClockIcon></SvgClockIcon>
-              </CustomSelectField>
-              <SectionOrderCheckboxField
+              </SectionCustomSelectField>
+              <SectionCustomCheckboxField
                 class="ml-[50px] sm:w-auto md:ml-0 w-[142px] relative top-[17px]"
                 :addText="false"
                 :checked="false"
                 v-model:isChecked="isReturnOffice"
                 :name="'returnAtOffice'"
-                ><span class="sm:text-[16px] text-[14px] font-Helvmed">Отдам в офисе</span></SectionOrderCheckboxField
+                ><span class="sm:text-[16px] text-[14px] font-Helvmed">Отдам в офисе</span></SectionCustomCheckboxField
               >
             </div>
           </div>
           <div class="border-bottom order-step sm:py-[40px] py-[50px]">
-            <SectionOrderStep
+            <SectionCustomStep
               class="mb-[38px] sm:mb-[28px]"
               number="4"
               text="Введите ваши контактные данные"
-            ></SectionOrderStep>
+            ></SectionCustomStep>
             <div
               class="order-client sm:mb-[22px] mb-[37px] sm:grid-cols-1 sm:gap-y-[23px] grid grid-cols-2 gap-x-[25px] gap-y-[38px]"
             >
-              <CustomTextField
+              <SectionCustomTextField
                 :type="'string'"
                 class="ci__payment-form"
                 name="clientName"
@@ -235,8 +235,8 @@
                 :subTitle="'Ваша Фамилия'"
               >
                 <SvgPersonIcon></SvgPersonIcon
-              ></CustomTextField>
-              <CustomTextField
+              ></SectionCustomTextField>
+              <SectionCustomTextField
                 :type="'string'"
                 class="ci__payment-form"
                 name="clientEmail"
@@ -244,8 +244,8 @@
                 :subTitle="'E-mail'"
               >
                 <SvgMailIcon class="w-[15px] h-[11px]" fill="#616162"></SvgMailIcon
-              ></CustomTextField>
-              <CustomTextField
+              ></SectionCustomTextField>
+              <SectionCustomTextField
                 :type="'number'"
                 class="ci__payment-form"
                 name="clientPhone"
@@ -253,8 +253,8 @@
                 :subTitle="'Номер мессенджера для связи'"
               >
                 <SvgPhoneIcon fill="#616162"></SvgPhoneIcon
-              ></CustomTextField>
-              <CustomSelectField
+              ></SectionCustomTextField>
+              <SectionCustomSelectField
                 :styleType="'order'"
                 class="cs__order-form"
                 :name="'clientMessenger'"
@@ -263,15 +263,15 @@
                 :subTitle="'Какой мессенджер используете'"
               >
                 <SvgTelegramIcon></SvgTelegramIcon>
-              </CustomSelectField>
+              </SectionCustomSelectField>
             </div>
-            <CustomFileField
+            <SectionCustomFileField
               :name="'passport'"
               :subTitle="'Ваш загранпаспорт'"
               :defaultLabel="'Загрузите фото загранпаспорта'"
             >
               <SvgFileIcon></SvgFileIcon>
-            </CustomFileField>
+            </SectionCustomFileField>
           </div>
           <TheButton class="mt-[50px] md:hidden btn-primary__dark w-full h-[70px] gap-[15px]" type="submit">
             <SvgCalendarIcon></SvgCalendarIcon>
@@ -280,8 +280,8 @@
         </form>
       </div>
       <!-- <div class="modal-container max-w-[50%] absolute right-[80px] top-[130px]"> -->
-      <OrderPinnedOrder
-        class="top-[130px] right-[80px] xl:top-[77px] xl:right-[55px]"
+      <SectionPinnedOrder
+        class="top-[130px] absolute right-[80px] xl:top-[77px] xl:right-[55px]"
         ref="orderSticky"
         :bike-name="formStore.bike.name"
         :bike-image="formStore.bikeImage"
@@ -291,7 +291,7 @@
         :date-str-end="formStore.computedDateStrEnd"
         :date-str-start="formStore.computedDateStrStart"
         :fixedOrMonthly="formStore.rate.isMonthly || formStore.rate.isFixed"
-      ></OrderPinnedOrder>
+      ></SectionPinnedOrder>
 
       <div class="order-mobile-modal sm:pt-[40px] hidden md:block md:max-w-full md:pt-[50px]">
         <div class="order-mobile-container hidden md:block">
@@ -533,7 +533,6 @@
 
 <script setup>
 import { useForm } from "vee-validate";
-import { useStorage } from "@vueuse/core";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useFormStore } from "~~/store/form";
@@ -544,87 +543,86 @@ const { locale } = useI18n();
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
-
-// formStore.fillForm({
-//   date: {
-//     start: "2023-02-23T17:19:12.706Z",
-//     end: "2023-03-27T17:19:12.706Z",
-//   },
-//   bike: {
-//     model: "HONDA VARIO 160 CC",
-//     engDescription:
-//       "Honda Vario 160 - This bike is for those who want something nimble and dynamic. It will be comfortable to move around the city and at the same time easy enough to drive and frisky enough to overtake on the highway. Diode optics and combined brakes set this bike apart from other models in this class. The bike is equipped with an 18L trunk, which freely fits a motorcycle helmet.",
-//     ruDescription:
-//       "Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то маневренное и динамичное. Он будет комфортен для перемещения по городу и в то же время достаточно лёгкий в управлении и резвый для совершения обгона на трассе. Диодная оптика и комбинированные тормоза выделяют этот байк на фоне других моделей данного класса. Байк оснащен багажником 18л, в который свободно влезает мотошлем.\n\t\t\t\t",
-//     year: "2022",
-//     trunk_volume: "18",
-//     capacity: "11,1",
-//     fuel_tank_volume: "5,5",
-//     average_consumption: "2,3",
-//     bikes: [
-//       {
-//         id: "honda vario 1",
-//         img: "/img/bikes/vario-redbull.png",
-//         drawing: "Redbull",
-//       },
-//       {
-//         id: "honda vario 2",
-//         img: "/img/bikes/vario-blue-full.png",
-//         drawing: "Blue Full",
-//       },
-//     ],
-//     discount: 20,
-//     rates: [
-//       {
-//         isFixed: true,
-//         isMonthly: false,
-//         minDays: 1,
-//         maxDays: 3,
-//         dayPriceRUP: 700000,
-//         dayPriceUSD: 47,
-//       },
-//       {
-//         isFixed: false,
-//         minDays: 4,
-//         maxDays: 7,
-//         isMonthly: false,
-//         dayPriceRUP: 270000,
-//         dayPriceUSD: 18,
-//       },
-//       {
-//         isFixed: false,
-//         minDays: 8,
-//         maxDays: 14,
-//         isMonthly: false,
-//         dayPriceRUP: 220000,
-//         dayPriceUSD: 15,
-//       },
-//       {
-//         isFixed: false,
-//         minDays: 15,
-//         maxDays: 21,
-//         isMonthly: false,
-//         dayPriceRUP: 170000,
-//         dayPriceUSD: 11,
-//       },
-//       {
-//         isFixed: false,
-//         isMonthly: true,
-//         minDays: 22,
-//         maxDays: 90,
-//         dayPriceUSD: 233,
-//         dayPriceRUP: 3500000,
-//       },
-//     ],
-//     id: "9221",
-//     img: "/img/bikes/vario-redbull.png",
-//     brand: "HONDA",
-//     mark: "VARIO 160 CC",
-//     name: "HONDA VARIO 160 CC",
-//   },
-//   client_name: "12312312",
-//   client_phone: "+62 31 2312312",
-// });
+formStore.fillForm({
+  date: {
+    start: "2023-02-23T17:19:12.706Z",
+    end: "2023-03-27T17:19:12.706Z",
+  },
+  bike: {
+    model: "HONDA VARIO 160 CC",
+    engDescription:
+      "Honda Vario 160 - This bike is for those who want something nimble and dynamic. It will be comfortable to move around the city and at the same time easy enough to drive and frisky enough to overtake on the highway. Diode optics and combined brakes set this bike apart from other models in this class. The bike is equipped with an 18L trunk, which freely fits a motorcycle helmet.",
+    ruDescription:
+      "Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то маневренное и динамичное. Он будет комфортен для перемещения по городу и в то же время достаточно лёгкий в управлении и резвый для совершения обгона на трассе. Диодная оптика и комбинированные тормоза выделяют этот байк на фоне других моделей данного класса. Байк оснащен багажником 18л, в который свободно влезает мотошлем.\n\t\t\t\t",
+    year: "2022",
+    trunk_volume: "18",
+    capacity: "11,1",
+    fuel_tank_volume: "5,5",
+    average_consumption: "2,3",
+    bikes: [
+      {
+        id: "honda vario 1",
+        img: "/img/bikes/vario-redbull.png",
+        drawing: "Redbull",
+      },
+      {
+        id: "honda vario 2",
+        img: "/img/bikes/vario-blue-full.png",
+        drawing: "Blue Full",
+      },
+    ],
+    discount: 20,
+    rates: [
+      {
+        isFixed: true,
+        isMonthly: false,
+        minDays: 1,
+        maxDays: 3,
+        dayPriceRUP: 700000,
+        dayPriceUSD: 47,
+      },
+      {
+        isFixed: false,
+        minDays: 4,
+        maxDays: 7,
+        isMonthly: false,
+        dayPriceRUP: 270000,
+        dayPriceUSD: 18,
+      },
+      {
+        isFixed: false,
+        minDays: 8,
+        maxDays: 14,
+        isMonthly: false,
+        dayPriceRUP: 220000,
+        dayPriceUSD: 15,
+      },
+      {
+        isFixed: false,
+        minDays: 15,
+        maxDays: 21,
+        isMonthly: false,
+        dayPriceRUP: 170000,
+        dayPriceUSD: 11,
+      },
+      {
+        isFixed: false,
+        isMonthly: true,
+        minDays: 22,
+        maxDays: 90,
+        dayPriceUSD: 233,
+        dayPriceRUP: 3500000,
+      },
+    ],
+    id: "9221",
+    img: "/img/bikes/vario-redbull.png",
+    brand: "HONDA",
+    mark: "VARIO 160 CC",
+    name: "HONDA VARIO 160 CC",
+  },
+  client_name: "12312312",
+  client_phone: "+62 31 2312312",
+});
 const computedDayPrice = computed(() => {
   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
     return Number((formStore.rate.dayPriceUSD / 30).toFixed(2));
@@ -737,7 +735,9 @@ const onSubmit = handleSubmit(async (values) => {
     time_delivery: values.deliveryTime,
     location_return: values.lastAddress,
     time_return: values.returnTime,
-    helmets: values.adultHelmetCount,
+    adult_helmets: values.adultHelmetCount,
+    kid_helmets: values.childHelmetCount,
+    raincoats: values.rainCoatCount,
     full_price: formStore.computedPrice,
   });
   useRouter().push("/payment");

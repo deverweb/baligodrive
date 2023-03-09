@@ -1,23 +1,8 @@
 <template>
-  <button
-    :disabled="props.loading"
-    :class="{ 'select-none pointer-events-none ': props.loading }"
-    class="btn-primary relative flex items-center justify-center rounded-[12px]"
-  >
-    <div
-      class="btn-primary-loading grid place-items-center"
-      v-if="props.loading"
-    >
+  <button :disabled="props.loading" :class="{ 'select-none pointer-events-none ': props.loading }" class="btn-primary relative flex items-center justify-center rounded-[12px]">
+    <div class="btn-primary-loading grid place-items-center" v-if="props.loading">
       <svg class="spinner" viewBox="0 0 50 50">
-        <circle
-          class="path"
-          cx="25"
-          cy="25"
-          r="20"
-          stroke="white"
-          fill="none"
-          stroke-width="5"
-        ></circle>
+        <circle class="path" cx="25" cy="25" r="20" stroke="white" fill="none" stroke-width="5"></circle>
       </svg>
     </div>
     <slot v-else></slot>
@@ -30,7 +15,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-});
+})
 </script>
 
 <style lang="sass">

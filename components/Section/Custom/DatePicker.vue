@@ -1,28 +1,11 @@
 <template>
-  <div
-    ref="root"
-    class="dp select-none relative"
-    :class="{ 'z-[5]': isActivePicker }"
-  >
-    <CustomFieldBtn
-      @click="isActivePicker = !isActivePicker"
-      :style-type="props.styleType"
-      :label="computedLabel"
-      :active="isActivePicker"
-    >
+  <div ref="root" class="dp select-none relative" :class="{ 'z-[5]': isActivePicker }">
+    <SectionCustomFieldBtn @click="isActivePicker = !isActivePicker" :style-type="props.styleType" :label="computedLabel" :active="isActivePicker">
       <SvgCalendarIcon :fill="'#111111'"></SvgCalendarIcon>
-    </CustomFieldBtn>
+    </SectionCustomFieldBtn>
     <Transition :name="props.transition">
-      <div
-        class="date-container lg:h-[374px] lg:flex lg:items-end"
-        v-show="isActivePicker"
-      >
-        <CustomDatePickerPanel
-          @daypick="onDatePick"
-          @close="isActivePicker = !isActivePicker"
-          :active="isActivePicker"
-          class="dp-panel lg:h-[364px] sm:h-auto"
-        ></CustomDatePickerPanel>
+      <div class="date-container lg:h-[374px] lg:flex lg:items-end" v-show="isActivePicker">
+        <SectionCustomDatePickerPanel @daypick="onDatePick" @close="isActivePicker = !isActivePicker" :active="isActivePicker" class="dp-panel lg:h-[364px] sm:h-auto"></SectionCustomDatePickerPanel>
       </div>
     </Transition>
     <Transition name="text-error">
@@ -36,9 +19,9 @@
 </template>
 
 <script setup>
-import { useField } from "vee-validate";
-let { locale } = useI18n();
-let root = ref(null);
+import { useField } from "vee-validate"
+let { locale } = useI18n()
+let root = ref(null)
 
 const props = defineProps({
   name: String,
@@ -47,46 +30,47 @@ const props = defineProps({
   transition: {
     type: String,
   },
-});
-let isActivePicker = ref(false);
+})
+let isActivePicker = ref(false)
 
-let choosedDate = ref("");
+let choosedDate = ref("")
 let computedLabel = computed(() => {
   if (choosedDate.value == "") {
-    if (locale.value == "ru") return "От какого — До какого";
-    if (locale.value == "en") return "From - To";
-    return "От какого — До какого";
+    if (locale.value == "ru") return "От какого — До какого"
+    if (locale.value == "en") return "From - To"
+    return "От какого — До какого"
   } else {
-    return choosedDate.value;
+    return choosedDate.value
   }
-});
+})
 const handleOutsideClicks = (e) => {
-  if (e.target.closest(".phone-datepicker")) return;
-  if (!root.value.isEqualNode(e.target.closest(".dp")))
-    isActivePicker.value = false;
-};
+  if (e.target.closest(".phone-datepicker")) return
+  if (!root.value.isEqualNode(e.target.closest(".dp"))) isActivePicker.value = false
+}
 onMounted(() => {
-  document.addEventListener("click", handleOutsideClicks);
-});
+  document.addEventListener("click", handleOutsideClicks)
+})
 onUnmounted(() => {
-  document.removeEventListener("click", handleOutsideClicks);
-});
+  document.removeEventListener("click", handleOutsideClicks)
+})
 
+const emit = defineEmits(["update:selectedDate"])
 const onDatePick = (payload) => {
-  isActivePicker.value = false;
-  choosedDate.value = payload.str;
-  value.value = payload.date;
-};
+  isActivePicker.value = false
+  choosedDate.value = payload.str
+  value.value = payload.date
+  emit("update:selectedDate", payload.date)
+}
 
 const isRequired = (value) => {
   if (!value) {
-    if (locale.value == "ru") return "Необходимо выбрать";
-    if (locale.value == "en") return "Have to select";
+    if (locale.value == "ru") return "Необходимо выбрать"
+    if (locale.value == "en") return "Have to select"
   }
-  return true;
-};
+  return true
+}
 
-const { value, errorMessage } = useField(props.name, isRequired);
+const { value, errorMessage } = useField(props.name, isRequired)
 
 // const formatDate = (date) => {
 //   const yyyy = date.getFullYear()

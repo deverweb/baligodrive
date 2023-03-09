@@ -1,5 +1,5 @@
 <template>
-  <div class="cf">
+  <div class="cf cursor-pointer">
     <div class="cf-subtitle font-Helvmed text-[14px] mb-[10px] opacity-50" v-if="props.subTitle">
       {{ props.subTitle }}
     </div>
@@ -22,6 +22,7 @@
 import { useField } from "vee-validate";
 
 const isRequired = (values) => {
+  if (props.required === false) return true;
   if (!value.value) return "Необходимо заполнить";
   return true;
 };
@@ -32,6 +33,7 @@ const props = defineProps({
   defaultLabel: String,
   subTitle: String,
   name: String,
+  required: Boolean,
 });
 
 let currentLabel = ref(null);
@@ -40,13 +42,17 @@ const handleChange = (event) => {
   value.value = event.target.files[0];
   currentLabel.value = event.target.files[0].name;
 };
-const handleBlur = (event) => {};
 
-let useCurrentLabel = computed(() => {
-  if (!currentLabel.value) {
-    return "Загрузите фото загранпаспорта";
-  } else return currentLabel.value;
+const useCurrentLabel = computed(() => {
+  if (value.value) return currentLabel.value;
+  else return props.defaultLabel;
 });
+
+// let useCurrentLabel = computed(() => {
+//   if (!currentLabel.value) {
+//     return "Загрузите фото загранпаспорта";
+//   } else return currentLabel.value;
+// });
 </script>
 
 <style lang="sass"></style>

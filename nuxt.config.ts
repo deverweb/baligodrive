@@ -1,3 +1,4 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
     head: {
@@ -21,7 +22,6 @@ export default defineNuxtConfig({
     // layoutTransition: true,
     // pageTransition: { name: "page", mode: "out-in" },
   },
-
   vite: {
     css: {
       preprocessorOptions: {
@@ -32,23 +32,17 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/sass/main.sass"],
-  router: {
-    options: {},
-  },
-  vueStyle: {
-    sourceMap: true,
-  },
-  sass: {},
-  plugins: [
-    { src: "~/plugins/v-calendar", ssr: false, mode: "client" },
-    { src: "~/plugins/vue-tel-input", ssr: false, mode: "client" },
-    { src: "~/plugins/slider", ssr: false, mode: "client" },
-  ],
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/i18n",
     ["@pinia/nuxt", { autoImports: ["defineStore", "acceptHMRUpdate"] }],
-    "@vueuse/nuxt",
+    "nuxt-swiper",
+    // "@vueuse/nuxt",
+  ],
+  plugins: [
+    { src: "~/plugins/v-calendar", ssr: false, mode: "client" },
+    { src: "~/plugins/vue-tel-input", ssr: false, mode: "client" },
+    { src: "~/plugins/slider", ssr: false, mode: "client" },
   ],
   runtimeConfig: {
     CLIENT_ID: process.env.CLIENT_ID,
@@ -58,6 +52,10 @@ export default defineNuxtConfig({
       CENT_API_TOKEN: process.env.CENT_API_TOKEN,
       CENT_SHOP_ID: process.env.CENT_SHOP_ID,
     },
+  },
+  swiper: {
+    modules: ["navigation"],
+    styleLang: "css",
   },
   i18n: {
     strategy: "no_prefix",
@@ -127,8 +125,7 @@ export default defineNuxtConfig({
           },
           contactsComponent: {
             title: "Контакты",
-            description:
-              "Наш офис расположен в самом сердце Убуда. Вы Можете добраться к нам на общественном транспорте или на такси.",
+            description: "Наш офис расположен в самом сердце Убуда. Вы Можете добраться к нам на общественном транспорте или на такси.",
             communication: "Связь с мессенджерах:",
             clickInfo: "Нажмите, чтобы<br>построить маршрут!",
           },
@@ -227,4 +224,4 @@ export default defineNuxtConfig({
       },
     },
   },
-});
+})

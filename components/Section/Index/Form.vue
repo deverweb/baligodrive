@@ -18,9 +18,14 @@
         </p>
         <form @submit="onSubmit" class="form">
           <div class="max-w-[360px] lg:mx-auto lg:text-left">
-            <CustomDatePicker name="date" styleType="index" transition="slide-right" class="mb-[10px] dp__index-form">
-            </CustomDatePicker>
-            <CustomSelectField
+            <SectionCustomDatePicker
+              name="date"
+              styleType="index"
+              transition="slide-right"
+              class="mb-[10px] dp__index-form"
+            >
+            </SectionCustomDatePicker>
+            <SectionCustomSelectField
               :styleType="'index'"
               class="mb-[10px] cs__index-form"
               transition="widget-date"
@@ -31,20 +36,20 @@
               :options="commercialStore.bikeModelsArray"
             >
               <SvgBikeIcon></SvgBikeIcon>
-            </CustomSelectField>
-            <CustomTextField
+            </SectionCustomSelectField>
+            <SectionCustomTextField
               type="string"
               class="ci__index-form mb-[10px]"
               :name="'client_name'"
               :placeholder="namePlaceholder"
             >
               <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
-            </CustomTextField>
+            </SectionCustomTextField>
 
-            <CustomPhoneField class="mb-[10px]" type="index" name="client_phone">
+            <SectionCustomPhoneField class="mb-[10px]" type="index" name="client_phone">
               <SvgPhoneIcon></SvgPhoneIcon>
-            </CustomPhoneField>
-            <CustomSelectField
+            </SectionCustomPhoneField>
+            <SectionCustomSelectField
               v-if="false"
               :styleType="'index-form'"
               class="mb-[10px] cs__index-form"
@@ -54,7 +59,7 @@
               :options="commercialStore.surfBoards"
             >
               <SvgSurfIcon></SvgSurfIcon>
-            </CustomSelectField>
+            </SectionCustomSelectField>
             <TheButton
               type="submit"
               class="w-[360px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
@@ -65,17 +70,31 @@
           </div>
         </form>
       </div>
-
-      <SectionIndexFormOrderBike
-        class="absolute lg:max-w-[60%] 2xl:z-[0] 2xl:bottom-[5%] 2xl:left-[40%] 2xl:scale-[0.85] lg:scale-100 xsm:max-w-full left-[50%] lg:bottom-auto lg:relative lg:left-0"
-      ></SectionIndexFormOrderBike>
+      <div class="orderbike relative md:max-w-[80%] md:mx-auto">
+        <img class="object-contain max-w-none lg:max-w-full" :src="bikeImageSrc" alt="" />
+        <SectionIndexFormTooltip
+          class="left-[9.4%] top-[29.5%] sm:left-[13.6%] sm:top-[12.1%]"
+          :tooltip="tooltips.first"
+        ></SectionIndexFormTooltip>
+        <SectionIndexFormTooltip
+          class="left-[48.3%] top-[33.4%] sm:left-[73.6%] sm:top-[18.6%]"
+          :tooltip="tooltips.second"
+        ></SectionIndexFormTooltip>
+        <SectionIndexFormTooltip
+          class="left-[-0.7%] top-[61.5%] sm:top-[49.4%] sm:left-[35%]"
+          :tooltip="tooltips.third"
+        ></SectionIndexFormTooltip>
+        <SectionIndexFormTooltip
+          class="left-[41.2%] top-[59.6%] sm:left-[66.6%] sm:top-[60.2%]"
+          :tooltip="tooltips.fourth"
+        ></SectionIndexFormTooltip>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup>
 import { useForm } from "vee-validate";
-import { useStorage } from "@vueuse/core";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
 import { useIndexFormStore } from "~~/store/indexform";
@@ -112,9 +131,7 @@ const formData = ref({
     active: false,
   },
 });
-// let formvalues = useStorage("formvalues");
 const onSubmit = handleSubmit((values) => {
-  formvalues.value = values;
   formStore.fillForm(values);
   commercialStore.smallFormOrder({
     order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
@@ -126,6 +143,26 @@ const onSubmit = handleSubmit((values) => {
   });
   router.push({ path: "/order" });
 });
+
+const bikeImageSrc = "/img/index/order-bike.png";
+const tooltips = {
+  first: {
+    info: "Все байки оборудованы держателем для телефона или камеры",
+    svg: "/svg/camera.svg",
+  },
+  second: {
+    info: "Все байки оборудованы держателем для телефона или камеры",
+    svg: "/svg/umbrella.svg",
+  },
+  third: {
+    info: "Все байки оборудованы держателем для телефона или камеры",
+    svg: "/svg/wrench.svg",
+  },
+  fourth: {
+    info: "Все байки оборудованы держателем для телефона или камеры",
+    svg: "/svg/helmet.svg",
+  },
+};
 </script>
 
 <style lang="sass"></style>

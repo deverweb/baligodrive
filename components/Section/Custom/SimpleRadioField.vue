@@ -1,12 +1,23 @@
 <template>
   <div class="order-simple-radio sm:relative items-center flex justify-between">
     <div class="order-simple-radio-container sm:w-full flex items-center">
-      <div :class="props.widthClasses" class="sm:mr-[20px] order-simple-radio-text leading-[21px] sm:items-start flex items-center">
+      <div
+        :class="props.widthClasses"
+        class="sm:mr-[20px] order-simple-radio-text leading-[21px] sm:items-start flex items-center"
+      >
         <slot></slot>
       </div>
-      <div class="order-simple-radio-list sm:ml-auto flex items-center">
+      <div class="order-simple-radio-list cursor-pointer sm:ml-auto flex items-center">
         <div class="order-simple-radio-option text-[14px] order-simple-radio-option__first flex items-center">
-          <input v-model="value" class="hidden" type="radio" checked :id="props.name + 0" :name="props.name" value="0" />
+          <input
+            v-model="value"
+            class="hidden"
+            type="radio"
+            checked
+            :id="props.name + 0"
+            :name="props.name"
+            value="0"
+          />
           <label :for="props.name + 0">{{ 0 }}</label>
         </div>
         <div class="order-simple-radio-option text-[14px] order-simple-radio-option__second flex items-center">
@@ -19,16 +30,27 @@
         </div>
       </div>
     </div>
-    <span class="text-[16px] font-Helvmed sm:text-[14px] sm:absolute sm:right-0 sm:bottom-[-27px]" v-if="props.price">{{ props.priceText }}</span>
-    <span class="text-[16px] font-Helvmed opacity-30 sm:hidden" v-else>(включено в стоимость)</span>
+    <span class="text-[16px] font-Helvmed sm:text-[14px] sm:absolute sm:right-0 sm:bottom-[-27px]" v-if="props.price">{{
+      props.priceText
+    }}</span>
+    <span class="text-[16px] font-Helvmed opacity-30 sm:hidden" v-else>{{
+      translate("(включено в стоимость)", "(included in price)")
+    }}</span>
   </div>
 </template>
 
 <script setup>
-import { useField } from "vee-validate"
+import { useField } from "vee-validate";
 
-const { value } = useField(props.name)
-value.value = 0
+const { locale } = useI18n();
+
+const { value } = useField(props.name);
+value.value = 0;
+
+const translate = (ruStr, engStr) => {
+  if (locale.value == "ru") return ruStr;
+  if (locale.value == "en") return engStr;
+};
 
 const props = defineProps({
   name: {
@@ -39,9 +61,9 @@ const props = defineProps({
   price: Number,
   showPrice: Boolean,
   priceText: String,
-})
+});
 
-let checked = ref(0)
+let checked = ref(0);
 </script>
 
 <style lang="sass">

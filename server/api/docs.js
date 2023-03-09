@@ -51,5 +51,15 @@ export default defineEventHandler(async (event) => {
     });
     return "if bigform";
   }
+  if (body.sheet == "agentform") {
+    sheet = doc.sheetsByIndex[3];
+    const rows = await sheet.getRows();
+    let data = body.data;
+    await sheet.addRow({
+      order_id: rows.length,
+      ...data,
+    });
+    return "if bigform";
+  }
   return "success";
 });

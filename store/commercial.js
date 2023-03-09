@@ -520,11 +520,21 @@ export const useCommercialStore = defineStore("commercial", () => {
       },
     });
   };
+  const agentFormOrder = async (values) => {
+    let { data } = await useFetch("/api/docs", {
+      method: "POST",
+      body: {
+        sheet: "agentform",
+        data: values,
+      },
+    });
+  };
   return {
     fillData,
     orderBike,
     bikeModelsArray,
     smallFormOrder,
+    agentFormOrder,
     investFormOrder,
   };
 });

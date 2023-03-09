@@ -1,7 +1,5 @@
 <template>
-  <footer
-    class="footer px-[80px] lg:pt-[58px] sm:pt-[68px] lg:px-[48px] sm:px-[25px] 2xl:px-[40px] bg-dark-300 pt-[50px] sm:pb-[41px] pb-[57px]"
-  >
+  <footer class="footer px-[80px] lg:pt-[58px] sm:pt-[68px] lg:px-[48px] sm:px-[25px] 2xl:px-[40px] bg-dark-300 pt-[50px] sm:pb-[41px] pb-[57px]">
     <div class="footer-desktop grid grid-cols-4 lg:hidden">
       <div class="footer-col pt-[4px] flex flex-col items-start">
         <Logo class="text-[32px] tracking-[-1px] mb-[9px]"></Logo>
@@ -36,10 +34,7 @@
       </div>
       <div class="footer-col items-end">
         <div class="footer-payments flex gap-[10px] mb-[37px]">
-          <div
-            v-for="pay in payments"
-            class="footer-pay shrink-0 w-[121px] h-[58px] flex items-center justify-center rounded-[9px] border-solid border-[1px] border-[#3c3c3c]"
-          >
+          <div v-for="pay in payments" class="footer-pay shrink-0 w-[121px] h-[58px] flex items-center justify-center rounded-[9px] border-solid border-[1px] border-[#3c3c3c]">
             <img :src="pay" class="" alt="" />
           </div>
         </div>
@@ -55,9 +50,7 @@
         <div class="footer-col-container">
           <div class="footer-policy mb-[10px] inline-flex text-[16px] items-baseline flex-col">
             <NuxtLink class="footer-link mb-[10px] text-[16px]" to="/terms">{{ $t("footerRights.terms") }}</NuxtLink>
-            <NuxtLink class="inline-block mb-[10px] font-Helvreg" to="/oferta">{{
-              $t("footerRights.oferta")
-            }}</NuxtLink>
+            <NuxtLink class="inline-block mb-[10px] font-Helvreg" to="/oferta">{{ $t("footerRights.oferta") }}</NuxtLink>
             <NuxtLink class="inline-block" to="/policy">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
           </div>
           <div class="footer-dev mb-[10px] flex">
@@ -81,10 +74,7 @@
           <span>Jl. Batu Mejan Canggu 38,<br />Canggu</span>
         </div>
         <div class="footer-payments flex gap-[8px] mt-[53px]">
-          <div
-            v-for="pay in payments"
-            class="footer-pay shrink-0 w-[94px] h-[45px] flex items-center justify-center rounded-[7px] border-solid border-[1px] border-[#3c3c3c]"
-          >
+          <div v-for="pay in payments" class="footer-pay shrink-0 w-[94px] h-[45px] flex items-center justify-center rounded-[7px] border-solid border-[1px] border-[#3c3c3c]">
             <img :src="pay" class="max-w-[70%] max-h-[70%]" alt="" />
           </div>
         </div>
@@ -115,10 +105,7 @@
       </div>
       <div class="footer-rights">baligo.bike © 2022, All rights reserved.</div>
       <div class="footer-payments flex gap-[8px] mt-[37px]">
-        <div
-          v-for="pay in payments"
-          class="footer-pay w-[107px] h-[51px] lil:w-[25%] lil:flex-shrink-0 lil:flex-grow flex items-center justify-center rounded-[7px] border-solid border-[1px] border-[#3c3c3c]"
-        >
+        <div v-for="pay in payments" class="footer-pay w-[107px] h-[51px] lil:w-[25%] lil:flex-shrink-0 lil:flex-grow flex items-center justify-center rounded-[7px] border-solid border-[1px] border-[#3c3c3c]">
           <img :src="pay" class="max-w-[70%] max-h-[70%]" alt="" />
         </div>
       </div>
@@ -127,19 +114,19 @@
 </template>
 
 <script setup>
-let route = useRoute();
-let router = useRouter();
-const payments = ["/svg/footer/visa.svg", "/svg/footer/master.svg", "/svg/footer/inter.svg"];
+let route = useRoute()
+let router = useRouter()
+const payments = ["/svg/footer/visa.svg", "/svg/footer/master.svg", "/svg/footer/inter.svg"]
 const handleFooterClickRend = async () => {
   if (route.path == "/") {
-    document.querySelector(".order").scrollIntoView({ behavior: "smooth" });
+    document.querySelector(".order").scrollIntoView({ behavior: "smooth" })
   } else {
-    router.push("/");
+    router.push("/")
     setTimeout(() => {
-      document.querySelector(".order").scrollIntoView({ behavior: "smooth" });
-    }, 100);
+      document.querySelector(".order").scrollIntoView({ behavior: "smooth" })
+    }, 100)
   }
-};
+}
 </script>
 
 <style lang="sass">

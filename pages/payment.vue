@@ -11,9 +11,9 @@
         </div>
 
         <div class="payment-form">
-          <SectionOrderStep class="mb-[38px]" number="6" :text="langObj.choosePayment"></SectionOrderStep>
+          <SectionCustomStep class="mb-[38px]" number="6" :text="langObj.choosePayment"></SectionCustomStep>
           <div class="payment-checkboxbody">
-            <SectionOrderNormalRadioField
+            <SectionCustomNormalRadioField
               field-value="consult"
               name="payment"
               :checked="true"
@@ -27,8 +27,8 @@
                     : "Payment after consultation with the manager"
                 }}
               </span>
-            </SectionOrderNormalRadioField>
-            <SectionOrderNormalRadioField
+            </SectionCustomNormalRadioField>
+            <SectionCustomNormalRadioField
               field-value="russiacard"
               name="payment"
               :checked="false"
@@ -38,7 +38,7 @@
               <span class="sm:leading-[1] text-[18px] sm:text-[15px]">
                 {{ locale == "ru" ? "Оплата картой на сайте (Россия)" : "Payment by card on the site (Russia)" }}
               </span>
-            </SectionOrderNormalRadioField>
+            </SectionCustomNormalRadioField>
             <!-- <SectionOrderNormalRadioField
               field-value="worldcard"
               name="payment"
@@ -80,8 +80,8 @@
         </div>
       </div>
       <div class="payment-sticky absolute w-full right-0 top-0">
-        <OrderPinnedOrder
-          class="top-0 right-0"
+        <SectionPinnedOrder
+          class="top-0 right-0 absolute"
           ref="orderSticky"
           :bike-name="formStore.bike.name"
           :bike-image="formStore.bikeImage"
@@ -91,7 +91,7 @@
           :date-str-end="formStore.computedDateStrEnd"
           :date-str-start="formStore.computedDateStrStart"
         >
-        </OrderPinnedOrder>
+        </SectionPinnedOrder>
       </div>
     </div>
     <div v-else>Загрузка</div>
@@ -206,6 +206,9 @@ const onSubmit = () => {
         formStore.resetData();
         window.open(result.link_page_url, "_blank").focus();
       });
+  } else {
+    formStore.resetData();
+    router.push("/success");
   }
 };
 </script>

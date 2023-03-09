@@ -17,15 +17,15 @@
           </button>
         </div>
         <div class="wg-list grow px-[30px] bg-light">
-          <CustomDatePicker
+          <SectionCustomDatePicker
             transition="widget-date"
             styleType="widget"
             :name="'date'"
             class="dp__widget-form"
             defaultLabel="Модель байка"
           >
-          </CustomDatePicker>
-          <CustomSelectField
+          </SectionCustomDatePicker>
+          <SectionCustomSelectField
             name="bike"
             :options="commercialStore.bikeModelsArray"
             class="cs__widget-form"
@@ -33,14 +33,19 @@
             :defaultLabel="bikeDefaultLabel"
           >
             <SvgBikeIcon :fill="'black'"></SvgBikeIcon>
-          </CustomSelectField>
-          <CustomTextField type="string" class="ci__widget-form" :name="'client_name'" :placeholder="namePlaceholder">
+          </SectionCustomSelectField>
+          <SectionCustomTextField
+            type="string"
+            class="ci__widget-form"
+            :name="'client_name'"
+            :placeholder="namePlaceholder"
+          >
             <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
-          </CustomTextField>
+          </SectionCustomTextField>
 
-          <CustomPhoneField type="widget" name="client_phone">
+          <SectionCustomPhoneField type="widget" name="client_phone">
             <SvgPhoneIcon></SvgPhoneIcon>
-          </CustomPhoneField>
+          </SectionCustomPhoneField>
         </div>
         <div
           class="wg-bottom grow-0 h-[130px] shrink-0 py-[30px] bg-light rounded-b-[12px] flex items-center justify-center"
@@ -60,7 +65,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
-import { useStorage } from "@vueuse/core";
 
 let { locale } = useI18n();
 gsap.registerPlugin(ScrollTrigger);
@@ -168,7 +172,13 @@ watch(
   }
 );
 let isOrder = computed(() => {
-  return route.path == "/order/" || route.path == "/payment/" || route.path == "/invest/";
+  return (
+    route.path == "/order/" ||
+    route.path == "/payment/" ||
+    route.path == "/invest/" ||
+    route.path == "/agentform/" ||
+    route.path == "/agent/"
+  );
 });
 </script>
 

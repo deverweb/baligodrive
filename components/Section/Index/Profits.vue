@@ -1,31 +1,11 @@
 <template>
-  <section
-    class="service z-[6] rounded-b-[70px] sm:rounded-b-[44px] md:pb-[46px] relative top-[-70px] pt-[190px] md:pt-[145px] pb-[100px] bg-light text-dark"
-  >
-    <div
-      class="service-container mx-auto max-w-[1433px] px-[7px] md:px-[40px] xsm:px-[20px]"
-    >
-      <h2
-        v-html="$t('mainPageServices.title')"
-        class="section-title service-title text-center mb-[79px] md:mb-[67px]"
-      ></h2>
-      <div
-        class="service-items grid grid-cols-4 xsm:grid-cols-1 md:grid-cols-2 md:gap-x-[11px] items-stretch gap-x-[50px] md:gap-y-[5px] gap-y-[39px]"
-      >
-        <div
-          class="service-item md:flex md:px-[20px] md:flex-col md:items-center md:text-center py-[30px] md:pt-[26px] pl-[25px] rounded-[10px]"
-          v-for="(service, i) in services"
-          :key="i"
-        >
-          <div
-            class="service-item-img xsm:mb-[30px] md:mb-[38px] mb-[36px] flex gap-[22px]"
-          >
-            <img
-              :src="img"
-              class="h-[44px]"
-              :key="i"
-              v-for="(img, i) in service.svg"
-            />
+  <section class="service z-[6] rounded-b-[70px] sm:rounded-b-[44px] md:pb-[46px] relative top-[-70px] pt-[190px] md:pt-[145px] pb-[100px] bg-light text-dark">
+    <div class="service-container mx-auto max-w-[1433px] px-[7px] md:px-[40px] xsm:px-[20px]">
+      <h2 v-html="$t('mainPageServices.title')" class="section-title service-title text-center mb-[79px] md:mb-[67px]"></h2>
+      <div class="service-items grid grid-cols-4 xsm:grid-cols-1 md:grid-cols-2 md:gap-x-[11px] items-stretch gap-x-[50px] md:gap-y-[5px] gap-y-[39px]">
+        <div class="service-item md:flex md:px-[20px] md:flex-col md:items-center md:text-center py-[30px] md:pt-[26px] pl-[25px] rounded-[10px]" v-for="(service, i) in services" :key="i">
+          <div class="service-item-img xsm:mb-[30px] md:mb-[38px] mb-[36px] flex gap-[22px]">
+            <img :src="img" class="h-[44px]" :key="i" v-for="(img, i) in service.svg" />
           </div>
 
           <p
@@ -40,11 +20,11 @@
 </template>
 
 <script setup>
-let { locale } = useI18n();
+let { locale } = useI18n()
 const services = computed(() => {
-  if (locale.value == "ru") return ruServices;
-  if (locale.value == "en") return enServices;
-});
+  if (locale.value == "ru") return ruServices
+  if (locale.value == "en") return enServices
+})
 const ruServices = [
   {
     svg: ["/svg/services/helmet.svg", "/svg/services/clothes.svg"],
@@ -78,7 +58,7 @@ const ruServices = [
     svg: ["/svg/services/carrepair.svg"],
     text: "Оперативный выезд команды для ремонта или замены байка",
   },
-];
+]
 const enServices = [
   {
     svg: ["/svg/services/helmet.svg", "/svg/services/clothes.svg"],
@@ -112,7 +92,7 @@ const enServices = [
     svg: ["/svg/services/carrepair.svg"],
     text: "Prompt departure of the team to repair or replace the bike.",
   },
-];
+]
 </script>
 
 <style lang="sass">

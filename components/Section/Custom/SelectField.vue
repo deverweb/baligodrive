@@ -3,7 +3,7 @@
     <div class="cs-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">
       {{ props.subTitle }}
     </div>
-    <CustomFieldBtn
+    <SectionCustomFieldBtn
       :styleType="props.styleType"
       :class="{ shadow: isSelectActive }"
       :active="isSelectActive"
@@ -11,7 +11,7 @@
       @click="isSelectActive = !isSelectActive"
       :label="computedLabel"
       ><slot></slot
-    ></CustomFieldBtn>
+    ></SectionCustomFieldBtn>
 
     <Field class="hidden" v-model="localSelectedOption" :rules="isRequired" :name="props.name" as="select"></Field>
     <Transition :name="'select-down'">
