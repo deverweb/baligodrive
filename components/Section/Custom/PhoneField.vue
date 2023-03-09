@@ -1,33 +1,38 @@
 <template>
-  <div :class="classes" class="flex items-center pf">
-    <div class="pf-icon-container">
-      <slot></slot>
+  <div :class="classes" class="flex flex-col items-start pf">
+    <div class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">
+      {{ props.subTitle }}
     </div>
-    <input type="text" v-model="phone" class="hidden" name="client_phone" id="client_phone" />
-    <ClientOnly>
-      <vue-tel-input
-        class="ml-[7px] phone-input"
-        v-model="phoneValue"
-        mode="international"
-        @country-changed="handleCountryChange"
-        @on-input="handleInput"
-        :preferredCountries="['ID', 'RU', 'UA']"
-        autoformat
-        :autoDefaultCountry="false"
-        placeholder="Номер телефона"
-        :dropdownOptions="{
-          showFlags: true,
-          showSearchBox: true,
-          showDialCodeInList: true,
-        }"
-        :inputOptions="{
-          maxlength: 17,
-          name: props.name,
-          showDialCode: true,
-          placeholder: 'Номер телефона',
-        }"
-      ></vue-tel-input>
-    </ClientOnly>
+    <div class="pf-container">
+      <div class="pf-icon-container">
+        <slot></slot>
+      </div>
+      <input type="text" v-model="phone" class="hidden" name="client_phone" id="client_phone" />
+      <ClientOnly>
+        <vue-tel-input
+          class="ml-[7px] phone-input"
+          v-model="phoneValue"
+          mode="international"
+          @country-changed="handleCountryChange"
+          @on-input="handleInput"
+          :preferredCountries="['ID', 'RU', 'UA']"
+          autoformat
+          :autoDefaultCountry="false"
+          placeholder="Номер телефона"
+          :dropdownOptions="{
+            showFlags: true,
+            showSearchBox: true,
+            showDialCodeInList: true,
+          }"
+          :inputOptions="{
+            maxlength: 17,
+            name: props.name,
+            showDialCode: true,
+            placeholder: 'Номер телефона',
+          }"
+        ></vue-tel-input>
+      </ClientOnly>
+    </div>
   </div>
 </template>
 
@@ -51,6 +56,7 @@ const props = defineProps({
     type: String,
   },
   type: String,
+  subTitle: String,
 });
 
 const classes = computed(() => {
@@ -69,6 +75,51 @@ const classes = computed(() => {
 				border: none
 			&:active
 				border: none
+	&.order-phone
+		color: $light
+		font-size: 16px
+		background-color: transparent
+		z-index: 2
+		user-select: none
+		border: none
+		.pf-container
+			height: 67px
+			position: relative
+			padding: 23px 21px 20px 20px
+			border-radius: 12px
+			display: flex
+			align-items: center
+			border: 1px solid rgba(251, 251, 253, 0.3)
+			width: 100%
+		.ci-subtitle
+			color: $light
+			opacity: 0.5
+		.phone-input
+			border: none
+			color: $light
+			font-size: 16px
+			background-color: transparent
+			z-index: 2
+			width: 100%
+
+			// padding: 23px 21px 20px 50px
+			user-select: none
+			display: flex
+			align-items: center
+			height: 100%
+			.vti__dropdown-item.highlighted
+				background-color: $dark300
+			.vti__dropdown-list
+				background-color: $dark
+			.vti__dropdown
+				&:hover
+					background: transparent
+			input
+				background: transparent
+				color: $light
+			&:focus-within
+				box-shadow: none
+
 	&.index-phone
 		color: $dark
 		font-size: 16px
@@ -78,15 +129,20 @@ const classes = computed(() => {
 		height: 67px
 		user-select: none
 		display: flex
-		align-items: center
+		align-items: flex-start
 		border-radius: 12px
 		border: none
+		.pf-container
+			display: flex
+			height: 100%
+			align-items: center
 		.phone-input
 			border: none
 			color: $dark
 			font-size: 16px
 			background-color: $light
 			z-index: 2
+			width: 100%
 			// padding: 23px 21px 20px 50px
 			user-select: none
 			display: flex
@@ -104,6 +160,10 @@ const classes = computed(() => {
 		padding-left: 20px
 		border-radius: 12px
 		border: 1px solid #D6D6D6
+		.pf-container
+			display: flex
+			height: 100%
+			align-items: center
 
 		.pf-icon-container
 			width: 14px
@@ -129,6 +189,10 @@ const classes = computed(() => {
 				&:active
 					border: none
 	&.widget-phone
+		.pf-container
+			display: flex
+			height: 100%
+			align-items: center
 		.phone-input
 			color: $dark
 			font-size: 16px

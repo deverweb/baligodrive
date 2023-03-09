@@ -1,5 +1,9 @@
 <template>
-  <div ref="orderSticky" class="order-sticky max-w-[40%] md:hidden md:max-w-full md:pt-[50px] xl:max-w-[230px]">
+  <div
+    ref="orderSticky"
+    :class="{ 'max-w-[60%]': props.rup }"
+    class="order-sticky max-w-[60%] md:hidden md:max-w-full md:pt-[50px] xl:max-w-[350px]"
+  >
     <div class="order-sticky-container">
       <div
         class="order-view px-[40px] md:pb-[36px] md:items-center md:flex-col xl:pl-[22px] pb-[27px] xl:pb-[30px] flex md:rounded-t-[44px] rounded-t-[17px] bg-dark-300 md:pt-[68px] pt-[42px]"
@@ -19,14 +23,16 @@
                   v-if="!props.fixedOrMonthly || props.dateDif > 30"
                   class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
                 >
-                  {{ props.dayPriceUSD }}$ / {{ translate("день", "day") }} ({{ props.fullPrice }}$
-                  {{ translate("итого", "summary") }} )
+                  {{ props.dayPriceUSD }} {{ !props.rup ? "$" : " rup" }} / {{ translate("день", "day") }} ({{
+                    props.fullPrice
+                  }}
+                  {{ !props.rup ? "$" : " rup" }} {{ translate("итого", "summary") }} )
                 </div>
                 <div
                   v-if="props.fixedOrMonthly && props.dateDif <= 30"
                   class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
                 >
-                  {{ props.dayPriceUSD }}$ {{ translate("итого", "summary") }}
+                  {{ props.dayPriceUSD }} {{ translate("итого", "summary") }}
                 </div>
               </div>
             </div>
@@ -42,7 +48,7 @@
                   v-if="!props.fixedOrMonthly || props.dateDif > 30"
                   class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
                 >
-                  {{ props.dayPriceUSD }}$ x {{ props.dateDif }} {{ translate("суток", "days") }}
+                  {{ props.dayPriceUSD }} {{}} x {{ props.dateDif }} {{ translate("суток", "days") }}
                 </div>
                 <div
                   v-if="props.fixedOrMonthly && props.dateDif <= 30"
@@ -68,11 +74,11 @@
                 {{ props.bikeName }}
               </div>
               <div v-if="!props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
-                {{ props.dayPriceUSD }}$ / {{ translate("день", "day") }} ({{ props.fullPrice }}$
-                {{ translate("итого", "summary") }})
+                {{ props.dayPriceUSD }} {{}} / {{ translate("день", "day") }} ({{ props.fullPrice }}
+                {{ !props.rup ? "$" : " rup" }} {{ translate("итого", "summary") }})
               </div>
               <div v-if="props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
-                {{ props.dayPriceUSD }}$ {{ translate("итого", "summary") }})
+                {{ props.dayPriceUSD }} {{}} {{ translate("итого", "summary") }})
               </div>
             </div>
           </div>
@@ -86,7 +92,7 @@
                 {{ props.dateStrEnd }}
               </div>
               <div v-if="!props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
-                {{ props.dayPriceUSD }} x {{ props.dateDif }}$ {{ translate("суток", "days") }}
+                {{ props.dayPriceUSD }} x {{ props.dateDif }} {{}} {{ translate("суток", "days") }}
               </div>
               <div v-if="props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
                 {{ props.dayPriceUSD }}
@@ -97,15 +103,17 @@
       </div>
 
       <div
-        class="order-summary px-[40px] bg-green md:px-[50px] md:text-dark flex justify-between items-center font-Euroblack text-[16px] h-[92px] uppercase md:rounded-b-[44px] rounded-b-[12px]"
+        class="order-summary px-[40px] bg-green md:px-[50px] md:text-dark flex justify-between items-center font-Euroblack text-[14px] h-[92px] uppercase md:rounded-b-[44px] rounded-b-[12px]"
       >
         <div class="order-summary-container flex justify-between w-full xl:hidden md:flex">
-          <span class="tracking-[-0.6px]"> {{ translate(" ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:", "TOTAL RENTAL COST:") }} </span>
-          <span class="tracking-[-0.6px]">{{ props.fullPrice }}$</span>
+          <span class="tracking-[-0.6px] mr-[10px]">
+            {{ translate(" ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:", "TOTAL RENTAL COST:") }}
+          </span>
+          <span class="tracking-[-0.6px]">{{ props.fullPrice }} {{ !props.rup ? "$" : " rup" }}</span>
         </div>
         <div class="order-summary-container w-full justify-between hidden xl:flex md:hidden">
-          <span class="tracking-[-0.6px]">{{ translate("ИТОГО", "SUMMARY") }}:</span>
-          <span class="tracking-[-0.6px]">{{ props.fullPrice }}$</span>
+          <span class="tracking-[-0.6px] mr-[10px]">{{ translate("ИТОГО", "SUMMARY") }}:</span>
+          <span class="tracking-[-0.6px]">{{ props.fullPrice }} {{ !props.rup ? "$" : " rup" }}</span>
         </div>
       </div>
     </div>
@@ -129,6 +137,10 @@ const props = defineProps({
   dateStrEnd: String || Number,
   dateDif: Number,
   fixedOrMonthly: Boolean,
+  rup: {
+    default: false,
+    type: Boolean,
+  },
 });
 
 const orderSticky = ref(null);

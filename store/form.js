@@ -24,9 +24,11 @@ export const useFormStore = defineStore("form", () => {
     dateDif.value = Number(
       Math.ceil(Math.abs(dates.value.end.getTime() - dates.value.start.getTime()) / (1000 * 3600 * 24)) + 1
     );
-    rate.value = bike.value.rates.find((val, i) => {
-      return dateDif.value >= val.minDays && dateDif.value <= val.maxDays;
-    });
+    if (bike.value) {
+      rate.value = bike.value.rates.find((val, i) => {
+        return dateDif.value >= val.minDays && dateDif.value <= val.maxDays;
+      });
+    }
   };
 
   const fillAgentForm = (body) => {
@@ -63,6 +65,23 @@ export const useFormStore = defineStore("form", () => {
     rate.value = null;
     choosedDrawing.value = null;
   };
+  let computedRupPrice = computed(() => {
+    if (bike.value) {
+      if (rate.value.isMonthly) {
+        if (dateDif.value > 30) {
+          //ЗДЕСЬ СЧИТАТЬ
+          return Number(((rate.value.dayPriceRUP / 30) * dateDif.value).toFixed());
+        }
+        return rate.value.dayPriceRUP;
+      }
+      if (rate.value.isFixed) {
+        return rate.value.dayPriceRUP;
+      } else {
+        return Number(dateDif.value) * rate.value.dayPriceRUP;
+      }
+    }
+    return "";
+  });
   let computedPrice = computed(() => {
     if (bike.value) {
       if (rate.value.isMonthly) {
@@ -124,6 +143,7 @@ export const useFormStore = defineStore("form", () => {
     bikeImage,
     client_name,
     computedPrice,
+    computedRupPrice,
     computedDateStr,
     computedDateStrEnd,
     computedDateStrStart,
