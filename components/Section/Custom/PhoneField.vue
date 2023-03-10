@@ -26,7 +26,7 @@
             showDialCodeInList: true,
           }"
           :inputOptions="{
-            maxlength: 10,
+            maxlength: 13,
             name: props.name,
             showDialCode: true,
             placeholder: 'Номер телефона',
