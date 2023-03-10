@@ -16,6 +16,10 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+const { locale } = useI18n();
+
+locale.value = "en";
+</script>
 
 <style lang="sass"></style>
