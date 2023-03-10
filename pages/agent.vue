@@ -44,6 +44,7 @@
                     </SectionCustomSelectField>
                     <SectionCustomTextField
                       type="string"
+                      validation="name"
                       class="ci__index-form mb-[10px]"
                       :name="'hotel_name'"
                       :placeholder="'Hotel/villa name'"

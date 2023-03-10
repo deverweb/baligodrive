@@ -52,6 +52,12 @@ const handleCountryChange = (obj) => {
 // };
 
 const handleInput = (num, obj) => {
+  let regexp = new RegExp("^[0-9 ]+$");
+  if (regexp.test(num.slice(1))) {
+  } else {
+    phoneValue.value = num.slice(0, -1);
+    return;
+  }
   if (num.length < ctCode.value.length + 1) phoneValue.value = "+" + ctCode.value;
 };
 

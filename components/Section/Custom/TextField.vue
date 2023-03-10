@@ -7,9 +7,20 @@
       <div class="ci-icon-container">
         <slot></slot>
       </div>
-      <input v-model="value" :placeholder="props.placeholder" class="ci-input" @input="handleChange" :class="{ autocomplete: props.autocomplete }" type="text" />
+      <input
+        v-model="value"
+        :placeholder="props.placeholder"
+        class="ci-input"
+        @input="handleChange"
+        :class="{ autocomplete: props.autocomplete }"
+        type="text"
+      />
 
-      <span v-if="props.extraph" class="absolute select-none sm:text-[12px] pointer-events-none right-[30px] sm:right-[24px] text-[16px] text-[#111] opacity-50 top-[50%] translate-y-[-50%]">{{ props.extraph }}</span>
+      <span
+        v-if="props.extraph"
+        class="absolute select-none sm:text-[12px] pointer-events-none right-[30px] sm:right-[24px] text-[16px] text-[#111] opacity-50 top-[50%] translate-y-[-50%]"
+        >{{ props.extraph }}</span
+      >
     </div>
     <Transition name="slide-down">
       <ul class="ci-suggests absolute pl-[30px] top-0 left-0 right-0" v-if="false" v-show="activeList">
@@ -30,8 +41,8 @@
 </template>
 
 <script setup>
-import { useField } from "vee-validate"
-let { locale } = useI18n()
+import { useField } from "vee-validate";
+let { locale } = useI18n();
 
 const props = defineProps({
   extraph: {
@@ -54,48 +65,57 @@ const props = defineProps({
   subTitle: String,
   disabled: Boolean,
   autocomplete: Boolean,
-})
-let rootInput = ref(null)
+  validation: String,
+});
+let rootInput = ref(null);
 let isRequired = (value) => {
-  if (props.disabled) return true
+  if (props.disabled) return true;
   if (props.type == "number") {
     if (!value) {
-      if (locale.value == "ru") return "Обязательное поле"
-      if (locale.value == "en") return "Required"
+      if (locale.value == "ru") return "Обязательное поле";
+      if (locale.value == "en") return "Required";
     }
     if (props.minValue) {
       if (value < props.minValue) {
-        if (locale.value == "ru") return "Значение меньше минимального"
-        if (locale.value == "en") return "Value is less than minimum"
+        if (locale.value == "ru") return "Значение меньше минимального";
+        if (locale.value == "en") return "Value is less than minimum";
       }
     }
     if (!/^\d+$/.test(value)) {
-      if (locale.value == "ru") return "Только цифры"
-      if (locale.value == "en") return "Numbers only"
+      if (locale.value == "ru") return "Только цифры";
+      if (locale.value == "en") return "Numbers only";
     }
-    return true
+    return true;
   }
+  // if (props.validation == "name") {
+  //   let regexp = /^[а-ЯА-Яa-zA-Z][a-zA-Z0-9-]+$/;
+  //   if (regexp.test(value)) {
+  //     console.log("value прошел, ", value);
+  //   } else {
+  //     console.log("value не прошел, ", value);
+  //   }
+  // }
   if (props.type == "string") {
     if (!value) {
-      if (locale.value == "ru") return "Обязательное поле"
-      if (locale.value == "en") return "Required"
+      if (locale.value == "ru") return "Обязательное поле";
+      if (locale.value == "en") return "Required";
     }
-    return true
+    return true;
   }
-}
+};
 
-let nameRef = toRef(props, "name")
+let nameRef = toRef(props, "name");
 
-const { errorMessage, value } = useField(nameRef, isRequired)
+const { errorMessage, value } = useField(nameRef, isRequired);
 
-const emit = defineEmits(["fieldValue"])
-let activeList = ref(false)
+const emit = defineEmits(["fieldValue"]);
+let activeList = ref(false);
 let hasText = computed(() => {
-  return value.value == ""
-})
+  return value.value == "";
+});
 
 const handleChange = (event) => {
-  emit("fieldValue", value.value)
+  emit("fieldValue", value.value);
   // console.log("event.value", event.target.value);
   // if (!event.target.value) {
   //   activeList.value = false;
@@ -117,8 +137,8 @@ const handleChange = (event) => {
   //   },
   //   displaySuggestions
   // );
-}
-let service = ref(null)
+};
+let service = ref(null);
 onMounted(() => {
   if (props.autocomplete) {
     // service.value = new window.google.maps.places.AutocompleteService({
@@ -131,7 +151,7 @@ onMounted(() => {
     //     fields: ["place_id", "geometry", "name"],
     //   }
   }
-})
+});
 </script>
 
 <style lang="sass">
