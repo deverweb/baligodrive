@@ -6,7 +6,7 @@
     <div v-if="formStore.bike">
       <div
         ref="orderBody"
-        class="order-body sm:px-[25px] md:px-[50px] min-w-[600px] max-w-[46.6%] xl:max-w-[48.8%] md:max-w-full"
+        class="order-body sm:px-[25px] md:px-[50px] md:min-w-0 min-w-[600px] max-w-[46.6%] xl:max-w-[48.8%] md:max-w-full"
       >
         <h1
           class="order-title sm:text-[28px] tracking-[-1.5px] md:leading-[0.98] xl:tracking-[-1.2px] md:text-center xl:text-[36px] font-Euroblack md:text-[48px] text-[48px] uppercase border-bottom xl:pb-[41px] sm:pb-[34px] md:pb-[42px] pb-[30px]"
