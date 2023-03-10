@@ -142,7 +142,7 @@ const handleFooterClickRend = async () => {
   }
 };
 let isAgentPage = computed(() => {
-  return route.path == "/agent/" || route.path == "/agentform/";
+  return route.path == "/agent/" || route.path == "/agentform/" || route.path == "/agentsuccess/";
 });
 </script>
 

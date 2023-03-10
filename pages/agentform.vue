@@ -431,7 +431,7 @@ const onSubmit = handleSubmit(async (values) => {
     raincoats: values.rainCoatCount,
     fullprice: formStore.computedPrice,
   });
-  useRouter().push("/success");
+  useRouter().push("/agentsuccess");
 });
 </script>
 

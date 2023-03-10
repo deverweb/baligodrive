@@ -43,7 +43,7 @@ let isHeaderLeft = ref(false);
 let isScrollingDown = ref(true);
 
 let isAgentPage = computed(() => {
-  return route.path == "/agent/" || route.path == "/agentform/";
+  return route.path == "/agent/" || route.path == "/agentform/" || route.path == "/agentsuccess/";
 });
 
 watch(

@@ -177,7 +177,8 @@ let isOrder = computed(() => {
     route.path == "/payment/" ||
     route.path == "/invest/" ||
     route.path == "/agentform/" ||
-    route.path == "/agent/"
+    route.path == "/agent/" ||
+    route.path == "/agentsuccess/"
   );
 });
 </script>
