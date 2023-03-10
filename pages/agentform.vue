@@ -429,6 +429,7 @@ const onSubmit = handleSubmit(async (values) => {
     adult_helmets: values.adultHelmetCount,
     kid_helmets: values.childHelmetCount,
     raincoats: values.rainCoatCount,
+    fullprice: formStore.computedPrice,
   });
   useRouter().push("/success");
 });
