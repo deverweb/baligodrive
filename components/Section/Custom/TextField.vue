@@ -100,6 +100,11 @@ let isRequired = (value) => {
       if (locale.value == "ru") return "Обязательное поле";
       if (locale.value == "en") return "Required";
     }
+    let regexp = /^(?!\s*$)[-\/'"№., 0-9a-za-я]+$/;
+    if (!regexp.test(value)) {
+      if (locale.value == "ru") return "Только буквы и цифры";
+      if (locale.value == "en") return "Letters and numbers";
+    }
     return true;
   }
 };

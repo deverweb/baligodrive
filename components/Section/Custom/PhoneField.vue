@@ -16,8 +16,8 @@
           @country-changed="handleCountryChange"
           @on-input="handleInput"
           :preferredCountries="['ID', 'RU', 'UA']"
-          autoformat
           :validCharactersOnly="true"
+          :autoFormat="true"
           :autoDefaultCountry="false"
           placeholder="Номер телефона"
           :dropdownOptions="{
@@ -26,7 +26,7 @@
             showDialCodeInList: true,
           }"
           :inputOptions="{
-            maxlength: 13,
+            maxlength: 15,
             name: props.name,
             showDialCode: true,
             placeholder: 'Номер телефона',
@@ -34,18 +34,38 @@
         ></vue-tel-input>
       </ClientOnly>
     </div>
+    <Transition name="text-error">
+      <div class="ci-error-container" v-if="errorMessage">
+        <div class="ci-error">
+          <span>{{ errorMessage }}</span>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
 import { useField } from "vee-validate";
 
-let { value: phoneValue } = useField(props.name);
+const { locale } = useI18n();
+
+let isRequired = (value) => {
+  // console.log("in required, value: ", value);
+  // if (value) {
+  //   if (value.length < 13) {
+  //     if (locale.value == "ru") return "Значение меньше минимального";
+  //     if (locale.value == "en") return "Value is less than minimum";
+  //   }
+  //   return true;
+  // }
+  return true;
+};
+let { errorMessage, value: phoneValue } = useField(props.name, isRequired);
+phoneValue.value = "12313";
 let ctCode = ref(0);
 const handleCountryChange = (obj) => {
   ctCode.value = obj.dialCode;
 };
-
 // const handle = (num, obj) => {
 //   console.log("num:", num);
 //   console.log("obj:", obj);
@@ -201,6 +221,14 @@ const classes = computed(() => {
 				&:active
 					border: none
 	&.widget-phone
+		position: relative
+		.ci-error
+			color: red
+			font-size: 12px
+		.ci-error-container
+			// height: 10px
+			bottom: 0
+			position: absolute
 		.pf-container
 			display: flex
 			height: 100%
