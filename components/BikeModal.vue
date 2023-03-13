@@ -77,7 +77,7 @@
             {{ bike?.model }}
           </div>
           <div class="bmodal-price md:hidden">
-            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[bike.rates.length - 1].dayPriceUSD }}$ /
+            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[3].dayPriceUSD }}$ /
             {{ locale == "ru" ? "день" : "day" }})
           </div>
           <div class="bmodal-paint md:hidden mb-[31px]">
