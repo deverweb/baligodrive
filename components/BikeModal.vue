@@ -1,9 +1,17 @@
 <template>
   <Transition name="bmodal">
-    <div :class="{ 'z-[1000]': globalStore.activeBikeModal }" class="bmodal text-[#111111]" v-show="globalStore.activeBikeModal" v-if="globalStore.activeBikeModal" @click="handleOutsideClick">
+    <div
+      :class="{ 'z-[1000]': globalStore.activeBikeModal }"
+      class="bmodal text-[#111111]"
+      v-show="globalStore.activeBikeModal"
+      v-if="globalStore.activeBikeModal"
+      @click="handleOutsideClick"
+    >
       <div class="bmodal-window relative flex justify-between md:flex-col">
         <div class="bmodal-top h-[57px] hidden xsm:flex justify-between items-center">
-          <div class="text-dark tracking-[-0.6px] uppercase font-Euroblack text-[20px]"><span class="text-green">BALIGO.</span>BIKE</div>
+          <div class="text-dark tracking-[-0.6px] uppercase font-Euroblack text-[20px]">
+            <span class="text-green">BALIGO.</span>BIKE
+          </div>
           <button class="bmodal-close" @click="globalStore.activeBikeModal = false">
             <SvgCloseIcon class="w-[20px] h-[20px]" fill="#000000"></SvgCloseIcon>
           </button>
@@ -15,14 +23,26 @@
           <div class="bmodal-title xsm:order-1 hidden md:block text-center">
             {{ bike?.model }}
           </div>
-          <div class="bmodal-price xsm:order-2 hidden md:block text-center">({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[bike.rates.length - 1].dayPriceUSD }}$ / {{ locale == "ru" ? "день" : "day" }})</div>
+          <div class="bmodal-price xsm:order-2 hidden md:block text-center">
+            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[3].dayPriceUSD }}$ /
+            {{ locale == "ru" ? "день" : "day" }})
+          </div>
           <div class="bmodal-img xsm:order-3">
             <img :src="bikeImg" class="max-w-[90%] h-[450px] xsm:h-full" alt="" />
           </div>
           <div class="bmodal-paint xsm:mb-[56px] xsm:order-4 hidden md:flex mb-[31px]">
-            <SectionCustomRadioField @bikeImgChanged="handleRadioChange" type="bmodal" :showPrice="false" :bg="false" :name="'bikeValue'" :options="bike?.bikes"></SectionCustomRadioField>
+            <SectionCustomRadioField
+              @bikeImgChanged="handleRadioChange"
+              type="bmodal"
+              :showPrice="false"
+              :bg="false"
+              :name="'bikeValue'"
+              :options="bike?.bikes"
+            ></SectionCustomRadioField>
           </div>
-          <p class="bmodal-description xsm:order-6 xsm:mb-[37px] mb-[45px] xsm:text-[14px] hidden md:flex flex-grow text-[16px] xsm:leading-[143%] leading-[125%]">
+          <p
+            class="bmodal-description xsm:order-6 xsm:mb-[37px] mb-[45px] xsm:text-[14px] hidden md:flex flex-grow text-[16px] xsm:leading-[143%] leading-[125%]"
+          >
             {{ locale == "ru" ? bike.ruDescription : bike.engDescription }}
           </p>
           <ul class="bmodal-list xsm:order-5 xsm:mb-[57px] md:mb-[43px]">
@@ -56,22 +76,40 @@
           <div class="bmodal-title text-[#181818] md:hidden">
             {{ bike?.model }}
           </div>
-          <div class="bmodal-price md:hidden">({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[bike.rates.length - 1].dayPriceUSD }}$ / {{ locale == "ru" ? "день" : "day" }})</div>
+          <div class="bmodal-price md:hidden">
+            ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[bike.rates.length - 1].dayPriceUSD }}$ /
+            {{ locale == "ru" ? "день" : "day" }})
+          </div>
           <div class="bmodal-paint md:hidden mb-[31px]">
-            <SectionCustomRadioField @bikeImgChanged="handleRadioChange" type="bmodal" :showPrice="false" :bg="false" :name="'bikeValuePC'" :options="bike?.bikes"></SectionCustomRadioField>
+            <SectionCustomRadioField
+              @bikeImgChanged="handleRadioChange"
+              type="bmodal"
+              :showPrice="false"
+              :bg="false"
+              :name="'bikeValuePC'"
+              :options="bike?.bikes"
+            ></SectionCustomRadioField>
           </div>
           <p class="bmodal-description md:hidden flex-grow text-[16px] leading-[125%]">
             {{ locale == "ru" ? bike.ruDescription : bike.engDescription }}
           </p>
           <div class="bmodal-bottom xsm:flex-col flex gap-[26px] md:gap-[32px]">
-            <TheButton @click="handleBron" class="btn-primary__light xsm:mb-[8px] self-end xsm:w-full gap-[11px] shrink-0 text-light hover:text-dark w-[250px] h-[70px]"
+            <TheButton
+              @click="handleBron"
+              class="btn-primary__light xsm:mb-[8px] self-end xsm:w-full gap-[11px] shrink-0 text-light hover:text-dark w-[250px] h-[70px]"
               ><SvgCalendarIcon class="w-[13px] h-[13px]"></SvgCalendarIcon>
               <span class="text-[16px]">{{ $t("buttonBooking") }}</span>
             </TheButton>
             <div class="bmodal-after text-[14px]">
-              <span class="font-Helvbold">{{ locale == "ru" ? "В стоимость аренды также входят:" : "The rental price also includes:" }}</span>
+              <span class="font-Helvbold">{{
+                locale == "ru" ? "В стоимость аренды также входят:" : "The rental price also includes:"
+              }}</span>
               <p class="font-Helvmed">
-                {{ locale == "ru" ? "полная страховка от повреждений и угона, шлемы, дождевик, аптечка, держатель для телефона." : "full insurance against damage and theft, helmets, raincoat, first aid kit, phone holder." }}
+                {{
+                  locale == "ru"
+                    ? "полная страховка от повреждений и угона, шлемы, дождевик, аптечка, держатель для телефона."
+                    : "full insurance against damage and theft, helmets, raincoat, first aid kit, phone holder."
+                }}
               </p>
             </div>
           </div>
@@ -82,34 +120,34 @@
 </template>
 
 <script setup>
-import { useCommercialStore } from "~~/store/commercial"
-import { useGlobalStore } from "~~/store/global"
-import { useIndexFormStore } from "~~/store/indexform"
-import { useFormStore } from "~~/store/form"
+import { useCommercialStore } from "~~/store/commercial";
+import { useGlobalStore } from "~~/store/global";
+import { useIndexFormStore } from "~~/store/indexform";
+import { useFormStore } from "~~/store/form";
 
-let { locale } = useI18n()
+let { locale } = useI18n();
 
-let commercialStore = useCommercialStore()
-let formStore = useFormStore()
-let globalStore = useGlobalStore()
-let indexForm = useIndexFormStore()
+let commercialStore = useCommercialStore();
+let formStore = useFormStore();
+let globalStore = useGlobalStore();
+let indexForm = useIndexFormStore();
 
 const handleOutsideClick = (event) => {
   if (!event.target.closest(".bmodal-window")) {
-    globalStore.activeBikeModal = false
-  } else return
-}
-let img = ref("")
+    globalStore.activeBikeModal = false;
+  } else return;
+};
+let img = ref("");
 const handleRadioChange = (value) => {
-  formStore.choosedDrawing = value.id
-  img.value = value.img
-}
+  formStore.choosedDrawing = value.id;
+  img.value = value.img;
+};
 
 const handleBron = () => {
-  globalStore.activeBikeModal = false
-  indexForm.changeSelectedOption(bike.value)
-  document.querySelector(".order ").scrollIntoView({ behavior: "smooth" })
-}
+  globalStore.activeBikeModal = false;
+  indexForm.changeSelectedOption(bike.value);
+  document.querySelector(".order ").scrollIntoView({ behavior: "smooth" });
+};
 
 const langObj = computed(() => {
   if (locale.value == "ru")
@@ -122,7 +160,7 @@ const langObj = computed(() => {
       dry_weight: "Сухой вес",
       liters: "Литров",
       fuel_tank_volume_second: "литров / 100 км",
-    }
+    };
   if (locale.value == "en")
     return {
       year: "Year",
@@ -133,33 +171,33 @@ const langObj = computed(() => {
       dry_weight: "Dry weight",
       liters: "liters",
       fuel_tank_volume_second: "liters / 100 km",
-    }
-})
+    };
+});
 
 let bikeImg = computed(() => {
-  if (!bike) return ""
-  if (!img.value) return bike.value.img
-  return img.value
-})
+  if (!bike) return "";
+  if (!img.value) return bike.value.img;
+  return img.value;
+});
 
 let bike = computed(() => {
   return {
     ...commercialStore.bikeModelsArray.find((val) => {
-      return val.id == globalStore.activeBikeId
+      return val.id == globalStore.activeBikeId;
     }),
-  }
-})
+  };
+});
 watch(
   () => globalStore.activeBikeModal,
   () => {
     if (globalStore.activeBikeModal) {
-      document.body.classList.add("active-bmodal")
+      document.body.classList.add("active-bmodal");
     } else {
-      document.body.classList.remove("active-bmodal")
-      img.value = ""
+      document.body.classList.remove("active-bmodal");
+      img.value = "";
     }
   }
-)
+);
 </script>
 
 <style lang="sass">

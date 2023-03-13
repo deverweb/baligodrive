@@ -229,7 +229,7 @@ onMounted(() => {
 			width: 30px
 			display: flex
 			justify-content: flex-start
-			margin-ight: 6px
+			margin-right: 6px
 	&.ci__invest-form
 		position: relative
 
