@@ -543,86 +543,86 @@ const { locale } = useI18n();
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
-formStore.fillForm({
-  date: {
-    start: "2023-02-23T17:19:12.706Z",
-    end: "2023-03-27T17:19:12.706Z",
-  },
-  bike: {
-    model: "HONDA VARIO 160 CC",
-    engDescription:
-      "Honda Vario 160 - This bike is for those who want something nimble and dynamic. It will be comfortable to move around the city and at the same time easy enough to drive and frisky enough to overtake on the highway. Diode optics and combined brakes set this bike apart from other models in this class. The bike is equipped with an 18L trunk, which freely fits a motorcycle helmet.",
-    ruDescription:
-      "Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то маневренное и динамичное. Он будет комфортен для перемещения по городу и в то же время достаточно лёгкий в управлении и резвый для совершения обгона на трассе. Диодная оптика и комбинированные тормоза выделяют этот байк на фоне других моделей данного класса. Байк оснащен багажником 18л, в который свободно влезает мотошлем.\n\t\t\t\t",
-    year: "2022",
-    trunk_volume: "18",
-    capacity: "11,1",
-    fuel_tank_volume: "5,5",
-    average_consumption: "2,3",
-    bikes: [
-      {
-        id: "honda vario 1",
-        img: "/img/bikes/vario-redbull.png",
-        drawing: "Redbull",
-      },
-      {
-        id: "honda vario 2",
-        img: "/img/bikes/vario-blue-full.png",
-        drawing: "Blue Full",
-      },
-    ],
-    discount: 20,
-    rates: [
-      {
-        isFixed: true,
-        isMonthly: false,
-        minDays: 1,
-        maxDays: 3,
-        dayPriceRUP: 700000,
-        dayPriceUSD: 47,
-      },
-      {
-        isFixed: false,
-        minDays: 4,
-        maxDays: 7,
-        isMonthly: false,
-        dayPriceRUP: 270000,
-        dayPriceUSD: 18,
-      },
-      {
-        isFixed: false,
-        minDays: 8,
-        maxDays: 14,
-        isMonthly: false,
-        dayPriceRUP: 220000,
-        dayPriceUSD: 15,
-      },
-      {
-        isFixed: false,
-        minDays: 15,
-        maxDays: 21,
-        isMonthly: false,
-        dayPriceRUP: 170000,
-        dayPriceUSD: 11,
-      },
-      {
-        isFixed: false,
-        isMonthly: true,
-        minDays: 22,
-        maxDays: 90,
-        dayPriceUSD: 233,
-        dayPriceRUP: 3500000,
-      },
-    ],
-    id: "9221",
-    img: "/img/bikes/vario-redbull.png",
-    brand: "HONDA",
-    mark: "VARIO 160 CC",
-    name: "HONDA VARIO 160 CC",
-  },
-  client_name: "12312312",
-  client_phone: "+62 31 2312312",
-});
+// formStore.fillForm({
+//   date: {
+//     start: "2023-02-23T17:19:12.706Z",
+//     end: "2023-03-27T17:19:12.706Z",
+//   },
+//   bike: {
+//     model: "HONDA VARIO 160 CC",
+//     engDescription:
+//       "Honda Vario 160 - This bike is for those who want something nimble and dynamic. It will be comfortable to move around the city and at the same time easy enough to drive and frisky enough to overtake on the highway. Diode optics and combined brakes set this bike apart from other models in this class. The bike is equipped with an 18L trunk, which freely fits a motorcycle helmet.",
+//     ruDescription:
+//       "Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то маневренное и динамичное. Он будет комфортен для перемещения по городу и в то же время достаточно лёгкий в управлении и резвый для совершения обгона на трассе. Диодная оптика и комбинированные тормоза выделяют этот байк на фоне других моделей данного класса. Байк оснащен багажником 18л, в который свободно влезает мотошлем.\n\t\t\t\t",
+//     year: "2022",
+//     trunk_volume: "18",
+//     capacity: "11,1",
+//     fuel_tank_volume: "5,5",
+//     average_consumption: "2,3",
+//     bikes: [
+//       {
+//         id: "honda vario 1",
+//         img: "/img/bikes/vario-redbull.png",
+//         drawing: "Redbull",
+//       },
+//       {
+//         id: "honda vario 2",
+//         img: "/img/bikes/vario-blue-full.png",
+//         drawing: "Blue Full",
+//       },
+//     ],
+//     discount: 20,
+//     rates: [
+//       {
+//         isFixed: true,
+//         isMonthly: false,
+//         minDays: 1,
+//         maxDays: 3,
+//         dayPriceRUP: 700000,
+//         dayPriceUSD: 47,
+//       },
+//       {
+//         isFixed: false,
+//         minDays: 4,
+//         maxDays: 7,
+//         isMonthly: false,
+//         dayPriceRUP: 270000,
+//         dayPriceUSD: 18,
+//       },
+//       {
+//         isFixed: false,
+//         minDays: 8,
+//         maxDays: 14,
+//         isMonthly: false,
+//         dayPriceRUP: 220000,
+//         dayPriceUSD: 15,
+//       },
+//       {
+//         isFixed: false,
+//         minDays: 15,
+//         maxDays: 21,
+//         isMonthly: false,
+//         dayPriceRUP: 170000,
+//         dayPriceUSD: 11,
+//       },
+//       {
+//         isFixed: false,
+//         isMonthly: true,
+//         minDays: 22,
+//         maxDays: 90,
+//         dayPriceUSD: 233,
+//         dayPriceRUP: 3500000,
+//       },
+//     ],
+//     id: "9221",
+//     img: "/img/bikes/vario-redbull.png",
+//     brand: "HONDA",
+//     mark: "VARIO 160 CC",
+//     name: "HONDA VARIO 160 CC",
+//   },
+//   client_name: "12312312",
+//   client_phone: "+62 31 2312312",
+// });
 const computedDayPrice = computed(() => {
   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
     return Number((formStore.rate.dayPriceUSD / 30).toFixed(2));
