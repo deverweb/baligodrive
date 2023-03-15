@@ -149,28 +149,28 @@
                     v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ formStore.rate.dayPriceRUP }} rup / {{ translate("день", "day") }} ({{
+                    {{ formStore.rate.dayPriceRUP }} idr / {{ translate("день", "day") }} ({{
                       formStore.computedRupPrice
                     }}
-                    rup {{ translate("итого", "total") }})
+                    idr {{ translate("итого", "total") }})
                   </div>
                   <div
                     v-if="formStore.rate.isMonthly && formStore.dateDif > 30"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ (formStore.rate.dayPriceRUP / 30).toFixed(2) }} rup / {{ translate("день", "day") }} ({{
+                    {{ (formStore.rate.dayPriceRUP / 30).toFixed(2) }} idr / {{ translate("день", "day") }} ({{
                       formStore.computedRupPrice
                     }}
-                    rup {{ translate("итого", "total") }})
+                    idr {{ translate("итого", "total") }})
                   </div>
                   <div
                     v-if="(formStore.rate.isMonthly || formStore.rate.isFixed) && formStore.dateDif <= 30"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ formStore.computedRupPrice }} rup {{ translate("итого", "total") }}
+                    {{ formStore.computedRupPrice }} idr {{ translate("итого", "total") }}
                   </div>
                   <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
-                    {{ formStore.computedRupPrice }} rup
+                    {{ formStore.computedRupPrice }} idr
                   </div>
                   <!-- <div v-if="formStore.rate.isMonthly && formStore.dateDif > 30"  class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
                     {{ (formStore.rate.dayPriceRUP/30).toFixed(2) }}$
@@ -195,13 +195,13 @@
                     v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ formStore.rate.dayPriceRUP }} rup x {{ formStore.dateDif }} {{ translate("суток", "days") }}
+                    {{ formStore.rate.dayPriceRUP }} idr x {{ formStore.dateDif }} {{ translate("суток", "days") }}
                   </div>
                   <div
                     v-if="formStore.rate.isMonthly && formStore.dateDif > 30"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ (formStore.rate.dayPriceRUP / 30).toFixed(2) }} rup x {{ formStore.dateDif }}
+                    {{ (formStore.rate.dayPriceRUP / 30).toFixed(2) }} idr x {{ formStore.dateDif }}
                     {{ translate("суток", "days") }}
                   </div>
                   <div
@@ -220,11 +220,11 @@
           >
             <div class="order-summary-container flex justify-between w-full xl:hidden md:flex sm:hidden">
               <span class="tracking-[-0.6px]">{{ translate("ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:", "TOTAL RENTAL COST:") }}</span>
-              <span class="tracking-[-0.6px]">{{ formStore.computedRupPrice }} rup</span>
+              <span class="tracking-[-0.6px]">{{ formStore.computedRupPrice }} idr</span>
             </div>
             <div class="order-summary-container w-full justify-between hidden xl:flex md:hidden sm:flex">
               <span class="tracking-[-0.6px]">{{ translate("ИТОГО:", "TOTAL:") }}:</span>
-              <span class="tracking-[-0.6px]">{{ formStore.computedRupPrice }} rup</span>
+              <span class="tracking-[-0.6px]">{{ formStore.computedRupPrice }} idr</span>
             </div>
           </div>
           <div class="sm:px-[25px] md:px-[50px] order-mobile-modal-btn">
