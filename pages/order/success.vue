@@ -15,6 +15,14 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { useFormStore } from "~~/store/form";
+
+const formStore = useFormStore();
+
+onMounted(() => {
+  formStore.resetData();
+});
+</script>
 
 <style lang="sass"></style>

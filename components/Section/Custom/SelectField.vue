@@ -1,5 +1,5 @@
 <template>
-  <div ref="root" class="cs" :class="{ 'z-[4]': isSelectActive }">
+  <div ref="root" class="cs form-field" :class="{ 'z-[4]': isSelectActive }">
     <div class="cs-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">
       {{ props.subTitle }}
     </div>
@@ -25,7 +25,7 @@
       </div>
     </Transition>
     <Transition name="text-error">
-      <div class="cs-error-container z-[1] h-[25px]" v-show="error">
+      <div class="cs-error-container field-error z-[1] h-[25px]" v-if="error">
         <div class="cs-error">
           <ErrorMessage :name="props.name" class="text-red-600"></ErrorMessage>
         </div>

@@ -62,9 +62,11 @@ export default defineNuxtConfig({
     locales: [
       {
         code: "en",
+        iso: "en-US",
         name: "English",
       },
       {
+        iso: "ru-RU",
         code: "ru",
         name: "Русский",
       },
@@ -125,7 +127,8 @@ export default defineNuxtConfig({
           },
           contactsComponent: {
             title: "Контакты",
-            description: "Наш офис расположен в самом сердце Убуда. Вы Можете добраться к нам на общественном транспорте или на такси.",
+            description:
+              "Наш офис расположен в самом сердце Убуда. Вы Можете добраться к нам на общественном транспорте или на такси.",
             communication: "Связь с мессенджерах:",
             clickInfo: "Нажмите, чтобы<br>построить маршрут!",
           },
@@ -224,4 +227,4 @@ export default defineNuxtConfig({
       },
     },
   },
-})
+});

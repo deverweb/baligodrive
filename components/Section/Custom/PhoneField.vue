@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" class="flex flex-col items-start pf">
+  <div :class="classes" class="items-start pf">
     <div class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">
       {{ props.subTitle }}
     </div>
@@ -15,28 +15,28 @@
           mode="international"
           @country-changed="handleCountryChange"
           @on-input="handleInput"
-          :preferredCountries="['ID', 'RU', 'UA']"
+          :preferredCountries="props.preferedCountries"
           :validCharactersOnly="true"
           :autoFormat="true"
           :autoDefaultCountry="false"
-          placeholder="Номер телефона"
           :dropdownOptions="{
             showFlags: true,
-            showSearchBox: true,
+            showSearchBox: false,
             showDialCodeInList: true,
+            disabled: !isDDdisabled,
           }"
           :inputOptions="{
-            maxlength: 15,
+            maxlength: 14,
             name: props.name,
             showDialCode: true,
-            placeholder: 'Номер телефона',
+            placeholder: placeholder,
           }"
         ></vue-tel-input>
       </ClientOnly>
     </div>
     <Transition name="text-error">
-      <div class="ci-error-container" v-if="errorMessage">
-        <div class="ci-error">
+      <div class="ci-error-container field-error" v-if="errorMessage">
+        <div class="ci-error text-red-600">
           <span>{{ errorMessage }}</span>
         </div>
       </div>
@@ -45,40 +45,45 @@
 </template>
 
 <script setup>
-import { useField } from "vee-validate";
+import { useField, useIsFieldTouched, useIsFormTouched, useIsSubmitting } from "vee-validate";
 
 const { locale } = useI18n();
+let isTouched = useIsFieldTouched(props.name);
+let isFormTouched = useIsFormTouched();
+let isSubmitting = useIsSubmitting();
+let placeholder = computed(() => {
+  if (locale.value == "en") return "Phone number";
+  if (locale.value == "ru") return "Номер телефона";
+});
 
-let isRequired = (value) => {
-  // console.log("in required, value: ", value);
-  // if (value) {
-  //   if (value.length < 13) {
-  //     if (locale.value == "ru") return "Значение меньше минимального";
-  //     if (locale.value == "en") return "Value is less than minimum";
-  //   }
-  //   return true;
-  // }
+let isRequired = () => {
+  if (!isSubmitting.value && !isFormTouched.value) {
+    return true;
+  }
+  if (phoneValue.value.length != 14) {
+    return "Not a valid number";
+  }
   return true;
 };
 let { errorMessage, value: phoneValue } = useField(props.name, isRequired);
-phoneValue.value = "12313";
 let ctCode = ref(0);
+
 const handleCountryChange = (obj) => {
   ctCode.value = obj.dialCode;
 };
-// const handle = (num, obj) => {
-//   console.log("num:", num);
-//   console.log("obj:", obj);
-// };
+
+// ВАЛИДАЦИЯ НА ИЗМЕНЕНИЕ ЗНАЧЕНИЯ
+// ЗНАЧЕНИЕ МЕНЯЕТСЯ ВСЕГДА ПРИ ИНИЦИАЛИЗАЦИИ
 
 const handleInput = (num, obj) => {
-  // let regexp = new RegExp("^[0-9 ]+$");
-  // if (regexp.test(num.slice(1))) {
-  // } else {
-  //   phoneValue.value = num.slice(0, -1);
-  //   return;
-  // }
-  if (num.length < ctCode.value.length + 1) phoneValue.value = "+" + ctCode.value;
+  let regexp = new RegExp("^[0-9 ]+$");
+  if (regexp.test(num.slice(1))) {
+  } else {
+    phoneValue.value = num.slice(0, -1);
+  }
+  if (num.length < ctCode.value.length + 1) {
+    phoneValue.value = "+" + ctCode.value;
+  }
 };
 
 let phone = ref("");
@@ -87,8 +92,26 @@ const props = defineProps({
     default: "phone",
     type: String,
   },
+
   type: String,
   subTitle: String,
+  preferedCountries: {
+    type: Array,
+    required: true,
+  },
+  choosedCountries: {
+    type: Array,
+    required: false,
+  },
+  autoFormat: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+});
+
+const isDDdisabled = computed(() => {
+  return props.preferedCountries.length > 1;
 });
 
 const classes = computed(() => {
@@ -114,6 +137,15 @@ const classes = computed(() => {
 		z-index: 2
 		user-select: none
 		border: none
+
+		.ci-error
+			color: red
+			font-size: 14px
+			padding-top: 4px
+			padding-left: 6px
+		.ci-error-container
+			height: 32px
+			position: absolute
 		.pf-container
 			height: 67px
 			position: relative
@@ -131,7 +163,7 @@ const classes = computed(() => {
 			color: $light
 			font-size: 16px
 			background-color: transparent
-			z-index: 2
+			z-index: 5
 			width: 100%
 
 			// padding: 23px 21px 20px 50px
@@ -153,27 +185,36 @@ const classes = computed(() => {
 				box-shadow: none
 
 	&.index-phone
-		color: $dark
-		font-size: 16px
-		background-color: $light
-		z-index: 2
-		padding: 23px 21px 20px 20px
-		height: 67px
-		user-select: none
-		display: flex
-		align-items: flex-start
-		border-radius: 12px
-		border: none
+
+		.ci-error
+			font-size: 14px
+			padding-top: 4px
+			padding-left: 2px
+		.ci-error-container
+			position: static
 		.pf-container
+			height: 67px
+
+			color: $dark
+			font-size: 16px
+			background-color: $light
+			z-index: 3
+			padding: 23px 21px 20px 20px
+			user-select: none
 			display: flex
-			height: 100%
+			align-items: flex-start
+			border-radius: 12px
+			border: none
+			display: flex
+			width: 100%
+			position: relative
 			align-items: center
 		.phone-input
 			border: none
 			color: $dark
 			font-size: 16px
 			background-color: $light
-			z-index: 2
+			z-index: 3
 			width: 100%
 			// padding: 23px 21px 20px 50px
 			user-select: none

@@ -56,7 +56,7 @@
               :text="translate('Введите контактные данные КЛИЕНТА', 'Enter the contact details of the CLIENT')"
             ></SectionCustomStep>
             <div
-              class="order-client items-end sm:mb-[22px] mb-[37px] sm:grid-cols-1 sm:gap-y-[23px] grid grid-cols-2 gap-x-[25px] gap-y-[38px]"
+              class="order-client items-end sm:mb-[43px] mb-[37px] sm:grid-cols-1 sm:gap-y-[43px] grid grid-cols-2 gap-x-[25px] gap-y-[38px]"
             >
               <SectionCustomTextField
                 :type="'string'"
@@ -70,6 +70,7 @@
               <SectionCustomPhoneField
                 class=""
                 :subTitle="translate('Номер WhatsApp', 'WhatsApp number')"
+                :preferedCountries="['ID']"
                 type="order"
                 name="clientPhone"
               >
@@ -97,9 +98,9 @@
         ref="orderSticky"
         :bike-name="formStore.bike.name"
         :bike-image="formStore.bikeImage"
-        :full-price="formStore.computedRupPrice"
+        :full-price="Number(formStore.computedRupPrice.toFixed(0))"
         :rup="true"
-        :day-price-u-s-d="computedDayRupPrice"
+        :day-price-u-s-d="Number(computedDayRupPrice.toFixed(0))"
         :date-dif="formStore.dateDif"
         :date-str-end="formStore.computedDateStrEnd"
         :date-str-start="formStore.computedDateStrStart"
@@ -248,7 +249,7 @@
 </template>
 
 <script setup>
-import { useForm } from "vee-validate";
+import { useForm, useFormErrors } from "vee-validate";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useFormStore } from "~~/store/form";
@@ -256,6 +257,7 @@ import { useCommercialStore } from "~~/store/commercial";
 const router = useRouter();
 const { locale } = useI18n();
 locale.value = "en";
+const formErrors = useFormErrors();
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
@@ -339,6 +341,7 @@ const formStore = useFormStore();
 //   client_name: "12312312",
 //   client_phone: "+62 31 2312312",
 // });
+
 const computedDayPrice = computed(() => {
   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
     return Number((formStore.rate.dayPriceUSD / 30).toFixed(2));
@@ -346,6 +349,17 @@ const computedDayPrice = computed(() => {
     return formStore.rate.dayPriceUSD;
   }
 });
+
+// watch(
+//   () => activeMobileMenu.value,
+//   () => {
+//     if (activeMobileMenu.value) {
+//       document.body.classList.add("active-popup");
+//     } else {
+//       document.body.classList.remove("active-popup");
+//     }
+//   }
+// );
 
 const computedDayRupPrice = computed(() => {
   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
@@ -414,25 +428,31 @@ onMounted(() => {
 //   ScrollTrigger.getById("index").kill();
 // });
 
-const onSubmit = handleSubmit(async (values) => {
-  commercialStore.agentFormOrder({
-    order_date: new Date().toLocaleDateString() + "  " + new Date().toLocaleTimeString().slice(0, -3),
-    villa_name: formStore.hotelName,
-    agent_wa: formStore.agentNumber,
-    client_name: values.clientName,
-    client_wa: values.clientPhone,
-    order_date_start:
-      new Date(formStore.dates.start).toLocaleDateString() + " " + new Date(formStore.dates.start).toLocaleTimeString(),
-    order_date_end:
-      new Date(formStore.dates.end).toLocaleDateString() + " " + new Date(formStore.dates.end).toLocaleTimeString(),
-    bike_model: formStore.bike.name,
-    adult_helmets: values.adultHelmetCount,
-    kid_helmets: values.childHelmetCount,
-    raincoats: values.rainCoatCount,
-    fullprice: formStore.computedPrice,
-  });
-  useRouter().push("/agentsuccess");
-});
+const onSubmit = handleSubmit(
+  async (values) => {
+    commercialStore.agentFormOrder({
+      order_date: new Date().toLocaleDateString() + "  " + new Date().toLocaleTimeString().slice(0, -3),
+      villa_name: formStore.hotelName,
+      agent_wa: " +" + formStore.agentNumber.substring(1),
+      client_name: values.clientName,
+      client_wa: " +" + values.clientPhone.substring(1),
+      order_date_start: new Date(formStore.dates.start).toLocaleDateString(),
+      order_date_end: new Date(formStore.dates.end).toLocaleDateString(),
+      bike_model: formStore.bike.name,
+      adult_helmets: values.adultHelmetCount,
+      kid_helmets: values.childHelmetCount,
+      raincoats: values.rainCoatCount,
+      fullprice: formStore.computedRupPrice,
+    });
+    useRouter().push("/agentsuccess");
+  },
+  async (values) => {
+    window.scrollTo({
+      top: document.querySelectorAll(".field-error")[0].closest(".form-field ").offsetTop - 100,
+      behavior: "smooth",
+    });
+  }
+);
 </script>
 
 <style lang="sass">

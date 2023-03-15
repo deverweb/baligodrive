@@ -6,6 +6,7 @@
 <script setup>
 import { useGlobalStore } from "./store/global";
 import { useCommercialStore } from "~~/store/commercial";
+const { locale } = useI18n();
 const nuxtApp = useNuxtApp();
 
 const store = useGlobalStore();
@@ -21,6 +22,12 @@ onMounted(() => {
   if (process.client && window) {
     window.history.scrollRestoration = "auto";
   }
+});
+
+useHead({
+  htmlAttrs: {
+    lang: locale.value,
+  },
 });
 
 // useHead({

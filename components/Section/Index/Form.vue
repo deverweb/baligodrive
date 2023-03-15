@@ -46,7 +46,12 @@
               <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
             </SectionCustomTextField>
 
-            <SectionCustomPhoneField class="mb-[10px]" type="index" name="client_phone">
+            <SectionCustomPhoneField
+              class="mb-[10px]"
+              :prefered-countries="['ID', 'RU', 'UA']"
+              type="index"
+              name="client_phone"
+            >
               <SvgPhoneIcon></SvgPhoneIcon>
             </SectionCustomPhoneField>
             <SectionCustomSelectField

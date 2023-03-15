@@ -1,5 +1,5 @@
 <template>
-  <div class="ci relative" ref="rootInput">
+  <div class="ci form-field relative" ref="rootInput">
     <div class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">
       {{ props.subTitle }}
     </div>
@@ -31,7 +31,7 @@
       </ul>
     </Transition>
     <Transition name="text-error">
-      <div class="ci-error-container" v-if="errorMessage">
+      <div class="ci-error-container field-error" v-if="errorMessage">
         <div class="ci-error">
           <span>{{ errorMessage }}</span>
         </div>
@@ -87,30 +87,18 @@ let isRequired = (value) => {
     }
     return true;
   }
-  // if (props.validation == "name") {
-  //   let regexp = /^[а-ЯА-Яa-zA-Z][a-zA-Z0-9-]+$/;
-  //   if (regexp.test(value)) {
-  //     console.log("value прошел, ", value);
-  //   } else {
-  //     console.log("value не прошел, ", value);
-  //   }
-  // }
+
   if (props.type == "string") {
     if (!value) {
       if (locale.value == "ru") return "Обязательное поле";
       if (locale.value == "en") return "Required";
     } //
-    //  let regexp = /^(?!\s*$)[-\/'"№., 0-9a-za-я]+$/;
-    //   if (locale.value == "ru") return "Только буквы и цифры";
+    let regexp = /^(?!\s*$)[-\/'"№., 0-9a-zA-ZА-Яa-я]+$/;
+    if (!regexp.test(value)) {
+      if (locale.value == "ru") return "Только буквы и цифры";
 
-    //   if (locale.value == "en") return "Letters and numbers";
-
-    //    if (!regexp.test(value)) {
-    //
-    // }
-    //
-    //
-    //
+      if (locale.value == "en") return "Letters and numbers only";
+    }
 
     return true;
   }

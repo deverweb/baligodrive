@@ -188,6 +188,10 @@ let paymentLink = ref("#");
 // formStore.bikeImage = "https://rentsyst.com/static/cache/vehicle/22441/vehicle_list_33445.jpg";
 
 const onSubmit = () => {
+  // console.log(paymentType.value);
+  if (paymentType.value == "consult") {
+    router.push("/success");
+  }
   if (paymentType.value == "russiacard") {
     fetch("https://cent.app/api/v1/bill/create", {
       body: `amount=${formStore.computedPrice}&description=${
@@ -203,12 +207,8 @@ const onSubmit = () => {
         return data.json();
       })
       .then((result) => {
-        formStore.resetData();
         window.open(result.link_page_url, "_blank").focus();
       });
-  } else {
-    formStore.resetData();
-    router.push("/success");
   }
 };
 </script>

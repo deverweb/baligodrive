@@ -43,7 +43,7 @@
             <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
           </SectionCustomTextField>
 
-          <SectionCustomPhoneField type="widget" name="client_phone">
+          <SectionCustomPhoneField :prefered-countries="['ID', 'RU', 'UA']" type="widget" name="client_phone">
             <SvgPhoneIcon></SvgPhoneIcon>
           </SectionCustomPhoneField>
         </div>

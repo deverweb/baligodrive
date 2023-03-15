@@ -3,7 +3,7 @@
     <div class="order-simple-radio-container sm:w-full flex items-center">
       <div
         :class="props.widthClasses"
-        class="sm:mr-[20px] order-simple-radio-text leading-[21px] sm:items-start flex items-center"
+        class="sm:mr-[20px] xsm:mr-[10px] order-simple-radio-text leading-[21px] sm:items-start flex items-center"
       >
         <slot></slot>
       </div>
@@ -79,6 +79,8 @@ let checked = ref(0);
 			+r(768)
 				position: relative
 				top: -3px
+			+r(480)
+				font-size: 14px
 	input
 		&:checked
 			background: $green
@@ -94,6 +96,8 @@ let checked = ref(0);
 			align-items: center
 			padding: 0 20px
 			transition: all 0.2s linear
+			+r(480)
+				padding: 0 14px
 		&__first
 			label
 				border-bottom-left-radius: 8px

@@ -1,27 +1,17 @@
 <template>
-  <div class="">
+  <div class="sm:mt-[-40px]">
     <section class="agent-slider">
-      <SectionSliderMain class="agent pt-[140px] text-white rounded-[70px] md:rounded-[44px]"></SectionSliderMain>
+      <SectionSliderAgent
+        class="agent pt-[100px] md:pt-[40px] sm:pt-[20px] text-white rounded-[70px] md:rounded-[44px]"
+      ></SectionSliderAgent>
     </section>
-    <section class="agent-form order py-[151px]">
+    <section class="agent-form order sm:py-[50px] lg:py-[60px] lg:pb-[0] py-[101px]">
       <div class="container flex justify-between md:flex-col">
-        <div class="agent-form-left min-w-[360px]">
+        <div class="agent-form-left mb-[40px] sm:min-w-[initial] min-w-[360px]">
           <div class="relative z-[7] text-light">
             <div class="flex lg:flex-col lg:items-center lg:text-center">
-              <div class="order-content sm:mb-[78px] lg:mb-[46px] lg:max-w-full">
-                <h2
-                  ref="formEl"
-                  class="section-title xsm:text-[26px] order-title mb-[29px] sm:mb-[22px] lg:mb-[26px] lg:max-w-[70%] lg:mx-auto md:max-w-max"
-                >
-                  {{ $t("mainPageForm.title") }}
-                </h2>
-                <p
-                  id="orderbike"
-                  class="section-desc mb-[49px] sm:max-w-full lg:mb-[51px] sm:mb-[41px] max-w-[380px] lg:mx-auto"
-                >
-                  {{ $t("mainPageForm.subtitle") }}
-                </p>
-                <form @submit="onSubmit" class="form">
+              <div class="order-content lg:max-w-full">
+                <form @submit.prevent="onSubmit" class="form">
                   <div class="max-w-[360px] lg:mx-auto lg:text-left">
                     <SectionCustomDatePicker
                       v-model:selectedDate="selectedDate"
@@ -51,7 +41,12 @@
                     >
                       <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
                     </SectionCustomTextField>
-                    <SectionCustomPhoneField class="mb-[10px]" type="index" name="agent_number">
+                    <SectionCustomPhoneField
+                      class="mb-[10px]"
+                      :prefered-countries="['ID']"
+                      type="index"
+                      name="agent_number"
+                    >
                       <SvgPhoneIcon></SvgPhoneIcon>
                     </SectionCustomPhoneField>
 
@@ -66,7 +61,7 @@
           </div>
         </div>
         <div
-          class="agent-form-pinned md:hidden w-full max-w-[550px]"
+          class="agent-form-pinned md:hidden max-w-[100%] lg:w-[500px] w-[650px]"
           v-if="indexFormStore.selectedOption && selectedDate"
         >
           <SectionPinnedOrder
@@ -84,7 +79,7 @@
         </div>
         <div
           v-if="formStore.bike && selectedDate"
-          class="order-mobile-modal sm:pt-[40px] hidden md:block md:max-w-full md:pt-[50px]"
+          class="order-mobile-modal sm:pt-[40px] hidden md:block md:max-w-full md:pt-[0px]"
         >
           <div class="order-mobile-container hidden md:block">
             <div
@@ -127,28 +122,28 @@
                       v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
                       class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                     >
-                      {{ formStore.rate.dayPriceUSD }} rup / {{ translate("день", "day") }} ({{
+                      {{ formStore.rate.dayPriceRUP }} idr / {{ translate("день", "day") }} ({{
                         formStore.computedRupPrice
                       }}
-                      rup {{ translate("итого", "total") }})
+                      idr {{ translate("итого", "total") }})
                     </div>
                     <div
                       v-if="formStore.rate.isMonthly && formStore.dateDif > 30"
                       class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                     >
-                      {{ (formStore.rate.dayPriceUSD / 30).toFixed(2) }} rup / {{ translate("день", "day") }} ({{
+                      {{ (formStore.rate.dayPriceRUP / 30).toFixed(2) }} idr / {{ translate("день", "day") }} ({{
                         formStore.computedRupPrice
                       }}
-                      rup {{ translate("итого", "total") }})
+                      idr {{ translate("итого", "total") }})
                     </div>
                     <div
                       v-if="(formStore.rate.isMonthly || formStore.rate.isFixed) && formStore.dateDif <= 30"
                       class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                     >
-                      {{ formStore.computedRupPrice }} rup {{ translate("итого", "total") }}
+                      {{ formStore.computedRupPrice }} idr {{ translate("итого", "total") }}
                     </div>
                     <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
-                      {{ formStore.computedRupPrice }} rup
+                      {{ formStore.computedRupPrice }} idr
                     </div>
                     <!-- <div v-if="formStore.rate.isMonthly && formStore.dateDif > 30"  class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
                     {{ (formStore.rate.dayPriceUSD/30).toFixed(2) }}$
@@ -173,13 +168,13 @@
                       v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
                       class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                     >
-                      {{ formStore.rate.dayPriceUSD }} rup x {{ formStore.dateDif }} {{ translate("суток", "days") }}
+                      {{ formStore.rate.dayPriceRUP }} idr x {{ formStore.dateDif }} {{ translate("суток", "days") }}
                     </div>
                     <div
                       v-if="formStore.rate.isMonthly && formStore.dateDif > 30"
                       class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                     >
-                      {{ (formStore.rate.dayPriceUSD / 30).toFixed(2) }} rup x {{ formStore.dateDif }}
+                      {{ (formStore.rate.dayPriceRUP / 30).toFixed(2) }} idr x {{ formStore.dateDif }}
                       {{ translate("суток", "days") }}
                     </div>
                     <div
@@ -200,11 +195,11 @@
                 <span class="tracking-[-0.6px]">{{
                   translate("ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:", "TOTAL RENTAL COST:")
                 }}</span>
-                <span class="tracking-[-0.6px]">{{ formStore.computedRupPrice }} rup</span>
+                <span class="tracking-[-0.6px]">{{ formStore.computedRupPrice }} idr</span>
               </div>
               <div class="order-summary-container w-full justify-between hidden xl:flex md:hidden sm:flex">
-                <span class="tracking-[-0.6px]">{{ translate("ИТОГО:", "TOTAL:") }}:</span>
-                <span class="tracking-[-0.6px]">{{ formStore.computedRupPrice }} rup</span>
+                <span class="tracking-[-0.6px]">{{ translate("ИТОГО", "TOTAL") }}:</span>
+                <span class="tracking-[-0.6px]">{{ formStore.computedRupPrice }} idr</span>
               </div>
             </div>
           </div>
@@ -220,7 +215,7 @@ import { useCommercialStore } from "~~/store/commercial";
 import { useIndexFormStore } from "~~/store/indexform";
 import { useFormStore } from "~~/store/form";
 
-const { handleSubmit } = useForm();
+const { handleSubmit, submitForm } = useForm();
 const router = useRouter();
 const route = useRoute();
 const indexFormStore = useIndexFormStore();
@@ -273,5 +268,6 @@ const onSubmit = handleSubmit((values) => {
 <style lang="sass">
 .agent
 	&-pinned
-		max-width: initial
+		max-width: 100%
+		width: 700px
 </style>

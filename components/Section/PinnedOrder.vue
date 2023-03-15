@@ -23,10 +23,10 @@
                   v-if="!props.fixedOrMonthly || props.dateDif > 30"
                   class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
                 >
-                  {{ props.dayPriceUSD }} {{ !props.rup ? "$" : " rup" }} / {{ translate("день", "day") }} ({{
+                  {{ props.dayPriceUSD }} {{ !props.rup ? "$" : " idr" }} / {{ translate("день", "day") }} ({{
                     props.fullPrice
                   }}
-                  {{ !props.rup ? "$" : " rup" }} {{ translate("итого", "summary") }} )
+                  {{ !props.rup ? "$" : " idr" }} {{ translate("итого", "summary") }} )
                 </div>
                 <div
                   v-if="props.fixedOrMonthly && props.dateDif <= 30"
@@ -60,11 +60,8 @@
             </div>
           </div>
         </div>
-        <div
-          class="order-view-images w-[50%] md:mb-[90px] md:max-h-[360px] md:flex xl:hidden md:ml-0 flex ml-auto flex-shrink-0"
-        >
-          <img class="flex-shrink-0 h-[230px] object-contain" :src="props.bikeImage" alt="" />
-          <img v-if="false" class="flex-shrink-0" :src="props.bikeImage" alt="" />
+        <div class="order-view-images w-[50%] md:mb-[90px] md:max-h-[360px] md:flex xl:hidden md:ml-0 flex ml-auto">
+          <img class="h-[230px] object-contain" :src="props.bikeImage" alt="" />
         </div>
         <div class="order-view-list hidden md:self-start md:gap-x-[54px] md:pl-[8px] md:flex md:items-start">
           <div class="order-view-item md:mb-0 mb-[38px] xl:mb-[32px] flex items-start">
@@ -75,7 +72,7 @@
               </div>
               <div v-if="!props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
                 {{ props.dayPriceUSD }} {{}} / {{ translate("день", "day") }} ({{ props.fullPrice }}
-                {{ !props.rup ? "$" : " rup" }} {{ translate("итого", "summary") }})
+                {{ !props.rup ? "$" : " idr" }} {{ translate("итого", "summary") }})
               </div>
               <div v-if="props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
                 {{ props.dayPriceUSD }} {{}} {{ translate("итого", "summary") }})
@@ -109,11 +106,11 @@
           <span class="tracking-[-0.6px] mr-[10px]">
             {{ translate(" ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:", "TOTAL RENTAL COST:") }}
           </span>
-          <span class="tracking-[-0.6px]">{{ props.fullPrice }} {{ !props.rup ? "$" : " rup" }}</span>
+          <span class="tracking-[-0.6px]">{{ props.fullPrice }} {{ !props.rup ? "$" : " idr" }}</span>
         </div>
         <div class="order-summary-container w-full justify-between hidden xl:flex md:hidden">
           <span class="tracking-[-0.6px] mr-[10px]">{{ translate("ИТОГО", "SUMMARY") }}:</span>
-          <span class="tracking-[-0.6px]">{{ props.fullPrice }} {{ !props.rup ? "$" : " rup" }}</span>
+          <span class="tracking-[-0.6px]">{{ props.fullPrice }} {{ !props.rup ? "$" : " idr" }}</span>
         </div>
       </div>
     </div>

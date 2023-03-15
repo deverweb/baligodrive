@@ -168,7 +168,7 @@
                 :styleType="'order'"
                 subTitle="Время доставки"
                 :name="'deliveryTime'"
-                class="w-[248px] sm:w-full sm:mb-[23px] sm:max-w-[350px] cs__order-form flex-shrink-0"
+                class="w-[248px] sm:w-full sm:mb-[23px] cs__order-form flex-shrink-0"
                 :options="['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']"
                 :defaultLabel="'Время доставки'"
               >
@@ -202,7 +202,7 @@
                 :styleType="'order'"
                 subTitle="Время возврата"
                 :name="'returnTime'"
-                class="w-[248px] sm:mb-[23px] sm:w-full sm:max-w-[350px] cs__order-form flex-shrink-0"
+                class="w-[248px] sm:mb-[23px] sm:w-full cs__order-form flex-shrink-0"
                 :options="['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']"
                 :defaultLabel="'Время возврата'"
               >
@@ -225,7 +225,7 @@
               text="Введите ваши контактные данные"
             ></SectionCustomStep>
             <div
-              class="order-client sm:mb-[22px] mb-[37px] sm:grid-cols-1 sm:gap-y-[23px] grid grid-cols-2 gap-x-[25px] gap-y-[38px]"
+              class="order-client sm:mb-[42px] mb-[37px] sm:grid-cols-1 sm:gap-y-[43px] grid grid-cols-2 gap-x-[25px] gap-y-[38px]"
             >
               <SectionCustomTextField
                 :type="'string'"
@@ -267,6 +267,7 @@
             </div>
             <SectionCustomFileField
               :name="'passport'"
+              :required="true"
               :subTitle="'Ваш загранпаспорт'"
               :defaultLabel="'Загрузите фото загранпаспорта'"
             >
@@ -514,7 +515,7 @@
         <div class="sm:px-[25px] md:px-[50px] order-mobile-modal-btn">
           <hr class="hidden md:block sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
           <TheButton
-            @click.prevent="submit"
+            @click.prevent="onSubmit"
             class="mt-[50px] sm:mt-0 sm:w-full sm:ml-0 hidden md:flex btn-primary__dark w-full h-[70px] gap-[15px]"
             type="submit"
           >
@@ -543,86 +544,86 @@ const { locale } = useI18n();
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
-formStore.fillForm({
-  date: {
-    start: "2023-02-23T17:19:12.706Z",
-    end: "2023-03-27T17:19:12.706Z",
-  },
-  bike: {
-    model: "HONDA VARIO 160 CC",
-    engDescription:
-      "Honda Vario 160 - This bike is for those who want something nimble and dynamic. It will be comfortable to move around the city and at the same time easy enough to drive and frisky enough to overtake on the highway. Diode optics and combined brakes set this bike apart from other models in this class. The bike is equipped with an 18L trunk, which freely fits a motorcycle helmet.",
-    ruDescription:
-      "Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то маневренное и динамичное. Он будет комфортен для перемещения по городу и в то же время достаточно лёгкий в управлении и резвый для совершения обгона на трассе. Диодная оптика и комбинированные тормоза выделяют этот байк на фоне других моделей данного класса. Байк оснащен багажником 18л, в который свободно влезает мотошлем.\n\t\t\t\t",
-    year: "2022",
-    trunk_volume: "18",
-    capacity: "11,1",
-    fuel_tank_volume: "5,5",
-    average_consumption: "2,3",
-    bikes: [
-      {
-        id: "honda vario 1",
-        img: "/img/bikes/vario-redbull.png",
-        drawing: "Redbull",
-      },
-      {
-        id: "honda vario 2",
-        img: "/img/bikes/vario-blue-full.png",
-        drawing: "Blue Full",
-      },
-    ],
-    discount: 20,
-    rates: [
-      {
-        isFixed: true,
-        isMonthly: false,
-        minDays: 1,
-        maxDays: 3,
-        dayPriceRUP: 700000,
-        dayPriceUSD: 47,
-      },
-      {
-        isFixed: false,
-        minDays: 4,
-        maxDays: 7,
-        isMonthly: false,
-        dayPriceRUP: 270000,
-        dayPriceUSD: 18,
-      },
-      {
-        isFixed: false,
-        minDays: 8,
-        maxDays: 14,
-        isMonthly: false,
-        dayPriceRUP: 220000,
-        dayPriceUSD: 15,
-      },
-      {
-        isFixed: false,
-        minDays: 15,
-        maxDays: 21,
-        isMonthly: false,
-        dayPriceRUP: 170000,
-        dayPriceUSD: 11,
-      },
-      {
-        isFixed: false,
-        isMonthly: true,
-        minDays: 22,
-        maxDays: 90,
-        dayPriceUSD: 233,
-        dayPriceRUP: 3500000,
-      },
-    ],
-    id: "9221",
-    img: "/img/bikes/vario-redbull.png",
-    brand: "HONDA",
-    mark: "VARIO 160 CC",
-    name: "HONDA VARIO 160 CC",
-  },
-  client_name: "12312312",
-  client_phone: "+62 31 2312312",
-});
+// formStore.fillForm({
+//   date: {
+//     start: "2023-02-23T17:19:12.706Z",
+//     end: "2023-03-27T17:19:12.706Z",
+//   },
+//   bike: {
+//     model: "HONDA VARIO 160 CC",
+//     engDescription:
+//       "Honda Vario 160 - This bike is for those who want something nimble and dynamic. It will be comfortable to move around the city and at the same time easy enough to drive and frisky enough to overtake on the highway. Diode optics and combined brakes set this bike apart from other models in this class. The bike is equipped with an 18L trunk, which freely fits a motorcycle helmet.",
+//     ruDescription:
+//       "Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то маневренное и динамичное. Он будет комфортен для перемещения по городу и в то же время достаточно лёгкий в управлении и резвый для совершения обгона на трассе. Диодная оптика и комбинированные тормоза выделяют этот байк на фоне других моделей данного класса. Байк оснащен багажником 18л, в который свободно влезает мотошлем.\n\t\t\t\t",
+//     year: "2022",
+//     trunk_volume: "18",
+//     capacity: "11,1",
+//     fuel_tank_volume: "5,5",
+//     average_consumption: "2,3",
+//     bikes: [
+//       {
+//         id: "honda vario 1",
+//         img: "/img/bikes/vario-redbull.png",
+//         drawing: "Redbull",
+//       },
+//       {
+//         id: "honda vario 2",
+//         img: "/img/bikes/vario-blue-full.png",
+//         drawing: "Blue Full",
+//       },
+//     ],
+//     discount: 20,
+//     rates: [
+//       {
+//         isFixed: true,
+//         isMonthly: false,
+//         minDays: 1,
+//         maxDays: 3,
+//         dayPriceRUP: 700000,
+//         dayPriceUSD: 47,
+//       },
+//       {
+//         isFixed: false,
+//         minDays: 4,
+//         maxDays: 7,
+//         isMonthly: false,
+//         dayPriceRUP: 270000,
+//         dayPriceUSD: 18,
+//       },
+//       {
+//         isFixed: false,
+//         minDays: 8,
+//         maxDays: 14,
+//         isMonthly: false,
+//         dayPriceRUP: 220000,
+//         dayPriceUSD: 15,
+//       },
+//       {
+//         isFixed: false,
+//         minDays: 15,
+//         maxDays: 21,
+//         isMonthly: false,
+//         dayPriceRUP: 170000,
+//         dayPriceUSD: 11,
+//       },
+//       {
+//         isFixed: false,
+//         isMonthly: true,
+//         minDays: 22,
+//         maxDays: 90,
+//         dayPriceUSD: 233,
+//         dayPriceRUP: 3500000,
+//       },
+//     ],
+//     id: "9221",
+//     img: "/img/bikes/vario-redbull.png",
+//     brand: "HONDA",
+//     mark: "VARIO 160 CC",
+//     name: "HONDA VARIO 160 CC",
+//   },
+//   client_name: "12312312",
+//   client_phone: "+62 31 2312312",
+// });
 const computedDayPrice = computed(() => {
   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
     return Number((formStore.rate.dayPriceUSD / 30).toFixed(2));
@@ -716,32 +717,43 @@ const submit = handleSubmit(async () => {
   // console.log(errors.value);
 });
 
-const onSubmit = handleSubmit(async (values) => {
-  commercialStore.orderBike({
-    order_id: values.order_id,
-    order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
-    client_name: formStore.client_name,
-    client_surname: values.clientName,
-    client_phone: values.clientPhone,
-    client_social: values.clientMessenger.name,
-    client_email: values.clientEmail,
-    order_date_start:
-      new Date(formStore.dates.start).toLocaleDateString() + "" + new Date(formStore.dates.start).toLocaleTimeString(),
-    order_date_end:
-      new Date(formStore.dates.end).toLocaleDateString() + "" + new Date(formStore.dates.end).toLocaleTimeString(),
-    bike_model: formStore.bike.name,
-    bike_painting: drawing.value,
-    location_delivery: values.firstAddress,
-    time_delivery: values.deliveryTime,
-    location_return: values.lastAddress,
-    time_return: values.returnTime,
-    adult_helmets: values.adultHelmetCount,
-    kid_helmets: values.childHelmetCount,
-    raincoats: values.rainCoatCount,
-    full_price: formStore.computedPrice,
-  });
-  useRouter().push("/payment");
-});
+const onSubmit = handleSubmit(
+  async (values) => {
+    commercialStore.orderBike({
+      order_id: values.order_id,
+      order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
+      client_name: formStore.client_name,
+      client_surname: values.clientName,
+      client_phone: values.clientPhone,
+      client_social: values.clientMessenger.name,
+      client_email: values.clientEmail,
+      order_date_start:
+        new Date(formStore.dates.start).toLocaleDateString() +
+        "" +
+        new Date(formStore.dates.start).toLocaleTimeString(),
+      order_date_end:
+        new Date(formStore.dates.end).toLocaleDateString() + "" + new Date(formStore.dates.end).toLocaleTimeString(),
+      bike_model: formStore.bike.name,
+      bike_painting: drawing.value,
+      location_delivery: values.firstAddress,
+      time_delivery: values.deliveryTime,
+      location_return: values.lastAddress,
+      time_return: values.returnTime,
+      adult_helmets: values.adultHelmetCount,
+      kid_helmets: values.childHelmetCount,
+      raincoats: values.rainCoatCount,
+      full_price: formStore.computedPrice,
+    });
+    useRouter().push("/payment");
+  },
+  async (values) => {
+    window.scrollTo({
+      top: document.querySelectorAll(".field-error")[0].closest(".form-field ").offsetTop - 100,
+      behavior: "smooth",
+    });
+    // htmlEl.scrollIntoView({ behavior: "smooth" });
+  }
+);
 </script>
 
 <style lang="sass">
