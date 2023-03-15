@@ -102,6 +102,7 @@ let isRequired = (value) => {
 
     return true;
   }
+  return true;
 };
 
 let nameRef = toRef(props, "name");

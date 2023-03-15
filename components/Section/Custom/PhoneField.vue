@@ -26,7 +26,7 @@
             disabled: !isDDdisabled,
           }"
           :inputOptions="{
-            maxlength: 14,
+            maxlength: 15,
             name: props.name,
             showDialCode: true,
             placeholder: placeholder,
@@ -45,10 +45,9 @@
 </template>
 
 <script setup>
-import { useField, useIsFieldTouched, useIsFormTouched, useIsSubmitting } from "vee-validate";
+import { useField, useIsFormTouched, useIsSubmitting } from "vee-validate";
 
 const { locale } = useI18n();
-let isTouched = useIsFieldTouched(props.name);
 let isFormTouched = useIsFormTouched();
 let isSubmitting = useIsSubmitting();
 let placeholder = computed(() => {
@@ -60,7 +59,8 @@ let isRequired = () => {
   if (!isSubmitting.value && !isFormTouched.value) {
     return true;
   }
-  if (phoneValue.value.length != 14) {
+
+  if (phoneValue.value.replace(/\s/g, "").length - ctCode.value.length - 1 != 10) {
     return "Not a valid number";
   }
   return true;
@@ -71,9 +71,6 @@ let ctCode = ref(0);
 const handleCountryChange = (obj) => {
   ctCode.value = obj.dialCode;
 };
-
-// ВАЛИДАЦИЯ НА ИЗМЕНЕНИЕ ЗНАЧЕНИЯ
-// ЗНАЧЕНИЕ МЕНЯЕТСЯ ВСЕГДА ПРИ ИНИЦИАЛИЗАЦИИ
 
 const handleInput = (num, obj) => {
   let regexp = new RegExp("^[0-9 ]+$");
