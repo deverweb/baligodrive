@@ -26,13 +26,13 @@
                   {{ props.dayPriceUSD }} {{ !props.rup ? "$" : " idr" }} / {{ translate("день", "day") }} ({{
                     props.fullPrice
                   }}
-                  {{ !props.rup ? "$" : " idr" }} {{ translate("итого", "summary") }} )
+                  {{ !props.rup ? "$" : " idr" }} {{ translate("итого", "total") }} )
                 </div>
                 <div
                   v-if="props.fixedOrMonthly && props.dateDif <= 30"
                   class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
                 >
-                  {{ props.dayPriceUSD }} {{ translate("итого", "summary") }}
+                  {{ props.dayPriceUSD }} {{ translate("итого", "total") }}
                 </div>
               </div>
             </div>
@@ -72,10 +72,10 @@
               </div>
               <div v-if="!props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
                 {{ props.dayPriceUSD }} {{}} / {{ translate("день", "day") }} ({{ props.fullPrice }}
-                {{ !props.rup ? "$" : " idr" }} {{ translate("итого", "summary") }})
+                {{ !props.rup ? "$" : " idr" }} {{ translate("итого", "total") }})
               </div>
               <div v-if="props.fixedOrMonthly" class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
-                {{ props.dayPriceUSD }} {{}} {{ translate("итого", "summary") }})
+                {{ props.dayPriceUSD }} {{}} {{ translate("итого", "total") }})
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@
           <span class="tracking-[-0.6px]">{{ props.fullPrice }} {{ !props.rup ? "$" : " idr" }}</span>
         </div>
         <div class="order-summary-container w-full justify-between hidden xl:flex md:hidden">
-          <span class="tracking-[-0.6px] mr-[10px]">{{ translate("ИТОГО", "SUMMARY") }}:</span>
+          <span class="tracking-[-0.6px] mr-[10px]">{{ translate("ИТОГО", "TOTAL") }}:</span>
           <span class="tracking-[-0.6px]">{{ props.fullPrice }} {{ !props.rup ? "$" : " idr" }}</span>
         </div>
       </div>
