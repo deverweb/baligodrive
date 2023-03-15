@@ -237,7 +237,6 @@
                 <SvgPersonIcon></SvgPersonIcon
               ></SectionCustomTextField>
               <SectionCustomTextField
-                :type="'string'"
                 class="ci__payment-form"
                 name="clientEmail"
                 placeholder="Введите ваш E-mail"
@@ -727,12 +726,8 @@ const onSubmit = handleSubmit(
       client_phone: values.clientPhone,
       client_social: values.clientMessenger.name,
       client_email: values.clientEmail,
-      order_date_start:
-        new Date(formStore.dates.start).toLocaleDateString() +
-        "" +
-        new Date(formStore.dates.start).toLocaleTimeString(),
-      order_date_end:
-        new Date(formStore.dates.end).toLocaleDateString() + "" + new Date(formStore.dates.end).toLocaleTimeString(),
+      order_date_start: new Date(formStore.dates.start).toLocaleDateString(),
+      order_date_end: new Date(formStore.dates.end).toLocaleDateString(),
       bike_model: formStore.bike.name,
       bike_painting: drawing.value,
       location_delivery: values.firstAddress,

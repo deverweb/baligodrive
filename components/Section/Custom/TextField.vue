@@ -70,11 +70,11 @@ const props = defineProps({
 let rootInput = ref(null);
 let isRequired = (value) => {
   if (props.disabled) return true;
+  if (!value) {
+    if (locale.value == "ru") return "Обязательное поле";
+    if (locale.value == "en") return "Required";
+  }
   if (props.type == "number") {
-    if (!value) {
-      if (locale.value == "ru") return "Обязательное поле";
-      if (locale.value == "en") return "Required";
-    }
     if (props.minValue) {
       if (value < props.minValue) {
         if (locale.value == "ru") return "Значение меньше минимального";
