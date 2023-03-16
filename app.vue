@@ -17,8 +17,11 @@ nuxtApp.hook("page:finish", () => {
   store.activeMobileMenu = false;
   // window.scrollTo(0, 0)
 });
-
-onMounted(() => {
+// let fetchResult = await fetch("http://baligofullstack/back/wp-json/post/v1");
+// console.log(fetchResult);
+// let fetchData = await fetchResult.json();
+// console.log(fetchData);
+onMounted(async () => {
   if (process.client && window) {
     window.history.scrollRestoration = "auto";
   }
@@ -30,6 +33,17 @@ useHead({
   },
 });
 
+watch(
+  () => locale.value,
+  () => {
+    useHead({
+      htmlAttrs: {
+        lang: locale.value,
+      },
+    });
+  }
+);
+
 // useHead({
 //   script: [
 //     {
@@ -40,3 +54,15 @@ useHead({
 //   ],
 // });
 </script>
+
+<style lang="sass">
+
+.page-enter-active,
+.page-leave-active
+	transition: 0.3s all ease-in-out
+
+.page-enter-from,
+.page-leave-to
+	opacity: 0
+	filter: blur(.2rem)
+</style>

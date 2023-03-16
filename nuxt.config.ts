@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
+    // layoutTransition: true,
+    // pageTransition: { name: "page", mode: "out-in" },
     head: {
       title: "Baligo",
       meta: [
@@ -18,9 +20,6 @@ export default defineNuxtConfig({
       ],
       // script: [{ src: "https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" }],
     },
-
-    // layoutTransition: true,
-    // pageTransition: { name: "page", mode: "out-in" },
   },
   vite: {
     css: {
