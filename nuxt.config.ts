@@ -18,6 +18,7 @@ export default defineNuxtConfig({
         // content: "Official Nuxt.js starter for CodeSandBox"
         // }
       ],
+      script: [{}],
       // script: [{ src: "https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" }],
     },
   },

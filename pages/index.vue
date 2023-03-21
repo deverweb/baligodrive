@@ -41,7 +41,7 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://baligo.bike/",
+      href: "https://baligo.bike",
     },
   ],
 });

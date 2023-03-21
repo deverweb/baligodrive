@@ -75,8 +75,8 @@
           </div>
         </form>
       </div>
-      <div class="orderbike relative md:max-w-[80%] md:mx-auto">
-        <img class="object-contain max-w-none lg:max-w-full" :src="bikeImageSrc" alt="" />
+      <div class="orderbike max-w-[48%] relative md:max-w-[80%] md:mx-auto">
+        <img class="object-contain max-w-full" :src="bikeImageSrc" alt="" />
         <SectionIndexFormTooltip
           class="left-[9.4%] top-[29.5%] sm:left-[13.6%] sm:top-[12.1%]"
           :tooltip="tooltips.first"
