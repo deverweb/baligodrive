@@ -68,9 +68,9 @@
                 <SvgPersonIcon></SvgPersonIcon>
               </SectionCustomTextField>
               <SectionCustomPhoneField
+                :prefered-countries="['ID', 'RU', 'UA']"
                 class=""
                 :subTitle="translate('Номер WhatsApp', 'WhatsApp number')"
-                :preferedCountries="['ID']"
                 type="order"
                 name="clientPhone"
               >

@@ -17,10 +17,7 @@ nuxtApp.hook("page:finish", () => {
   store.activeMobileMenu = false;
   // window.scrollTo(0, 0)
 });
-// let fetchResult = await fetch("http://baligofullstack/back/wp-json/post/v1");
-// console.log(fetchResult);
-// let fetchData = await fetchResult.json();
-// console.log(fetchData);
+
 onMounted(async () => {
   if (process.client && window) {
     window.history.scrollRestoration = "auto";
