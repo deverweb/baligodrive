@@ -43,7 +43,7 @@
                     </SectionCustomTextField>
                     <SectionCustomPhoneField
                       class="mb-[10px]"
-                      :prefered-countries="['ID', 'RU', 'UA']"
+                      :prefered-countries="['ID']"
                       type="index"
                       name="agent_number"
                     >
