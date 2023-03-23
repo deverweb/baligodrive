@@ -26,7 +26,7 @@
             disabled: !isDDdisabled,
           }"
           :inputOptions="{
-            maxlength: 16,
+            maxlength: 17,
             name: props.name,
             showDialCode: true,
             placeholder: placeholder,
