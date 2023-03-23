@@ -40,16 +40,6 @@ watch(
     });
   }
 );
-
-// useHead({
-//   script: [
-//     {
-//       src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAqNPzsf4Ee-OuexRYSOddBXzMHQnHuxME&libraries=places",
-//       async: true,
-//       defer: true,
-//     },
-//   ],
-// });
 </script>
 
 <style lang="sass">

@@ -18,7 +18,29 @@ export default defineNuxtConfig({
         // content: "Official Nuxt.js starter for CodeSandBox"
         // }
       ],
-      script: [{}],
+      script: [
+        // {
+        // 			src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAqNPzsf4Ee-OuexRYSOddBXzMHQnHuxME&libraries=places",
+        // 			async: true,
+        // 			defer: true,
+        // 		},
+        {
+          src: "https://www.googletagmanager.com/gtag/js?id=G-123123123",
+          type: "text/javascript",
+          async: true,
+        },
+        {
+          type: "text/javascript",
+          async: true,
+          innerHTML: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date()); gtag('config', 'G-VSHN7NHQL4');`,
+        },
+        // {
+        // 	children: `<script async src="https://www.googletagmanager.com/gtag/js?id=G-123123123"></script>`,
+        // },
+        // {
+        // 	children: `<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date()); gtag('config', 'G-VSHN7NHQL4');</script>`
+        // }
+      ],
       // script: [{ src: "https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" }],
     },
   },
@@ -39,6 +61,7 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     // "@vueuse/nuxt",
   ],
+
   plugins: [
     { src: "~/plugins/v-calendar", ssr: false, mode: "client" },
     { src: "~/plugins/vue-tel-input", ssr: false, mode: "client" },
