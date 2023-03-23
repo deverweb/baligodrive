@@ -342,6 +342,10 @@ const formStore = useFormStore();
 //   client_phone: "+62 31 2312312",
 // });
 
+definePageMeta({
+  layout: "agent",
+});
+
 const computedDayPrice = computed(() => {
   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
     return Number((formStore.rate.dayPriceUSD / 30).toFixed(2));

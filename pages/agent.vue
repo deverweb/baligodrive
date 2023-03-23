@@ -43,7 +43,7 @@
                     </SectionCustomTextField>
                     <SectionCustomPhoneField
                       class="mb-[10px]"
-                      :prefered-countries="['ID']"
+                      :prefered-countries="['ID', 'RU', 'UA']"
                       type="index"
                       name="agent_number"
                     >
@@ -224,10 +224,14 @@ const formStore = useFormStore();
 const selectedDate = ref(null);
 const { locale } = useI18n();
 
+definePageMeta({
+  layout: "agent",
+});
+
 const translate = (ruStr, engStr) => {
   return locale.value == "ru" ? ruStr : engStr;
 };
-locale.value = "en";
+// locale.value = "en";
 
 watch(
   () => indexFormStore.selectedOption,
