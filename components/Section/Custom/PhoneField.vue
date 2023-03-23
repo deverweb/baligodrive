@@ -26,7 +26,7 @@
             disabled: !isDDdisabled,
           }"
           :inputOptions="{
-            maxlength: 15,
+            maxlength: 16,
             name: props.name,
             showDialCode: true,
             placeholder: placeholder,
@@ -54,14 +54,20 @@ let placeholder = computed(() => {
   if (locale.value == "en") return "Phone number";
   if (locale.value == "ru") return "Номер телефона";
 });
+let translate = (ruStr, engStr) => {
+  return locale.value == "ru" ? ruStr : engStr;
+};
 
 let isRequired = () => {
   if (!isSubmitting.value && !isFormTouched.value) {
     return true;
   }
 
-  if (phoneValue.value.replace(/\s/g, "").length - ctCode.value.length - 1 != 10) {
-    return "Not a valid number";
+  if (ctCode.value == "62" && phoneValue.value.replace(/\s/g, "").length - 3 != 11) {
+    return translate("Неправильный номер", "Not a valid number");
+  }
+  if (ctCode.value !== "62" && phoneValue.value.replace(/\s/g, "").length - ctCode.value.length - 1 != 10) {
+    return translate("Неправильный номер", "Not a valid number");
   }
   return true;
 };
