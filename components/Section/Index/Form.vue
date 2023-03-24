@@ -136,18 +136,23 @@ const formData = ref({
     active: false,
   },
 });
-const onSubmit = handleSubmit((values) => {
-  formStore.fillForm(values);
-  commercialStore.smallFormOrder({
-    order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
-    client_name: values.client_name,
-    client_messenger: " +" + values.client_phone.substring(1),
-    order_date_start: values.date.start,
-    order_date_end: values.date.end,
-    bike_choice: values.bike.name,
-  });
-  router.push({ path: "/order" });
-});
+const onSubmit = handleSubmit(
+  (values) => {
+    formStore.fillForm(values);
+    commercialStore.smallFormOrder({
+      order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
+      client_name: values.client_name,
+      client_messenger: " +" + values.client_phone.substring(1),
+      order_date_start: values.date.start,
+      order_date_end: values.date.end,
+      bike_choice: values.bike.name,
+    });
+    router.push({ path: "/order" });
+  }
+  // (values) => {
+  //   console.log("values: ", values);
+  // }
+);
 
 const bikeImageSrc = "/img/index/order-bike.png";
 const tooltips = {

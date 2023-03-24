@@ -68,6 +68,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   css: ["@/assets/sass/main.sass"],
   modules: [
     "@nuxtjs/tailwindcss",

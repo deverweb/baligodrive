@@ -3,11 +3,12 @@
     <div class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">
       {{ props.subTitle }}
     </div>
+
     <div class="pf-container">
       <div class="pf-icon-container">
         <slot></slot>
       </div>
-      <input type="text" v-model="phone" class="hidden" name="client_phone" id="client_phone" />
+
       <ClientOnly>
         <vue-tel-input
           class="ml-[7px] phone-input"
@@ -17,7 +18,7 @@
           @on-input="handleInput"
           :preferredCountries="props.preferedCountries"
           :validCharactersOnly="true"
-          :autoFormat="true"
+          :autoFormat="false"
           :autoDefaultCountry="false"
           :dropdownOptions="{
             showFlags: true,
@@ -26,7 +27,7 @@
             disabled: !isDDdisabled,
           }"
           :inputOptions="{
-            maxlength: 16,
+            maxlength: 22,
             name: props.name,
             showDialCode: true,
             placeholder: placeholder,
@@ -54,15 +55,10 @@ let placeholder = computed(() => {
   if (locale.value == "en") return "Phone number";
   if (locale.value == "ru") return "Номер телефона";
 });
-let ctCode = ref(62);
+let ctCode = ref(0);
 let translate = (ruStr, engStr) => {
   return locale.value == "ru" ? ruStr : engStr;
 };
-
-// let inputLength2 = ref(16)
-// onMounted(() => {
-// 	inputLength2
-// })
 
 let isRequired = () => {
   if (!isSubmitting.value && !isFormTouched.value) {
@@ -85,12 +81,27 @@ let { errorMessage, value: phoneValue } = useField(props.name, isRequired);
 
 const handleCountryChange = (obj) => {
   ctCode.value = obj.dialCode;
+  phoneValue.value = `+${ctCode.value}`;
 };
 
 const handleInput = (num, obj) => {
-  if (ctCode.value == "380" && phoneValue.value.replace(/\s/g, "").length - 1 >= 13) {
-    phoneValue.value = num.slice(0, -1);
+  phoneValue.value = num.replace(/\s/g, "");
+  if (ctCode.value == "62" && phoneValue.value.length > 14) {
+    phoneValue.value = num.slice(0, Number(phoneValue.value.length - num.length + 1) * -1);
+
+    return;
   }
+  if (ctCode.value == "380" && phoneValue.value.length > 13) {
+    phoneValue.value = num.slice(0, Number(phoneValue.value.length - num.length + 1) * -1);
+    return;
+  }
+  if (ctCode.value !== "62" && ctCode.value !== "380" && phoneValue.value.length - ctCode.value.length > 11) {
+    phoneValue.value = num.slice(0, Number(phoneValue.value.length - num.length + 1) * -1);
+    return;
+  }
+  // if (ctCode.value == "380" && phoneValue.value.replace(/\s/g, "").length - 1 >= 13) {
+  //   phoneValue.value = num.slice(0, -1);
+  // }
   let regexp = new RegExp("^[0-9 ]+$");
   if (regexp.test(num.slice(1))) {
   } else {
@@ -101,7 +112,6 @@ const handleInput = (num, obj) => {
   }
 };
 
-let phone = ref("");
 const props = defineProps({
   name: {
     default: "phone",
