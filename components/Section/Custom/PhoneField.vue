@@ -159,7 +159,8 @@ const classes = computed(() => {
 		color: $light
 		font-size: 16px
 		background-color: transparent
-		z-index: 2
+		z-index: 4
+		position: relative
 		user-select: none
 		border: none
 
@@ -196,6 +197,8 @@ const classes = computed(() => {
 			display: flex
 			align-items: center
 			height: 100%
+			.vti__dropdown.open
+				background-color: $dark300
 			.vti__dropdown-item.highlighted
 				background-color: $dark300
 			.vti__dropdown-list
