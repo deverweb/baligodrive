@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   let sheet;
   await doc.loadInfo();
   if (body.sheet == "investform") {
-    sheet = doc.sheetsByIndex[2];
+    sheet = doc.sheetsByIndex[3];
 
     await sheet.addRow({
       order_date: body.data.date,
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
     return "if smallform";
   }
   if (body.sheet == "smallform") {
-    sheet = doc.sheetsByIndex[1];
+    sheet = doc.sheetsByIndex[0];
 
     await sheet.addRow({
       order_date: body.data.order_date,
@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (body.sheet == "bigform") {
-    sheet = doc.sheetsByIndex[0];
+    sheet = doc.sheetsByIndex[1];
     const rows = await sheet.getRows();
     let data = body.data;
     await sheet.addRow({
@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
     return "if bigform";
   }
   if (body.sheet == "agentform") {
-    sheet = doc.sheetsByIndex[3];
+    sheet = doc.sheetsByIndex[2];
     const rows = await sheet.getRows();
     let data = body.data;
     await sheet.addRow({
