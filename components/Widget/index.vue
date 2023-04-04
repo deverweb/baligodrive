@@ -128,7 +128,7 @@ const onSubmit = handleSubmit((values) => {
     order_date_end: formatDate(new Date(formStore.dates.end)),
     bike_choice: values.bike.name,
   });
-  // router.push({ path: "/order" });
+  router.push({ path: "/order" });
 });
 
 onMounted(() => {
