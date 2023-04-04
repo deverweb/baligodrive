@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
     private_key: private_key,
   });
   //
+
   let sheet;
   await doc.loadInfo();
   if (body.sheet == "investform") {
@@ -29,13 +30,12 @@ export default defineEventHandler(async (event) => {
   }
   if (body.sheet == "smallform") {
     sheet = doc.sheetsByIndex[0];
-
     await sheet.addRow({
       order_date: body.data.order_date,
       client_name: body.data.client_name,
       client_messenger: body.data.client_messenger,
-      order_date_start: new Date(body.data.order_date_start).toLocaleDateString(),
-      order_date_end: new Date(body.data.order_date_end).toLocaleDateString(),
+      order_date_start: "14/04/2023",
+      order_date_end: "14/04/2023",
       bike_model: body.data.bike_choice,
     });
     return "if smallform";
