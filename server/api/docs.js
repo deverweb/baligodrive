@@ -34,8 +34,8 @@ export default defineEventHandler(async (event) => {
       order_date: body.data.order_date,
       client_name: body.data.client_name,
       client_messenger: body.data.client_messenger,
-      order_date_start: "14/04/2023",
-      order_date_end: "14/04/2023",
+      order_date_start: body.data.order_date_start,
+      order_date_end: body.data.order_date_end,
       bike_model: body.data.bike_choice,
     });
     return "if smallform";
