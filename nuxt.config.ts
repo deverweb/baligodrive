@@ -49,8 +49,17 @@ export default defineNuxtConfig({
 					fbq('track', 'PageView');
 					</script>`,
         },
+        {
+          type: "text/javascript",
+          async: true,
+          innerHTML: `window.replainSettings = { id: '1264a380-7025-4ec0-9c79-522e48fd5eff' }; 
+					(function(u){var s=document.createElement('script');s.async=true;s.src=u; 
+					var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x); 
+					})('https://widget.replain.cc/dist/client.js'); 
+					`,
+        },
         // {
-        // 	children: `<script async src="https://www.googletagmanager.com/gtag/js?id=G-123123123"></script>`,
+        // 	children: `<script async src="https://www.googletagmanager.com/gtag/js?id=G-123123123"></>`,
         // },
         // {
         // 	children: `<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date()); gtag('config', 'G-VSHN7NHQL4');</script>`
